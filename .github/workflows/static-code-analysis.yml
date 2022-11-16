@@ -1,0 +1,27 @@
+name: Static code analysis
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 17.3.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 17.3.x
+      - run: yarn
+      - run: yarn run prettier:check
+        env:
+          CI: true
+      - run: yarn run lint
+        env:
+          CI: true
+      - run: yarn run stylelint:check
+        env:
+          CI: true
