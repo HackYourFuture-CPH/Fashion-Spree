@@ -1,0 +1,13 @@
+.go-back-button {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  font-size: 24px;
+}
+.go-back-button:hover {
+  cursor: pointer;
+}
+.go-back-button button svg {
+  font-size: 30px;
+}
