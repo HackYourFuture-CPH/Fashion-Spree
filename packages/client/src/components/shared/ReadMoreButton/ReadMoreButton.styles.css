@@ -1,15 +1,13 @@
-.changeable-button {
+.read-more-button {
   display: flex;
   align-items: center;
   background: none;
   border: none;
   font-size: 24px;
 }
-
-.changeable-button:hover {
+.read-more-button:hover {
   cursor: pointer;
 }
-
-.changeable-button button svg {
+.read-more-button button svg {
   font-size: 30px;
 }

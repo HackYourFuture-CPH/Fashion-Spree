@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './ProductDescription.styles.css';
-import { GrStar } from 'react-icons/gr';
-import { ChangeableButton } from '../../shared/ExtendButton/ChangeableButton.component';
+import sharpStar from '../../../../public/assets/vectors/sharp-star.svg';
+import { ReadMoreButton } from '../../shared/ReadMoreButton/ReadMoreButton.component';
 
 const reduce = (description) => {
   return description
@@ -14,7 +14,7 @@ const reduce = (description) => {
 export const ProductDescription = ({ product, rating }) => {
   const [extended, setExtended] = useState(false);
 
-  const extendButtonHandler = () => {
+  const expandButtonHandler = () => {
     setExtended(!extended);
   };
 
@@ -24,7 +24,7 @@ export const ProductDescription = ({ product, rating }) => {
       <div className="product-description-numbers">
         <span>Dkk {product.price}</span>
         <div className="product-description-rating">
-          <GrStar />
+          <img src={sharpStar} alt="star" />
           <span>{rating}</span>
         </div>
       </div>
@@ -37,9 +37,9 @@ export const ProductDescription = ({ product, rating }) => {
         )}
 
         {extended ? (
-          <ChangeableButton text="Read less" onClick={extendButtonHandler} />
+          <ReadMoreButton text="Read less" onClick={expandButtonHandler} />
         ) : (
-          <ChangeableButton text="Read more" onClick={extendButtonHandler} />
+          <ReadMoreButton text="Read more" onClick={expandButtonHandler} />
         )}
       </div>
     </div>
