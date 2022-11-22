@@ -1,0 +1,15 @@
+.changeable-button {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  font-size: 24px;
+}
+
+.changeable-button:hover {
+  cursor: pointer;
+}
+
+.changeable-button button svg {
+  font-size: 30px;
+}
