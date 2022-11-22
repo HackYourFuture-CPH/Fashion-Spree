@@ -1,0 +1,46 @@
+.navbar {
+margin: 0;
+background-color:  rgba(228, 193, 177, 0.2);
+height: 131px;
+display: flex;
+justify-content:center;
+align-items: center;
+
+}
+
+.navbar-brand {
+    text-decoration: none;
+    font-family: 'Montserrat';
+    font-weight:600;
+    Size:24px;
+    line-height: 29.26px;
+    color: #212121;
+    margin-right: 50px;
+}
+.nav *{
+text-decoration: none;
+font-family: 'Montserrat';
+    font-weight:600;
+    Size:24px;
+    line-height: 29.26px;
+    color: #212121;
+
+} 
+.nav {
+    display: flex;
+    align-items: center;
+    gap:50px;
+}
+
+.login-button, .signup-button {
+font-family:'Poppins';
+font-weight: 700;
+Size:24px;
+line-height: 36px;
+padding: 12px 22px;
+width: 70px;
+height: 30px;
+background: #ffffff;
+border-radius: 100px;
+}
+
