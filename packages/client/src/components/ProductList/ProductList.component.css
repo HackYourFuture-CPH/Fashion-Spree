@@ -1,0 +1,30 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: rgba(228, 193, 177, 1);
+  margin: auto;
+}
+.rendered-product {
+  margin: 200px 100px;
+  justify-content: center;
+  position: absolute;
+  display: flex;
+  flex-wrap: wrap;
+}
+.product {
+  width: 333px;
+  height: 433px;
+  margin: 15px 10px;
+}
+.product img {
+  width: 333px;
+  height: 333px;
+}
+.product p {
+  color: black;
+  text-align: left;
+  padding: 10px;
+}
