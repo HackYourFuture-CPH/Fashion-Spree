@@ -1,5 +1,6 @@
 import React from 'react';
 import './FooterStyle.css';
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
@@ -11,19 +12,19 @@ export default function Footer() {
             <h4>About Us</h4>
             <p className="list-footer">
               <li>
-                <a href="#">Company</a>
+                <Link to="/company">Company</Link>
               </li>
               <li>
-                <a href="#">Partners</a>
+                <Link to="/partners">Partners</Link>
               </li>
               <li>
-                <a href="#">Press</a>
+                <Link to="/press">Press</Link>
               </li>
               <li>
-                <a href="#">Careers</a>
+                <Link to="/careers">Careers</Link>
               </li>
               <li>
-                <a href="#">Blog</a>
+                <Link to="/blog">Blog</Link>
               </li>
             </p>
           </div>
@@ -32,19 +33,19 @@ export default function Footer() {
             <h4>Customer care</h4>
             <p className="list-footer">
               <li>
-                <a href="#">Shipping and Delivery</a>
+                <Link to="/shipping-delivery">Shipping and Delivery</Link>
               </li>
               <li>
-                <a href="#">Return and refunds</a>
+                <Link to="/return-refunds">Return and refunds</Link>
               </li>
               <li>
-                <a href="#">Customer Service</a>
+                <Link to="/customer-service">Customer Service</Link>
               </li>
               <li>
-                <a href="#">Store locator</a>
+                <Link to="/store-locator">Store Locator</Link>
               </li>
               <li>
-                <a href="#">Size Guide</a>
+                <Link to="/size-guide">Size Guide</Link>
               </li>
             </p>
           </div>
@@ -53,19 +54,19 @@ export default function Footer() {
             <h4>Information</h4>
             <p className="list-footer">
               <li>
-                <a href="#">Terms of Service</a>
+                <Link to="/terms-service">Terms of Service</Link>
               </li>
               <li>
-                <a href="#">Privacy policies</a>
+                <Link to="/privacy-policies">Privacy policies</Link>
               </li>
               <li>
-                <a href="#">Cookies policies</a>
+                <Link to="/cookies-policies">Cookies policies</Link>
               </li>
               <li>
-                <a href="#">Contact us</a>
+                <Link to="/contactsUs">Contact us</Link>
               </li>
               <li>
-                <a href="#">FAQs</a>
+                <Link to="/FAQs">FAQs</Link>
               </li>
             </p>
           </div>
@@ -75,22 +76,38 @@ export default function Footer() {
             <p className="list-footer">
               <li>
                 <img
-                  src="Instagram.png"
+                  src="/assets/icons/Instagram.png"
                   className="icon"
                   alt="instagram icon"
                 />
               </li>
               <li>
-                <img src="Facebook.png" className="icon" alt="facebook icon" />
+                <img
+                  src="/assets/icons/Facebook.png"
+                  className="icon"
+                  alt="facebook icon"
+                />
               </li>
               <li>
-                <img src="Website.png" className="icon" alt="website icon" />
+                <img
+                  src="/assets/icons/Website.png"
+                  className="icon"
+                  alt="website icon"
+                />
               </li>
               <li>
-                <img src="twitter.png" className="icon" alt="twitter icon" />
+                <img
+                  src="/assets/icons/twitter.png"
+                  className="icon"
+                  alt="twitter icon"
+                />
               </li>
               <li>
-                <img src="tikTok.png" className="icon" alt="tiktok icon" />
+                <img
+                  src="/assets/icons/tikTok.png"
+                  className="icon"
+                  alt="tiktok icon"
+                />
               </li>
             </p>
           </div>
