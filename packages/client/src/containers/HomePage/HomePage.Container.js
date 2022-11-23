@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { apiURL } from '../../apiURL';
+import React from 'react';
 import './HomePage.Style.css';
 import { Navigation } from '../../components/Navigation/Navigation.component';
 import { Header } from '../../components/Header/Header.component';
