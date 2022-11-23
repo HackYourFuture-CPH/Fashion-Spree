@@ -1,4 +1,4 @@
-import logo from './images.png';
+import logo from '../../assets/images.png';
 
 const Products = [
   {
