@@ -1,0 +1,12 @@
+.dropdown-label {
+  font-size: 18px;
+  width: 20px;
+}
+
+.dropdown-select {
+  width: 120px;
+  height: 30px;
+  font-size: 12px;
+  margin-top: 10px;
+  background-color: #e4c1b1;
+}
