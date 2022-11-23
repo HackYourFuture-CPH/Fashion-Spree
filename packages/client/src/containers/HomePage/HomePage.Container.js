@@ -8,17 +8,6 @@ import { Newsletter } from '../../components/Newsletter/Newsletter.component';
 import { Footer } from '../../components/Footer/Footer.component';
 
 export const HomePage = () => {
-  const [exampleResources, setExampleResources] = useState([]);
-  useEffect(() => {
-    async function fetchExampleResources() {
-      const response = await fetch(`${apiURL()}/exampleResources`);
-      const examples = await response.json();
-      setExampleResources(examples);
-    }
-
-    fetchExampleResources();
-  }, []);
-
   return (
     <div className="homepage-container">
       <div className="navigation-container">
