@@ -12,6 +12,8 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+  margin-left: 276px;
+  margin-right: 275px;
 }
 
 .list-footer li {
@@ -59,11 +61,8 @@ h4 {
   font-size: large;
 }
 .icon {
-  height: 23px;
-  width: 33px;
-  border: 4px solid rgb(9, 9, 9);
-  border-radius: 50%;
-  background-color: rgb(252, 219, 219);
+  height: 28px;
+  width: 38px;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   position: relative;
