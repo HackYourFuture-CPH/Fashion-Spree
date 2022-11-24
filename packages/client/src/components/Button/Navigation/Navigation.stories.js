@@ -7,8 +7,6 @@ export default {
   component: Navigation.component,
 };
 
-// export const Basic = () => <Navigation />;
-
 export const Basic = () => {
   return (
     <div className="nav">
