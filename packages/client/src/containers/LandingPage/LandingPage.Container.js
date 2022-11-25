@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { apiURL } from '../../apiURL';
-import { Button } from '../../components/Button/Button.component';
 import './LandingPage.Style.css';
 import ProductList from '../../components/ProductList/ProductList.component';
 
