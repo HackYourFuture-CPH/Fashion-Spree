@@ -1,5 +1,5 @@
 .main {
-  background-color: #E4C1B1;
+  background-color: #e4c1b1;
 }
 
 .shop-our-collections {
@@ -7,7 +7,7 @@
   font-family: 'Montserrat';
   color: #212121;
   font-weight: 700;
-  Size: 32px;
+  size: 32px;
   line-height: 39px;
   text-align: Center;
 }
@@ -61,13 +61,13 @@
 .shopnow-button {
   width: 186px;
   height: 66px;
-  background-color: #F5F5F5;
+  background-color: #f5f5f5;
   border: none;
   border-radius: 100px;
   margin-top: 64px;
   margin-bottom: 47px;
   font-family: 'Poppins';
   font-weight: 700;
-  Size: 24px;
+  size: 24px;
   line-height: 36px;
 }
