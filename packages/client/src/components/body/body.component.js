@@ -1,5 +1,4 @@
 import React from 'react';
-
 import './body.style.css';
 import WomenAccessories from '../../assets/women-accessories.png';
 import MenAccessories from '../../assets/men-accessories.png';
