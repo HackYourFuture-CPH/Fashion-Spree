@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { apiURL } from '../../apiURL';
+import React from 'react';
 import './LandingPage.Style.css';
 import Footer from '../../components/Footer/Footer';
 import ProductList from '../../components/ProductList/ProductList.component';
