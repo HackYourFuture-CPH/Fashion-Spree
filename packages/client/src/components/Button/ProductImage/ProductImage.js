@@ -4,7 +4,7 @@ import './ProductImage.styles.css';
 
 function ProductImage({ topSide, middleSide, bottomSide, bigImage }) {
   return (
-    <div className="wrapper">
+    <div className="product-image-wrapper">
       <div className="left-picture">
         <div>
           <img src={topSide} alt="topSide" width="100px" />{' '}

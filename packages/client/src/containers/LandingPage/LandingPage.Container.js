@@ -20,7 +20,6 @@ export const LandingPage = () => {
     <div className="landing-page-container">
       <ProductList />
       <span>Landing Page</span>
-      <Button label="string" size="small" />
       {exampleResources.map((example) => (
         <div key={example.id}>{example.title}</div>
       ))}
