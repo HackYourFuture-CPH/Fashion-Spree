@@ -1,13 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import './Header.styles.css';
 import { Button } from '../Button/Button.component';
 import imageHeader from '../../assets/image-header.png';
 
-/**
- * Primary UI component for user interaction
- */
-export const Header = ({ primary, backgroundColor, size, label, ...props }) => {
+export const Header = () => {
   return (
     <div className="header-component">
       <div className="header-text">
@@ -22,38 +18,8 @@ export const Header = ({ primary, backgroundColor, size, label, ...props }) => {
         <Button label="Start Shopping" backgroundColor="#F2EBE8" />
       </div>
       <div className="header-image">
-        <img src={imageHeader} />
+        <img src={imageHeader} alt="Header image" />
       </div>
     </div>
   );
-};
-
-Header.propTypes = {
-  /**
-   * Is this the principal call to action on the page?
-   */
-  primary: PropTypes.bool,
-  /**
-   * What background color to use
-   */
-  backgroundColor: PropTypes.string,
-  /**
-   * How large should the button be?
-   */
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
-  /**
-   * Button contents
-   */
-  label: PropTypes.string.isRequired,
-  /**
-   * Optional click handler
-   */
-  onClick: PropTypes.func,
-};
-
-Header.defaultProps = {
-  backgroundColor: null,
-  primary: false,
-  size: 'medium',
-  onClick: undefined,
 };
