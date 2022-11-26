@@ -1,3 +1,9 @@
 .landing-page-container {
-  color: #687808;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  color: #e15503;
+}
+.content-wrap {
+  flex: 1;
 }
