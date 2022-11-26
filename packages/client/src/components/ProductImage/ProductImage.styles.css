@@ -1,0 +1,10 @@
+.product-image-wrapper {
+  border: 2px solid #cea086;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  column-gap: 1rem;
+  line-height: 2rem;
+  padding-top: 10px;
+  background-color: #cea086;
+}
