@@ -18,7 +18,7 @@ export const Header = () => {
         <Button label="Start Shopping" backgroundColor="#F2EBE8" />
       </div>
       <div className="header-image">
-        <img src={imageHeader} alt="Header image" />
+        <img src={imageHeader} alt="Header" />
       </div>
     </div>
   );
