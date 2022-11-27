@@ -3,7 +3,7 @@ import topSide from './images/Picture2.png';
 import bigImage from './images/Picture1.png';
 import middleSide from './images/Picture3.png';
 import bottomSide from './images/Picture4.png';
-import ProductImage from './ProductImage.js';
+import ProductImage from './ProductImage.component.js';
 
 export default {
   title: 'ProductImage/ProductImage',

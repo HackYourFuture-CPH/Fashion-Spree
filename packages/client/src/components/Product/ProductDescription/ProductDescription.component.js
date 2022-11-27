@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './ProductDescription.styles.css';
-import sharpStar from '../../../../public/assets/vectors/sharp-star.svg';
+import sharpStar from '../../../assets/vectors/sharp-star.svg';
 import { ReadMoreButton } from '../../shared/ReadMoreButton/ReadMoreButton.component';
 
 const reduce = (description) => {
@@ -48,9 +48,10 @@ export const ProductDescription = ({ product, rating }) => {
 
 ProductDescription.propTypes = {
   product: PropTypes.exact({
+    id: PropTypes.number,
     name: PropTypes.string,
     description: PropTypes.string,
-    price: PropTypes.number,
+    price: PropTypes.string,
   }),
   rating: PropTypes.number,
 };
