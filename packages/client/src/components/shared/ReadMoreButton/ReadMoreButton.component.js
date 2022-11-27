@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import expandArrow from '../../../../public/assets/vectors/expand-arrow.svg';
+import expandArrow from '../../../assets/vectors/expand-arrow.svg';
 import './ReadMoreButton.styles.css';
 
 export const ReadMoreButton = ({ text, onClick }) => {
