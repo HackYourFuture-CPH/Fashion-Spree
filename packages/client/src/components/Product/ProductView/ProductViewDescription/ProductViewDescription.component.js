@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './ProductViewDescription.styles.css';
 
 export const ProductViewDescription = ({ children }) => {
-  return <div className="container">{children}</div>;
+  return <div className="product-view-description">{children}</div>;
 };
 
 ProductViewDescription.propTypes = {

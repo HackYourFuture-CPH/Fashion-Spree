@@ -24,24 +24,32 @@ export const ProductView = () => {
   };
 
   return (
-    <view.ProductContainer>
-      <view.GoBackButton text="Back to search results" onClick={navigateBack} />
-      <view.ProductViewWrapper>
-        <view.ProductImage
-          topSide={view.topSide}
-          middleSide={view.middleSide}
-          bottomSide={view.bottomSide}
-          bigImage={view.bigImage}
+    <div className="product-view-page">
+      <view.ProductContainer>
+        <view.GoBackButton
+          text="Back to search results"
+          onClick={navigateBack}
         />
-        <view.ProductViewDescription>
-          {product.map((prod) => (
-            <view.ProductDescription key={prod.id} product={prod} rating={5} />
-          ))}
-          <view.DropdownGroup />
-          <view.ViewPageButton label="Buy Now" backgroundColor="#F5F5F5" />
-          <view.ViewPageButton label="Add to Cart" backgroundColor="#D9D9D9" />
-        </view.ProductViewDescription>
-      </view.ProductViewWrapper>
-    </view.ProductContainer>
+        <view.ProductViewWrapper>
+          <view.ProductImage
+            topSide={view.topSide}
+            middleSide={view.middleSide}
+            bottomSide={view.bottomSide}
+            bigImage={view.bigImage}
+          />
+          <view.ProductViewDescription>
+            {product.map((prod) => (
+              <view.ProductDescription
+                key={prod.id}
+                product={prod}
+                rating={5}
+              />
+            ))}
+            <view.DropdownGroup />
+            <view.ProductViewButtons />
+          </view.ProductViewDescription>
+        </view.ProductViewWrapper>
+      </view.ProductContainer>
+    </div>
   );
 };
