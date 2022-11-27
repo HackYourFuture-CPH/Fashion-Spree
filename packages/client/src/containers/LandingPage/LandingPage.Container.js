@@ -1,20 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { apiURL } from '../../apiURL';
+import React from 'react';
 import './LandingPage.Style.css';
 import Newsletter from '../../components/Newsletter/Newsletter';
+import { Header } from '../../components/Header/Header.component';
+import Footer from '../../components/Footer/Footer';
+import ProductList from '../../components/ProductList/ProductList.component';
+
 
 export const LandingPage = () => {
-  const [exampleResources, setExampleResources] = useState([]);
-  useEffect(() => {
-    async function fetchExampleResources() {
-      const response = await fetch(`${apiURL()}/exampleResources`);
-      const examples = await response.json();
-      setExampleResources(examples);
-    }
-
-    fetchExampleResources();
-  }, []);
-
   return (
     <>
       <div className="landing-page-container">
@@ -25,5 +17,13 @@ export const LandingPage = () => {
       </div>
       <Newsletter />
     </>
+    <div className="landing-page-container">
+      <div className="content-wrap">
+        <Header />
+        <ProductList />
+        <span>Landing Page</span>
+      </div>
+      <Footer />
+    </div>
   );
 };

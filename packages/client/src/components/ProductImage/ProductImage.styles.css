@@ -1,0 +1,23 @@
+.product-image-wrapper {
+  grid-column: 1 / span 7;
+  display: flex;
+  gap: 66px;
+}
+
+.product-image-wrapper img {
+  display: block;
+}
+
+.product-image-left-picture {
+  display: flex;
+  flex-direction: column;
+  gap: 31px;
+}
+
+.product-image-left-picture img {
+  width: 222px;
+}
+
+.product-image-right-picture img {
+  width: 364px;
+}

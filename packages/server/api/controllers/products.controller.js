@@ -1,6 +1,10 @@
 const knex = require('../../config/db');
 const HttpError = require('../lib/utils/http-error');
 
+const getProducts = async () => {
+  return knex.select().table('products');
+};
+
 // Get products by id
 const getProductById = async (id) => {
   if (!id) {
@@ -21,5 +25,6 @@ const getProductById = async (id) => {
 };
 
 module.exports = {
+  getProducts,
   getProductById,
 };
