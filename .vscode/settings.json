@@ -4,5 +4,6 @@
   "prettier.configPath": "./.prettierrc",
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "typescript.validate.enable": false
 }
