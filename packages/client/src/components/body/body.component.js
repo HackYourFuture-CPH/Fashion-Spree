@@ -1,11 +1,5 @@
 import React from 'react';
 import './body.style.css';
-import WomenAccessories from '../../assets/women-accessories.png';
-import MenAccessories from '../../assets/men-accessories.png';
-import Handbag from '../../assets/handbag.png';
-import womanGlasses from '../../assets/glass.png';
-import PearlEarring from '../../assets/earring.png';
-import Closet from '../../assets/closet.png';
 
 export const Body = () => {
   return (
@@ -15,18 +9,18 @@ export const Body = () => {
         <div className="upper-img-container">
           <img
             className="img-women-accessories"
-            src={WomenAccessories}
+            src="/assets/images/body-images/women-accessories.png"
             alt="earring and shoe"
           />
           <div className="upper-right-container">
             <img
               className="img-men-accessories"
-              src={MenAccessories}
+              src="/assets/images/body-images/men-accessories.png"
               alt="men shoe and clothes"
             />
             <img
               className="img-handbag"
-              src={Handbag}
+              src="/assets/images/body-images/handbag.png"
               alt="a person holding a handbag"
             />
           </div>
@@ -35,18 +29,18 @@ export const Body = () => {
           <div className="lower-left-container">
             <img
               className="img-woman-glass"
-              src={womanGlasses}
-              alt="a woman in glasses"
+              src="/assets/images/body-images/glass.png"
+              alt="a woman wearing glasses"
             />
             <img
               className="img-pearl-earring"
-              src={PearlEarring}
+              src="/assets/images/body-images/earring.png"
               alt="pearl earring"
             />
           </div>
           <img
             className="img-closet"
-            src={Closet}
+            src="/assets/images/body-images/closet.png"
             alt="big wardrobe closet with clothes hanging"
           />
         </div>
