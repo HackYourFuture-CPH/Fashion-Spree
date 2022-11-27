@@ -4,8 +4,8 @@ import './App.css';
 import { LandingPage } from './containers/LandingPage/LandingPage.Container';
 import { PageNotFound } from './containers/PageNotFound/PageNotFound.Container';
 import { ProductView } from './containers/ProductView/ProductView.container';
-import ProductList from './components/ProductList/ProductList.component';
-// TODO: change ProductList into the page container CLASS22-40
+import { CollectionsPage } from './containers/CollectionsPage/CollectionsPage.Container';
+
 function App() {
   return (
     <div className="app">
@@ -13,9 +13,8 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="*" element={<PageNotFound />} />
-          <Route path="/collections" element={<ProductList />} />
           <Route path="/products/:id" element={<ProductView />} />
-          {/* TODO: change ProductList into the page container CLASS22-40 */}
+          <Route path="/collections" element={<CollectionsPage />} />
         </Routes>
       </Router>
     </div>
