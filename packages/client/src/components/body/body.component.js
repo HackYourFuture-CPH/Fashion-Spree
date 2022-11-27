@@ -1,5 +1,5 @@
 import React from 'react';
-import './body.style.css';
+import './Body.style.css';
 
 export const Body = () => {
   return (
