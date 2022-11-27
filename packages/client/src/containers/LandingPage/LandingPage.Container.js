@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { apiURL } from '../../apiURL';
 import './LandingPage.Style.css';
+import Newsletter from '../../components/Newsletter/Newsletter';
 
 export const LandingPage = () => {
   const [exampleResources, setExampleResources] = useState([]);
@@ -15,11 +16,14 @@ export const LandingPage = () => {
   }, []);
 
   return (
-    <div className="landing-page-container">
-      <span>Landing Page</span>
-      {exampleResources.map((example) => (
-        <div key={example.id}>{example.title}</div>
-      ))}
-    </div>
+    <>
+      <div className="landing-page-container">
+        <span>Landing Page</span>
+        {exampleResources.map((example) => (
+          <div key={example.id}>{example.title}</div>
+        ))}
+      </div>
+      <Newsletter />
+    </>
   );
 };
