@@ -10,11 +10,11 @@ const ViewDropdown = ({ options, label, ...props }) => {
     });
   return (
     <>
-      <label htmlFor={label} className="dropdown-label">
+      <label htmlFor={label} className="view-dropdown-label">
         {label}
       </label>
       <div>
-        <select id={label} className="dropdown-select">
+        <select id={label} className="view-dropdown-select">
           {optionList}
         </select>
       </div>
