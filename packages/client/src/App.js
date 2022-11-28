@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
-import { LandingPage } from './containers/LandingPage/LandingPage.Container';
+import { HomePage } from './containers/HomePage/HomePage.Container';
 import { PageNotFound } from './containers/PageNotFound/PageNotFound.Container';
 import { ProductView } from './containers/ProductView/ProductView.container';
 import { AboutUs } from './components/PlaceholderPages/AboutUs.component';
@@ -14,7 +14,7 @@ function App() {
     <div className="app">
       <Router>
         <Routes>
-          <Route path="/" element={<LandingPage />} />
+          <Route path="/" element={<HomePage />} />
           <Route exact path="/about-us" element={<AboutUs />} />
           <Route exact path="/contact-us" element={<ContactUs />} />
           <Route exact path="/login" element={<Login />} />
