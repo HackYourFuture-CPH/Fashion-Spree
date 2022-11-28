@@ -3,52 +3,47 @@ import logo from '../../assets/images.png';
 const Products = [
   {
     image: logo,
-    text: 'Image1',
+    text: 'Slim Fit Jeans',
     price: '300kr',
   },
   {
     image: logo,
-    text: 'Image2',
+    text: 'Slim Fit Jeans',
     price: '300kr',
   },
   {
     image: logo,
-    text: 'Image3',
+    text: 'Slim Fit Jeans',
     price: '300kr',
   },
   {
     image: logo,
-    text: 'Image4',
+    text: 'Slim Fit Jeans',
     price: '300kr',
   },
   {
     image: logo,
-    text: 'Image5',
+    text: 'Slim Fit Jeans',
     price: '300kr',
   },
   {
     image: logo,
-    text: 'Image6',
+    text: 'Slim Fit Jeans',
     price: '300kr',
   },
   {
     image: logo,
-    text: 'Image7',
+    text: 'Slim Fit Jeans',
     price: '300kr',
   },
   {
     image: logo,
-    text: 'Image8',
+    text: 'Slim Fit Jeans',
     price: '300kr',
   },
   {
     image: logo,
-    text: 'Image9',
-    price: '300kr',
-  },
-  {
-    image: logo,
-    text: 'Image10',
+    text: 'Slim Fit Jeans',
     price: '300kr',
   },
 ];

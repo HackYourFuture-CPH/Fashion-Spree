@@ -4,11 +4,11 @@ import './App.css';
 import { LandingPage } from './containers/LandingPage/LandingPage.Container';
 import { PageNotFound } from './containers/PageNotFound/PageNotFound.Container';
 import { ProductView } from './containers/ProductView/ProductView.container';
-import ProductList from './components/ProductList/ProductList.component';
 import { AboutUs } from './components/PlaceholderPages/AboutUs.component';
 import { ContactUs } from './components/PlaceholderPages/ContactUs.component';
 import { Login } from './components/PlaceholderPages/Login.component';
-// TODO: change ProductList into the page container CLASS22-40
+import { CollectionsPage } from './containers/CollectionsPage/CollectionsPage.Container';
+
 function App() {
   return (
     <div className="app">
@@ -19,9 +19,8 @@ function App() {
           <Route exact path="/contact-us" element={<ContactUs />} />
           <Route exact path="/login" element={<Login />} />
           <Route path="*" element={<PageNotFound />} />
-          <Route path="/collections" element={<ProductList />} />
           <Route path="/products/:id" element={<ProductView />} />
-          {/* TODO: change ProductList into the page container CLASS22-40 */}
+          <Route path="/collections" element={<CollectionsPage />} />
         </Routes>
       </Router>
     </div>
