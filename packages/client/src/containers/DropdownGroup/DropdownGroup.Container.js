@@ -8,7 +8,7 @@ export const DropdownGroup = () => {
   const Quantities = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   return (
-    <div className="dropdown-list">
+    <div className="dropdown-group-list">
       <div className="dropdown-group">
         <ViewDropdown options={Colors} label="Color" />
       </div>

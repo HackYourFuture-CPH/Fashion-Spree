@@ -5,19 +5,19 @@ import './ProductImage.styles.css';
 function ProductImage({ topSide, middleSide, bottomSide, bigImage }) {
   return (
     <div className="product-image-wrapper">
-      <div className="left-picture">
+      <div className="product-image-left-picture">
         <div>
-          <img src={topSide} alt="topSide" width="100px" />{' '}
+          <img src={topSide} alt="topSide" />{' '}
         </div>
         <div>
-          <img src={middleSide} alt="middleSide" width="100px" />{' '}
+          <img src={middleSide} alt="middleSide" />{' '}
         </div>
         <div>
-          <img src={bottomSide} alt="bottomSide" width="100px" />{' '}
+          <img src={bottomSide} alt="bottomSide" />{' '}
         </div>
       </div>
-      <div className="right-picture">
-        <img src={bigImage} alt="bigImage" width="150px" height="300px" />{' '}
+      <div className="product-image-right-picture">
+        <img src={bigImage} alt="bigImage" />{' '}
       </div>
     </div>
   );

@@ -7,7 +7,7 @@ export const ViewPageButton = ({ label, backgroundColor }) => {
     <button
       type="button"
       style={{ backgroundColor }}
-      className="viewPage-button"
+      className="view-page-button"
     >
       {label}
     </button>
