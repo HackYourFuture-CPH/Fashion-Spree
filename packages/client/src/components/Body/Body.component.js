@@ -1,26 +1,37 @@
 import React from 'react';
-import './Body.style.css';
+import './Body.styles.css';
+import { Button } from '../Button/Button.component';
+import imgWomenAccessories from '../../assets/images/body-images/women-accessories.png';
+import imgMenAccessories from '../../assets/images/body-images/men-accessories.png';
+import imgHandbag from '../../assets/images/body-images/handbag.png';
+import imgGlass from '../../assets/images/body-images/glass.png';
+import imgEarring from '../../assets/images/body-images/earring.png';
+import imgCloset from '../../assets/images/body-images/closet.png';
 
 export const Body = () => {
   return (
     <main className="main">
-      <span className="shop-our-collections">Shop Our collections</span>
+      <span className="shop-our-collections">
+        <h2>Shop Our collections</h2>
+      </span>
       <div className="home-main-img-container">
         <div className="upper-img-container">
-          <img
-            className="img-women-accessories"
-            src="/assets/images/body-images/women-accessories.png"
-            alt="earring and shoe"
-          />
+          <div className="upper-left-container">
+            <img
+              className="img-women-accessories"
+              src={imgWomenAccessories}
+              alt="earring and shoe"
+            />
+          </div>
           <div className="upper-right-container">
             <img
               className="img-men-accessories"
-              src="/assets/images/body-images/men-accessories.png"
+              src={imgMenAccessories}
               alt="men shoe and clothes"
             />
             <img
               className="img-handbag"
-              src="/assets/images/body-images/handbag.png"
+              src={imgHandbag}
               alt="a person holding a handbag"
             />
           </div>
@@ -29,25 +40,25 @@ export const Body = () => {
           <div className="lower-left-container">
             <img
               className="img-woman-glass"
-              src="/assets/images/body-images/glass.png"
+              src={imgGlass}
               alt="a woman wearing glasses"
             />
             <img
               className="img-pearl-earring"
-              src="/assets/images/body-images/earring.png"
+              src={imgEarring}
               alt="pearl earring"
             />
           </div>
-          <img
-            className="img-closet"
-            src="/assets/images/body-images/closet.png"
-            alt="big wardrobe closet with clothes hanging"
-          />
+          <div className="lower-right-container">
+            <img
+              className="img-closet"
+              src={imgCloset}
+              alt="big wardrobe closet with clothes hanging"
+            />
+          </div>
         </div>
       </div>
-      <button className="shopnow-button" type="button">
-        Shop Now
-      </button>
+      <Button label="Show Now" backgroundColor="#F5F5F5" />
     </main>
   );
 };
