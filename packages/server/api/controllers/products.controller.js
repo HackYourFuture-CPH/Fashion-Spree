@@ -24,7 +24,36 @@ const getProductById = async (id) => {
   }
 };
 
+// Get products by Category
+const getProductsByCategory = async (category) => {
+  if (!isNaN(category)) {
+    throw new HttpError('Category should be a String', 400);
+  }
+
+  try {
+    const products = await knex('products')
+      .select(
+        'products.id as id',
+        'products.name',
+        'products.description',
+        'products.price',
+      )
+      .leftJoin('categories', 'products.category_id', 'categories.id')
+      .where('categories.name', 'like', `${category}`);
+    if (products.length === 0) {
+      throw new Error(
+        `There are no products available with this category ${category}`,
+        404,
+      );
+    }
+    return products;
+  } catch (error) {
+    return error.message;
+  }
+};
+
 module.exports = {
   getProducts,
   getProductById,
+  getProductsByCategory,
 };

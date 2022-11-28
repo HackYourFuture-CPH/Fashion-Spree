@@ -3,13 +3,13 @@
   overflow: hidden;
   display: block;
   position: relative;
-  padding-bottom: 100px; /* height of your footer */
+  padding-bottom: 413px; /* height of your footer */
 }
 
 .navigation-container,
 .header-container,
 .body-container,
-.newsletter-container {
+.newsletter-container-main {
   height: 200px;
   width: 100%;
   height: 100%;
@@ -23,7 +23,7 @@
 
 .header-container,
 .body-container,
-.newsletter-container {
+.newsletter-container-main {
   background-color: #e4c1b1;
 }
 
@@ -35,14 +35,18 @@
 .navigation,
 .header,
 .body,
-.newsletter,
-.footer {
+.newsletter {
   width: 800px;
   /*border: 1px solid red;*/
   margin: 30px 0;
 }
 
-.footer-container {
+.footer {
+  width: 100%;
+  margin-top: 30px;
+}
+
+.footer-container-main {
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -52,14 +56,18 @@
 }
 
 @media screen and (max-width: 768px) {
-  .navigation,
   .header,
   .body,
-  .newsletter,
-  .footer {
+  .newsletter {
     width: 90%;
-
     margin: 25px 0;
+  }
+  .navigation {
+    width: 95%;
+    margin: 10px 0;
+  }
+  .homepage-container {
+    padding-bottom: 235px;
   }
 }
 
@@ -67,14 +75,28 @@
   .navigation,
   .header,
   .body,
-  .newsletter,
-  .footer {
-    width: 100%;
-
+  .newsletter {
+    width: 95%;
     margin: 10px 0;
   }
   .divider-container {
     height: 20px;
     background-color: #ebe4e1;
+  }
+
+  .homepage-container {
+    padding-bottom: 415px;
+  }
+  .footer-container-main {
+    position: relative;
+    bottom: 0;
+  }
+  h1 {
+    font-size: 26px !important;
+    color: #212121;
+  }
+  h2 {
+    font-size: 20px !important;
+    color: #212121;
   }
 }
