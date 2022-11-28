@@ -3,7 +3,7 @@
   overflow: hidden;
   display: block;
   position: relative;
-  padding-bottom: 478px; /* height of your footer */
+  padding-bottom: 413px; /* height of your footer */
 }
 
 .navigation-container,
@@ -67,7 +67,7 @@
     margin: 10px 0;
   }
   .homepage-container {
-    padding-bottom: 287px;
+    padding-bottom: 235px;
   }
 }
 
@@ -85,7 +85,7 @@
   }
 
   .homepage-container {
-    padding-bottom: 280px;
+    padding-bottom: 415px;
   }
   .footer-container-main {
     position: relative;

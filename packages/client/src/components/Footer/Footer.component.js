@@ -1,14 +1,7 @@
 import React from 'react';
 import './Footer.styles.css';
 import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faInstagramSquare,
-  faFacebook,
-  faSquareTwitter,
-  faTiktok,
-} from '@fortawesome/free-brands-svg-icons';
-import { faGlobe } from '@fortawesome/free-solid-svg-icons';
+import iconFacebook from '../../assets/icons/facebook.png';
 
 export default function Footer() {
   return (
@@ -85,19 +78,39 @@ export default function Footer() {
                 <h4>Social Media</h4>
                 <p className="list-footer">
                   <li>
-                    <FontAwesomeIcon icon={faInstagramSquare} size="lg" />
+                    <img
+                      className="icon-footer"
+                      src="../../assets/icons/Instagram.png"
+                      alt="Instagram"
+                    />
                   </li>
                   <li>
-                    <FontAwesomeIcon icon={faFacebook} size="lg" />
+                    <img
+                      className="icon-footer"
+                      src="../../assets/icons/facebook.png"
+                      alt="Facebook"
+                    />
                   </li>
                   <li>
-                    <FontAwesomeIcon icon={faGlobe} size="lg" />
+                    <img
+                      className="icon-footer"
+                      src="../../assets/icons/Website.png"
+                      alt="Website"
+                    />
                   </li>
                   <li>
-                    <FontAwesomeIcon icon={faSquareTwitter} size="lg" />
+                    <img
+                      className="icon-footer"
+                      src="../../assets/icons/Twitter.png"
+                      alt="Twitter"
+                    />
                   </li>
                   <li>
-                    <FontAwesomeIcon icon={faTiktok} size="lg" />
+                    <img
+                      className="icon-footer"
+                      src="../../assets/icons/tiktok.png"
+                      alt="TikTok"
+                    />
                   </li>
                 </p>
               </div>
