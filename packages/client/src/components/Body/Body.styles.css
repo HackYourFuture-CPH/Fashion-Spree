@@ -1,0 +1,90 @@
+.main {
+  background-color: #e4c1b1;
+}
+
+.shop-our-collections {
+  width: 343px;
+  font-family: 'Montserrat';
+  color: #212121;
+  font-weight: 700;
+  size: 32px;
+  line-height: 39px;
+  text-align: Center;
+}
+
+.img-women-accessories {
+  /*height: 395px;
+  width: 700px;*/
+  max-width: 100%;
+  max-height: 100%;
+  height: 100%;
+}
+
+.img-men-accessories,
+.img-handbag,
+.img-woman-glass,
+.img-pearl-earring {
+  /*height: 180px;
+  width: 350px;*/
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.img-closet {
+  /*height: 396px;
+  width: 692px;*/
+  max-width: 100%;
+  max-height: 100%;
+  height: 100%;
+}
+
+.upper-img-container {
+  display: flex;
+  justify-content: space-between;
+
+  /*gap: 78px;*/
+  margin-top: 45px;
+  margin-bottom: 40px;
+}
+
+.upper-left-container {
+  flex: 0 0 62%;
+}
+
+.upper-right-container {
+  flex: 0 0 30%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.lower-img-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.lower-left-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 0 0 30%;
+}
+
+.lower-right-container {
+  flex: 0 0 62%;
+}
+
+.shopnow-button {
+  width: 186px;
+  height: 66px;
+  background-color: #f5f5f5;
+  border: none;
+  border-radius: 100px;
+  margin-top: 64px;
+  margin-bottom: 47px;
+  font-family: 'Poppins';
+  font-weight: 700;
+  size: 24px;
+  line-height: 36px;
+}

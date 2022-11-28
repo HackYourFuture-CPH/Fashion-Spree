@@ -1,0 +1,64 @@
+.nav {
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav * {
+  text-decoration: none;
+  font-family: 'Montserrat';
+  font-weight: 600;
+  size: 24px;
+  line-height: 30px;
+  color: #636363;
+}
+
+.nav > span {
+  color: black;
+}
+a.home {
+  color: black;
+}
+.nav-buttons .login {
+  margin-right: 5px;
+}
+.login-button,
+.signup-button {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  font-family: 'Poppins';
+  font-weight: 700;
+  size: 24px;
+  width: 190;
+  border: none;
+  padding: 20px 40px;
+  background: #ffffff;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+
+@media screen and (max-width: 768px) {
+  .nav * {
+    font-size: 12px;
+    line-height: 1;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .nav {
+    flex-direction: column;
+  }
+  .nav span,
+  .nav a {
+    margin-top: 8px;
+    font-size: 16px;
+  }
+
+  .nav-buttons {
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+  }
+}
