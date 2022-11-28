@@ -11,16 +11,36 @@ const productsController = require('../controllers/products.controller');
  *  get:
  *    tags:
  *    - products
- *    summary: Get all products
+ *    summary: Get all products or products with Specific category
  *    description:
- *      Will return all products.
+ *      Will return all products or products with Specific category .
  *    produces: application/json
+ *    parameters:
+ *     - in: query
+ *       name: category
+ *       schema:
+ *         type: string
+ *         required: false
+ *       description: The category of the products to get
  *    responses:
  *      200:
  *        description: Successful request
  *      5XX:
  *        description: Unexpected error.
  */
+router.get('/', (req, res, next) => {
+  if (req.query.category) {
+    productsController
+      .getProductsByCategory(req.query.category)
+      .then((result) => res.json(result))
+      .catch(next);
+  } else {
+    productsController
+      .getProducts()
+      .then((result) => res.json(result))
+      .catch(next);
+  }
+});
 
 /**
  * @swagger
@@ -46,12 +66,6 @@ const productsController = require('../controllers/products.controller');
  *      5XX:
  *        description: Unexpected error.
  */
-router.get('/', (req, res, next) => {
-  productsController
-    .getProducts()
-    .then((result) => res.json(result))
-    .catch(next);
-});
 router.get('/:id', (req, res, next) => {
   productsController
     .getProductById(req.params.id)
