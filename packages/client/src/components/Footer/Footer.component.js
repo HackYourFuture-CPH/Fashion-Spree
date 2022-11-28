@@ -1,7 +1,6 @@
 import React from 'react';
 import './Footer.styles.css';
 import { Link } from 'react-router-dom';
-import iconFacebook from '../../assets/icons/facebook.png';
 
 export default function Footer() {
   return (
