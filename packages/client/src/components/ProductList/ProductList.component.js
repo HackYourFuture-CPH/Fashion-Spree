@@ -16,16 +16,8 @@ export default function ProductList() {
   });
 
   return (
-    <div className="collection-page-container">
-      <div>
-        <Navigation />
-      </div>
-      <div className="product-list-container">
-        <div className="rendered-product">{ListOfProducts}</div>
-      </div>
-      <div>
-        <Footer />
-      </div>
+    <div className="product-list-container">
+      <div className="rendered-product">{ListOfProducts}</div>
     </div>
   );
 }
