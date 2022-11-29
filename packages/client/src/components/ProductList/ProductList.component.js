@@ -1,8 +1,6 @@
 import React from 'react';
 import './ProductList.component.css';
 import Products from './Products';
-import { Navigation } from '../Navigation/Navigation.component';
-import Footer from '../Footer/Footer.component';
 
 export default function ProductList() {
   const ListOfProducts = Products.map((product) => {
