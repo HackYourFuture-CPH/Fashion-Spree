@@ -1,0 +1,16 @@
+.related-items {
+  display: flex;
+  flex-flow: column wrap;
+  margin-top: 40px;
+}
+
+.related-products {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  margin: 25px 35px;
+}
+
+.realtedItems-heading {
+  margin: 25px 35px;
+}
