@@ -5,15 +5,16 @@
 .view-dropdown-label {
   font-size: 32px;
   font-weight: 600;
-  width: 20px;
+  width: 1.25em;
 }
 
 .view-dropdown-select {
   margin-top: 19px;
-  width: 331px;
+  width: 100%;
   padding: 23px 12px 27px 12px;
   font-size: 24px;
   font-weight: 600;
   color: #212121cc;
+  height: 79px;
   background-color: #e4c1b1;
 }

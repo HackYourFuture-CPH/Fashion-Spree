@@ -2,3 +2,9 @@
   margin: 0 auto;
   max-width: 1140px;
 }
+
+@media only screen and (max-width: 576px) {
+  .product-container {
+    max-width: 328px;
+  }
+}
