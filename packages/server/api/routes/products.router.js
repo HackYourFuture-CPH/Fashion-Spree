@@ -41,6 +41,37 @@ router.get('/', (req, res, next) => {
       .catch(next);
   }
 });
+/**
+ * @swagger
+ * /products/search:
+ *  get:
+ *    tags:
+ *    - products
+ *    summary: Get all product Name Search
+ *    description:
+ *      Will return all products Search by Name.
+ *    produces: application/json
+ *    parameters:
+ *     - in: query
+ *       name: searchText
+ *       schema:
+ *         type: string
+ *         required: false
+ *       description: The product Search by Name
+ *    responses:
+ *      200:
+ *        description: Successful request
+ *      5XX:
+ *        description: Unexpected error.
+ */
+router.get('/search', (req, res, next) => {
+  productsController
+    .getProductBySearch(req.query.searchText, res)
+    .then((result) => res.json(result))
+    .catch((error) => {
+      next(error);
+    });
+});
 
 /**
  * @swagger
@@ -57,9 +88,8 @@ router.get('/', (req, res, next) => {
  *       name: ID
  *       schema:
  *         type: integer
- *         required: true
+ *         required: flase
  *         description: The ID of the product to get
- *
  *    responses:
  *      200:
  *        description: Successful request
@@ -72,5 +102,4 @@ router.get('/:id', (req, res, next) => {
     .then((result) => res.json(result))
     .catch(next);
 });
-
 module.exports = router;

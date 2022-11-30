@@ -1,6 +1,7 @@
 const knex = require('../../config/db');
 const HttpError = require('../lib/utils/http-error');
 
+// Get All products
 const getProducts = async () => {
   return knex.select().table('products');
 };
@@ -52,7 +53,26 @@ const getProductsByCategory = async (category) => {
   }
 };
 
+// Get Search product by Name
+const getProductBySearch = async (searchText, res) => {
+  if (!searchText) {
+    res.json([]);
+    return;
+  }
+  try {
+    const productSearch = await knex('products').where(
+      'products.name',
+      'like',
+      `%${searchText}%`,
+    );
+    res.json(productSearch);
+  } catch (error) {
+    return error.message;
+  }
+};
+
 module.exports = {
+  getProductBySearch,
   getProducts,
   getProductById,
   getProductsByCategory,
