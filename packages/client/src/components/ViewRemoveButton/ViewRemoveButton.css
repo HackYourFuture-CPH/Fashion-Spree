@@ -1,0 +1,13 @@
+.view-remove-button {
+  width: 70px;
+  font-size: 10px;
+  font-weight: 3px;
+  display: flex;
+  flex-flow: column;
+  gap: 40px;
+}
+.main-div {
+  display: flex;
+  flex-flow: column;
+  gap: 30px;
+}
