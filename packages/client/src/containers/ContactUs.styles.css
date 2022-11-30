@@ -132,11 +132,11 @@ form {
 }
 @media screen and (max-width: 480px) {
   .contact-info-container {
-    width: 320px;
+    width: 280px;
     height: 682px;
   }
   .contactUs-img {
-    width: 280px;
+    width: 200px;
     height: 682px;
   }
   .contact-info {

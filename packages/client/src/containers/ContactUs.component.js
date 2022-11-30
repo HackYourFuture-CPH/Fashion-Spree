@@ -7,7 +7,7 @@ export const ContactUs = () => {
       <img
         className="contactUs-img"
         src="/assets/images/contactUs.png"
-        alt="contactUs"
+        alt="contactUs-profile"
       />
       <div className="contact-info-container">
         <div className="contact-info">
