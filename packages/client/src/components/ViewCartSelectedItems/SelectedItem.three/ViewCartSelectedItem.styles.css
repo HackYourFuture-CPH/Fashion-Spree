@@ -1,0 +1,7 @@
+.item-info-three {
+  padding: 0.2rem calc((100vw - 1000px) / 2);
+  font-size: 15px;
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
