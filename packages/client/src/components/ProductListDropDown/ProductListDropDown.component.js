@@ -16,7 +16,7 @@ const ProductListDropdown = ({ options, ...props }) => {
   );
 };
 ProductListDropdown.propTypes = {
-  options: PropTypes.arrayOf(PropTypes.string).isRequired,
+  options: PropTypes.string.isRequired,
 };
 
 export default ProductListDropdown;

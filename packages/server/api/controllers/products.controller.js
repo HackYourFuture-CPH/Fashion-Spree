@@ -54,8 +54,8 @@ const getProductsByCategory = async (category) => {
 };
 
 // Get Search product by Name
-const getProductBySearch = async (searchText, res) => {
-  if (!searchText) {
+const getProductBySearch = async (search, res) => {
+  if (!search) {
     res.json([]);
     return;
   }
@@ -63,7 +63,7 @@ const getProductBySearch = async (searchText, res) => {
     const productSearch = await knex('products').where(
       'products.name',
       'like',
-      `%${searchText}%`,
+      `%${search}%`,
     );
     res.json(productSearch);
   } catch (error) {
