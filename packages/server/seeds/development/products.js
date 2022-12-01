@@ -30,6 +30,78 @@ exports.seed = async function (knex) {
       description: 'description',
       price: 90.7,
     },
+    {
+      category_id: 3,
+      name: 'Peplum Top',
+      description: 'description',
+      price: 70.5,
+    },
+    {
+      category_id: 1,
+      name: 'Ripped Black Jeans',
+      description: 'description',
+      price: 120.0,
+    },
+    {
+      category_id: 2,
+      name: 'Cargo Trousers',
+      description: 'description',
+      price: 80.0,
+    },
+    {
+      category_id: 4,
+      name: 'Bomber Jacket',
+      description: 'description',
+      price: 150.0,
+    },
+    {
+      category_id: 3,
+      name: 'Puff-sleeve Blouse',
+      description: 'description',
+      price: 30.9,
+    },
+    {
+      category_id: 3,
+      name: 'Button-up Blouse',
+      description: 'description',
+      price: 25.5,
+    },
+    {
+      category_id: 1,
+      name: 'Washed Effect Jeans',
+      description: 'description',
+      price: 85.0,
+    },
+    {
+      category_id: 2,
+      name: 'Jersey Trousers',
+      description: 'description',
+      price: 60.5,
+    },
+    {
+      category_id: 4,
+      name: 'Padded Neon Jacket',
+      description: 'description',
+      price: 110.3,
+    },
+    {
+      category_id: 1,
+      name: 'Mom Jeans',
+      description: 'description',
+      price: 75.0,
+    },
+    {
+      category_id: 2,
+      name: 'Formal Navy Trousers',
+      description: 'description',
+      price: 130.0,
+    },
+    {
+      category_id: 4,
+      name: 'Teddy Bear Jacket',
+      description: 'description',
+      price: 150.0,
+    },
   ]);
 };
 
