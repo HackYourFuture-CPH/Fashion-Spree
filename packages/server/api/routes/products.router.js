@@ -58,6 +58,7 @@ router.get('/', (req, res, next) => {
     res.status(404).json({ error: 'Bad Get Request' });
   }
 });
+// TODO: refactor products router and controller CLASS22-66
 
 /**
  * @swagger
