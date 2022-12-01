@@ -11,3 +11,4 @@ export { default as bottomSide } from '../../components/ProductImage/images/Pict
 export { ProductViewWrapper } from '../../components/Product/ProductView/ProductViewWrapper/ProductViewWrapper.component';
 export { ProductViewDescription } from '../../components/Product/ProductView/ProductViewDescription/ProductViewDescription.component';
 export { ProductViewButtons } from './ProductViewButtons/ProductViewButtons.container';
+export { RelatedItems } from '../RelatedItems/RelatedItems.Container';

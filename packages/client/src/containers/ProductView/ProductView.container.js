@@ -52,6 +52,7 @@ export const ProductView = () => {
             <view.ProductViewButtons />
           </view.ProductViewDescription>
         </view.ProductViewWrapper>
+        <view.RelatedItems category="jeans" />
       </view.ProductContainer>
     </div>
   );
