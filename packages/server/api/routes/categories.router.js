@@ -14,7 +14,7 @@ const categoriesController = require('../controllers/categories.controller');
  *    description:
  *      Will return all categories of product.
  *    produces: application/json
- *   responses:
+ *    responses:
  *      200:
  *        description: Successful request
  *      5XX:
