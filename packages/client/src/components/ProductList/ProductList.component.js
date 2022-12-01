@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './ProductList.component.css';
 import ProductCard from '../ProductCard/ProductCard.component';
+import { apiURL } from '../../apiURL';
 
 export default function ProductList() {
   const [products, setProducts] = useState([]);
@@ -8,7 +9,7 @@ export default function ProductList() {
 
   const fetchProducts = () => {
     setIsLoading(true);
-    fetch('http://localhost:5001/api/products')
+    fetch(`${apiURL()}/products/`)
       .then((res) => res.json())
       .then((item) => {
         setProducts(item);
