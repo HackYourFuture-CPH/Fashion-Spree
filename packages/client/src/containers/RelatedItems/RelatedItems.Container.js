@@ -19,9 +19,10 @@ export const RelatedItems = ({ category }) => {
   }, [category]);
 
   return (
+    // TODO: will refactor function Number of items to display below. CLASS22-63"
     <div className="related-items">
       <h1 className="realtedItems-heading">Related Items</h1>
-      <div className="related-products">
+      <div className="related-items-display">
         {categoryProducts.map((prod) => (
           <ProductCard key={prod.id} product={prod} rating={5} />
         ))}
