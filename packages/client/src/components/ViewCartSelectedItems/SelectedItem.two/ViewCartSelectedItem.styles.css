@@ -5,3 +5,8 @@
   flex-direction: row;
   gap: 30px;
 }
+.view-remove-button {
+  width: 10px;
+  font-size: 10px;
+  font-weight: 3px;
+}
