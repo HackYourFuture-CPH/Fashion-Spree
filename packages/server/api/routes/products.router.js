@@ -40,18 +40,22 @@ router.get('/', (req, res, next) => {
       .getProductsByCategory(req.query.category)
       .then((result) => res.json(result))
       .catch(next);
-  } else if (req.query.search) {
+  }
+  if (req.query.search) {
     productsController
       .getProductBySearch(req.query.search, res)
       .then((result) => res.json(result))
       .catch((error) => {
         next(error);
       });
-  } else {
+  }
+  try {
     productsController
       .getProducts()
       .then((result) => res.json(result))
       .catch(next);
+  } catch (error) {
+    res.status(404).json({ error: 'Bad Get Request' });
   }
 });
 

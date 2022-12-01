@@ -55,9 +55,8 @@ const getProductsByCategory = async (category) => {
 
 // Get Search product by Name
 const getProductBySearch = async (search, res) => {
-  if (!search) {
-    res.json([]);
-    return;
+  if (!isNaN(search)) {
+    throw new HttpError('Serach should be a String', 400);
   }
   try {
     const productSearch = await knex('products').where(
