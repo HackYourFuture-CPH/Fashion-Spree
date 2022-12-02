@@ -4,9 +4,9 @@ import './App.css';
 import { HomePage } from './containers/HomePage/HomePage.Container';
 import { PageNotFound } from './containers/PageNotFound/PageNotFound.Container';
 import { ProductView } from './containers/ProductView/ProductView.container';
-import { AboutUs } from './containers/AboutUs.component';
-import { ContactUs } from './containers/ContactUs.component';
-import { Login } from './containers/Login.component';
+import { AboutUs } from './containers/AboutUs.container';
+import { ContactUs } from './containers/ContactUs.container';
+import { Login } from './containers/Login.container';
 import { CollectionsPage } from './containers/CollectionsPage/CollectionsPage.Container';
 
 function App() {

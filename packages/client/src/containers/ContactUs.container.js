@@ -1,7 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './ContactUs.styles.css';
 
 export const ContactUs = () => {
+  const [fullname, setFullname] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [formError, setFormError] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (fullname.length === 0 || email.length === 0 || message.length === 0) {
+      setFormError(true);
+    }
+    if (fullname && email && message) {
+      console.log(
+        `fullname: ${fullname}, \nemail: ${email},\nmessage:${message}`,
+      );
+    }
+  };
+  /* 
+  TODO: place this regex in the form validation
+    const regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+ */
   return (
     <main className="contactUs-wrapper">
       <img
@@ -22,22 +42,43 @@ export const ContactUs = () => {
             <p>Fashionspree@fashion.com</p>
           </div>
           <p className="or">-OR-</p>
-          <form>
+          <form onSubmit={handleSubmit}>
             <input
               className="contactUs-input"
               type="text"
               placeholder="Full Name"
+              value={fullname}
+              onChange={(e) => setFullname(e.target.value)}
             />
+            {formError && fullname.length <= 0 ? (
+              <label className="error-msg">Full name is required</label>
+            ) : (
+              ''
+            )}
             <input
               className="contactUs-input"
               type="email"
               placeholder="Email Address"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
+            {formError && email.length <= 0 ? (
+              <label className="error-msg">Email is required</label>
+            ) : (
+              ''
+            )}
             <input
               className="contactUs-input"
               type="text"
               placeholder="Message"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
             />
+            {formError && message.length <= 0 ? (
+              <label className="error-msg">Message is required</label>
+            ) : (
+              ''
+            )}
             <button className="contactUs-btn" type="submit">
               Send Message
             </button>

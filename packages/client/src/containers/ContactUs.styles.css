@@ -65,12 +65,14 @@ form {
   margin-top: 1rem;
   margin-bottom: 1rem;
   width: 408px;
+  height: 30px;
   background: #f2ebe7;
   text-align: start;
   color: #212121;
+  padding-left: 7px;
 }
 .contactUs-input::placeholder {
-  padding: 0;
+  padding-left: 0;
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
@@ -102,6 +104,11 @@ form {
   cursor: pointer;
   margin-right: 23px;
   background: #f2ebe7;
+}
+.error-msg {
+  color: red;
+  background: #f2ebe7;
+  font-size: 10px;
 }
 
 @media screen and (max-width: 1024px) {
