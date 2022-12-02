@@ -2,10 +2,10 @@ const FormValidation = (values) => {
   const errors = {};
 
   //  regex in the email and password validation
-  const regexEmail =
-    /[a-zA-Z0-9]+[\.]?([a-zA-Z0-9]+)?[\@][a-z]{3,9}[\.][a-z]{2,5}/i;
-  const regexPassword =
-    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+  /* const regexEmail =
+    /[a-zA-Z0-9]+[\.]?([a-zA-Z0-9]+)?[\@][a-z]{3,9}[\.][a-z]{2,5}/i; */
+  /* const regexPassword =
+    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/; */
   if (!values.fullname) {
     errors.fullname = 'Full name is required!';
   }
