@@ -19,7 +19,7 @@ const FormValidation = (values) => {
   } else if (!regexPassword.test(values.password)) {
     errors.password = `Password must Contain 8 Characters,One Uppercase, One Lowercase, One Number and One special case Character!`;
   }
-  // eslint-disable-next-line
+  /* eslint-disable no-console */
   if (values.fullname && values.email && values.password) {
     console.log(
       `fullname: ${values.fullname}, email: ${values.email}, password:${values.password}`,
