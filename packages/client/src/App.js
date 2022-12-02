@@ -6,7 +6,7 @@ import { PageNotFound } from './containers/PageNotFound/PageNotFound.Container';
 import { ProductView } from './containers/ProductView/ProductView.container';
 import { AboutUs } from './components/PlaceholderPages/AboutUs.component';
 import { ContactUs } from './components/PlaceholderPages/ContactUs.component';
-import { Login } from './components/PlaceholderPages/Login.component';
+import { Login } from './containers/Login.container/Login';
 import { CollectionsPage } from './containers/CollectionsPage/CollectionsPage.Container';
 
 function App() {
