@@ -5,7 +5,7 @@
     "browser": true
   },
   "rules": {
-    "no-console": 0,
+    "no-console": "error",
     "react/destructuring-assignment": "off",
     "react/jsx-boolean-value": "off",
     "react/jsx-filename-extension": "off",
