@@ -29,7 +29,7 @@ const SignupForm = () => {
         name="fullname"
         values={formValues.fullname}
         onChange={handleChange}
-        type="text"
+        type="text" 
       />
       {formErrors.fullname && <p>{formErrors.fullname}</p>}
       <input
