@@ -1,5 +1,3 @@
-// Button.stories.js|jsx
-
 import React from 'react';
 
 import ProductListDropdown from './ProductListDropDown.component';

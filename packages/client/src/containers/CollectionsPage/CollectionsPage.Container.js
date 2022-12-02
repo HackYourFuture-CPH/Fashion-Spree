@@ -1,6 +1,6 @@
 import React from 'react';
 import ProductList from '../../components/ProductList/ProductList.component';
-import ProductListDropDown from '../ProductListDropDown/ProductListDropDown.container';
+import ProductListDropDown from '../../components/ProductListDropDown/ProductListDropDown.component';
 
 export const CollectionsPage = () => {
   return (
