@@ -4,11 +4,7 @@ const FormValidation = (values) => {
   //  regex in the email and password validation
   /* eslint-disable no-console */
 
-  const regexEmail =
-    /[a-zA-Z0-9]+[\.]?([a-zA-Z0-9]+)?[\@][a-z]{3,9}[\.][a-z]{2,5}/i;
-    
-      /* eslint-disable no-console */
-
+  const regexEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
   const regexPassword =
     /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
   if (!values.fullname) {
