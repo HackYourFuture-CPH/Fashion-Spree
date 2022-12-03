@@ -1,21 +1,45 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './ProductList.component.css';
-import Products from './Products';
+import ProductCard from '../ProductCard/ProductCard.component';
+import { apiURL } from '../../apiURL';
 
 export default function ProductList() {
-  const ListOfProducts = Products.map((product) => {
+  const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const fetchProducts = () => {
+    setIsLoading(true);
+    fetch(`${apiURL()}/products/`)
+      .then((res) => res.json())
+      .then((item) => {
+        setProducts(item);
+      })
+      .then(() => {
+        setIsLoading(false);
+      });
+  };
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  const ListOfProducts = products.map((product) => {
     return (
       <div className="product">
-        <img src={product.image} alt="fashion-lady" />
-        <p>{product.text}</p>
-        <p>Price: {product.price}</p>
+        <ProductCard title={product.name} price={product.price} />
       </div>
     );
   });
 
   return (
-    <div className="product-list-container">
-      <div className="rendered-product">{ListOfProducts}</div>
+    <div>
+      <div className="product-list-container">
+        {isLoading && <p>Loading...</p>}
+        {products.length === 0 ? (
+          <p>There is no product available</p>
+        ) : (
+          <div className="rendered-product">{ListOfProducts}</div>
+        )}
+      </div>
     </div>
   );
 }

@@ -29,7 +29,7 @@ export const ProductView = () => {
         <view.GoBackButton
           text="Back to search results"
           onClick={navigateBack}
-        />
+        />{' '}
         <view.ProductViewWrapper>
           <view.ProductImage
             topSide={view.topSide}
@@ -37,6 +37,7 @@ export const ProductView = () => {
             bottomSide={view.bottomSide}
             bigImage={view.bigImage}
           />
+
           <view.ProductViewDescription>
             {product.map((prod) => (
               <view.ProductDescription
@@ -45,10 +46,13 @@ export const ProductView = () => {
                 rating={5}
               />
             ))}
+
             <view.DropdownGroup />
+
             <view.ProductViewButtons />
           </view.ProductViewDescription>
         </view.ProductViewWrapper>
+        <view.RelatedItems category="jeans" />
       </view.ProductContainer>
     </div>
   );

@@ -1,0 +1,18 @@
+.go-back-Carousel {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  font-size: 24px;
+  font-weight: 600;
+  color: rgba(33, 33, 33, 0.8);
+}
+.go-back-Carousel {
+  cursor: pointer;
+}
+.go-back-Carousel button svg {
+  font-size: 30px;
+}
+.go-back-Carousel:hover {
+  cursor: pointer;
+}

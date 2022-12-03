@@ -8,6 +8,7 @@ import { AboutUs } from './components/PlaceholderPages/AboutUs.component';
 import { ContactUs } from './components/PlaceholderPages/ContactUs.component';
 import { Login } from './containers/Login.container/Login';
 import { CollectionsPage } from './containers/CollectionsPage/CollectionsPage.Container';
+import { ShoppingCartPage } from './containers/ShoppingCartPage/ShoppingCartPage.container';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="*" element={<PageNotFound />} />
           <Route path="/products/:id" element={<ProductView />} />
           <Route path="/collections" element={<CollectionsPage />} />
+          <Route path="/shopping-cart" element={<ShoppingCartPage />} />
         </Routes>
       </Router>
     </div>
