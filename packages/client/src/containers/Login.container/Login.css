@@ -108,7 +108,16 @@ main {
   font-style: 'SemiBold';
   font-size: 1rem;
   font-weight: 600;
+  margin-bottom: 2rem;
   color: #212121;
+}
+
+.dont-want-signup {
+
+  font-family: 'Montserrat';
+  font-weight: 400;
+  font-size: 1rem;
+  margin-right: 10%;
 }
 
 @media screen and (max-width: 750px) {
@@ -128,5 +137,11 @@ main {
     width: 70%;
     background-color: #f2ebe7;
     border-radius: 1.5rem;
+  }
+
+  .dont-want-signup {
+    font-family: 'Montserrat';
+    font-weight: 400;
+    font-size: 0.75rem;
   }
 }
