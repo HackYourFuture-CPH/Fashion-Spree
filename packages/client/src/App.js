@@ -6,7 +6,9 @@ import { PageNotFound } from './containers/PageNotFound/PageNotFound.Container';
 import { ProductView } from './containers/ProductView/ProductView.container';
 import { AboutUs } from './components/PlaceholderPages/AboutUs.component';
 import { ContactUs } from './components/PlaceholderPages/ContactUs.component';
-import { Login } from './components/PlaceholderPages/Login.component';
+import Login from './containers/Login/Login.container';
+import Signup from './containers/Signup/Signup.container';
+import Reset from './containers/Reset/Reset.container';
 import { CollectionsPage } from './containers/CollectionsPage/CollectionsPage.Container';
 
 function App() {
@@ -18,6 +20,8 @@ function App() {
           <Route exact path="/about-us" element={<AboutUs />} />
           <Route exact path="/contact-us" element={<ContactUs />} />
           <Route exact path="/login" element={<Login />} />
+          <Route exact path="/signup" element={<Signup />} />
+          <Route exact path="/reset" element={<Reset />} />
           <Route path="*" element={<PageNotFound />} />
           <Route path="/products/:id" element={<ProductView />} />
           <Route path="/collections" element={<CollectionsPage />} />

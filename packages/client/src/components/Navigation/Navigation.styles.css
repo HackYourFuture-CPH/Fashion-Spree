@@ -23,6 +23,19 @@ a.home {
 .nav-buttons .login {
   margin-right: 5px;
 }
+.logged-in-container {
+  display: flex;
+  gap: 20px;
+}
+.logout-button-container {
+  display: flex;
+  align-items: center;
+}
+.logged-in-text div {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 20px;
+}
 .login-button,
 .signup-button {
   display: flex;
