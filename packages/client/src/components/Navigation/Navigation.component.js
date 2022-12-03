@@ -1,12 +1,39 @@
-import React from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth, db, logout } from '../../firebase';
+import { query, collection, getDocs, where } from 'firebase/firestore';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  useNavigate,
+} from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import './Navigation.styles.css';
-
-import { Link } from 'react-router-dom';
 import { Button } from '../Button/Button.component';
 
-export const Navigation = ({ user, name, loading, logout }) => {
+export const Navigation = () => {
+  const [user, loading, error] = useAuthState(auth);
+  const [name, setName] = useState('');
+  const navigate = useNavigate();
+  const fetchUserName = useCallback(async () => {
+    try {
+      const q = query(collection(db, 'users'), where('uid', '==', user?.uid));
+      const doc = await getDocs(q);
+      const data = doc.docs[0].data();
+      setName(data.name);
+    } catch (err) {
+      alert('An error occured while fetching user data');
+    }
+  }, [user?.uid]);
+  useEffect(() => {
+    if (user) {
+      fetchUserName();
+    }
+  }, [user, fetchUserName]);
+
   return (
     <div className="navigation-container">
       <div className="navigation">
@@ -52,11 +79,4 @@ export const Navigation = ({ user, name, loading, logout }) => {
       </div>
     </div>
   );
-};
-
-Navigation.propTypes = {
-  user: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  loading: PropTypes.string.isRequired,
-  logout: PropTypes.string.isRequired,
 };

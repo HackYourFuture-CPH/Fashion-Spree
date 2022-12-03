@@ -10,7 +10,7 @@ function Reset() {
   const navigate = useNavigate();
   useEffect(() => {
     if (loading) return;
-    if (user) navigate('/dashboard');
+    if (user) navigate('/');
   }, [user, loading, navigate]);
 
   return (
@@ -31,7 +31,7 @@ function Reset() {
           Send password reset email
         </button>
         <div>
-          Don&apos;t have an account? <Link to="/register">Register</Link> now.
+          Don&apos;t have an account? <Link to="/signup">Signup</Link> now.
         </div>
       </div>
     </div>

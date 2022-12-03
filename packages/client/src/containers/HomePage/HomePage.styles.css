@@ -42,17 +42,16 @@
 
 .footer {
   width: 100%;
-  margin-top: 30px;
 }
 
-.footer-container-main {
+/*.footer-container-main {
   position: absolute;
   bottom: 0;
   width: 100%;
   display: flex;
   justify-content: center;
   background-color: #e4c1b1;
-}
+}*/
 
 @media screen and (max-width: 768px) {
   .header,
@@ -64,9 +63,6 @@
   .navigation {
     width: 95%;
     margin: 10px 0;
-  }
-  .homepage-container {
-    padding-bottom: 235px;
   }
 }
 
@@ -81,10 +77,6 @@
   .divider-container {
     height: 20px;
     background-color: #ebe4e1;
-  }
-
-  .homepage-container {
-    padding-bottom: 415px;
   }
 
   h1 {

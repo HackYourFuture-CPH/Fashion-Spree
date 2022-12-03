@@ -47,14 +47,14 @@ function Signup() {
           placeholder="Password"
         />
         <button type="submit" className="register__btn" onClick={register}>
-          Register
+          Signup
         </button>
         <button
           type="submit"
           className="register__btn register__google"
           onClick={signInWithGoogle}
         >
-          Register with Google
+          Signup with Google
         </button>
         <div>
           Already have an account? <Link to="/">Login</Link> now.
