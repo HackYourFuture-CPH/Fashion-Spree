@@ -32,10 +32,12 @@ export const Login = () => {
         </div>
         <p className="or-text">-OR-</p>
         <div>
-          <SignupForm /> 
+          <SignupForm />
         </div>
-        <span className='dont-want-signup'> Dont want to Sign Up ? Continue as a Guest</span>
-
+        <span className="dont-want-signup">
+          {' '}
+          Dont want to Sign Up ? Continue as a Guest
+        </span>
       </div>
     </main>
   );
