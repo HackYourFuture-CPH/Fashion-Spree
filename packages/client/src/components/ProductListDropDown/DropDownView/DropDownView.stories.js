@@ -1,18 +1,18 @@
 import React from 'react';
-
-import ProductListDropdown from './ProductListDropDown.component';
+import DropDownView from './DropDownView.component';
 
 export default {
   title: 'ProductList/ProductListDropdown',
-  component: ProductListDropdown,
+  component: DropDownView,
 };
 
 // 👇 We create a “template” of how args map to rendering
-const Template = (args) => <ProductListDropdown {...args} />;
+const Template = (args) => <DropDownView {...args} />;
 
 // 👇 Each story then reuses that template
 export const Category = Template.bind({});
 Category.args = {
+  lable: 'Categorie',
   options: [
     'Categories',
     'Category 1',
@@ -24,6 +24,7 @@ Category.args = {
 };
 export const SortBy = Template.bind({});
 SortBy.args = {
+  lable: 'Sort By',
   options: [
     'Sort By Most Recent',
     'Recent Collections',
@@ -35,5 +36,6 @@ SortBy.args = {
 };
 export const AllFilter = Template.bind({});
 AllFilter.args = {
+  lable: 'All Filter',
   options: ['All Filter', 'Price', 'Size', 'Color', 'Reviews', 'Brand'],
 };
