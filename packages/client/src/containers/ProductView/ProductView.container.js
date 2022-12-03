@@ -25,6 +25,7 @@ export const ProductView = () => {
 
   return (
     <div className="product-view-page">
+      {/* <view.Navigation /> */}
       <view.ProductContainer>
         <view.GoBackButton
           text="Back to search results"
@@ -46,9 +47,7 @@ export const ProductView = () => {
                 rating={5}
               />
             ))}
-
             <view.DropdownGroup />
-
             <view.ProductViewButtons />
           </view.ProductViewDescription>
         </view.ProductViewWrapper>

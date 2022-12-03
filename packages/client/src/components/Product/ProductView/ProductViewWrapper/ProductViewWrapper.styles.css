@@ -5,6 +5,16 @@
   column-gap: 24px;
 }
 
+@media screen and (max-width: 768px) {
+  .product-image-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 14px;
+    height: fit-content;
+    justify-content: center;
+  }
+}
+
 @media only screen and (max-width: 576px) {
   .product-wrapper {
     display: flex;
