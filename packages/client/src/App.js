@@ -6,9 +6,9 @@ import { Footer } from './components/Footer/Footer.component';
 import { HomePage } from './containers/HomePage/HomePage.Container';
 import { PageNotFound } from './containers/PageNotFound/PageNotFound.Container';
 import { ProductView } from './containers/ProductView/ProductView.container';
-import { AboutUs } from './components/PlaceholderPages/AboutUs.component';
-import { ContactUs } from './components/PlaceholderPages/ContactUs.component';
-import { Login } from './components/PlaceholderPages/Login.component';
+import { AboutUs } from './containers/AboutUs.container';
+import { ContactUs } from './containers/ContactUs.container';
+import { Login } from './containers/Login.container';
 import { CollectionsPage } from './containers/CollectionsPage/CollectionsPage.Container';
 import { ShoppingCartPage } from './containers/ShoppingCartPage/ShoppingCartPage.container';
 
