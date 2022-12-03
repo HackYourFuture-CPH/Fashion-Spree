@@ -45,14 +45,14 @@ const signInWithGoogle = async () => {
       });
     }
   } catch (err) {
-    alert(err.message);
+    /* error */
   }
 };
 const logInWithEmailAndPassword = async (email, password) => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
   } catch (err) {
-    alert(err.message);
+    /* error */
   }
 };
 const registerWithEmailAndPassword = async (name, email, password) => {
@@ -66,7 +66,7 @@ const registerWithEmailAndPassword = async (name, email, password) => {
       email,
     });
   } catch (err) {
-    alert(err.message);
+    /* error */
   }
 };
 const sendPasswordReset = async (email) => {
@@ -74,7 +74,7 @@ const sendPasswordReset = async (email) => {
     await sendPasswordResetEmail(auth, email);
     alert('Password reset link sent!');
   } catch (err) {
-    alert(err.message);
+    /* error */
   }
 };
 const logout = () => {

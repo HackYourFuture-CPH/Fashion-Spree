@@ -2,22 +2,14 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth, db, logout } from '../../firebase';
 import { query, collection, getDocs, where } from 'firebase/firestore';
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Link,
-  useNavigate,
-} from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import './Navigation.styles.css';
 import { Button } from '../Button/Button.component';
 
 export const Navigation = () => {
-  const [user, loading, error] = useAuthState(auth);
+  const [user] = useAuthState(auth);
   const [name, setName] = useState('');
-  const navigate = useNavigate();
   const fetchUserName = useCallback(async () => {
     try {
       const q = query(collection(db, 'users'), where('uid', '==', user?.uid));
@@ -25,7 +17,7 @@ export const Navigation = () => {
       const data = doc.docs[0].data();
       setName(data.name);
     } catch (err) {
-      alert('An error occured while fetching user data');
+      /* error */
     }
   }, [user?.uid]);
   useEffect(() => {
