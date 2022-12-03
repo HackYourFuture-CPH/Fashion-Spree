@@ -18,7 +18,7 @@ export const Navigation = ({ user, name, loading, logout }) => {
           <Link to="/about-us" className="about-us">
             About Us
           </Link>
-          <Link to="/our-collections" className="our-collections">
+          <Link to="/collections" className="collections">
             Our collections
           </Link>
           <Link to="/contact-us" className="contact-us">
