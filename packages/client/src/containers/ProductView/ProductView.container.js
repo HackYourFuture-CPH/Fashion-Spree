@@ -29,7 +29,7 @@ export const ProductView = () => {
         <view.GoBackButton
           text="Back to search results"
           onClick={navigateBack}
-        />{' '}
+        />
         <view.ProductViewWrapper>
           <view.ProductImage
             topSide={view.topSide}
