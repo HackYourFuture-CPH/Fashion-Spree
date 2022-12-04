@@ -28,7 +28,9 @@ const SignupForm = () => {
         onChange={handleChange}
         type="text"
       />
-      {formErrors.fullname && <p>{formErrors.fullname}</p>}
+      {formErrors.fullname && (
+        <p className="form-erros">{formErrors.fullname}</p>
+      )}
       <input
         className="sign-up-form__email"
         placeholder="Email Address"
@@ -37,7 +39,7 @@ const SignupForm = () => {
         values={formValues.email}
         onChange={handleChange}
       />
-      {formErrors.email && <p>{formErrors.email}</p>}
+      {formErrors.email && <p className="form-erros">{formErrors.email}</p>}
 
       <input
         className="sign-up-form__password"
@@ -47,7 +49,9 @@ const SignupForm = () => {
         values={formValues.password}
         onChange={handleChange}
       />
-      {formErrors.password && <p>{formErrors.password}</p>}
+      {formErrors.password && (
+        <p className="form-erros">{formErrors.password}</p>
+      )}
 
       <button
         onClick={handleSubmit}
