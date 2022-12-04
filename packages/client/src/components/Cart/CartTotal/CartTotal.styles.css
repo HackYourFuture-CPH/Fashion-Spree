@@ -1,9 +1,32 @@
 .cart-total-wrapper {
-  grid-column: 3 / span 12;
+  padding: 30px 0;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
   text-align: left;
-  display: flex;
-  line-height: 50px;
 }
-.cart-total-header {
-  padding-right: 50px;
+
+.cart-total-headers {
+  grid-column: 7 / span 2;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.cart-total-headers div:last-child {
+  font-weight: 600;
+}
+
+.cart-total-amount {
+  grid-column: 9 / span 2;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.cart-total-amount div:last-child {
+  font-weight: 600;
 }

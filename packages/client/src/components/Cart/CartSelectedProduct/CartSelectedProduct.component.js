@@ -5,14 +5,24 @@ import PropTypes from 'prop-types';
 export default function CartSelectedProduct({ product }) {
   return (
     <div className="cart-selected-wrapper">
-      <div className="">
+      <div className="cart-selected-blank">
         <input type="checkbox" name="" id="" />
       </div>
-      <span>{product.description}</span>
-      <span>{product.amount}</span>
-      <span>{product.quantity}</span>
-      <span>Dkk 199,99</span>
-      <button type="button">Remove</button>
+      <div className="cart-selected-desc">
+        <span>{product.description}</span>
+      </div>
+      <div className="cart-selected-amount">
+        <span>{product.amount}</span>
+      </div>
+      <div className="cart-selected-quantity">
+        <span>{product.quantity}</span>
+      </div>
+      <div className="cart-selected-total">
+        <span>Dkk 199,99</span>
+      </div>
+      <div className="cart-selected-action">
+        <button type="button">Remove</button>
+      </div>
     </div>
   );
 }
