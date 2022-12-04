@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './ContactUs.styles.css';
 
 export const ContactUs = () => {
@@ -8,6 +8,7 @@ export const ContactUs = () => {
     message: '',
   });
   const [formErrors, setFormErrors] = useState({});
+  const [isSubmit, setIsSubmit] = useState(false);
 
   const handleChange = (e) => {
     setFormValues({
@@ -17,13 +18,24 @@ export const ContactUs = () => {
   };
 
   const handleFormSubmit = (e) => {
-    e.preventDefault();
     setFormErrors(validation(formValues));
+    setIsSubmit(true);
+
+    e.preventDefault();
+
     /* eslint-disable no-console */
     console.log(
       `fullname: ${formValues.fullname}, \nemail: ${formValues.email},\nmessage:${formValues.message}`,
     );
   };
+
+  useEffect(() => {
+    if (Object.keys(formErrors).length === 0 && isSubmit) {
+      console.log(formValues);
+    }
+
+    // eslint-disable-next-line
+  }, [formErrors, isSubmit]);
 
   const validation = (values) => {
     const errors = {};
@@ -60,7 +72,7 @@ export const ContactUs = () => {
               src="../../assets/icons/email.png"
               alt="email"
             />
-            {/* TODO: replace the email icon with proper icon once it is placed with figma 48 */}
+            {/* TODO: replace the email icon with proper icon once it is placed with figma 48       */}
             <p>Fashionspree@fashion.com</p>
           </div>
           <p className="or">-OR-</p>
@@ -107,11 +119,21 @@ export const ContactUs = () => {
             >
               Send Message
             </button>
+            {Object.keys(formErrors).length === 0 && isSubmit ? (
+              <div className="success">
+                <img
+                  className="icon-success"
+                  src="../../assets/icons/success.png"
+                  alt="success sign"
+                />
+                <p className="message-success">Message sent successfully</p>
+              </div>
+            ) : null}
           </form>
           <h3>Follow or connect with us</h3>
           <div className="media-icons">
             <img
-              className="icon"
+              className="icon-success"
               src="../../assets/icons/Instagram.png"
               alt="Instagram"
             />
