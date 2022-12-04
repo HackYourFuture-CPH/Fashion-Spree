@@ -1,39 +1,3 @@
 .app {
   text-align: center;
 }
-* {
-  box-sizing: border-box;
-}
-*:before,
-*:after {
-  box-sizing: border-box;
-}
-html,
-body {
-  height: 100%;
-  position: relative;
-}
-.app {
-  min-height: 100vh; /* will cover the 100% of viewport */
-  overflow: hidden;
-  display: block;
-  position: relative;
-  padding-bottom: 0px; /* height of your footer */
-}
-footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-}
-
-@media screen and (max-width: 768px) {
-  .app {
-    padding-bottom: 0px; /* height of your footer */
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .app {
-    padding-bottom: 458px; /* height of your footer */
-  }
-}

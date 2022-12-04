@@ -11,7 +11,7 @@ export const Header = () => {
         <h1>Fashion Shopping made easier with Fashion Spree</h1>
         <div className="subtitle">
           <p>
-            We are bringing shopping to your doorstep! With the new Fashion
+            We are bringing shopping to your doorstep !! With the new Fashion
             spree webshop, you can now shop for all fashion accessories with
             ease.
           </p>
