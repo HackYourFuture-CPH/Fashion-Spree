@@ -8,17 +8,18 @@ const SignupForm = () => {
     email: '',
     password: '',
   });
-  const message = '';
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
+  const message = '';
+
   const handleChange = (e) => {
     setFormValues({ ...formValues, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (event) => {
+    setIsSubmit(true);
     event.preventDefault();
     setFormErrors(FormValidation(formValues));
-    setIsSubmit(true);
   };
   /* eslint-disable no-console */
 
@@ -50,7 +51,6 @@ const SignupForm = () => {
         onChange={handleChange}
       />
       {formErrors.email && <p className="form-erros">{formErrors.email}</p>}
-
       <input
         className="sign-up-form__password"
         placeholder="Password"
@@ -68,7 +68,7 @@ const SignupForm = () => {
         type="submit"
       >
         Sign up
-      </button>
+      </button>{' '}
       {Object.keys(formErrors).length === 0 && isSubmit ? (
         <p className="success-message">Thank you for Signing up</p>
       ) : (
