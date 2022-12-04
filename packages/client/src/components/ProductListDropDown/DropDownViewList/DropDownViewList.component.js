@@ -27,7 +27,7 @@ const DropDownViewList = ({
       element.name.slice(1).toLowerCase(),
   );
 
-  const SortBy = ['Recent Collections', 'A-Z', 'Z-A', 'Price ↓', 'Price ↑'];
+  const SortBy = ['Recent Collections', 'Alphabetically', 'Price ↓', 'Price ↑'];
   const AllFilter = ['Price', 'Size', 'Color', 'Reviews', 'Brand'];
 
   return (

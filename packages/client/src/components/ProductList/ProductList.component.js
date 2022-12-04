@@ -4,11 +4,26 @@ import './ProductList.component.css';
 import ProductCard from '../ProductCard/ProductCard.component';
 import { apiURL } from '../../apiURL';
 
-export default function ProductList({ category }) {
+export default function ProductList({ category, sortBy, allFilter }) {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const fetchProducts = (categoryId) => {
+  const fetchProducts = () => {
+    setIsLoading(true);
+    fetch(`${apiURL()}/products/`)
+      .then((res) => res.json())
+      .then((item) => {
+        setProducts(item);
+      })
+      .then(() => {
+        setIsLoading(false);
+      });
+  };
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  const fetchDropdown = (categoryId) => {
     setIsLoading(true);
     fetch(`${apiURL()}/products?category=${categoryId}`)
       .then((res) => res.json())
@@ -20,8 +35,28 @@ export default function ProductList({ category }) {
       });
   };
   useEffect(() => {
-    fetchProducts(category);
+    fetchDropdown(category);
   }, [category]);
+
+  const sortFunction = (sort) => {
+    return products.sort((a, b) => {
+      if (sort === '') {
+        return 0;
+      }
+      if (sort === 'Alphabetically') {
+        return a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1;
+      }
+      if (sort === 'Price ↓') {
+        return Number(a.price) > Number(b.price) ? 1 : -1;
+      }
+      if (sort === 'Price ↑') {
+        return Number(a.price) < Number(b.price) ? 1 : -1;
+      }
+
+      return 0;
+    });
+  };
+  sortFunction(sortBy);
 
   const ListOfProducts = products.map((product) => {
     return (
@@ -46,4 +81,6 @@ export default function ProductList({ category }) {
 }
 ProductList.propTypes = {
   category: PropTypes.string.isRequired,
+  sortBy: PropTypes.string.isRequired,
+  allFilter: PropTypes.string.isRequired,
 };
