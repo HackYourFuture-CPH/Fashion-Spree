@@ -1,0 +1,9 @@
+.cart-total-wrapper {
+  grid-column: 3 / span 12;
+  text-align: left;
+  display: flex;
+  line-height: 50px;
+}
+.cart-total-header {
+  padding-right: 50px;
+}

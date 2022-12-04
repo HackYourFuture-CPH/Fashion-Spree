@@ -1,0 +1,16 @@
+.cart-table-wrapper {
+  grid-column: 1 / span 12;
+}
+.cart-table {
+  /* border: 2px solid black; */
+  /* display: flex; */
+  grid-column: 2 / span 12;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 104px;
+  margin-top: 24px;
+}
+
+/* .cart-table-result product {
+  /* display: flex; 
+} */

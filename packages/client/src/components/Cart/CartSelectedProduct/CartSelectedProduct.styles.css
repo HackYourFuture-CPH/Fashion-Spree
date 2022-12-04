@@ -1,0 +1,7 @@
+.cart-selected-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin: 30px 0px;
+  text-align: left;
+  /* border: 2px solid black; */
+}

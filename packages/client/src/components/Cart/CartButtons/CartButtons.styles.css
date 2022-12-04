@@ -1,0 +1,5 @@
+.view-page-button {
+  grid-column: 2 / span 6;
+  font-size: 20px;
+  align-items: right;
+}

@@ -5,15 +5,15 @@ import PropTypes from 'prop-types';
 
 export default function CartTable({ products }) {
   return (
-    <div className="">
-      <div className="">
+    <div className="cart-table-wrapper">
+      <div className="cart-table">
         <div>Description</div>
         <div>Amount</div>
         <div>Quantity</div>
         <div>Total</div>
         <div>Action</div>
       </div>
-      <div className="">
+      <div className="cart-table-result">
         {products.map((product) => (
           <CartSelectedProduct key={product.id} product={product} />
         ))}

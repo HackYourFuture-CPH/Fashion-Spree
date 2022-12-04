@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 export default function CartSelectedProduct({ product }) {
   return (
-    <div className="">
+    <div className="cart-selected-wrapper">
       <div className="">
         <input type="checkbox" name="" id="" />
       </div>
