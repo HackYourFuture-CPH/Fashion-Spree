@@ -120,7 +120,7 @@ main {
 }
 
 @media screen and (max-width: 750px) {
-  .signin-btn {
+  .signin-with-btn {
     flex-direction: column;
     margin-left: 2%;
     gap: 0.1rem;
