@@ -1,0 +1,34 @@
+.reviewer-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 22px;
+}
+
+.reviewer-info {
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.reviewer-name {
+  font-size: 34px;
+  font-weight: 500;
+}
+
+.review-time {
+  font-size: 20px;
+  font-weight: 200;
+}
+
+.product-review-rating {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  font-size: 22px;
+}
+
+.review-description {
+  margin: 10px 0px;
+  font-size: 22px;
+  font-weight: 500;
+}
