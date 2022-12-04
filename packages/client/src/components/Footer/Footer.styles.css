@@ -5,6 +5,14 @@
   position: relative;
   bottom: 0;
   background-color: #e4c1b1;
+  padding-top: 30px;
+}
+
+.footer-container-main {
+  bottom: 0;
+  width: 100%;
+  justify-content: center;
+  background-color: #e4c1b1;
 }
 
 .row {
@@ -105,9 +113,6 @@ h4 {
 }
 
 @media screen and (max-width: 480px) {
-  .main-footer {
-    width: 100%;
-  }
   .list-footer li a {
     font-size: 12px;
     line-height: 5px;
