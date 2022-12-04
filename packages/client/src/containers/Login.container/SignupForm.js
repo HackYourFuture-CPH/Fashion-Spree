@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Login.css';
 import FormValidation from './FormValidation';
 
@@ -8,7 +8,9 @@ const SignupForm = () => {
     email: '',
     password: '',
   });
+  const message = '';
   const [formErrors, setFormErrors] = useState({});
+  const [isSubmit, setIsSubmit] = useState(false);
   const handleChange = (e) => {
     setFormValues({ ...formValues, [e.target.name]: e.target.value });
   };
@@ -16,7 +18,15 @@ const SignupForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     setFormErrors(FormValidation(formValues));
+    setIsSubmit(true);
   };
+  /* eslint-disable no-console */
+
+  useEffect(() => {
+    if (Object.keys(formErrors).length === 0 && isSubmit) {
+      console.log(formValues);
+    }
+  }, [formErrors, formValues, isSubmit]);
 
   return (
     <form className="signup-form">
@@ -52,7 +62,6 @@ const SignupForm = () => {
       {formErrors.password && (
         <p className="form-erros">{formErrors.password}</p>
       )}
-
       <button
         onClick={handleSubmit}
         className="signup-submit-button"
@@ -60,6 +69,11 @@ const SignupForm = () => {
       >
         Sign up
       </button>
+      {Object.keys(formErrors).length === 0 && isSubmit ? (
+        <p className="success-message">Thank you for Signing up</p>
+      ) : (
+        <p>{message}</p>
+      )}
     </form>
   );
 };
