@@ -2,7 +2,7 @@ import React from 'react';
 import './Footer.styles.css';
 import { Link } from 'react-router-dom';
 
-export default function Footer() {
+export const Footer = () => {
   return (
     <div className="footer-container-main">
       <div className="footer">
@@ -125,4 +125,4 @@ export default function Footer() {
       </div>
     </div>
   );
-}
+};
