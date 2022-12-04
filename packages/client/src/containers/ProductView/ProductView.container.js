@@ -29,7 +29,7 @@ export const ProductView = () => {
         <view.GoBackButton
           text="Back to search results"
           onClick={navigateBack}
-        />{' '}
+        />
         <view.ProductViewWrapper>
           <view.ProductImage
             topSide={view.topSide}
@@ -46,9 +46,7 @@ export const ProductView = () => {
                 rating={5}
               />
             ))}
-
             <view.DropdownGroup />
-
             <view.ProductViewButtons />
           </view.ProductViewDescription>
         </view.ProductViewWrapper>

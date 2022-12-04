@@ -1,0 +1,17 @@
+.shopping-cart-page {
+  background-color: #e4c1b1;
+}
+
+.shopping-cart-container {
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.shopping-cart-page-back {
+  margin-bottom: 30px;
+}
+
+.shopping-cart-blank {
+  height: 200px;
+  background-color: #ececec;
+}
