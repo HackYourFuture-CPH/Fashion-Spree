@@ -31,13 +31,17 @@ export const ProductView = () => {
           onClick={navigateBack}
         />
         <view.ProductViewWrapper>
-          <view.ProductImage
-            topSide={view.topSide}
-            middleSide={view.middleSide}
-            bottomSide={view.bottomSide}
-            bigImage={view.bigImage}
-          />
-
+          <view.ProductViewImageWrapper>
+            <view.ProductImage
+              topSide={view.topSide}
+              middleSide={view.middleSide}
+              bottomSide={view.bottomSide}
+              bigImage={view.bigImage}
+            />
+          </view.ProductViewImageWrapper>
+          <view.ProductViewReviewsWrapper>
+            <view.ProductReviews />
+          </view.ProductViewReviewsWrapper>
           <view.ProductViewDescription>
             {product.map((prod) => (
               <view.ProductDescription
@@ -49,9 +53,10 @@ export const ProductView = () => {
             <view.DropdownGroup />
             <view.ProductViewButtons />
           </view.ProductViewDescription>
+          <view.RelatedItems category="jeans" />
         </view.ProductViewWrapper>
-        <view.RelatedItems category="jeans" />
       </view.ProductContainer>
+      <div className="product-view-blank">&nbsp;</div>
     </div>
   );
 };

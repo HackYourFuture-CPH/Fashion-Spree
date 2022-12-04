@@ -1,6 +1,6 @@
 .dropdown-group-list {
-  margin-bottom: 83px;
+  margin-bottom: 50px;
   display: flex;
   flex-direction: column;
-  gap: 26px;
+  gap: 10px;
 }
