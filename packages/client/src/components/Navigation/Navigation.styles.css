@@ -3,6 +3,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: #ebe4e1;
 }
 
 .nav * {
@@ -12,6 +13,7 @@
   size: 24px;
   line-height: 30px;
   color: #636363;
+  background-color: #ebe4e1;
 }
 
 .nav > span {
@@ -22,6 +24,20 @@ a.home {
 }
 .nav-buttons .login {
   margin-right: 5px;
+}
+.logged-in-container {
+  display: flex;
+  gap: 20px;
+}
+.logout-button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.logged-in-text div {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 20px;
 }
 .login-button,
 .signup-button {
@@ -60,5 +76,10 @@ a.home {
     margin-top: 8px;
     display: flex;
     flex-direction: column;
+  }
+  .logged-in-container {
+    margin-top: 5px;
+    flex-direction: column;
+    gap: 5px;
   }
 }
