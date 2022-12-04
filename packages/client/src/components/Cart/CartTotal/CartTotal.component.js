@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 
 export default function CartTotal({ subtotal, delivery, shipping, total }) {
   return (
-    <div className="">
-      <div className="">
+    <div className="cart-total-wrapper">
+      <div className="cart-total-headers">
         <div>Subtotal</div>
         <div>Delivery fee</div>
         <div>Shipping fee</div>
         <div>Total</div>
       </div>
-      <div className="">
+      <div className="cart-total-amount">
         <div>{subtotal}</div>
         <div>{delivery || 'Free'}</div>
         <div>{shipping || 'Free'}</div>
