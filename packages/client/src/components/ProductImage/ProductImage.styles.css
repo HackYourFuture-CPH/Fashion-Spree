@@ -1,9 +1,10 @@
 .product-image-wrapper {
-  grid-column: 1 / span 7;
+  grid-column: 1 / span 2;
   display: flex;
-  gap: 66px;
+  gap: 27px;
   background-color: #cea086;
-  padding: 29px 19px;
+  padding: 19px 19px;
+  margin: 0;
 }
 
 .product-image-wrapper img {
@@ -14,15 +15,25 @@
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  gap: 31px;
+  gap: 18px;
 }
 
 .product-image-left-picture img {
-  width: 222px;
+  width: 180px;
 }
 
 .product-image-right-picture img {
-  width: 364px;
+  width: 288px;
+}
+
+@media screen and (max-width: 768px) {
+  .product-image-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 14px;
+    height: fit-content;
+    justify-content: center;
+  }
 }
 
 @media only screen and (max-width: 576px) {

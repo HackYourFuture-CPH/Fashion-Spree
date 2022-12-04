@@ -1,0 +1,18 @@
+.product-reviews-wrapper {
+  display: flex;
+  flex-flow: column wrap;
+  width: 600px;
+}
+
+.readMore-reviews {
+  background: none;
+  border: 0px;
+  padding: 0px;
+  text-align: left;
+  font-weight: 300;
+  font-size: 22px;
+}
+
+.readMore-reviews:hover {
+  cursor: pointer;
+}
