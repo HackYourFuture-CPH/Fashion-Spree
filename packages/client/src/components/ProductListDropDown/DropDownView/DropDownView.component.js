@@ -2,23 +2,31 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './DropDownView.style.css';
 
-const DropDownView = ({ options, lable, ...props }) => {
-  const [value, setValue] = useState('');
+const DropDownView = ({ options, lable, select, ...props }) => {
+  const [value, setValue] = useState();
   const handleChange = (event) => {
     setValue(event.target.value);
+    select(event.target.value);
   };
   const optionList =
     options.length > 0 &&
-    options.map((item) => {
-      return <option value={item}>{item}</option>;
+    options.map((item, index) => {
+      return (
+        <option key={index.id} value={item}>
+          {item}
+        </option>
+      );
     });
 
   return (
     <select
       className="view-dropdown-select"
-      value={value}
       onChange={handleChange}
+      value={value}
     >
+      <option selected disabled>
+        {lable}
+      </option>
       {optionList}
     </select>
   );
@@ -27,6 +35,7 @@ const DropDownView = ({ options, lable, ...props }) => {
 DropDownView.propTypes = {
   options: PropTypes.arrayOf(PropTypes.string).isRequired,
   lable: PropTypes.string.isRequired,
+  select: PropTypes.string.isRequired,
 };
 
 export default DropDownView;

@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import './ProductList.component.css';
 import ProductCard from '../ProductCard/ProductCard.component';
 import { apiURL } from '../../apiURL';
 
-export default function ProductList() {
+export default function ProductList({ category }) {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const fetchProducts = () => {
+  const fetchProducts = (categoryId) => {
     setIsLoading(true);
-    fetch(`${apiURL()}/products/`)
+    fetch(`${apiURL()}/products?category=${categoryId}`)
       .then((res) => res.json())
       .then((item) => {
         setProducts(item);
@@ -19,8 +20,8 @@ export default function ProductList() {
       });
   };
   useEffect(() => {
-    fetchProducts();
-  }, []);
+    fetchProducts(category);
+  }, [category]);
 
   const ListOfProducts = products.map((product) => {
     return (
@@ -43,3 +44,6 @@ export default function ProductList() {
     </div>
   );
 }
+ProductList.propTypes = {
+  category: PropTypes.string.isRequired,
+};
