@@ -132,11 +132,7 @@ export const ContactUs = () => {
           </form>
           <h3>Follow or connect with us</h3>
           <div className="media-icons">
-            <img
-              className="icon-success"
-              src="../../assets/icons/Instagram.png"
-              alt="Instagram"
-            />
+            <img src="../../assets/icons/Instagram.png" alt="Instagram" />
 
             <img src="../../assets/icons/facebook.png" alt="Facebook" />
 

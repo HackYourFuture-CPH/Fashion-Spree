@@ -140,6 +140,7 @@ form {
   }
   .contact-info {
     margin-left: 8px;
+    margin-top: 90px;
   }
   .contactUs-btn,
   .contactUs-input,
@@ -157,15 +158,16 @@ form {
 }
 @media screen and (max-width: 768px) {
   .contact-info-container {
-    width: 450px;
+    width: 400px;
     height: 700px;
   }
   .contactUs-img {
-    width: 300px;
+    width: 220px;
     height: 700px;
   }
   .contact-info {
     margin-left: 8px;
+    margin-top: 50px;
   }
   .contactUs-btn,
   .contactUs-input,
