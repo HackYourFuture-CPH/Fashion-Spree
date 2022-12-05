@@ -18,9 +18,3 @@
     padding: 16px 10px;
   }
 }
-@media only screen and (max-width: 480px) {
-  .view-dropdown-select {
-    width: 98%;
-    padding: 14px 10px;
-  }
-}
