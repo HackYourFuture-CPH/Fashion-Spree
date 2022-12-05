@@ -4,7 +4,6 @@
   box-sizing: border-box;
 }
 .view-dropdown-select {
-  margin: 10px 30px;
   width: 250px;
   height: auto;
   padding: 18px 12px 18px 12px;
@@ -13,31 +12,15 @@
   color: #212121cc;
   background-color: #e4c1b1;
 }
-
-@media only screen and (max-width: 992px) {
-  .view-dropdown-select {
-    width: 180px;
-    padding: 11px 8px 11px 8px;
-    font-size: 13px;
-  }
-}
-
 @media only screen and (max-width: 768px) {
   .view-dropdown-select {
-    width: 80%;
-    padding: 18px 12px 18px 12px;
-    font-size: 18px;
-    font-weight: 650;
-    text-align: center;
+    width: 90%;
+    padding: 16px 10px;
   }
 }
-
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 480px) {
   .view-dropdown-select {
-    width: 90%;
-    padding: 18px 12px 18px 12px;
-    font-size: 18px;
-    font-weight: 650;
-    text-align: center;
+    width: 98%;
+    padding: 14px 10px;
   }
 }

@@ -1,0 +1,159 @@
+main {
+  margin: 0 auto;
+  background-color: #e4c1b1;
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.signup-body-img {
+  width: 30%;
+  margin-left: 12%;
+  object-fit: cover;
+}
+
+.signup-section {
+  width: 48%;
+  background-color: #f2ebe7;
+  border-radius: 1.5rem;
+}
+
+.signup-section * {
+  margin-top: 2rem;
+  background-color: #f2ebe7;
+}
+
+.signup-text {
+  font-family: 'Montserrat';
+  font-style: Bold;
+  font-size: 1.5rem;
+  color: #212121;
+  text-align: start;
+  margin-left: 14%;
+}
+
+.signin-icons {
+  width: 2.25rem;
+  height: 2rem;
+}
+
+.signin-with-btn {
+  display: flex;
+  margin-left: 13%;
+  gap: 1.5rem;
+}
+
+.signin-with-btn button {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #f5f5f5;
+  width: 12rem;
+  height: 2.3rem;
+  margin-bottom: 1.2rem;
+  border-radius: 0.5rem;
+  border: none;
+}
+
+.signin-icons {
+  margin-bottom: 2rem;
+}
+
+.facebook-signin-btn,
+.google-signin-btn {
+  font-family: 'Montserrat';
+  font-weight: 400;
+  font-size: 0.75rem;
+  color: #212121;
+}
+
+.or-text {
+  margin-left: 15%;
+  margin-right: 25%;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  margin-left: 14%;
+  width: 65%;
+}
+
+.signup-form * {
+  border-style: hidden;
+  border-bottom: 1px solid rgba(33, 33, 33, 0.4);
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  background: #f2ebe7;
+  color: #212121;
+}
+
+.signup-form input {
+  height: 30px;
+  padding-left: 7px;
+}
+
+.signup-form__fullname,
+.signup-form__email,
+::placeholder {
+  font-size: 0.85rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%;
+  font-family: 'Montserrat';
+  padding: 0;
+}
+
+.form-erros {
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: red;
+  border: none;
+}
+
+.signup-submit-button {
+  background-color: #f5f5f5;
+  padding: 5% 45%;
+  white-space: nowrap;
+  border-radius: 0.5rem;
+  border: 1px Solid#F5F5F5;
+  font-family: 'Montserrat';
+  font-style: 'SemiBold';
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  color: #212121;
+}
+
+.dont-want-signup {
+  font-family: 'Montserrat';
+  font-weight: 400;
+  font-size: 1rem;
+  margin-right: 10%;
+}
+
+@media screen and (max-width: 750px) {
+  .signin-with-btn {
+    flex-direction: column;
+    margin-left: 2%;
+    gap: 0.1rem;
+    margin-left: 14%;
+  }
+
+  .signup-body-img {
+    width: 30%;
+    margin-left: 1rem;
+  }
+
+  .signup-section {
+    width: 70%;
+    background-color: #f2ebe7;
+    border-radius: 1.5rem;
+  }
+
+  .dont-want-signup {
+    font-family: 'Montserrat';
+    font-weight: 400;
+    font-size: 0.75rem;
+  }
+}
