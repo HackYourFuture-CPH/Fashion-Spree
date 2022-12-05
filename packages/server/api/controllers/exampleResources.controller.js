@@ -22,7 +22,7 @@ const getExampleResourceById = async (id) => {
       .select('exampleResources.id as id', 'title')
       .where({ id });
     if (exampleResources.length === 0) {
-      throw new Error(`incorrect entry with the id of ${id}`, 404);
+      throw new HttpError(`incorrect entry with the id of ${id}`, 404);
     }
     return exampleResources;
   } catch (error) {
