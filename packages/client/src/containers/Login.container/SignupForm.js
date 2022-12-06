@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './Login.css';
 import FormValidation from './FormValidation';
 
@@ -10,24 +10,16 @@ const SignupForm = () => {
   });
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
-  const message = '';
 
   const handleChange = (e) => {
     setFormValues({ ...formValues, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (event) => {
-    setIsSubmit(true);
     event.preventDefault();
     setFormErrors(FormValidation(formValues));
+    setIsSubmit(true);
   };
-  /* eslint-disable no-console */
-
-  useEffect(() => {
-    if (Object.keys(formErrors).length === 0 && isSubmit) {
-      console.log(formValues);
-    }
-  }, [formErrors, formValues, isSubmit]);
 
   return (
     <form className="signup-form">
@@ -68,11 +60,9 @@ const SignupForm = () => {
         type="submit"
       >
         Sign up
-      </button>{' '}
-      {Object.keys(formErrors).length === 0 && isSubmit ? (
+      </button>
+      {Object.keys(formErrors).length === 0 && isSubmit && (
         <p className="success-message">Thank you for Signing up</p>
-      ) : (
-        <p>{message}</p>
       )}
     </form>
   );
