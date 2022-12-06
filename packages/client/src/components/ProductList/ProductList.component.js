@@ -24,14 +24,10 @@ export default function ProductList({ category, sortBy, allFilter }) {
   }, []);
 
   const fetchDropdown = (categoryId) => {
-    setIsLoading(true);
     fetch(`${apiURL()}/products?category=${categoryId}`)
       .then((res) => res.json())
       .then((item) => {
         setProducts(item);
-      })
-      .then(() => {
-        setIsLoading(false);
       });
   };
   useEffect(() => {
