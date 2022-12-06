@@ -3,10 +3,13 @@ import PropTypes from 'prop-types';
 import './ProductList.component.css';
 import ProductCard from '../ProductCard/ProductCard.component';
 import { apiURL } from '../../apiURL';
+import SearchInput from '../SearchInput/SearchInput.component';
 
 export default function ProductList({ category, sortBy, allFilter }) {
   const [products, setProducts] = useState([]);
+  const [searchInput, setSearchInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [filteredProducts, setFilteredProducts] = useState([]);
 
   const fetchProducts = () => {
     setIsLoading(true);
@@ -54,7 +57,14 @@ export default function ProductList({ category, sortBy, allFilter }) {
   };
   sortFunction(sortBy);
 
-  const ListOfProducts = products.map((product) => {
+  useEffect(() => {
+    const filterResults = products.filter((product) =>
+      product.name.toLowerCase().includes(searchInput.toLowerCase()),
+    );
+    setFilteredProducts(filterResults);
+  }, [searchInput, products]);
+
+  const ListOfProducts = filteredProducts.map((product) => {
     return (
       <div className="product">
         <ProductCard title={product.name} price={product.price} />
@@ -63,7 +73,8 @@ export default function ProductList({ category, sortBy, allFilter }) {
   });
 
   return (
-    <div>
+    <>
+      <SearchInput searchInput={searchInput} setSearchInput={setSearchInput} />
       <div className="product-list-container">
         {isLoading && <p>Loading...</p>}
         {products.length === 0 ? (
@@ -72,7 +83,7 @@ export default function ProductList({ category, sortBy, allFilter }) {
           <div className="rendered-product">{ListOfProducts}</div>
         )}
       </div>
-    </div>
+    </>
   );
 }
 ProductList.propTypes = {
