@@ -4,7 +4,6 @@
  */
 exports.up = function (knex) {
   return knex.schema.createTable('order_items', (table) => {
-    table.increments();
     table.integer('order_id').unsigned();
     table.foreign('order_id').references('id').inTable('orders');
     table.integer('product_id').unsigned();
