@@ -17,7 +17,7 @@ const getProductById = async (id) => {
       .select('products.id as id', 'name', 'description', 'price')
       .where({ id });
     if (products.length === 0) {
-      throw new Error(`incorrect entry with the id of ${id}`, 404);
+      throw new HttpError(`incorrect entry with the id of ${id}`, 404);
     }
     return products;
   } catch (error) {
@@ -42,7 +42,7 @@ const getProductsByCategory = async (category) => {
       .leftJoin('categories', 'products.category_id', 'categories.id')
       .where('categories.name', 'like', `${category}`);
     if (products.length === 0) {
-      throw new Error(
+      throw new HttpError(
         `There are no products available with this category ${category}`,
         404,
       );
