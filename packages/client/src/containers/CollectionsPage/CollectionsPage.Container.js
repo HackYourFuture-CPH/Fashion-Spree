@@ -5,7 +5,7 @@ import DropDownViewList from '../../components/ProductListDropDown/DropDownViewL
 export const CollectionsPage = () => {
   return (
     <div>
-      <DropDownViewList extra />
+      <DropDownViewList filterIcon />
       <ProductList />
     </div>
   );

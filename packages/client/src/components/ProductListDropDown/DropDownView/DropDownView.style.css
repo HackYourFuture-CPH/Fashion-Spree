@@ -14,7 +14,7 @@
 }
 
 .all-filters {
-  background: url('../../../assets/all-flter-icon.svg') no-repeat;
+  background: url('all-filter-icon.svg') no-repeat;
   background-position: right 10px top 50%;
   appearance: none;
 }

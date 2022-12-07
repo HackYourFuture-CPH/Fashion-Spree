@@ -3,7 +3,7 @@ import DropDownView from '../DropDownView/DropDownView.component';
 import './DropDownViewList.style.css';
 import PropTypes from 'prop-types';
 
-const DropDownViewList = ({ extra }) => {
+const DropDownViewList = ({ filterIcon }) => {
   const Categories = [
     'Categories',
     'Category 1',
@@ -33,12 +33,16 @@ const DropDownViewList = ({ extra }) => {
     <div className="list-view">
       <DropDownView lable="Categories" options={Categories} />
       <DropDownView lable="Sort By" options={SortBy} />
-      <DropDownView extra={extra} lable="All Filter" options={AllFilter} />
+      <DropDownView
+        filterIcon={filterIcon}
+        lable="All Filter"
+        options={AllFilter}
+      />
     </div>
   );
 };
 DropDownViewList.propTypes = {
-  extra: PropTypes.string.isRequired,
+  filterIcon: PropTypes.string.isRequired,
 };
 
 export default DropDownViewList;
