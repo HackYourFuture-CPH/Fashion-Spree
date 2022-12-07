@@ -26,7 +26,7 @@ const getProductById = async (id) => {
 };
 
 // Get products by Category
-const getProductsByCategory = async (category) => {
+const getProductsByCategory = async (category, limit, offset) => {
   if (!isNaN(category)) {
     throw new HttpError('Category should be a String', 400);
   }
@@ -40,16 +40,25 @@ const getProductsByCategory = async (category) => {
         'products.price',
       )
       .leftJoin('categories', 'products.category_id', 'categories.id')
-      .where('categories.name', 'like', `${category}`);
+      .where('categories.name', 'like', `${category}`)
+      .limit(limit)
+      .offset(offset);
     if (products.length === 0) {
       throw new HttpError(
         `There are no products available with this category ${category}`,
         404,
       );
     }
-    return products;
+    return {
+      status: 200,
+      data: products,
+    };
   } catch (error) {
-    return error.message;
+    return {
+      status: error.httpStatus,
+      data: [],
+      message: error.message,
+    };
   }
 };
 
