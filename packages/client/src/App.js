@@ -14,6 +14,7 @@ import { ContactUs } from './containers/ContactUs.container';
 import { Login as LoginHaile } from './containers/Login.container/Login';
 import { CollectionsPage } from './containers/CollectionsPage/CollectionsPage.Container';
 import { ShoppingCartPage } from './containers/ShoppingCartPage/ShoppingCartPage.container';
+import { FavoritesPage } from './containers/FavoritesPage/FavoritesPage.container';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="/products/:id" element={<ProductView />} />
           <Route path="/collections" element={<CollectionsPage />} />
           <Route path="/shopping-cart" element={<ShoppingCartPage />} />
+          <Route path="/favorites" element={<FavoritesPage />} />
         </Routes>
         <Footer />
       </Router>
