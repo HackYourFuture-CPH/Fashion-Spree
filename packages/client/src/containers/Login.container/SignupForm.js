@@ -15,10 +15,23 @@ const SignupForm = () => {
     setFormValues({ ...formValues, [e.target.name]: e.target.value });
   };
 
+  const handleValidation = () => {
+    setFormErrors(FormValidation(formValues));
+  };
+
+  const cleanUpValidation = () => {
+    setFormErrors({
+      fullname: '',
+      email: '',
+      password: '',
+    });
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    setFormErrors(FormValidation(formValues));
-    setIsSubmit(true);
+    if (Object.keys(formErrors).length === 0) {
+      setIsSubmit(true);
+    }
   };
 
   return (
@@ -29,6 +42,8 @@ const SignupForm = () => {
         name="fullname"
         values={formValues.fullname}
         onChange={handleChange}
+        onBlur={handleValidation}
+        onFocus={cleanUpValidation}
         type="text"
       />
       {formErrors.fullname && (
@@ -41,6 +56,8 @@ const SignupForm = () => {
         type="email"
         values={formValues.email}
         onChange={handleChange}
+        onBlur={handleValidation}
+        onFocus={cleanUpValidation}
       />
       {formErrors.email && <p className="form-erros">{formErrors.email}</p>}
       <input
@@ -50,6 +67,8 @@ const SignupForm = () => {
         type="password"
         values={formValues.password}
         onChange={handleChange}
+        onBlur={handleValidation}
+        onFocus={cleanUpValidation}
       />
       {formErrors.password && (
         <p className="form-erros">{formErrors.password}</p>
@@ -61,9 +80,7 @@ const SignupForm = () => {
       >
         Sign up
       </button>
-      {Object.keys(formErrors).length === 0 && isSubmit && (
-        <p className="success-message">Thank you for Signing up</p>
-      )}
+      {isSubmit && <p className="success-message">Thank you for Signing up</p>}
     </form>
   );
 };
