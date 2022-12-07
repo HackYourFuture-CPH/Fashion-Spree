@@ -19,10 +19,8 @@ exports.up = function (knex) {
       'merun',
       'orange',
     ]);
-    table
-      .enum('size', ['XS', 'Small', 'Medium', 'Large', 'XL', 'XLL'])
-      .defaultTo('Medium');
-    table.blob('picture');
+    table.enum('size', ['XS', 'Small', 'Medium', 'Large', 'XL', 'XXL', '3XL']);
+    table.binary('picture');
     table.integer('stock');
   });
 };
