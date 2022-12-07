@@ -1,5 +1,4 @@
 * {
-  background-color: #e4c1b1;
   margin: 0 auto;
 }
 .contactUs-wrapper {
@@ -91,12 +90,24 @@ form {
   font-size: 24px;
   line-height: 29px;
   margin-top: 35px;
-  margin-bottom: 55px;
+  margin-bottom: 25px;
 }
 
 .media-icons {
   display: flex;
   background: #f2ebe7;
+}
+.success {
+  display: flex;
+  background-color: #dff2bf;
+  margin-bottom: 20px;
+}
+.icon-success {
+  width: 36px;
+  height: 36px;
+  background-color: #dff2bf;
+  margin-left: 2px;
+  margin-right: 8px;
 }
 .media-icons img {
   width: 36px;
@@ -111,17 +122,51 @@ form {
   font-size: 10px;
 }
 
+.message-success {
+  color: #270;
+  background-color: #dff2bf;
+  line-height: 40px;
+}
+
 @media screen and (max-width: 1024px) {
   .contact-info-container {
-    width: 370px;
+    width: 410px;
     height: 782px;
   }
   .contactUs-img {
-    width: 350px;
+    width: 400px;
     height: 782px;
   }
   .contact-info {
     margin-left: 8px;
+    margin-top: 90px;
+  }
+  .contactUs-btn,
+  .contactUs-input,
+  .fashion-email {
+    width: 350px;
+  }
+  .contact-info h3 {
+    font-size: 20px;
+  }
+  .fashion-email p,
+  p,
+  .contactUs-btn {
+    font-size: 15px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .contact-info-container {
+    width: 400px;
+    height: 700px;
+  }
+  .contactUs-img {
+    width: 220px;
+    height: 700px;
+  }
+  .contact-info {
+    margin-left: 8px;
+    margin-top: 50px;
   }
   .contactUs-btn,
   .contactUs-input,
@@ -139,20 +184,21 @@ form {
 }
 @media screen and (max-width: 480px) {
   .contact-info-container {
-    width: 280px;
+    width: 200px;
     height: 682px;
   }
   .contactUs-img {
-    width: 200px;
+    width: 180px;
     height: 682px;
   }
   .contact-info {
     margin-left: 8px;
+    margin-top: 40px;
   }
   .contactUs-btn,
   .contactUs-input,
   .fashion-email {
-    width: 200px;
+    width: 180px;
   }
   .contact-info h3 {
     font-size: 10px;
@@ -160,12 +206,14 @@ form {
   .fashion-email p,
   p,
   .contactUs-btn {
-    font-size: 10px;
+    font-size: 8px;
   }
   .fashion-email img,
+  .icon-success,
   .media-icons img {
     width: 15px;
-    height: 15px;
+    height: 18px;
+    padding-left: 5px;
   }
   .contactUs-input::placeholder {
     font-size: 10px;
