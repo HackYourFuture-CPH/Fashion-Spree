@@ -1,0 +1,25 @@
+.related-items {
+  display: flex;
+  flex-flow: column wrap;
+  margin-top: 40px;
+}
+
+.related-items-display {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  margin: 25px 0px;
+}
+
+.realtedItems-heading {
+  margin: 17px 0px;
+}
+.product-card-wrapper {
+  margin-bottom: 20px;
+}
+
+@media only screen and (max-width: 578px) {
+  .related-items-display {
+    margin: 0px 0px;
+  }
+}

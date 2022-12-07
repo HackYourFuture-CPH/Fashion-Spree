@@ -7,8 +7,15 @@ yarn-error.log*
 lerna-debug.log*
 .pnpm-debug.log*
 
+# history folder
+
+.history/*
+
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+#history folder
+.history/*
 
 # Runtime data
 pids

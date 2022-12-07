@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.product-list-container {
+  margin: auto;
+  width: 850px;
+  background-color: rgba(228, 193, 177, 1);
+  margin-bottom: 50px;
+}
+.rendered-product {
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+}
+.product {
+  margin: 10px 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .product-list-container {
+    width: 480px;
+  }
+  .product {
+    margin: 5px 5px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .product-list-container {
+    width: 200px;
+  }
+}

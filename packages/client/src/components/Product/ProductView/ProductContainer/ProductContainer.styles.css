@@ -1,0 +1,16 @@
+.product-container {
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+@media screen and (max-width: 768px) {
+  .product-container {
+    max-width: 90%;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .product-container {
+    max-width: 328px;
+  }
+}

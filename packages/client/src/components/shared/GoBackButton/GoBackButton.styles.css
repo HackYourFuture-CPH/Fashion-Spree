@@ -1,0 +1,26 @@
+.go-back-button {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  color: rgba(33, 33, 33, 0.8);
+  margin-top: 10px;
+}
+.go-back-button:hover {
+  cursor: pointer;
+}
+.go-back-button img {
+  width: 30px;
+}
+@media only screen and (max-width: 576px) {
+  .go-back-button {
+    font-size: 20px;
+    margin-bottom: 14px;
+  }
+  .go-back-button button svg {
+    font-size: 10px;
+    color: rgba(33, 33, 33, 0.8);
+  }
+}

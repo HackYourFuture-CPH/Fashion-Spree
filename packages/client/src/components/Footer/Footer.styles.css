@@ -1,0 +1,146 @@
+.main-footer {
+  width: 800px;
+  margin: 0 auto;
+  color: black;
+  position: relative;
+  bottom: 0;
+  background-color: #e4c1b1;
+  padding-top: 30px;
+}
+
+.footer-container-main {
+  bottom: 0;
+  width: 100%;
+  justify-content: center;
+  background-color: #e4c1b1;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list-footer li {
+  list-style: none;
+  text-align: left;
+}
+.row div:nth-child(4) p li {
+  text-align: center;
+}
+.list-footer li a {
+  color: #212121;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  position: relative;
+  letter-spacing: 0.5px;
+  padding: 0 10px;
+}
+/*a:after {
+  content: '';
+  position: absolute;
+  background-color: rgb(0, 0, 0);
+  height: 3px;
+  width: 0;
+  left: 0;
+  bottom: -10px;
+  transition: 0.3s;
+} breaks something on mobile*/
+.list-footer li a:hover {
+  color: rgb(108, 3, 5);
+}
+a:hover:after {
+  width: 100%;
+}
+.main-sm-footer {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  background-color: #e7d7ce;
+  color: #212121;
+  padding: 8px 0;
+  font-size: 14px;
+}
+
+.main-sm-footer p {
+  margin: 0;
+}
+.list-footer {
+  padding-top: 10px;
+  line-height: 3;
+}
+.col,
+h4 {
+  padding-bottom: 20px;
+  font-size: large;
+}
+
+.col h4 {
+  font-family: 'Montserrat', sans-serif;
+}
+.icon-footer {
+  width: 25%;
+  cursor: pointer;
+  position: relative;
+}
+
+@media screen and (max-width: 768px) {
+  .main-footer {
+    width: 100%;
+  }
+  .list-footer li a {
+    font-size: 14px;
+    line-height: 5px;
+    padding: 0px;
+  }
+  .list-footer {
+    padding-top: 0px;
+    line-height: 1.5;
+  }
+  .row {
+    padding-left: 10px;
+    padding-right: 10px;
+    align-items: top;
+  }
+  .col h4 {
+    padding-bottom: 0px;
+    font-size: 12px;
+  }
+  .icon-footer {
+    width: 20%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .list-footer li a {
+    font-size: 12px;
+    line-height: 5px;
+    padding: 0px;
+  }
+  .list-footer {
+    padding-top: 0px;
+    line-height: 1.5;
+  }
+  .row {
+    flex-direction: column;
+  }
+  .row p li {
+    text-align: center;
+  }
+  .col,
+  h4 {
+    margin-bottom: 5px;
+    font-size: 16px;
+  }
+  .row div:nth-child(4) p {
+    display: flex;
+    gap: 5px;
+  }
+  .row div:nth-child(4) h4 {
+    margin-bottom: 10px;
+  }
+  .icon-footer {
+    width: 40%;
+  }
+}

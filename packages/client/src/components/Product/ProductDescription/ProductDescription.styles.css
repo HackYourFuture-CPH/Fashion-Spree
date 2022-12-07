@@ -1,0 +1,43 @@
+.product-description {
+  margin-bottom: 62px;
+  text-align: left;
+  color: #212121;
+}
+
+.product-description h1 {
+  margin-bottom: 27px;
+  font-weight: 600;
+  font-size: 32px;
+}
+
+.product-description-numbers {
+  margin-bottom: 73px;
+  display: flex;
+  gap: 80px;
+  font-weight: 600;
+  font-size: 24px;
+}
+
+.product-description-info h2 {
+  margin-bottom: 31px;
+  font-weight: 600;
+  font-size: 28px;
+}
+
+.product-description-info p {
+  margin-bottom: 32px;
+  font-weight: 500;
+  font-size: 24px;
+}
+
+.product-description-rating {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 600;
+  font-size: 24px;
+}
+
+.product-description-rating svg {
+  font-size: 30px;
+}
