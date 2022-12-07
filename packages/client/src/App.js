@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
+import { UserProvider, useUser } from './userContext';
 import { Navigation } from './components/Navigation/Navigation.component';
 import { Footer } from './components/Footer/Footer.component';
 import { HomePage } from './containers/HomePage/HomePage.Container';
@@ -18,20 +19,22 @@ function App() {
   return (
     <div className="app">
       <Router>
-        <Navigation />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route exact path="/about-us" element={<AboutUs />} />
-          <Route exact path="/contact-us" element={<ContactUs />} />
-          <Route exact path="/login" element={<Login />} />
-          <Route exact path="/signup" element={<Signup />} />
-          <Route exact path="/reset" element={<Reset />} />
-          <Route path="*" element={<PageNotFound />} />
-          <Route path="/products/:id" element={<ProductView />} />
-          <Route path="/collections" element={<CollectionsPage />} />
-          <Route path="/shopping-cart" element={<ShoppingCartPage />} />
-        </Routes>
-        <Footer />
+        <UserProvider>
+          <Navigation />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route exact path="/about-us" element={<AboutUs />} />
+            <Route exact path="/contact-us" element={<ContactUs />} />
+            <Route exact path="/login" element={<Login />} />
+            <Route exact path="/signup" element={<Signup />} />
+            <Route exact path="/reset" element={<Reset />} />
+            <Route path="*" element={<PageNotFound />} />
+            <Route path="/products/:id" element={<ProductView />} />
+            <Route path="/collections" element={<CollectionsPage />} />
+            <Route path="/shopping-cart" element={<ShoppingCartPage />} />
+          </Routes>
+          <Footer />
+        </UserProvider>
       </Router>
     </div>
   );
