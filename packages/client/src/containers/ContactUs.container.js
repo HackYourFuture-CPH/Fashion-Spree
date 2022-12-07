@@ -9,8 +9,11 @@ export const ContactUs = () => {
   });
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
+  const [disabled, setDisabled] = useState(true);
 
   const handleChange = (e) => {
+    setFormErrors({});
+    setIsSubmit(false);
     setFormValues({
       ...formValues,
       [e.target.name]: e.target.value,
@@ -20,7 +23,6 @@ export const ContactUs = () => {
   const handleFormSubmit = (e) => {
     setFormErrors(validation(formValues));
     setIsSubmit(true);
-
     e.preventDefault();
 
     /* eslint-disable no-console */
@@ -33,9 +35,20 @@ export const ContactUs = () => {
     if (Object.keys(formErrors).length === 0 && isSubmit) {
       console.log(formValues);
     }
-
     // eslint-disable-next-line
   }, [formErrors, isSubmit]);
+
+  useEffect(() => {
+    if (
+      formValues.fullname !== '' &&
+      formValues.email !== '' &&
+      formValues.message !== ''
+    ) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
+  }, [formValues]);
 
   const validation = (values) => {
     const errors = {};
@@ -53,9 +66,9 @@ export const ContactUs = () => {
     } else if (values.message.length < 5) {
       errors.message = 'Message must be more than five characters.';
     }
-
     return errors;
   };
+
   return (
     <main className="contactUs-wrapper">
       <img
@@ -116,6 +129,7 @@ export const ContactUs = () => {
               className="contactUs-btn"
               onClick={handleFormSubmit}
               type="submit"
+              disabled={disabled}
             >
               Send Message
             </button>
