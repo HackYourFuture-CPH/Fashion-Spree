@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState, useCallback } from 'react';
+import { NavLink, Link } from 'react-router-dom';
 import { useUser } from '../../userContext';
 
 import './Navigation.styles.css';
@@ -13,18 +13,18 @@ export const Navigation = () => {
       <div className="navigation">
         <div className="nav">
           <span className="navbar-brand">Fashion Spree</span>
-          <Link to="/" className="home">
+          <NavLink to="/" className="home">
             Home
-          </Link>
-          <Link to="/about-us" className="about-us">
+          </NavLink>
+          <NavLink to="/about-us" className="about-us">
             About Us
-          </Link>
-          <Link to="/collections" className="collections">
+          </NavLink>
+          <NavLink to="/collections" className="collections">
             Our collections
-          </Link>
-          <Link to="/contact-us" className="contact-us">
+          </NavLink>
+          <NavLink to="/contact-us" className="contact-us">
             Contact Us
-          </Link>
+          </NavLink>
           {user ? (
             <div className="logged-in-container">
               <div className="logged-in-text">

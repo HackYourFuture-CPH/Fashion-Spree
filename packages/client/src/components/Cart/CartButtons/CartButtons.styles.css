@@ -1,0 +1,12 @@
+.cart-buttons-wrapper {
+  margin-bottom: 50px;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+}
+
+.cart-buttons {
+  grid-column: 7 / span 11;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}

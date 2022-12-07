@@ -1,5 +1,4 @@
 import React from 'react';
-
 import './HomePage.styles.css';
 import { Header } from '../../components/Header/Header.component';
 import { Body } from '../../components/Body/Body.component';

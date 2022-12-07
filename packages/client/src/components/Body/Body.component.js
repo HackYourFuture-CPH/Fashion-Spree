@@ -58,7 +58,11 @@ export const Body = () => {
           </div>
         </div>
       </div>
-      <Button label="Show Now" backgroundColor="#F5F5F5" />
+      <Button
+        className="shopnow-button"
+        label="Shop Now"
+        backgroundColor="#F5F5F5"
+      />
     </main>
   );
 };
