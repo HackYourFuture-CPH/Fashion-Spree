@@ -2,43 +2,14 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './ProductList.component.css';
 import ProductCard from '../ProductCard/ProductCard.component';
-import { apiURL } from '../../apiURL';
 import SearchInput from '../SearchInput/SearchInput.component';
 
-export default function ProductList({ category, sortBy, allFilter }) {
-  const [products, setProducts] = useState([]);
+export default function ProductList({ isLoading, products, onSelectSortBy }) {
   const [searchInput, setSearchInput] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
   const [filteredProducts, setFilteredProducts] = useState([]);
 
-  const fetchProducts = () => {
-    setIsLoading(true);
-    fetch(`${apiURL()}/products/`)
-      .then((res) => res.json())
-      .then((item) => {
-        setProducts(item);
-      })
-      .then(() => {
-        setIsLoading(false);
-      });
-  };
-  useEffect(() => {
-    fetchProducts();
-  }, []);
-
-  const fetchDropdown = (categoryId) => {
-    fetch(`${apiURL()}/products?category=${categoryId}`)
-      .then((res) => res.json())
-      .then((item) => {
-        setProducts(item);
-      });
-  };
-  useEffect(() => {
-    fetchDropdown(category);
-  }, [category]);
-
   const sortFunction = (sort) => {
-    return products.sort((a, b) => {
+    return filteredProducts.sort((a, b) => {
       if (sort === '') {
         return 0;
       }
@@ -51,11 +22,10 @@ export default function ProductList({ category, sortBy, allFilter }) {
       if (sort === 'Price ↑') {
         return Number(a.price) < Number(b.price) ? 1 : -1;
       }
-
       return 0;
     });
   };
-  sortFunction(sortBy);
+  sortFunction(onSelectSortBy);
 
   useEffect(() => {
     const filterResults = products.filter((product) =>
@@ -87,7 +57,7 @@ export default function ProductList({ category, sortBy, allFilter }) {
   );
 }
 ProductList.propTypes = {
-  category: PropTypes.string.isRequired,
-  sortBy: PropTypes.string.isRequired,
-  allFilter: PropTypes.string.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  products: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onSelectSortBy: PropTypes.string.isRequired,
 };

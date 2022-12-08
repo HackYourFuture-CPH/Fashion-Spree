@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import './DropDownView.style.css';
+import './CategoriesListDropDown.style.css';
 
 const DropDownView = ({ options, lable, select, ...props }) => {
   const [value, setValue] = useState();

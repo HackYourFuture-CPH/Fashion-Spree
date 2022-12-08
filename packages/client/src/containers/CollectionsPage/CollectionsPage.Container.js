@@ -1,19 +1,90 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ProductList from '../../components/ProductList/ProductList.component';
-import DropDownViewList from '../../components/ProductListDropDown/DropDownViewList/DropDownViewList.component';
+import './CollectionsPage.style.css';
+import DropDownView from '../../components/CategoriesListDropDown/CategoriesListDropDown.component';
+import { apiURL } from '../../apiURL';
 
 export const CollectionsPage = () => {
-  const [category, setCategory] = useState('');
-  const [sortBy, setSortBy] = useState('');
-  const [allFilter, setAllfilter] = useState('');
+  const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [onSelectCategory, setOnSelectCategory] = useState('');
+  const [onSelectSortBy, setOnSelectSortBy] = useState('');
+  const [onSelectAllFilter, setOnSelectAllFilter] = useState('');
+
+  const fetchProducts = () => {
+    setIsLoading(true);
+    fetch(`${apiURL()}/products/`)
+      .then((res) => res.json())
+      .then((item) => {
+        setProducts(item);
+      })
+      .then(() => {
+        setIsLoading(false);
+      });
+  };
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  const [category, setCategoy] = useState([]);
+  const fetchCategories = () => {
+    fetch(`${apiURL()}/categories/`)
+      .then((res) => res.json())
+      .then((item) => {
+        setCategoy(item);
+      });
+  };
+  useEffect(() => {
+    fetchCategories();
+  }, []);
+
+  const categories = category.map(
+    (element) =>
+      element.name.charAt(0).toUpperCase() +
+      element.name.slice(1).toLowerCase(),
+  );
+
+  const sortBy = ['Recent Collections', 'Alphabetically', 'Price ↓', 'Price ↑'];
+  const allFilter = ['Price', 'Size', 'Color', 'Reviews', 'Brand'];
+
+  const fetchDropdown = (categoryId) => {
+    fetch(`${apiURL()}/products?category=${categoryId}`)
+      .then((res) => res.json())
+      .then((item) => {
+        setProducts(item);
+      });
+  };
+  useEffect(() => {
+    fetchDropdown(onSelectCategory);
+  }, [onSelectCategory]);
+
   return (
-    <div>
-      <DropDownViewList
-        selectCategory={(categoryName) => setCategory(categoryName)}
-        selectSortBy={(sortByName) => setSortBy(sortByName)}
-        selectAllFilter={(allFilterName) => setAllfilter(allFilterName)}
-      />
-      <ProductList category={category} sortBy={sortBy} allFilter={allFilter} />
-    </div>
+    <>
+      <div className="list-view">
+        <DropDownView
+          lable="Categories"
+          options={categories}
+          select={(categoryName) => setOnSelectCategory(categoryName)}
+        />
+        <DropDownView
+          lable="Sort By Most Recent"
+          options={sortBy}
+          select={(sortByName) => setOnSelectSortBy(sortByName)}
+        />
+        <DropDownView
+          lable="All Filter"
+          options={allFilter}
+          select={(allFilterName) => setOnSelectAllFilter(allFilterName)}
+        />
+      </div>
+
+      <div>
+        <ProductList
+          isLoading={isLoading}
+          products={products}
+          onSelectSortBy={onSelectSortBy}
+        />
+      </div>
+    </>
   );
 };
