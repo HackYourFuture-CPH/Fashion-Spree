@@ -75,6 +75,7 @@ export const CollectionsPage = () => {
           lable="All Filter"
           options={allFilter}
           // select={(allFilterName) => setOnSelectedAllFilter(allFilterName)}
+          showFilterIcon
         />
       </div>
 

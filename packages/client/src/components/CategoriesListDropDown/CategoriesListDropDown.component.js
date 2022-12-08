@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './CategoriesListDropDown.style.css';
 
-const DropDownView = ({ options, lable, select, ...props }) => {
-  const [value, setValue] = useState();
+const DropDownView = ({ options, lable, select, showFilterIcon, ...props }) => {
+  const [value, setValue] = useState('');
   const handleChange = (event) => {
     setValue(event.target.value);
     select(event.target.value);
@@ -23,6 +23,8 @@ const DropDownView = ({ options, lable, select, ...props }) => {
       className="view-dropdown-select"
       onChange={handleChange}
       value={value}
+      showFilterIcon={showFilterIcon}
+      className={`view-dropdown-select ${showFilterIcon ? 'all-filters' : ''}`}
     >
       <option selected disabled>
         {lable}
@@ -36,6 +38,7 @@ DropDownView.propTypes = {
   options: PropTypes.arrayOf(PropTypes.string).isRequired,
   lable: PropTypes.string.isRequired,
   select: PropTypes.string.isRequired,
+  showFilterIcon: PropTypes.string.isRequired,
 };
 
 export default DropDownView;
