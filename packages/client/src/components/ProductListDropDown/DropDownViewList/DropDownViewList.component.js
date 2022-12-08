@@ -1,8 +1,9 @@
 import React from 'react';
 import DropDownView from '../DropDownView/DropDownView.component';
 import './DropDownViewList.style.css';
+import PropTypes from 'prop-types';
 
-const DropDownViewList = () => {
+const DropDownViewList = ({ showFilterIcon }) => {
   const Categories = [
     'Categories',
     'Category 1',
@@ -32,8 +33,16 @@ const DropDownViewList = () => {
     <div className="list-view">
       <DropDownView lable="Categories" options={Categories} />
       <DropDownView lable="Sort By" options={SortBy} />
-      <DropDownView lable="All Filter" options={AllFilter} />
+      <DropDownView
+        showFilterIcon={showFilterIcon}
+        lable="All Filter"
+        options={AllFilter}
+      />
     </div>
   );
 };
+DropDownViewList.propTypes = {
+  showFilterIcon: PropTypes.string.isRequired,
+};
+
 export default DropDownViewList;
