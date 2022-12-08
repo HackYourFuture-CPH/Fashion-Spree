@@ -20,6 +20,11 @@ const FormValidation = (values) => {
   } else if (!regexPassword.test(values.password)) {
     errors.password = `Password must Contain 8 Characters,One Uppercase, One Lowercase, One Number and One special case Character!`;
   }
+  if (!values.message) {
+    errors.message = 'Message is required!';
+  } else if (values.message.length < 5) {
+    errors.message = 'Message must be more than five characters!';
+  }
   /* eslint-disable no-console */
   if (values.fullname && values.email && values.password) {
     console.log(

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './ContactUs.styles.css';
+import FormValidation from '../utils/FormValidation';
 
 export const ContactUs = () => {
   const [formValues, setFormValues] = useState({
@@ -18,7 +19,7 @@ export const ContactUs = () => {
   };
 
   const handleFormSubmit = (e) => {
-    setFormErrors(validation(formValues));
+    setFormErrors(FormValidation(formValues));
     setIsSubmit(true);
 
     e.preventDefault();
@@ -37,25 +38,6 @@ export const ContactUs = () => {
     // eslint-disable-next-line
   }, [formErrors, isSubmit]);
 
-  const validation = (values) => {
-    const errors = {};
-    const regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
-    if (!values.fullname) {
-      errors.fullname = 'Full name is required.';
-    }
-    if (!values.email) {
-      errors.email = 'Email is required.';
-    } else if (!regex.test(values.email)) {
-      errors.email = 'Email is invalid.';
-    }
-    if (!values.message) {
-      errors.message = 'Message is required.';
-    } else if (values.message.length < 5) {
-      errors.message = 'Message must be more than five characters.';
-    }
-
-    return errors;
-  };
   return (
     <main className="contactUs-wrapper">
       <img

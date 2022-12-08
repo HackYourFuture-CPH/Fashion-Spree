@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Login.css';
-import FormValidation from './FormValidation';
+import FormValidation from '../../utils/FormValidation';
 
 const SignupForm = () => {
   const [formValues, setFormValues] = useState({
