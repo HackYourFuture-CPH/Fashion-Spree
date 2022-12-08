@@ -4,7 +4,7 @@ import './ProductList.component.css';
 import ProductCard from '../ProductCard/ProductCard.component';
 import SearchInput from '../SearchInput/SearchInput.component';
 
-export default function ProductList({ isLoading, products, onSelectSortBy }) {
+export default function ProductList({ isLoading, products, onSelectedSortBy }) {
   const [searchInput, setSearchInput] = useState('');
   const [filteredProducts, setFilteredProducts] = useState([]);
 
@@ -25,7 +25,7 @@ export default function ProductList({ isLoading, products, onSelectSortBy }) {
       return 0;
     });
   };
-  sortFunction(onSelectSortBy);
+  sortFunction(onSelectedSortBy);
 
   useEffect(() => {
     const filterResults = products.filter((product) =>
@@ -59,5 +59,5 @@ export default function ProductList({ isLoading, products, onSelectSortBy }) {
 ProductList.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   products: PropTypes.arrayOf(PropTypes.string).isRequired,
-  onSelectSortBy: PropTypes.string.isRequired,
+  onSelectedSortBy: PropTypes.string.isRequired,
 };

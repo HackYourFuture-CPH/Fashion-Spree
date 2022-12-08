@@ -7,9 +7,9 @@ import { apiURL } from '../../apiURL';
 export const CollectionsPage = () => {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [onSelectCategory, setOnSelectCategory] = useState('');
-  const [onSelectSortBy, setOnSelectSortBy] = useState('');
-  const [onSelectAllFilter, setOnSelectAllFilter] = useState('');
+  const [onSelectedCategory, setOnSelectedCategory] = useState('');
+  const [onSelectedSortBy, setOnSelectedSortBy] = useState('');
+  const [onSelectedAllFilter, setOnSelectedAllFilter] = useState('');
 
   const fetchProducts = () => {
     setIsLoading(true);
@@ -55,8 +55,8 @@ export const CollectionsPage = () => {
       });
   };
   useEffect(() => {
-    fetchDropdown(onSelectCategory);
-  }, [onSelectCategory]);
+    fetchDropdown(onSelectedCategory);
+  }, [onSelectedCategory]);
 
   return (
     <>
@@ -64,17 +64,17 @@ export const CollectionsPage = () => {
         <DropDownView
           lable="Categories"
           options={categories}
-          select={(categoryName) => setOnSelectCategory(categoryName)}
+          select={(categoryName) => setOnSelectedCategory(categoryName)}
         />
         <DropDownView
           lable="Sort By Most Recent"
           options={sortBy}
-          select={(sortByName) => setOnSelectSortBy(sortByName)}
+          select={(sortByName) => setOnSelectedSortBy(sortByName)}
         />
         <DropDownView
           lable="All Filter"
           options={allFilter}
-          select={(allFilterName) => setOnSelectAllFilter(allFilterName)}
+          select={(allFilterName) => setOnSelectedAllFilter(allFilterName)}
         />
       </div>
 
@@ -82,7 +82,7 @@ export const CollectionsPage = () => {
         <ProductList
           isLoading={isLoading}
           products={products}
-          onSelectSortBy={onSelectSortBy}
+          onSelectedSortBy={onSelectedSortBy}
         />
       </div>
     </>
