@@ -9,7 +9,7 @@ import { ViewBackCarousel } from '../../components/ViewCarousel/ViewBackCarousel
 export const RelatedItems = ({ category }) => {
   const [categoryProducts, setCategoryProducts] = useState([]);
   const [offSet, setOffset] = useState(0);
-  const [dataFlag, setDataFlag] = useState(true);
+  const [hasMoreProducts, setHasMoreProducts] = useState(true);
 
   const fetchProductsByCategory = useCallback(async () => {
     const response = await fetch(
@@ -20,7 +20,7 @@ export const RelatedItems = ({ category }) => {
     if (categoryProductData.data.length < 3) {
       fetchAllProducts();
     } else {
-      setDataFlag(true);
+      setHasMoreProducts(true);
       setCategoryProducts(categoryProductData.data);
     }
   }, [category, offSet]);
@@ -30,7 +30,7 @@ export const RelatedItems = ({ category }) => {
     const allProductsData = await response.json();
     const productsData = allProductsData.slice(0, 3);
     setCategoryProducts(productsData);
-    setDataFlag(false);
+    setHasMoreProducts(false);
   };
 
   useEffect(() => {
@@ -53,7 +53,9 @@ export const RelatedItems = ({ category }) => {
       <h1 className="relatedItems-heading">Related Items</h1>
       <div className="related-items-display">
         <div className="back-carousel">
-          <ViewBackCarousel text="" onClick={handleBackCarousel} />
+          {offSet > 2 && (
+            <ViewBackCarousel text="" onClick={handleBackCarousel} />
+          )}
         </div>
         {categoryProducts.map((prod) => (
           <ProductCard
@@ -65,7 +67,7 @@ export const RelatedItems = ({ category }) => {
           />
         ))}
         <div className="after-Carousel">
-          {dataFlag && (
+          {hasMoreProducts && (
             <ViewAfterCarousel text="" onClick={handleAfterCarousel} />
           )}
         </div>
