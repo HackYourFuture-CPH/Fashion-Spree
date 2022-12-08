@@ -28,4 +28,35 @@ router.get('/', (req, res, next) => {
     .catch(next);
 });
 
+/**
+ * @swagger
+ * /reviews/{productId}:
+ *  get:
+ *    tags:
+ *    - reviews
+ *    summary: Get reviews by productId
+ *    description:
+ *      Will return All reviews for the matching productId.
+ *    produces: application/json
+ *    parameters:
+ *     - in: path
+ *       name: productId
+ *       schema:
+ *         type: integer
+ *         required: true
+ *         description: The productId of the reviews to get
+ *
+ *    responses:
+ *      200:
+ *        description: Successful request
+ *      5XX:
+ *        description: Unexpected error.
+ */
+router.get('/:productId', (req, res, next) => {
+  reviewsController
+    .getReviewsByProductId(req.params.productId)
+    .then((result) => res.json(result))
+    .catch(next);
+});
+
 module.exports = router;
