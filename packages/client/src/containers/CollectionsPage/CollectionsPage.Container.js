@@ -9,7 +9,7 @@ export const CollectionsPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [onSelectedCategory, setOnSelectedCategory] = useState('');
   const [onSelectedSortBy, setOnSelectedSortBy] = useState('');
-  const [onSelectedAllFilter, setOnSelectedAllFilter] = useState('');
+  // const [onSelectedAllFilter, setOnSelectedAllFilter] = useState('');
 
   const fetchProducts = () => {
     setIsLoading(true);
@@ -74,7 +74,7 @@ export const CollectionsPage = () => {
         <DropDownView
           lable="All Filter"
           options={allFilter}
-          select={(allFilterName) => setOnSelectedAllFilter(allFilterName)}
+          // select={(allFilterName) => setOnSelectedAllFilter(allFilterName)}
         />
       </div>
 
