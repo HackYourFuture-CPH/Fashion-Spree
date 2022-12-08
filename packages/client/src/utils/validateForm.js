@@ -1,4 +1,4 @@
-const FormValidation = (values) => {
+const validateForm = (values) => {
   const errors = {};
 
   //  regex in the email and password validation
@@ -34,4 +34,4 @@ const FormValidation = (values) => {
 
   return errors;
 };
-export default FormValidation;
+export default validateForm;

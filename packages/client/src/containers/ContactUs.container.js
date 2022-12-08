@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './ContactUs.styles.css';
-import FormValidation from '../utils/FormValidation';
+import validateForm from '../utils/validateForm';
 
 export const ContactUs = () => {
   const [formValues, setFormValues] = useState({
@@ -19,7 +19,7 @@ export const ContactUs = () => {
   };
 
   const handleFormSubmit = (e) => {
-    setFormErrors(FormValidation(formValues));
+    setFormErrors(validateForm(formValues));
     setIsSubmit(true);
 
     e.preventDefault();
