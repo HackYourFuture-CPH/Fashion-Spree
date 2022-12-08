@@ -60,7 +60,7 @@ export const Body = () => {
       </div>
       <Button
         className="shopnow-button"
-        label="Show Now"
+        label="Shop Now"
         backgroundColor="#F5F5F5"
       />
     </main>
