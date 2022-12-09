@@ -7,7 +7,7 @@ const variantsController = require('../controllers/variants.controller');
 
 /**
  * @swagger
- * /variants/{productId}:
+ * /variants?product=:
  *  get:
  *    tags:
  *    - variants
@@ -16,12 +16,12 @@ const variantsController = require('../controllers/variants.controller');
  *      Will return All variants with a matching productId.
  *    produces: application/json
  *    parameters:
- *     - in: path
- *       name: productId
+ *     - in: query
+ *       name: product
  *       schema:
  *         type: integer
  *         required: true
- *         description: The productId of the variants to get
+ *         description: The ID of the variants to get
  *
  *    responses:
  *      200:
@@ -29,11 +29,13 @@ const variantsController = require('../controllers/variants.controller');
  *      5XX:
  *        description: Unexpected error.
  */
-router.get('/:productId', (req, res, next) => {
-  variantsController
-    .getVariantsByProductId(req.params.productId)
-    .then((result) => res.json(result))
-    .catch(next);
+router.get('/', (req, res, next) => {
+  if ('product' in req.query) {
+    variantsController
+      .getVariantsByProductId(req.query.product)
+      .then((result) => res.json(result))
+      .catch(next);
+  }
 });
 
 module.exports = router;
