@@ -45,7 +45,7 @@ export default function ProductList() {
       <SearchInput searchInput={searchInput} setSearchInput={setSearchInput} />
       <div className="product-list-container">
         {isLoading && <p>Loading...</p>}
-        {products.length === 0 ? (
+        {products.length === 0 || filteredProducts.length === 0 ? (
           <p>There is no product available</p>
         ) : (
           <div className="rendered-product">{ListOfProducts}</div>

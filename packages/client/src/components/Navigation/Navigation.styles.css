@@ -19,7 +19,9 @@
 .nav > span {
   color: black;
 }
-a.home {
+.nav a.active {
+  text-decoration: none;
+  font-weight: bold;
   color: black;
 }
 .nav-buttons .login {

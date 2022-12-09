@@ -1,4 +1,5 @@
 import React from 'react';
+
 import SignupForm from './SignupForm';
 import './Login.css';
 
@@ -35,7 +36,6 @@ export const Login = () => {
           <SignupForm />
         </div>
         <span className="dont-want-signup">
-          {' '}
           Dont want to Sign Up ? Continue as a Guest
         </span>
       </div>
