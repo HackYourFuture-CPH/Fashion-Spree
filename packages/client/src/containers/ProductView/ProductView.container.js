@@ -49,7 +49,9 @@ export const ProductView = () => {
             <view.DropdownGroup />
             <view.ProductViewButtons />
           </view.ProductViewDescription>
+          <view.ProductReviewsContainer />
         </view.ProductViewWrapper>
+
         <view.RelatedItems category="jeans" />
       </view.ProductContainer>
     </div>

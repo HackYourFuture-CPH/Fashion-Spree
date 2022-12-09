@@ -12,3 +12,4 @@ export { ProductViewWrapper } from '../../components/Product/ProductView/Product
 export { ProductViewDescription } from '../../components/Product/ProductView/ProductViewDescription/ProductViewDescription.component';
 export { ProductViewButtons } from './ProductViewButtons/ProductViewButtons.container';
 export { RelatedItems } from '../RelatedItems/RelatedItems.Container';
+export { ProductReviewsContainer } from '../ProductReviewContainer/ProductReviewsContainer';

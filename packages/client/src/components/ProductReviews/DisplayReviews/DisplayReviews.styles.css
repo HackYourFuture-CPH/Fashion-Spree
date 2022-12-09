@@ -32,3 +32,8 @@
   font-size: 22px;
   font-weight: 500;
 }
+
+.review-description p {
+  padding: 0;
+  margin: 0;
+}
