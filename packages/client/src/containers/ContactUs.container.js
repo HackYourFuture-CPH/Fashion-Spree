@@ -39,15 +39,9 @@ export const ContactUs = () => {
   }, [formErrors, isSubmit]);
 
   useEffect(() => {
-    if (
-      formValues.fullname !== '' &&
-      formValues.email !== '' &&
-      formValues.message !== ''
-    ) {
-      setDisabled(false);
-    } else {
-      setDisabled(true);
-    }
+    const { fullname, email, message } = formValues;
+    const isInvalid = fullname === '' || email === '' || message === '';
+    setDisabled(isInvalid);
   }, [formValues]);
 
   const validation = (values) => {
