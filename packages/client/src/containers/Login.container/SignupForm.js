@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Login.css';
-import FormValidation from './FormValidation';
+import validateForm from '../../utils/validateForm';
 
 const SignupForm = () => {
   const [formValues, setFormValues] = useState({
@@ -16,7 +16,7 @@ const SignupForm = () => {
   };
 
   const handleValidation = () => {
-    setFormErrors(FormValidation(formValues));
+    setFormErrors(validateForm(formValues));
   };
 
   const cleanUpValidation = () => {
