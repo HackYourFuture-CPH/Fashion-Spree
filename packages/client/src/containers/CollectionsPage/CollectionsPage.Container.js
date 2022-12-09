@@ -2,88 +2,126 @@ import React, { useState, useEffect } from 'react';
 import ProductList from '../../components/ProductList/ProductList.component';
 import './CollectionsPage.style.css';
 import DropDownView from '../../components/CategoriesListDropDown/CategoriesListDropDown.component';
+import SearchInput from '../../components/SearchInput/SearchInput.component';
 import { apiURL } from '../../apiURL';
 
 export const CollectionsPage = () => {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [onSelectedCategory, setOnSelectedCategory] = useState('');
-  const [onSelectedSortBy, setOnSelectedSortBy] = useState('');
-  // const [onSelectedAllFilter, setOnSelectedAllFilter] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const [sortOrder, setSortOrder] = useState('');
+  // const [onSelectedAllFilter, setOnSelectedAllFilter] = useState('');    Remain to work
+  const [categories, setCategories] = useState([]);
+  const [searchInput, setSearchInput] = useState('');
+  const [filteredProducts, setFilteredProducts] = useState([]);
 
-  const fetchProducts = () => {
-    setIsLoading(true);
-    fetch(`${apiURL()}/products/`)
-      .then((res) => res.json())
-      .then((item) => {
-        setProducts(item);
-      })
-      .then(() => {
-        setIsLoading(false);
-      });
-  };
+  // fetching Api by products or products by category
   useEffect(() => {
-    fetchProducts();
-  }, []);
+    function fetchProducts(categoryName) {
+      setIsLoading(true);
+      const url = `${apiURL()}/products${
+        selectedCategory ? `?category=${categoryName}` : ''
+      }`;
+      fetch(url)
+        .then((res) => res.json())
+        .then((items) => {
+          setProducts(items);
+        });
+    }
+    fetchProducts(selectedCategory);
+    setIsLoading(false);
+  }, [selectedCategory]);
 
-  const [category, setCategoy] = useState([]);
-  const fetchCategories = () => {
-    fetch(`${apiURL()}/categories/`)
-      .then((res) => res.json())
-      .then((item) => {
-        setCategoy(item);
-      });
-  };
+  // fetching Api to categories options in dropdown List.
   useEffect(() => {
+    const fetchCategories = () => {
+      fetch(`${apiURL()}/categories/`)
+        .then((res) => res.json())
+        .then((item) => {
+          setCategories(item);
+        });
+    };
     fetchCategories();
   }, []);
 
-  const categories = category.map(
+  const categoryOptions = categories.map(
     (element) =>
       element.name.charAt(0).toUpperCase() +
       element.name.slice(1).toLowerCase(),
   );
 
-  const sortBy = ['Recent Collections', 'Alphabetically', 'Price ↓', 'Price ↑'];
-  const allFilter = ['Price', 'Size', 'Color', 'Reviews', 'Brand'];
+  // sortFunction for sort products in diffrent orders
+  const sortOptions = [
+    'Recent Collections',
+    'Alphabetically',
+    'Price ↓',
+    'Price ↑',
+  ];
 
-  const fetchDropdown = (categoryId) => {
-    fetch(`${apiURL()}/products?category=${categoryId}`)
-      .then((res) => res.json())
-      .then((item) => {
-        setProducts(item);
-      });
-  };
   useEffect(() => {
-    fetchDropdown(onSelectedCategory);
-  }, [onSelectedCategory]);
+    function sortFunction(a, b) {
+      if (sortOrder === '') {
+        return 0;
+      }
+      if (sortOrder === 'New arrivals') {
+        return a.created_at > b.created_at ? -1 : 1;
+      }
+      if (sortOrder === 'Alphabetically') {
+        return a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1;
+      }
+      if (sortOrder === 'Price ↓') {
+        return Number(a.price) > Number(b.price) ? 1 : -1;
+      }
+      if (sortOrder === 'Price ↑') {
+        return Number(a.price) < Number(b.price) ? 1 : -1;
+      }
+      return 0;
+    }
+    filteredProducts.sort(sortFunction);
+  }, [filteredProducts, sortOrder]);
+
+  // Remain to work filteroptions
+  const filterOptions = ['Price', 'Size', 'Color', 'Reviews', 'Brand'];
+
+  // search product by name in searchbar
+  useEffect(() => {
+    const filterResults = products.filter((product) =>
+      product.name.toLowerCase().includes(searchInput.toLowerCase()),
+    );
+    setFilteredProducts(filterResults);
+  }, [searchInput, products]);
 
   return (
     <>
       <div className="list-view">
         <DropDownView
           lable="Categories"
-          options={categories}
-          select={(categoryName) => setOnSelectedCategory(categoryName)}
+          options={categoryOptions}
+          onSelect={(categoryName) => setSelectedCategory(categoryName)}
         />
         <DropDownView
           lable="Sort By Most Recent"
-          options={sortBy}
-          select={(sortByName) => setOnSelectedSortBy(sortByName)}
+          options={sortOptions}
+          onSelect={(sortByName) => setSortOrder(sortByName)}
         />
         <DropDownView
           lable="All Filter"
-          options={allFilter}
-          // select={(allFilterName) => setOnSelectedAllFilter(allFilterName)}
+          options={filterOptions}
+          // onSelect={(allFilterName) => setOnSelectedAllFilter(allFilterName)}
           showFilterIcon
         />
       </div>
-
+      <div>
+        <SearchInput
+          searchInput={searchInput}
+          setSearchInput={setSearchInput}
+        />
+      </div>
       <div>
         <ProductList
           isLoading={isLoading}
           products={products}
-          onSelectedSortBy={onSelectedSortBy}
+          filteredProducts={filteredProducts}
         />
       </div>
     </>
