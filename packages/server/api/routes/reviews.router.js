@@ -11,10 +11,17 @@ const reviewsController = require('../controllers/reviews.controller');
  *  get:
  *    tags:
  *    - reviews
- *    summary: Get all reviews
+ *    summary: Get all reviews or reviews with specific ProductId
  *    description:
- *      Will return all reviews.
+ *      Will return an array with all reviews as objects or will return all reviews for specific productId.
  *    produces: application/json
+ *    parameters:
+ *     - in: query
+ *       name: productId
+ *       schema:
+ *         type: number
+ *         required: false
+ *       description: The product id of the reviews to get
  *    responses:
  *      200:
  *        description: Successful request
@@ -22,39 +29,14 @@ const reviewsController = require('../controllers/reviews.controller');
  *        description: Unexpected error.
  */
 router.get('/', (req, res, next) => {
+  if (req.query.productId) {
+    reviewsController
+      .getReviewsByProductId(req.query.productId)
+      .then((result) => res.json(result))
+      .catch(next);
+  }
   reviewsController
     .getAllReviews()
-    .then((result) => res.json(result))
-    .catch(next);
-});
-
-/**
- * @swagger
- * /reviews/{productId}:
- *  get:
- *    tags:
- *    - reviews
- *    summary: Get reviews by productId
- *    description:
- *      Will return All reviews for the matching productId.
- *    produces: application/json
- *    parameters:
- *     - in: path
- *       name: productId
- *       schema:
- *         type: integer
- *         required: true
- *         description: The productId of the reviews to get
- *
- *    responses:
- *      200:
- *        description: Successful request
- *      5XX:
- *        description: Unexpected error.
- */
-router.get('/:productId', (req, res, next) => {
-  reviewsController
-    .getReviewsByProductId(req.params.productId)
     .then((result) => res.json(result))
     .catch(next);
 });

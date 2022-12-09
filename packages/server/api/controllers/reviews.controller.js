@@ -10,16 +10,18 @@ const getAllReviews = async () => {
     }
     return allReviews;
   } catch (error) {
-    return error.message;
+    if (error instanceof HttpError) {
+      return error.message;
+    }
   }
 };
 
 const getReviewsByProductId = async (productId) => {
-  if (!productId) {
-    throw new HttpError('Id should be a number', 400);
-  }
-
   try {
+    // eslint-disable-next-line radix
+    if (isNaN(parseInt(productId))) {
+      throw new HttpError('Id should be a number', 400);
+    }
     const reviews = await knex('reviews')
       .select('*')
       .where('product_id', `${productId}`);
@@ -28,7 +30,9 @@ const getReviewsByProductId = async (productId) => {
     }
     return reviews;
   } catch (error) {
-    return error.message;
+    if (error instanceof HttpError) {
+      return error.message;
+    }
   }
 };
 
