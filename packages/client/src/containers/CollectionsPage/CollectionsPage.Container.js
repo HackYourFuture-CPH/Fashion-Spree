@@ -63,7 +63,7 @@ export const CollectionsPage = () => {
       if (sortOrder === '') {
         return 0;
       }
-      if (sortOrder === 'New arrivals') {
+      if (sortOrder === 'Recent Collections') {
         return a.created_at > b.created_at ? -1 : 1;
       }
       if (sortOrder === 'Alphabetically') {
