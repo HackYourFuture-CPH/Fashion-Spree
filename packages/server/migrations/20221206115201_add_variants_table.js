@@ -20,7 +20,7 @@ exports.up = function (knex) {
       'orange',
     ]);
     table.enum('size', ['XS', 'Small', 'Medium', 'Large', 'XL', 'XXL', '3XL']);
-    table.string('picture');
+    table.string('pictureUrl');
     table.integer('stock');
   });
 };
