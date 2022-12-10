@@ -10,7 +10,6 @@ const FormInput = ({ value, type, name, label, placeholder, onChange }) => {
     setErrors(validateForm(event.target.value));
     onChange(value);
   };
-
   return (
     <div className="input-wrapper">
       {label && <label>{label}</label>}
