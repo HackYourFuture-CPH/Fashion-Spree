@@ -63,7 +63,7 @@ export const ContactUs = () => {
     }
     return errors;
   };
-
+  console.log(validation);
   return (
     <main className="contactUs-wrapper">
       <img
