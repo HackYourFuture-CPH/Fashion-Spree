@@ -1,7 +1,6 @@
 const express = require('express');
 
 const router = express.Router({ mergeParams: true });
-// controllers
 const favoritesController = require('../controllers/favorites.controller');
 
 /**
@@ -10,10 +9,17 @@ const favoritesController = require('../controllers/favorites.controller');
  *  get:
  *    tags:
  *    - favorites
- *    summary: Get all product favorites
+ *    summary: Get all product's favorites
  *    description:
  *      Will return all favorites of product.
  *    produces: application/json
+ *    parameters:
+ *     - in: path
+ *       name: ID
+ *       schema:
+ *         type: integer
+ *         required: false
+ *         description: The favorites of the user to get
  *    responses:
  *      200:
  *        description: Successful request
@@ -29,24 +35,53 @@ router.get('/', (req, res, next) => {
 
 /**
  * @swagger
+ * /favorites/{ID}:
+ *  get:
+ *    tags:
+ *    - favorites
+ *    summary: Get favorite by ID
+ *    description:
+ *      Will return favorite of user with a matching ID.
+ *    produces: application/json
+ *    parameters:
+ *     - in: path
+ *       name: ID
+ *       schema:
+ *         type: integer
+ *         required: false
+ *         description: The ID of the favorite to get
+ *    responses:
+ *      200:
+ *        description: Successful request
+ *      5XX:
+ *        description: Unexpected error.
+ */
+router.get('/:id', (req, res, next) => {
+  favoritesController
+    .getFavoritesById(req.params.id)
+    .then((result) => res.json(result))
+    .catch(next);
+});
+
+/**
+ * @swagger
  * /favorites:
  *  post:
  *    tags:
  *    - favorites
- *    summary: Create a favorites
+ *    summary: Create a favorite
  *    description:
- *      Will create a favorites.
+ *      Will create a favorite.
  *    produces: application/json
  *    parameters:
  *      - in: body
  *        name: favorites
- *        description: The favorites to create.
+ *        description: The favorite to create.
  *        schema:
  *          type: object
  *          required:
  *            - user_id
  *            - product_id
- *            - created_at
  *          properties:
  *            user_id:
  *              type: number
@@ -56,20 +91,15 @@ router.get('/', (req, res, next) => {
  *              type: date/time
  *    responses:
  *      201:
- *        description: Favorites created
+ *        description: Favorite created
  *      5XX:
  *        description: Unexpected error.
  */
-router.post('/', (req, res) => {
+router.post('/', (req, res, next) => {
   favoritesController
     .createFavorites(req.body)
     .then((result) => res.json(result))
-    .catch((error) => {
-      // eslint-disable-next-line no-console
-      console.log(error);
-
-      res.status(400).send('Bad request').end();
-    });
+    .catch(next);
 });
 
 /**
@@ -78,33 +108,26 @@ router.post('/', (req, res) => {
  *  delete:
  *    tags:
  *    - favorites
- *    summary: Delete an favorites
+ *    summary: Delete an favorite
  *    description:
- *      Will delete a favorites with a given ID.
+ *      Will delete a favorite with a given ID.
  *    produces: application/json
  *    parameters:
  *      - in: path
  *        name: ID
- *        description: ID of the favorites to delete.
+ *        description: ID of the favorite to delete.
  *    responses:
  *      200:
- *        description: favorites deleted
+ *        description: favorite deleted
  *      5XX:
  *        description: Unexpected error.
  */
-router.delete('/:id', (req, res) => {
+
+router.delete('/:id', (req, res, next) => {
   favoritesController
     .deleteFavorites(req.params.id, req)
-    .then((result) => {
-      // If result is equal to 0, then that means the favorites id does not exist
-      if (result === 0) {
-        res.status(404).send('The favorites ID you provided does not exist.');
-      } else {
-        res.json({ success: true });
-      }
-    })
-    // eslint-disable-next-line no-console
-    .catch((error) => console.log(error));
+    .then((result) => res.json(result))
+    .catch(next);
 });
 
 module.exports = router;
