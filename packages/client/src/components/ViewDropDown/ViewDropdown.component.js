@@ -1,12 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, { string } from 'prop-types';
 import './ViewDropdown.styles.css';
 
 const ViewDropdown = ({ options, label, ...props }) => {
   const optionList =
     options.length > 0 &&
     options.map((item) => {
-      return <option value={item}>{item}</option>;
+      return (
+        <option key={item} value={item}>
+          {item}
+        </option>
+      );
     });
   return (
     <>
@@ -23,7 +27,8 @@ const ViewDropdown = ({ options, label, ...props }) => {
 };
 
 ViewDropdown.propTypes = {
-  options: PropTypes.string.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  options: PropTypes.arrayOf(PropTypes.any).isRequired,
   label: PropTypes.string.isRequired,
 };
 

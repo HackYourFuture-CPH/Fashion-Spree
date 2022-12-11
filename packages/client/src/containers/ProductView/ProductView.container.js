@@ -46,7 +46,7 @@ export const ProductView = () => {
                 rating={5}
               />
             ))}
-            <view.DropdownGroup />
+            <view.DropdownGroup productId={product.id} />
             <view.ProductViewButtons />
           </view.ProductViewDescription>
         </view.ProductViewWrapper>
