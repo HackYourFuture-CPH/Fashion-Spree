@@ -45,25 +45,6 @@ export const ContactUs = () => {
     setDisabled(isInvalid);
   }, [formValues]);
 
-  const validation = (values) => {
-    const errors = {};
-    const regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
-    if (!values.fullname) {
-      errors.fullname = 'Full name is required.';
-    }
-    if (!values.email) {
-      errors.email = 'Email is required.';
-    } else if (!regex.test(values.email)) {
-      errors.email = 'Email is invalid.';
-    }
-    if (!values.message) {
-      errors.message = 'Message is required.';
-    } else if (values.message.length < 5) {
-      errors.message = 'Message must be more than five characters.';
-    }
-    return errors;
-  };
-
   return (
     <main className="contactUs-wrapper">
       <img
@@ -128,6 +109,8 @@ export const ContactUs = () => {
             >
               Send Message
             </button>
+            {/* TODO: fix button message       */}
+
             {Object.keys(formErrors).length === 0 && isSubmit ? (
               <div className="success">
                 <img
