@@ -7,24 +7,6 @@ export const DropdownGroup = (productId) => {
   const Sizes = ['Small', 'Medium', 'Large', 'XL', 'XXL'];
   const Quantities = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-  // i did this one with apiURL fetching data needs to merge after merge i will open those lines
-
-  // const [variants, setVariants] = useState([]);
-
-  // useEffect(() => {
-  //   const fetchVariantsByProductId = async () => {
-  //     const response = await fetch(`${apiURL()}/variants?product=${productId}`);
-  //     const variantsProductData = await response.json();
-  //     /* eslint-disable no-console */
-  //     console.log(variantsProductData);
-  //     setVariants(variantsProductData);
-  //   };
-
-  //   fetchVariantsByProductId();
-  // }, [variants]);
-
-  // just I have done for checking , again i  will change after merged the end point
-
   const variants = [
     {
       id: 9,
