@@ -12,11 +12,11 @@
   position: relative;
   color: #212121cc;
 }
-
 .all-filters {
-  background: url('../../../assets/all-filter-icon.svg') no-repeat;
+  background: url('../../assets/all-filter-icon.svg') no-repeat;
   background-position: right 10px top 50%;
   appearance: none;
+  background-color: rgba(228, 193, 177, 1);
 }
 
 @media only screen and (max-width: 768px) {

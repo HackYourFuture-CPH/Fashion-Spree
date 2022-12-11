@@ -49,13 +49,15 @@ router.get('/', (req, res, next) => {
         next(error);
       });
   }
-  try {
-    productsController
-      .getProducts()
-      .then((result) => res.json(result))
-      .catch(next);
-  } catch (error) {
-    res.status(404).json({ error: 'Bad Get Request' });
+  if (Object.keys(req.query).length === 0) {
+    try {
+      productsController
+        .getProducts()
+        .then((result) => res.json(result))
+        .catch(next);
+    } catch (error) {
+      res.status(404).json({ error: 'Bad Get Request' });
+    }
   }
 });
 // TODO: refactor products router and controller CLASS22-66
