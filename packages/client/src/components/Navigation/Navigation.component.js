@@ -1,11 +1,11 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import { useUser } from '../../userContext';
+import { useUserContext } from '../../userContext';
 import './Navigation.styles.css';
 import { Button } from '../Button/Button.component';
 
 export const Navigation = () => {
-  const { user, name, logout } = useUser();
+  const { user, name, logout } = useUserContext();
 
   return (
     <div className="navigation-container">

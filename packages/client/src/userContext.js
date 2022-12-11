@@ -60,11 +60,17 @@ export function UserProvider({ children }) {
   );
 }
 
-export function useUser() {
+export function useUserContext() {
   const value = useContext(UserContext);
+  if (!value) {
+    throw new Error('Did you forget to put this under UserProvider');
+  }
   return value;
 }
 
 UserProvider.propTypes = {
-  children: PropTypes.shape.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
 };
