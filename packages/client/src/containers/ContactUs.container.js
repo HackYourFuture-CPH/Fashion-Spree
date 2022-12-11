@@ -43,7 +43,7 @@ export const ContactUs = () => {
     const { fullname, email, message } = formValues;
     const isInvalid = fullname === '' || email === '' || message === '';
     setDisabled(isInvalid);
-  }, [formValues]);
+  }, [formValues, setDisabled]);
 
   return (
     <main className="contactUs-wrapper">
