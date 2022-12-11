@@ -6,13 +6,14 @@
 }
 
 .search-input {
-  width: 960px;
+  width: 800px;
   height: 79px;
   padding: 12px 24px;
+  font-size: 24px;
+  color: black;
   transition: transform 250ms ease-in-out;
 
   line-height: 18px;
-  color: rgba(0, 0, 0, 0.3);
   background-color: rgba(228, 193, 177, 1);
   background-image: url('../../assets/search_icon.svg');
   background-repeat: no-repeat;
@@ -39,4 +40,9 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 0;
   background-position: 100% center;
+}
+@media screen and (max-width: 768px) {
+  .search-input {
+    width: 400px;
+  }
 }
