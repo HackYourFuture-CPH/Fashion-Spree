@@ -10,11 +10,8 @@ export const ContactUs = () => {
   });
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
-  const [disabled, setDisabled] = useState(true);
 
   const handleChange = (e) => {
-    setFormErrors({});
-    setIsSubmit(false);
     setFormValues({
       ...formValues,
       [e.target.name]: e.target.value,
@@ -24,6 +21,7 @@ export const ContactUs = () => {
   const handleFormSubmit = (e) => {
     setFormErrors(validateForm(formValues));
     setIsSubmit(true);
+
     e.preventDefault();
 
     /* eslint-disable no-console */
@@ -36,33 +34,9 @@ export const ContactUs = () => {
     if (Object.keys(formErrors).length === 0 && isSubmit) {
       console.log(formValues);
     }
+
     // eslint-disable-next-line
   }, [formErrors, isSubmit]);
-
-  useEffect(() => {
-    const { fullname, email, message } = formValues;
-    const isInvalid = fullname === '' || email === '' || message === '';
-    setDisabled(isInvalid);
-  }, [formValues]);
-
-  const validation = (values) => {
-    const errors = {};
-    const regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
-    if (!values.fullname) {
-      errors.fullname = 'Full name is required.';
-    }
-    if (!values.email) {
-      errors.email = 'Email is required.';
-    } else if (!regex.test(values.email)) {
-      errors.email = 'Email is invalid.';
-    }
-    if (!values.message) {
-      errors.message = 'Message is required.';
-    } else if (values.message.length < 5) {
-      errors.message = 'Message must be more than five characters.';
-    }
-    return errors;
-  };
 
   return (
     <main className="contactUs-wrapper">
@@ -124,7 +98,6 @@ export const ContactUs = () => {
               className="contactUs-btn"
               onClick={handleFormSubmit}
               type="submit"
-              disabled={disabled}
             >
               Send Message
             </button>
