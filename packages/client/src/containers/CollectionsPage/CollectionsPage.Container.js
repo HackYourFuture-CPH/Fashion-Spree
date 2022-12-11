@@ -54,31 +54,29 @@ export const CollectionsPage = () => {
   const sortOptions = [
     'Recent Collections',
     'Alphabetically',
-    'Price ↓',
-    'Price ↑',
+    'Price Low to High',
+    'Price High to Low',
   ];
 
-  useEffect(() => {
-    function sortFunction(a, b) {
-      if (sortOrder === '') {
-        return 0;
-      }
-      if (sortOrder === 'Recent Collections') {
-        return a.created_at > b.created_at ? -1 : 1;
-      }
-      if (sortOrder === 'Alphabetically') {
-        return a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1;
-      }
-      if (sortOrder === 'Price ↓') {
-        return Number(a.price) > Number(b.price) ? 1 : -1;
-      }
-      if (sortOrder === 'Price ↑') {
-        return Number(a.price) < Number(b.price) ? 1 : -1;
-      }
+  function sortFunction(a, b) {
+    if (sortOrder === '') {
       return 0;
     }
-    filteredProducts.sort(sortFunction);
-  }, [filteredProducts, sortOrder]);
+    if (sortOrder === 'Recent Collections') {
+      return a.created_at > b.created_at ? -1 : 1;
+    }
+    if (sortOrder === 'Alphabetically') {
+      return a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1;
+    }
+    if (sortOrder === 'Price Low to High') {
+      return Number(a.price) > Number(b.price) ? 1 : -1;
+    }
+    if (sortOrder === 'Price High to Low') {
+      return Number(a.price) < Number(b.price) ? 1 : -1;
+    }
+    return 0;
+  }
+  filteredProducts.sort(sortFunction);
 
   // Remain to work filteroptions
   const filterOptions = ['Price', 'Size', 'Color', 'Reviews', 'Brand'];
