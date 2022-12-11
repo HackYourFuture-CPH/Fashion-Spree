@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import ViewDropdown from '../../components/ViewDropDown/ViewDropdown.component';
 import './DropdownGroup.Style.css';
-import { apiURL } from '../../apiURL';
 
 export const DropdownGroup = (productId) => {
   const Colors = ['Black', 'White', 'Blue', 'Half-white'];
   const Sizes = ['Small', 'Medium', 'Large', 'XL', 'XXL'];
   const Quantities = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+  // i did this one with apiURL fetching data needs to merge after merge i will open those lines
 
   // const [variants, setVariants] = useState([]);
 
