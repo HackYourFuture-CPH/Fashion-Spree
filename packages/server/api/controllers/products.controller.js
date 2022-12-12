@@ -49,16 +49,9 @@ const getProductsByCategory = async (category, limit, offset) => {
         404,
       );
     }
-    return {
-      status: 200,
-      data: products,
-    };
+    return products;
   } catch (error) {
-    return {
-      status: error.httpStatus,
-      data: [],
-      message: error.message,
-    };
+    return error.message;
   }
 };
 

@@ -11,31 +11,32 @@ export const RelatedItems = ({ category }) => {
   const [offSet, setOffset] = useState(0);
   const [hasMoreProducts, setHasMoreProducts] = useState(true);
 
-  const fetchProductsByCategory = useCallback(async () => {
-    const response = await fetch(
-      `${apiURL()}/products?category=${category}&limit=3&offset=${offSet}`,
-    );
-    const categoryProductData = await response.json();
-
-    if (categoryProductData.data.length < 3) {
-      fetchAllProducts();
-    } else {
-      setHasMoreProducts(true);
-      setCategoryProducts(categoryProductData.data);
-    }
-  }, [category, offSet]);
-
-  const fetchAllProducts = async () => {
-    const response = await fetch(`${apiURL()}/products`);
-    const allProductsData = await response.json();
-    const productsData = allProductsData.slice(0, 3);
-    setCategoryProducts(productsData);
-    setHasMoreProducts(false);
-  };
-
   useEffect(() => {
+    async function fetchProductsByCategory() {
+      const response = await fetch(
+        `${apiURL()}/products?category=${category}&limit=3&offset=${offSet}`,
+      );
+      const categoryProductData = await response.json();
+      if (categoryProductData.length === 0) {
+        if (categoryProductData.length === 0 && offSet === 0) {
+          await fetchAllProducts();
+        }
+        setHasMoreProducts(false);
+      } else if (categoryProductData.length < 3) {
+        setHasMoreProducts(false);
+        setCategoryProducts(categoryProductData);
+      } else {
+        setHasMoreProducts(true);
+        setCategoryProducts(categoryProductData);
+      }
+    }
+    async function fetchAllProducts() {
+      const response = await fetch(`${apiURL()}/products`);
+      const products = await response.json();
+      setCategoryProducts(products.slice(0, 3));
+    }
     fetchProductsByCategory();
-  }, [category, fetchProductsByCategory]);
+  }, [category, offSet]);
 
   const handleBackCarousel = () => {
     if (offSet > 2) {
