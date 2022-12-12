@@ -21,6 +21,8 @@ function Signup() {
   useEffect(() => {
     if (loading) return;
     if (user) navigate('/');
+    /* eslint-disable no-console */
+    console.log(user?.uid);
   }, [user, loading, navigate]);
   return (
     <div className="register">

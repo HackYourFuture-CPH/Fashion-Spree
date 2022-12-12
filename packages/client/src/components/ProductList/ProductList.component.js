@@ -3,11 +3,25 @@ import PropTypes from 'prop-types';
 import './ProductList.component.css';
 import ProductCard from '../ProductCard/ProductCard.component';
 
-export default function ProductList({ isLoading, products, filteredProducts }) {
+export default function ProductList({
+  isLoading,
+  products,
+  filteredProducts,
+  toggleFavorite,
+  favoriteProducts,
+}) {
   const ListOfProducts = filteredProducts.map((product) => {
     return (
       <div className="product">
-        <ProductCard title={product.name} price={product.price} />
+        <ProductCard
+          key={product.id}
+          title={product.name}
+          price={product.price}
+          id={product.id}
+          toggleFavorite={toggleFavorite}
+          isFavorite={favoriteProducts.some((x) => x.id === product.id)}
+          favoriteProducts={favoriteProducts}
+        />
       </div>
     );
   });
@@ -27,4 +41,6 @@ ProductList.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   products: PropTypes.arrayOf(PropTypes.string).isRequired,
   filteredProducts: PropTypes.arrayOf(PropTypes.string).isRequired,
+  toggleFavorite: PropTypes.func.isRequired,
+  favoriteProducts: PropTypes.arrayOf(PropTypes.string).isRequired,
 };

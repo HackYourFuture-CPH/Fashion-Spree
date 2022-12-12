@@ -4,6 +4,9 @@ import './CollectionsPage.style.css';
 import DropDownView from '../../components/CategoriesListDropDown/CategoriesListDropDown.component';
 import SearchInput from '../../components/SearchInput/SearchInput.component';
 import { apiURL } from '../../apiURL';
+import { getLocalStorage, setLocalStorage } from '../../utils/storageHelpers';
+
+const favoriteProductsStorageKey = 'favorite_products';
 
 export const CollectionsPage = () => {
   const [products, setProducts] = useState([]);
@@ -14,6 +17,10 @@ export const CollectionsPage = () => {
   const [categories, setCategories] = useState([]);
   const [searchInput, setSearchInput] = useState('');
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [favoriteProducts, setFavoriteProducts] = useState(
+    getLocalStorage(favoriteProductsStorageKey) || [],
+  );
 
   // fetching Api by products or products by category
   useEffect(() => {
@@ -50,7 +57,7 @@ export const CollectionsPage = () => {
       element.name.slice(1).toLowerCase(),
   );
 
-  // sortFunction for sort products in diffrent orders
+  // sortFunction for sort products in different orders
   const sortOptions = [
     'Recent Collections',
     'Alphabetically',
@@ -91,6 +98,34 @@ export const CollectionsPage = () => {
     setFilteredProducts(filterResults);
   }, [searchInput, products]);
 
+  const toggleFavorite = (id, title, price, event) => {
+    const newFavoriteItem = {
+      id,
+      title,
+      price,
+    };
+
+    const inFavoriteList = favoriteProducts.some((e) => {
+      return e.id === id;
+    });
+
+    if (!inFavoriteList) {
+      setFavoriteProducts((product) => {
+        const newList = [...product, newFavoriteItem];
+        setLocalStorage(favoriteProductsStorageKey, newList);
+        return newList;
+      });
+    } else if (inFavoriteList) {
+      const filteredFavorite = favoriteProducts.filter(
+        (item) => item.id !== id,
+      );
+      setFavoriteProducts(filteredFavorite);
+      setLocalStorage(favoriteProductsStorageKey, filteredFavorite);
+    }
+
+    setIsFavorite(!isFavorite);
+  };
+
   return (
     <>
       <div className="list-view">
@@ -122,6 +157,9 @@ export const CollectionsPage = () => {
           isLoading={isLoading}
           products={products}
           filteredProducts={filteredProducts}
+          toggleFavorite={toggleFavorite}
+          isFavorite={isFavorite}
+          favoriteProducts={favoriteProducts}
         />
       </div>
     </>
