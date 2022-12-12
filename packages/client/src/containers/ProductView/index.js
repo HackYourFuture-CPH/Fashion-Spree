@@ -8,7 +8,10 @@ export { default as topSide } from '../../components/ProductImage/images/Picture
 export { default as bigImage } from '../../components/ProductImage/images/Picture1.png';
 export { default as middleSide } from '../../components/ProductImage/images/Picture3.png';
 export { default as bottomSide } from '../../components/ProductImage/images/Picture4.png';
-export { ProductViewWrapper } from '../../components/Product/ProductView/ProductViewWrapper/ProductViewWrapper.component';
-export { ProductViewDescription } from '../../components/Product/ProductView/ProductViewDescription/ProductViewDescription.component';
+export { ProductViewWrapper } from '../../components/Product/ProductView/ProductViewWrappers/ProductViewWrapper/ProductViewWrapper.component';
+export { ProductViewImageWrapper } from '../../components/Product/ProductView/ProductViewWrappers/ProductViewImageWrapper/ProductViewImageWrapper.component';
+export { ProductViewReviewsWrapper } from '../../components/Product/ProductView/ProductViewWrappers/ProductViewReviewsWrapper/ProductViewReviewsWrapper.component';
+export { ProductViewDescription } from '../../components/Product/ProductView/ProductViewWrappers/ProductViewDescription/ProductViewDescription.component';
 export { ProductViewButtons } from './ProductViewButtons/ProductViewButtons.container';
 export { RelatedItems } from '../RelatedItems/RelatedItems.Container';
+export { ProductReviews } from '../../components/ProductReviews/ProductReviews.component';

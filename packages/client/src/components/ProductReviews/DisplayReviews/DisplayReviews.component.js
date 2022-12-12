@@ -10,16 +10,18 @@ export const DisplayReviews = ({ reviews }) => {
       {reviews.map((review) => (
         <div key={review.id}>
           <div className="reviewer-wrapper">
-            <div>
+            <div className="display-reviews-image">
               <img src={Reviewer} alt="ReviewerPic" />
             </div>
             <div className="reviewer-info">
-              <span className="reviewer-name">{review.name}</span>
-              <span className="review-time">01 December 2022 05:55PM</span>
-            </div>
-            <div className="product-review-rating">
-              <img src={RatingStar} alt="star" />
-              <span>{review.rating}</span>
+              <div className="reviewer-info-text">
+                <span className="reviewer-name">{review.name}</span>
+                <span className="review-time">01 December 2022 05:55PM</span>
+              </div>
+              <div className="product-review-rating">
+                <img src={RatingStar} alt="star" />
+                <span>{review.rating}</span>
+              </div>
             </div>
           </div>
           <div className="review-description">{review.description}</div>

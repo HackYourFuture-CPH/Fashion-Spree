@@ -1,33 +1,34 @@
 .product-description {
-  margin-bottom: 62px;
+  margin-bottom: 40px;
   text-align: left;
   color: #212121;
 }
 
 .product-description h1 {
-  margin-bottom: 27px;
+  margin-bottom: 15px;
   font-weight: 600;
-  font-size: 32px;
+  font-size: 22px;
 }
 
 .product-description-numbers {
-  margin-bottom: 73px;
+  margin-bottom: 40px;
   display: flex;
   gap: 80px;
   font-weight: 600;
-  font-size: 24px;
+  font-size: 16px;
 }
 
 .product-description-info h2 {
-  margin-bottom: 31px;
+  margin-bottom: 15px;
+  margin-left: 0;
   font-weight: 600;
-  font-size: 28px;
+  font-size: 22px;
 }
 
 .product-description-info p {
-  margin-bottom: 32px;
+  margin-bottom: 15px;
   font-weight: 500;
-  font-size: 24px;
+  font-size: 16px;
 }
 
 .product-description-rating {
@@ -35,9 +36,9 @@
   align-items: center;
   gap: 5px;
   font-weight: 600;
-  font-size: 24px;
+  font-size: 16px;
 }
 
-.product-description-rating svg {
-  font-size: 30px;
+.product-description-rating img {
+  width: 20px;
 }

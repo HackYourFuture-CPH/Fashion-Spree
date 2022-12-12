@@ -1,0 +1,12 @@
+.view-back-carousel-arrow {
+  width: 30px;
+  background: none;
+  border: none;
+}
+
+.view-back-carousel-arrow img {
+  width: 100%;
+}
+.view-back-carousel-arrow:hover {
+  cursor: pointer;
+}

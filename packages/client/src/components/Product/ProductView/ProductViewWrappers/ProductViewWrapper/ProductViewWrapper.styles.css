@@ -1,0 +1,17 @@
+.product-wrapper {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: 440px 1fr;
+  align-content: start;
+  column-gap: 24px;
+  row-gap: 24px;
+}
+
+@media only screen and (max-width: 576px) {
+  .product-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-top: 14px;
+  }
+}
