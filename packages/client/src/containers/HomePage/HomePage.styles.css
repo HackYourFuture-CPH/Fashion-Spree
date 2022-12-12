@@ -73,11 +73,11 @@
   }
 
   h1 {
-    font-size: 26px !important;
+    font-size: 26px;
     color: #212121;
   }
   h2 {
-    font-size: 20px !important;
+    font-size: 20px;
     color: #212121;
   }
 }
