@@ -1,5 +1,6 @@
 .product-wrapper {
   margin-top: 20px;
+  margin-bottom: 40px;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: 440px 1fr;

@@ -14,4 +14,4 @@ export { ProductViewReviewsWrapper } from '../../components/Product/ProductView/
 export { ProductViewDescription } from '../../components/Product/ProductView/ProductViewWrappers/ProductViewDescription/ProductViewDescription.component';
 export { ProductViewButtons } from './ProductViewButtons/ProductViewButtons.container';
 export { RelatedItems } from '../RelatedItems/RelatedItems.Container';
-export { ProductReviews } from '../../components/ProductReviews/ProductReviews.component';
+export { ProductReviewsContainer } from '../ProductReviewContainer/ProductReviewsContainer';
