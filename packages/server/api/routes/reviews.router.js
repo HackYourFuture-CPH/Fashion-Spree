@@ -34,11 +34,12 @@ router.get('/', (req, res, next) => {
       .getReviewsByProductId(req.query.productId)
       .then((result) => res.json(result))
       .catch(next);
+  } else {
+    reviewsController
+      .getAllReviews()
+      .then((result) => res.json(result))
+      .catch(next);
   }
-  reviewsController
-    .getAllReviews()
-    .then((result) => res.json(result))
-    .catch(next);
 });
 
 module.exports = router;
