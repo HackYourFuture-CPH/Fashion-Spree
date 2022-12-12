@@ -31,7 +31,7 @@ const DropDownView = ({
       showFilterIcon={showFilterIcon}
       className={`view-dropdown-select ${showFilterIcon ? 'all-filters' : ''}`}
     >
-      <option selected disabled value={value}>
+      <option selected value="">
         {lable}
       </option>
       {optionList}
