@@ -12,24 +12,34 @@ const getFavorites = async () => {
     return error.message;
   }
 };
-// get by id
-const getFavoritesById = async (id) => {
-  if (!id) {
+// get by user-id
+const getFavoritesByUserId = async (userId) => {
+  if (!isNaN(userId)) {
     throw new HttpError('Id should be a number', 400);
   }
 
   try {
+    // const favorites = await knex('favorites')
+    // .join('users', { 'favorites.user_id': 'users.id' })
+    // .join('products', { 'favorites.user_id': 'products.id' })
+    // .select('products.id', 'user_id', 'name', 'price')
+    // .where('user_id', '=', `${userId}`);
     const favorites = await knex('favorites')
-      .select('favorites.id as id', 'user_id', 'product_id')
-      .where({ id });
+      .join('users', { 'favorites.user_id': 'users.id' })
+      .select('*')
+      .where('user_id', '=', `${userId}`);
     if (favorites.length === 0) {
-      throw new HttpError(`incorrect entry with the id of ${id}`, 404);
+      throw new HttpError(
+        `There are no favorites available with this user ${userId}`,
+        404,
+      );
     }
     return favorites;
   } catch (error) {
     return error.message;
   }
 };
+
 // post
 const createFavorites = async (body) => {
   if (!body.user_id || !body.product_id) {
@@ -67,7 +77,7 @@ const deleteFavorites = async (favoritesId) => {
 
 module.exports = {
   getFavorites,
+  getFavoritesByUserId,
   createFavorites,
   deleteFavorites,
-  getFavoritesById,
 };

@@ -56,9 +56,9 @@ router.get('/', (req, res, next) => {
  *      5XX:
  *        description: Unexpected error.
  */
-router.get('/:id', (req, res, next) => {
+router.get('/:userId', (req, res, next) => {
   favoritesController
-    .getFavoritesById(req.params.id)
+    .getFavoritesByUserId(req.query.userId)
     .then((result) => res.json(result))
     .catch(next);
 });
