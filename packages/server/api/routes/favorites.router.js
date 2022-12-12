@@ -27,38 +27,10 @@ const favoritesController = require('../controllers/favorites.controller');
  *        description: Unexpected error.
  */
 router.get('/', (req, res, next) => {
+  const userId = 1;
+  // TO DO : once we will add authentication I will update it
   favoritesController
-    .getFavorites()
-    .then((result) => res.json(result))
-    .catch(next);
-});
-
-/**
- * @swagger
- * /favorites/{ID}:
- *  get:
- *    tags:
- *    - favorites
- *    summary: Get favorite by ID
- *    description:
- *      Will return favorite of user with a matching ID.
- *    produces: application/json
- *    parameters:
- *     - in: path
- *       name: ID
- *       schema:
- *         type: integer
- *         required: false
- *         description: The ID of the favorite to get
- *    responses:
- *      200:
- *        description: Successful request
- *      5XX:
- *        description: Unexpected error.
- */
-router.get('/:userId', (req, res, next) => {
-  favoritesController
-    .getFavoritesByUserId(req.query.userId)
+    .getFavoritesByUserId(userId)
     .then((result) => res.json(result))
     .catch(next);
 });
@@ -114,7 +86,6 @@ router.post('/', (req, res, next) => {
  *    produces: application/json
  *    parameters:
  *      - in: path
- *        name: ID
  *        description: ID of the favorite to delete.
  *    responses:
  *      200:

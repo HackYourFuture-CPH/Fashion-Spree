@@ -1,29 +1,12 @@
 const knex = require('../../config/db');
 const HttpError = require('../lib/utils/http-error');
-// get
-const getFavorites = async () => {
-  try {
-    const favorites = await knex.select().table('favorites');
-    if (favorites.length === 0) {
-      throw new HttpError('No favorites found', 404);
-    }
-    return favorites;
-  } catch (error) {
-    return error.message;
-  }
-};
+
 // get by user-id
 const getFavoritesByUserId = async (userId) => {
-  if (!isNaN(userId)) {
+  if (isNaN(userId)) {
     throw new HttpError('Id should be a number', 400);
   }
-
   try {
-    // const favorites = await knex('favorites')
-    // .join('users', { 'favorites.user_id': 'users.id' })
-    // .join('products', { 'favorites.user_id': 'products.id' })
-    // .select('products.id', 'user_id', 'name', 'price')
-    // .where('user_id', '=', `${userId}`);
     const favorites = await knex('favorites')
       .join('users', { 'favorites.user_id': 'users.id' })
       .select('*')
@@ -76,7 +59,6 @@ const deleteFavorites = async (favoritesId) => {
 };
 
 module.exports = {
-  getFavorites,
   getFavoritesByUserId,
   createFavorites,
   deleteFavorites,
