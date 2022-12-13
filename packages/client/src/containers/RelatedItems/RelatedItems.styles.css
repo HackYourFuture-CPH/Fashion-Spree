@@ -1,25 +1,67 @@
 .related-items {
-  display: flex;
-  flex-flow: column wrap;
-  margin-top: 40px;
+  grid-column: 1 / span 12;
+  grid-row: 3 / span 1;
 }
 
 .related-items-display {
+  position: relative;
   display: flex;
-  flex-flow: row wrap;
   justify-content: space-between;
-  margin: 25px 0px;
+  flex-wrap: wrap;
 }
 
-.realtedItems-heading {
-  margin: 17px 0px;
-}
-.product-card-wrapper {
-  margin-bottom: 20px;
+.related-items-display h2,
+.related-items-display p {
+  font-size: 16px;
+  font-weight: 600;
 }
 
-@media only screen and (max-width: 578px) {
+.related-items-display > div {
+  margin-bottom: 30px;
+}
+
+.relatedItems-heading {
+  margin-bottom: 30px;
+  font-size: 22px;
+}
+
+.related-items-back {
+  position: absolute;
+  top: 37%;
+  left: 0;
+  transform: translateY(-50%);
+  z-index: 1000;
+}
+
+.related-items-forward {
+  position: absolute;
+  top: 37%;
+  right: 0;
+  transform: translateY(-50%);
+  z-index: 1000;
+}
+
+@media only screen and (max-width: 576px) {
+  .related-items {
+    margin-bottom: 30px;
+    order: 3;
+  }
+
   .related-items-display {
-    margin: 0px 0px;
+    width: 100%;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .related-items-display > div {
+    margin-bottom: 0;
+  }
+
+  .related-items-back {
+    display: none;
+  }
+
+  .related-items-forward {
+    display: none;
   }
 }

@@ -48,8 +48,8 @@
   text-align: start;
 }
 
-p,
-h2 {
+.product-card-wrapper p,
+.product-card-wrapper h2 {
   margin-left: 5px;
   font-size: 20px;
   font-weight: 600;
