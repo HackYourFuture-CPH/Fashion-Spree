@@ -1,7 +1,6 @@
 import React from 'react';
 import './CartSelectedProduct.styles.css';
-import removeIcon from '../../../assets/remove.png';
-// import checkMark from '../../../assets/check-mark.png';
+import removeIcon from '../../../assets/vectors/remove.png';
 import PropTypes from 'prop-types';
 
 export default function CartSelectedProduct({ product }) {
@@ -9,10 +8,7 @@ export default function CartSelectedProduct({ product }) {
     <div className="cart-selected-wrapper">
       <div className="cart-selected-blank">
         <input type="checkbox" name="" id="" />
-        <label className="check-mark">
-          {/* {' '}
-          <img src={checkMark} alt="check-mark" />{' '} */}
-        </label>
+        <label className="check-mark">&nbsp;</label>
       </div>
       <div className="cart-selected-desc">
         <span>{product.description}</span>

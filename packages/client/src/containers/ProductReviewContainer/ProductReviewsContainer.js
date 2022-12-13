@@ -1,19 +1,7 @@
 import React from 'react';
-// import { apiURL } from '../../apiURL';
 import { ProductReviews } from '../../components/ProductReviews/ProductReviews.component';
 
 export const ProductReviewsContainer = () => {
-  // const [reviews, setReviews] = useState([]);
-  // useEffect(() => {
-  //   const fetchReviewsByProductId = async () => {
-  //     const response = await fetch(`${apiURL()}/reviews/4`);
-  //     const reviewsProductData = await response.json();
-
-  //     setReviews(reviewsProductData);
-  //   };
-
-  //   fetchReviewsByProductId();
-  // }, [reviews]);
   const reviews = [
     {
       id: 1,
