@@ -1,20 +1,16 @@
-.view-dropdown-wrapper {
-  margin-bottom: 83px;
+.view-dropdown label {
+  margin-bottom: 10px;
+  display: block;
+  font-size: 22px;
+  font-weight: 600;
+  width: 22px;
 }
 
-.view-dropdown-label {
-  font-size: 32px;
+.view-dropdown select {
+  padding: 15px 10px;
+  width: 80%;
+  font-size: 16px;
   font-weight: 600;
-  width: 20px;
-}
-
-.view-dropdown-select {
-  margin-top: 19px;
-  width: 100%;
-  padding: 23px 12px 27px 12px;
-  font-size: 24px;
-  font-weight: 600;
-  color: #212121cc;
-  height: 79px;
+  color: rgba(33, 33, 33, 0.8);
   background-color: #e4c1b1;
 }

@@ -1,7 +1,11 @@
 .product-reviews-wrapper {
   display: flex;
-  flex-flow: column wrap;
-  width: 600px;
+  flex-direction: column;
+}
+
+.product-reviews-wrapper h1 {
+  font-size: 22px;
+  margin-bottom: 30px;
 }
 
 .readMore-reviews {
@@ -9,17 +13,13 @@
   border: 0px;
   padding: 0px;
   text-align: left;
-  font-weight: 300;
-  font-size: 22px;
+  font-weight: 600;
+  font-size: 16px;
+  color: rgba(33, 33, 33, 0.8);
 }
 
 .readMore-reviews:hover {
   cursor: pointer;
 }
 
-.reviewBtn {
-  border: none;
-  text-align: left;
-  background-color: rgba(228, 193, 177, 1);
-  margin-bottom: 13px;
 }

@@ -22,13 +22,6 @@ export const DisplayReviews = ({ review }) => {
     <div className="display-reviews-wrapper">
       <div key={review.id}>
         <div className="reviewer-wrapper">
-          <div>
-            <img src={Reviewer} alt="ReviewerPic" />
-          </div>
-          <div className="reviewer-info">
-            <span className="reviewer-name">{review.name}</span>
-            <span className="review-time">01 December 2022 05:55PM</span>
-          </div>
           <div className="product-review-rating">
             <img src={RatingStar} alt="star" />
             <span>{review.rating}</span>
