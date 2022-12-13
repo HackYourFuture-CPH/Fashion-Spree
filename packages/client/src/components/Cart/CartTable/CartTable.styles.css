@@ -1,10 +1,11 @@
 .cart-table-headers {
-  margin-bottom: 10px;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   text-align: left;
   font-size: 16px;
   font-weight: 600;
+  background-color: #cea086;
+  padding: 17px;
 }
 
 .cart-table-blank {
@@ -32,12 +33,8 @@
 }
 
 .cart-table-products {
-  padding: 20px 0;
-  border-top: 2px solid #212121;
-  border-bottom: 2px solid #212121;
   display: flex;
   flex-direction: column;
-  gap: 30px;
   font-size: 16px;
   font-weight: 400;
 }

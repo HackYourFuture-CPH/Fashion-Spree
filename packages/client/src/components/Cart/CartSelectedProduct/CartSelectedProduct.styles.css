@@ -36,3 +36,79 @@
 .cart-selected-action button:hover {
   cursor: pointer;
 }
+
+.cart-selected-wrapper:nth-child(even) {
+  background-color: white;
+  padding: 10px;
+}
+.cart-selected-wrapper:nth-child(odd) {
+  background-color: rgba(245, 245, 245, 1);
+  padding: 10px;
+}
+
+.removeBtn {
+  width: 60px;
+  height: 10px;
+}
+.removeBtn img {
+  width: 20px;
+}
+
+.check-mark {
+  align-items: center;
+}
+
+.check-mark img {
+  width: 20px;
+  /* visibility: hidden; */
+}
+
+[type='checkbox'] + label {
+  content: '';
+}
+
+input[type='checkbox'] + label::before {
+  content: '';
+  width: 20px;
+  height: 20px;
+  position: relative;
+  -webkit-appearance: none;
+  display: inline-block;
+  transform: scale(1);
+  opacity: 0;
+}
+
+input[type='checkbox']:checked + label::before {
+  content: '';
+  top: 0;
+  left: -10px;
+  cursor: pointer;
+  background-image: url(../../../assets/check-mark.png);
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: 20px;
+  height: 20px;
+  width: 20px;
+  padding: 0px;
+  opacity: 1;
+}
+
+input[type='checkbox'] {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: rgba(245, 245, 245, 1);
+  margin: 0;
+  font: inherit;
+  width: 20px;
+  height: 20px;
+  border: none;
+  margin-left: 15px;
+  border: 3px solid black;
+  border-radius: 3px;
+}
+
+@media only screen and (max-width: 578px) {
+  .cart-selected-wrapper {
+    width: 90%;
+  }
+}
