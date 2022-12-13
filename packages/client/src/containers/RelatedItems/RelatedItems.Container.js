@@ -1,8 +1,8 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import ProductCard from '../../components/ProductCard/ProductCard.component';
 import { apiURL } from '../../apiURL';
-import { ViewAfterCarousel } from '../../components/ViewCarousel/ViewForwadCarousel/ViewAfterCarousel';
+import { ViewForwardCarousel } from '../../components/ViewCarousel/ViewForwardCarousel/ViewForwardCarousel.component';
 import './RelatedItems.styles.css';
 import { ViewBackCarousel } from '../../components/ViewCarousel/ViewBackCarousel/ViewBackCarousel.component';
 
@@ -61,9 +61,7 @@ export const RelatedItems = ({ category }) => {
       <h1 className="relatedItems-heading">Related Items</h1>
       <div className="related-items-display">
         <div className="back-carousel">
-          {offSet > 2 && (
-            <ViewBackCarousel text="" onClick={handleBackCarousel} />
-          )}
+          {offSet > 2 && <ViewBackCarousel onClick={handleBackCarousel} />}
         </div>
         {categoryProducts.map((prod) => (
           <ProductCard
@@ -76,7 +74,7 @@ export const RelatedItems = ({ category }) => {
         ))}
         <div className="after-Carousel">
           {hasMoreProducts && (
-            <ViewAfterCarousel text="" onClick={handleAfterCarousel} />
+            <ViewForwardCarousel onClick={handleAfterCarousel} />
           )}
         </div>
       </div>
