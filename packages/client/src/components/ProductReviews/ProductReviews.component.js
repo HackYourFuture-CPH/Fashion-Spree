@@ -2,32 +2,29 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { DisplayReviews } from './DisplayReviews/DisplayReviews.component';
 import './ProductReviews.styles.css';
+import Modal from '../Modal/Modal.component';
 
 export const ProductReviews = ({ AllReviews }) => {
-  const [reviews, setReviews] = useState([AllReviews[0]]);
+  const [openModal, setOpenModal] = useState(false);
 
-  const handleMoreReviews = () => {
-    if (reviews.length !== AllReviews.length) {
-      const reviewsIndex = reviews.length;
-      setReviews(reviews.concat(AllReviews[reviewsIndex]));
-    }
+  const toggleModal = () => {
+    setOpenModal(false);
+    document.body.style.overflow = 'visible';
   };
 
   return (
     <div className="product-reviews-wrapper">
-      <h1>Reviews ({AllReviews.length})</h1>
+      <h1 onClick={() => setOpenModal(true)} role="presentation">
+        Reviews ({AllReviews.length})
+      </h1>
 
-      <DisplayReviews reviews={reviews} />
+      <DisplayReviews review={AllReviews[0]} />
 
-      {reviews.length !== AllReviews.length && (
-        <button
-          type="button"
-          onClick={handleMoreReviews}
-          className="readMore-reviews"
-        >
-          Read more
-        </button>
-      )}
+      <Modal title="Reviews" open={openModal} toggle={toggleModal}>
+        {AllReviews.map((review) => {
+          return <DisplayReviews review={review} />;
+        })}
+      </Modal>
     </div>
   );
 };
