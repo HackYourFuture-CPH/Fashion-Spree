@@ -3,11 +3,11 @@
   align-items: center;
   background: none;
   border: none;
-  font-size: 24px;
+  font-size: 16px;
 }
 .read-more-button:hover {
   cursor: pointer;
 }
-.read-more-button button svg {
-  font-size: 30px;
+.read-more-button img {
+  width: 30px;
 }

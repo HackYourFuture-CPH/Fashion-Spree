@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Login.css';
-import FormValidation from './FormValidation';
+import validateForm from '../../utils/validateForm';
 
 const SignupForm = () => {
   const [formValues, setFormValues] = useState({
@@ -9,13 +9,29 @@ const SignupForm = () => {
     password: '',
   });
   const [formErrors, setFormErrors] = useState({});
+  const [isSubmit, setIsSubmit] = useState(false);
+
   const handleChange = (e) => {
     setFormValues({ ...formValues, [e.target.name]: e.target.value });
   };
 
+  const handleValidation = () => {
+    setFormErrors(validateForm(formValues));
+  };
+
+  const cleanUpValidation = () => {
+    setFormErrors({
+      fullname: '',
+      email: '',
+      password: '',
+    });
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    setFormErrors(FormValidation(formValues));
+    if (Object.keys(formErrors).length === 0) {
+      setIsSubmit(true);
+    }
   };
 
   return (
@@ -26,6 +42,8 @@ const SignupForm = () => {
         name="fullname"
         values={formValues.fullname}
         onChange={handleChange}
+        onBlur={handleValidation}
+        onFocus={cleanUpValidation}
         type="text"
       />
       {formErrors.fullname && (
@@ -38,9 +56,10 @@ const SignupForm = () => {
         type="email"
         values={formValues.email}
         onChange={handleChange}
+        onBlur={handleValidation}
+        onFocus={cleanUpValidation}
       />
       {formErrors.email && <p className="form-erros">{formErrors.email}</p>}
-
       <input
         className="sign-up-form__password"
         placeholder="Password"
@@ -48,11 +67,12 @@ const SignupForm = () => {
         type="password"
         values={formValues.password}
         onChange={handleChange}
+        onBlur={handleValidation}
+        onFocus={cleanUpValidation}
       />
       {formErrors.password && (
         <p className="form-erros">{formErrors.password}</p>
       )}
-
       <button
         onClick={handleSubmit}
         className="signup-submit-button"
@@ -60,6 +80,7 @@ const SignupForm = () => {
       >
         Sign up
       </button>
+      {isSubmit && <p className="success-message">Thank you for Signing up</p>}
     </form>
   );
 };
