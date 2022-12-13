@@ -17,8 +17,15 @@ export const RelatedItems = ({ category }) => {
         `${apiURL()}/products?category=${category}&limit=3&offset=${offSet}`,
       );
       const categoryProductData = await response.json();
-      if (categoryProductData.length === 0) {
-        if (categoryProductData.length === 0 && offSet === 0) {
+
+      if (
+        categoryProductData.length === 0 ||
+        typeof categoryProductData === 'string'
+      ) {
+        if (
+          (categoryProductData.length === 0 && offSet === 0) ||
+          typeof categoryProductData === 'string'
+        ) {
           await fetchAllProducts();
         }
         setHasMoreProducts(false);
