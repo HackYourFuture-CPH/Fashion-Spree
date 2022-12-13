@@ -1,42 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './ContactUs.styles.css';
-import validateForm from '../utils/validateForm';
+import TextFormInput from '../components/Input/TextFormInput.component';
+import EmailFormInput from '../components/Input/EmailFormInput.component';
 
 export const ContactUs = () => {
-  const [formValues, setFormValues] = useState({
-    fullname: '',
-    email: '',
-    message: '',
-  });
-  const [formErrors, setFormErrors] = useState({});
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
   const [isSubmit, setIsSubmit] = useState(false);
+  const formErrors = '';
 
-  const handleChange = (e) => {
-    setFormValues({
-      ...formValues,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleFormSubmit = (e) => {
-    setFormErrors(validateForm(formValues));
-    setIsSubmit(true);
-
-    e.preventDefault();
-
-    /* eslint-disable no-console */
-    console.log(
-      `fullname: ${formValues.fullname}, \nemail: ${formValues.email},\nmessage:${formValues.message}`,
-    );
-  };
-
-  useEffect(() => {
-    if (Object.keys(formErrors).length === 0 && isSubmit) {
-      console.log(formValues);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (
+      formErrors.length === 0 &&
+      message.length > 5 &&
+      name.length > 0 &&
+      email.length > 0
+    ) {
+      setIsSubmit(true);
     }
-
-    // eslint-disable-next-line
-  }, [formErrors, isSubmit]);
+  };
 
   return (
     <main className="contactUs-wrapper">
@@ -59,49 +43,37 @@ export const ContactUs = () => {
           </div>
           <p className="or">-OR-</p>
           <form>
-            <input
-              className="contactUs-input"
-              type="text"
-              placeholder="Full Name"
+            <TextFormInput
+              value={name}
+              setvalue={setName}
               name="fullname"
-              value={formValues.fullname}
-              onChange={handleChange}
+              placeholder="Full name"
             />
-            {formErrors.fullname && (
-              <p className="error-msg">{formErrors.fullname}</p>
-            )}
-
-            <input
-              className="contactUs-input"
+            ;
+            <EmailFormInput
+              value={email}
               type="email"
-              placeholder="Email Address"
+              setvalue={setEmail}
               name="email"
-              value={formValues.email}
-              onChange={handleChange}
+              placeholder="Email"
             />
-            {formErrors.email && (
-              <p className="error-msg">{formErrors.email}</p>
-            )}
-            <input
-              className="contactUs-input"
+            <TextFormInput
+              value={message}
               type="text"
-              placeholder="Message"
+              setvalue={setMessage}
               name="message"
-              value={formValues.message}
-              onChange={handleChange}
+              placeholder="Message"
             />
-            {formErrors.message && (
-              <p className="error-msg">{formErrors.message}</p>
-            )}
-
+            ;
             <button
               className="contactUs-btn"
-              onClick={handleFormSubmit}
+              onClick={handleSubmit}
               type="submit"
             >
               Send Message
             </button>
-            {Object.keys(formErrors).length === 0 && isSubmit ? (
+            ;
+            {isSubmit ? (
               <div className="success">
                 <img
                   className="icon-success"

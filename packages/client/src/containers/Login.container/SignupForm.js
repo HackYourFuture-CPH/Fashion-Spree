@@ -1,42 +1,52 @@
 import React, { useState } from 'react';
 import './Login.css';
-import validateForm from '../../utils/validateForm';
+import TextFormInput from '../../components/Input/TextFormInput.component';
+import EmailFormInput from '../../components/Input/EmailFormInput.component';
+import PasswordFormInput from '../../components/Input/PasswordFormInput.component';
 
 const SignupForm = () => {
-  const [formValues, setFormValues] = useState({
-    fullname: '',
-    email: '',
-    password: '',
-  });
-  const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
-
-  const handleChange = (e) => {
-    setFormValues({ ...formValues, [e.target.name]: e.target.value });
-  };
-
-  const handleValidation = () => {
-    setFormErrors(validateForm(formValues));
-  };
-
-  const cleanUpValidation = () => {
-    setFormErrors({
-      fullname: '',
-      email: '',
-      password: '',
-    });
-  };
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const formErrors = '';
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (Object.keys(formErrors).length === 0) {
+    if (
+      formErrors.length === 0 &&
+      password.length > 0 &&
+      name.length > 0 &&
+      email.length > 0
+    ) {
       setIsSubmit(true);
     }
   };
 
   return (
     <form className="signup-form">
-      <input
+      <TextFormInput
+        value={name}
+        setvalue={setName}
+        name="fullname"
+        placeholder="Full name"
+      />
+      ;
+      <EmailFormInput
+        value={email}
+        type="email"
+        setvalue={setEmail}
+        name="email"
+        placeholder="Email"
+      />
+      <PasswordFormInput
+        value={password}
+        type="password"
+        setvalue={setPassword}
+        name="password"
+        placeholder="Password"
+      />
+      {/*   <input
         className="sign-up-form__fullname"
         placeholder="Full Name"
         name="fullname"
@@ -48,7 +58,8 @@ const SignupForm = () => {
       />
       {formErrors.fullname && (
         <p className="form-erros">{formErrors.fullname}</p>
-      )}
+      )} */}
+      {/* 
       <input
         className="sign-up-form__email"
         placeholder="Email Address"
@@ -73,6 +84,7 @@ const SignupForm = () => {
       {formErrors.password && (
         <p className="form-erros">{formErrors.password}</p>
       )}
+      */}
       <button
         onClick={handleSubmit}
         className="signup-submit-button"
