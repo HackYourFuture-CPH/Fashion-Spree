@@ -5,13 +5,12 @@
 }
 
 .list-view {
-  margin: auto;
+  margin: 50px auto;
   width: 850px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
   background-color: #e4c1b1;
-  margin-bottom: 50px;
 }
 
 @media only screen and (max-width: 768px) {

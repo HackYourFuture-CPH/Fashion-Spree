@@ -10,7 +10,6 @@ export const FavoritesPage = () => {
   const [favoriteProducts, setFavoriteProducts] = useState(
     getLocalStorage(favoriteProductsStorageKey) || [],
   );
-  const [isFavorite, setIsFavorite] = useState(true);
 
   const toggleFavorite = (id, title, price, event) => {
     const newFavoriteItem = {

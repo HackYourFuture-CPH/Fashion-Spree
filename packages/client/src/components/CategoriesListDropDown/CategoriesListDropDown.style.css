@@ -11,6 +11,7 @@
   font-weight: 650;
   position: relative;
   color: #212121cc;
+  background-color: inherit;
 }
 .all-filters {
   background: url('../../assets/all-filter-icon.svg') no-repeat;
