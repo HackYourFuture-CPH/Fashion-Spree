@@ -1,39 +1,62 @@
 .reviewer-wrapper {
+  margin-bottom: 20px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 30px;
+}
+
+.reviewer-wrapper h1 {
   font-size: 22px;
+}
+
+.display-reviews-image {
+  width: 80px;
+}
+
+.display-reviews-image img {
+  width: 100%;
 }
 
 .reviewer-info {
   display: flex;
-  flex-flow: column wrap;
+}
+
+.reviewer-info-text {
+  display: flex;
+  flex-direction: column;
 }
 
 .reviewer-name {
-  font-size: 34px;
-  font-weight: 500;
+  margin-bottom: 10px;
+  font-size: 22px;
+  font-weight: 600;
 }
 
 .review-time {
-  font-size: 20px;
-  font-weight: 200;
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .product-review-rating {
+  align-self: start;
   display: flex;
   align-items: center;
-  font-weight: 500;
-  font-size: 22px;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.product-review-rating img {
+  margin-right: 5px;
+  width: 20px;
 }
 
 .review-description {
-  margin: 10px 0px;
-  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+.reviewer-description p {
+  font-size: 16px;
   font-weight: 500;
 }
 
-.review-description p {
-  padding: 0;
-  margin: 0;
 }

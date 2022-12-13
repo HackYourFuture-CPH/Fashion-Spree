@@ -1,0 +1,9 @@
+.product-view-image-wrapper {
+  grid-column: 1 / span 6;
+}
+
+@media only screen and (max-width: 576px) {
+  .product-view-image-wrapper {
+    order: 0;
+  }
+}
