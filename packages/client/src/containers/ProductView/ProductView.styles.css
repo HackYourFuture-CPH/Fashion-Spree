@@ -4,3 +4,8 @@
   font-family: 'Montserrat', sans-serif;
   text-align: left;
 }
+
+.product-view-blank {
+  height: 100px;
+  background-color: #ececec;
+}
