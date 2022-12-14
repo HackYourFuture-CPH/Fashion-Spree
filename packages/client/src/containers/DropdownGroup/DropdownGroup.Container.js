@@ -1,46 +1,52 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ViewDropdown from '../../components/ViewDropDown/ViewDropdown.component';
+import { apiURL } from '../../apiURL';
+import PropTypes from 'prop-types';
 import './DropdownGroup.Style.css';
 
-export const DropdownGroup = (productId) => {
-  const Colors = ['Black', 'White', 'Blue', 'Half-white'];
-  const Sizes = ['Small', 'Medium', 'Large', 'XL', 'XXL'];
-  const Quantities = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+export const DropdownGroup = ({ productId }) => {
+  const [variants, setVariants] = useState([]);
+  const colors = [];
+  const sizes = [];
+  const quantities = [];
 
-  const variants = [
-    {
-      id: 9,
-      product_id: 7,
-      color: 'merun',
-      size: '3XL',
-      pictureUrl: 'packages/client/src/assets/jeans&shoes.jpg',
-      stock: 18,
-    },
-  ];
+  useEffect(() => {
+    const fetchVariantsByProductId = async () => {
+      const response = await fetch(`${apiURL()}/variants?product=${productId}`);
+      const variantsProductData = await response.json();
+      setVariants(variantsProductData);
+    };
+
+    fetchVariantsByProductId();
+  }, [productId, variants]);
 
   variants.forEach((variant) => {
-    if (!Colors.includes(variant.color)) {
-      Colors.push(variant.color);
+    if (!colors.includes(variant.color)) {
+      colors.push(variant.color);
     }
-    if (!Sizes.includes(variant.size)) {
-      Sizes.push(variant.size);
+    if (!sizes.includes(variant.size)) {
+      sizes.push(variant.size);
     }
-    if (!Quantities.includes(variant.stock)) {
-      Quantities.push(variant.stock);
+    if (!quantities.includes(variant.stock)) {
+      quantities.push(variant.stock);
     }
   });
 
   return (
     <div className="dropdown-group-list">
       <div className="dropdown-group">
-        <ViewDropdown options={Colors} label="Color" />
+        <ViewDropdown options={colors} label="Color" />
       </div>
       <div className="dropdown-group">
-        <ViewDropdown options={Sizes} label="Size" />
+        <ViewDropdown options={sizes} label="Size" />
       </div>
       <div className="dropdown-group">
-        <ViewDropdown options={Quantities} label="Quantity" />
+        <ViewDropdown options={quantities} label="Quantity" />
       </div>
     </div>
   );
+};
+
+DropdownGroup.propTypes = {
+  productId: PropTypes.number.isRequired,
 };
