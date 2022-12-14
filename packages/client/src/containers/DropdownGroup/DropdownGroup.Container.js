@@ -6,9 +6,9 @@ import './DropdownGroup.Style.css';
 
 export const DropdownGroup = ({ productId }) => {
   const [variants, setVariants] = useState([]);
-  const colors = [];
-  const sizes = [];
-  const quantities = [];
+  let colors = [];
+  let sizes = [];
+  let quantities = [];
 
   useEffect(() => {
     const fetchVariantsByProductId = async () => {
@@ -21,16 +21,14 @@ export const DropdownGroup = ({ productId }) => {
   }, [productId, variants]);
 
   variants.forEach((variant) => {
-    if (!colors.includes(variant.color)) {
-      colors.push(variant.color);
-    }
-    if (!sizes.includes(variant.size)) {
-      sizes.push(variant.size);
-    }
-    if (!quantities.includes(variant.stock)) {
-      quantities.push(variant.stock);
-    }
+    colors.push(variant.color);
+    sizes.push(variant.size);
+    quantities.push(variant.stock);
   });
+
+  colors = [...new Set(colors)];
+  sizes = [...new Set(sizes)];
+  quantities = [...new Set(quantities)];
 
   return (
     <div className="dropdown-group-list">
