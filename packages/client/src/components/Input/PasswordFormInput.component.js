@@ -46,7 +46,7 @@ const PasswordFormInput = ({
 
 PasswordFormInput.propTypes = {
   value: PropTypes.string,
-  setvalue: PropTypes.string,
+  setvalue: PropTypes.func,
   name: PropTypes.string,
   label: PropTypes.string,
   placeholder: PropTypes.string,
