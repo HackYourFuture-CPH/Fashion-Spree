@@ -1,5 +1,5 @@
 import React from 'react';
-import DropDownView from './DropDownView.component';
+import DropDownView from './CategoriesListDropDown.component';
 
 export default {
   title: 'ProductList/ProductListDropdown',

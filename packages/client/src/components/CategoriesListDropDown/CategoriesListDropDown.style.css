@@ -9,9 +9,16 @@
   padding: 18px 12px 18px 12px;
   font-size: 18px;
   font-weight: 650;
+  position: relative;
   color: #212121cc;
-  background-color: #e4c1b1;
 }
+.all-filters {
+  background: url('../../assets/all-filter-icon.svg') no-repeat;
+  background-position: right 10px top 50%;
+  appearance: none;
+  background-color: rgba(228, 193, 177, 1);
+}
+
 @media only screen and (max-width: 768px) {
   .view-dropdown-select {
     width: 90%;
