@@ -1,5 +1,5 @@
 import React from 'react';
-import { ViewBackCarousel } from './ViewBackCarousel';
+import { ViewBackCarousel } from './ViewBackCarousel.component';
 
 export default {
   title: 'ViewCarousel/GoBackCarousel',

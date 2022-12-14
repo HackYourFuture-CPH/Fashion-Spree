@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './ViewDropdown.styles.css';
 
-const ViewDropdown = ({ options, label, ...props }) => {
+const ViewDropdown = ({ options, label }) => {
   const optionList =
     options.length > 0 &&
     options.map((item) => {
@@ -13,16 +13,12 @@ const ViewDropdown = ({ options, label, ...props }) => {
       );
     });
   return (
-    <>
-      <label htmlFor={label} className="view-dropdown-label">
-        {label}
-      </label>
+    <div className="view-dropdown">
+      <label htmlFor={label}>{label}</label>
       <div>
-        <select id={label} className="view-dropdown-select">
-          {optionList}
-        </select>
+        <select id={label}>{optionList}</select>
       </div>
-    </>
+    </div>
   );
 };
 

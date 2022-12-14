@@ -1,0 +1,12 @@
+.view-forward-button {
+  width: 30px;
+  background: none;
+  border: none;
+}
+
+.view-forward-button:hover {
+  cursor: pointer;
+}
+.view-forward-button img {
+  width: 100%;
+}

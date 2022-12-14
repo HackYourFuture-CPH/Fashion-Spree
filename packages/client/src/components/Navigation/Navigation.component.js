@@ -1,30 +1,11 @@
-import React, { useEffect, useState, useCallback } from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth, db, logout } from '../../firebase';
-import { query, collection, getDocs, where } from 'firebase/firestore';
+import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
-
+import { useUserContext } from '../../userContext';
 import './Navigation.styles.css';
 import { Button } from '../Button/Button.component';
 
 export const Navigation = () => {
-  const [user] = useAuthState(auth);
-  const [name, setName] = useState('');
-  const fetchUserName = useCallback(async () => {
-    try {
-      const q = query(collection(db, 'users'), where('uid', '==', user?.uid));
-      const doc = await getDocs(q);
-      const data = doc.docs[0].data();
-      setName(data.name);
-    } catch (err) {
-      /* error */
-    }
-  }, [user?.uid]);
-  useEffect(() => {
-    if (user) {
-      fetchUserName();
-    }
-  }, [user, fetchUserName]);
+  const { user, name, logout } = useUserContext();
 
   return (
     <div className="navigation-container">
@@ -47,7 +28,7 @@ export const Navigation = () => {
             <div className="logged-in-container">
               <div className="logged-in-text">
                 <div>{name}</div>
-                <div>{user?.email}</div>
+                <div>{user.email}</div>
               </div>
               <div className="logout-button-container">
                 <Button

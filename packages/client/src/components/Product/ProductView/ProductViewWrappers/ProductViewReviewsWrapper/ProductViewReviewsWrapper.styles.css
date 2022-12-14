@@ -1,0 +1,11 @@
+.product-view-reviews-wrapper {
+  grid-column: 1 / span 6;
+  grid-row: 2 / span 1;
+}
+
+@media only screen and (max-width: 576px) {
+  .product-view-reviews-wrapper {
+    margin-bottom: 24px;
+    order: 2;
+  }
+}

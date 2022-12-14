@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import ProductCard from '../../components/ProductCard/ProductCard.component';
 import { apiURL } from '../../apiURL';
 import './RelatedItems.styles.css';
+import { ViewBackCarousel } from '../../components/ViewCarousel/ViewBackCarousel/ViewBackCarousel.component';
+import { ViewForwardCarousel } from '../../components/ViewCarousel/ViewForwardCarousel/ViewForwardCarousel.component';
 
 export const RelatedItems = ({ category }) => {
   const [categoryProducts, setCategoryProducts] = useState([]);
@@ -21,13 +23,22 @@ export const RelatedItems = ({ category }) => {
   return (
     // TODO: will refactor function Number of items to display below. CLASS22-63"
     <div className="related-items">
-      <h1 className="realtedItems-heading">Related Items</h1>
+      <h1 className="relatedItems-heading">Related Items</h1>
       <div className="related-items-display">
+        <div className="related-items-back">
+          <ViewBackCarousel />
+        </div>
         {categoryProducts.map((prod) => (
-          <ProductCard key={prod.id} product={prod} rating={5} />
+          <ProductCard
+            key={prod.id}
+            title={prod.name}
+            price={prod.price}
+            rating={5}
+          />
         ))}
-        <ProductCard />
-        <ProductCard />
+        <div className="related-items-forward">
+          <ViewForwardCarousel />
+        </div>
       </div>
     </div>
   );
