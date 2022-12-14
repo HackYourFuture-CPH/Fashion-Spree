@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import RatingStar from '../../../assets/vectors/sharp-star.svg';
-import Reviewer from '../../../assets/Reviewer.png';
+// import Reviewer from '../../../assets/Reviewer.png';
 import './DisplayReviews.styles.css';
 
 const reduce = (reviewComment) => {
