@@ -6,6 +6,7 @@ const exampleResources = require('./exampleResources.router');
 const products = require('./products.router');
 const categories = require('./categories.router');
 const reviews = require('./reviews.router');
+const favorites = require('./favorites.router');
 const variants = require('./variants.router');
 
 /* GET home page. */
@@ -40,6 +41,7 @@ router.use('/exampleResources', exampleResources);
 router.use('/products', products);
 router.use('/categories', categories);
 router.use('/reviews', reviews);
+router.use('/favorites', favorites);
 router.use('/variants', variants);
 
 module.exports = router;
