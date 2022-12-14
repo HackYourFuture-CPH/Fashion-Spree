@@ -27,8 +27,9 @@ const ViewDropdown = ({ options, label, ...props }) => {
 };
 
 ViewDropdown.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
-  options: PropTypes.arrayOf(PropTypes.any).isRequired,
+  options: PropTypes.arrayOf(
+    PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  ).isRequired,
   label: PropTypes.string.isRequired,
 };
 
