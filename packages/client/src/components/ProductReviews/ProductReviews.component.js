@@ -5,6 +5,7 @@ import './ProductReviews.styles.css';
 import Modal from '../Modal/Modal.component';
 
 export const ProductReviews = ({ AllReviews }) => {
+  // if (AllReviews.length === 0) return 'No Reviews';
   const [openModal, setOpenModal] = useState(false);
 
   const toggleModal = () => {
@@ -22,7 +23,7 @@ export const ProductReviews = ({ AllReviews }) => {
 
       <Modal title="Reviews" open={openModal} toggle={toggleModal}>
         {AllReviews.map((review) => {
-          return <DisplayReviews review={review} />;
+          return <DisplayReviews key={review.id} review={review} />;
         })}
       </Modal>
     </div>
