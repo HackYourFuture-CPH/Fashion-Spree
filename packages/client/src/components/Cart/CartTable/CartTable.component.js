@@ -3,7 +3,16 @@ import './CartTable.styles.css';
 import CartSelectedProduct from '../CartSelectedProduct/CartSelectedProduct.component';
 import PropTypes from 'prop-types';
 
-export default function CartTable({ products }) {
+export default function CartTable({ products, setProducts }) {
+  const handleChange = (product) => {
+    const productCart = [...products];
+    productCart.forEach((row, index) => {
+      if (productCart[index].id === product.id)
+        productCart[index].selected = !productCart[index].selected;
+    });
+    setProducts(productCart);
+  };
+
   return (
     <div className="cart-table-wrapper">
       <div className="cart-table-headers">
@@ -16,7 +25,11 @@ export default function CartTable({ products }) {
       </div>
       <div className="cart-table-products">
         {products.map((product) => (
-          <CartSelectedProduct key={product.id} product={product} />
+          <CartSelectedProduct
+            key={product.id}
+            product={product}
+            handleChange={handleChange}
+          />
         ))}
       </div>
     </div>
@@ -32,4 +45,5 @@ CartTable.propTypes = {
       quantity: PropTypes.number.isRequired,
     }),
   ).isRequired,
+  setProducts: PropTypes.func.isRequired,
 };

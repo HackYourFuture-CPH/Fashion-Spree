@@ -2,11 +2,16 @@ import React from 'react';
 import './CartSelectedProduct.styles.css';
 import PropTypes from 'prop-types';
 
-export default function CartSelectedProduct({ product }) {
+export default function CartSelectedProduct({ product, handleChange }) {
   return (
     <div className="cart-selected-wrapper">
       <div className="cart-selected-blank">
-        <input type="checkbox" name="" id="" />
+        <input
+          type="checkbox"
+          name=""
+          id=""
+          onChange={() => handleChange(product)}
+        />
       </div>
       <div className="cart-selected-desc">
         <span>{product.description}</span>
@@ -34,4 +39,5 @@ CartSelectedProduct.propTypes = {
     amount: PropTypes.number.isRequired,
     quantity: PropTypes.number.isRequired,
   }).isRequired,
+  handleChange: PropTypes.func.isRequired,
 };
