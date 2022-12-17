@@ -5,7 +5,6 @@ import './ProductReviews.styles.css';
 import Modal from '../Modal/Modal.component';
 
 export const ProductReviews = ({ AllReviews }) => {
-  // if (AllReviews.length === 0) return 'No Reviews';
   const [openModal, setOpenModal] = useState(false);
 
   const toggleModal = () => {
@@ -34,27 +33,10 @@ ProductReviews.propTypes = {
   AllReviews: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number,
-      name: PropTypes.string,
-      description: PropTypes.string,
-      rating: PropTypes.number,
+      full_name: PropTypes.string,
+      review_text: PropTypes.string,
+      created_at: PropTypes.string,
+      rating: PropTypes.string,
     }),
-  ),
-};
-
-ProductReviews.defaultProps = {
-  AllReviews: [
-    {
-      id: 1,
-      name: 'Sophie Williams',
-      description: 'Good',
-      rating: 4.5,
-    },
-
-    {
-      id: 2,
-      name: 'Sophie Williams',
-      description: 'Bad',
-      rating: 0.5,
-    },
-  ],
+  ).isRequired,
 };

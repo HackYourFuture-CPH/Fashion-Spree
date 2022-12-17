@@ -39,7 +39,6 @@ export const ProductView = () => {
               bigImage={view.bigImage}
             />
           </view.ProductViewImageWrapper>
-          <view.ProductViewReviewsWrapper />
           <view.ProductViewDescription>
             {product.map((prod) => (
               <view.ProductDescription

@@ -23,8 +23,9 @@ const getReviewsByProductId = async (productId) => {
       throw new HttpError('Id should be a number', 400);
     }
     const reviews = await knex('reviews')
-      .select('*')
-      .where('product_id', `${productId}`);
+      .where('product_id', `${productId}`)
+      .join('users', 'reviews.user_id', 'users.id')
+      .select('*');
     if (reviews.length === 0) {
       throw new HttpError(`incorrect entry with the id of ${productId}`, 404);
     }
