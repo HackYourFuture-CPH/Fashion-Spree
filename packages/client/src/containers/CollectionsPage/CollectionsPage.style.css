@@ -3,7 +3,10 @@
   padding: 0;
   box-sizing: border-box;
 }
-
+body {
+  min-height: 100vh;
+  overflow: auto;
+}
 .list-view {
   margin: auto;
   width: 850px;

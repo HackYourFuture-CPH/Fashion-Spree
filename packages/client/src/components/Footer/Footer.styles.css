@@ -1,20 +1,20 @@
+.footer-container-main {
+  bottom: 0;
+  justify-content: center;
+  background-color: #e4c1b1;
+  width: 100%;
+  margin: 0 auto;
+  color: black;
+  position: relative;
+  padding-top: 30px;
+  min-height: 30vh;
+  margin-top: auto;
+}
 .main-footer {
   width: 800px;
   margin: 0 auto;
   color: black;
-  position: relative;
-  bottom: 0;
-  background-color: #e4c1b1;
-  padding-top: 30px;
 }
-
-.footer-container-main {
-  bottom: 0;
-  width: 100%;
-  justify-content: center;
-  background-color: #e4c1b1;
-}
-
 .row {
   display: flex;
   justify-content: space-between;

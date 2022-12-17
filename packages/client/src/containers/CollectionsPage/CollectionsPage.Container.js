@@ -90,7 +90,7 @@ export const CollectionsPage = () => {
   }, [searchInput, products, sortOrder]);
 
   return (
-    <>
+    <body>
       <div className="list-view">
         <DropDownView
           lable="Categories"
@@ -122,6 +122,6 @@ export const CollectionsPage = () => {
           filteredProducts={filteredProducts}
         />
       </div>
-    </>
+    </body>
   );
 };
