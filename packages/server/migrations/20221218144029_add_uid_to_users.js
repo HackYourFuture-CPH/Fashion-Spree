@@ -4,7 +4,7 @@
  */
 exports.up = function (knex) {
   return knex.schema.alterTable('users', (table) => {
-    table.uuid('uid');
+    table.uuid('uid').unique();
   });
 };
 
