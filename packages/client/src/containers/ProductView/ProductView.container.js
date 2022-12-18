@@ -26,6 +26,7 @@ export const ProductView = () => {
   return (
     <div className="product-view-page">
       <view.ProductContainer>
+        <view.ProductViewBreadcrumbs category="jeans" />
         <view.GoBackButton
           text="Back to search results"
           onClick={navigateBack}

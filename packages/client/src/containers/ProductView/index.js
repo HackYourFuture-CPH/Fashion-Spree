@@ -1,3 +1,5 @@
+import { ProductViewBreadcrumbs } from '../ProductViewBreadcrumbs/ProductViewBreadcrumbs.container';
+
 export { ProductDescription } from '../../components/Product/ProductDescription/ProductDescription.component';
 export { ProductContainer } from '../../components/Product/ProductView/ProductContainer/ProductContainer.component';
 export { apiURL } from '../../apiURL';
@@ -15,3 +17,4 @@ export { ProductViewDescription } from '../../components/Product/ProductView/Pro
 export { ProductViewButtons } from './ProductViewButtons/ProductViewButtons.container';
 export { RelatedItems } from '../RelatedItems/RelatedItems.Container';
 export { ProductReviewsContainer } from '../ProductReviewContainer/ProductReviewsContainer';
+export { ProductViewBreadcrumbs } from '../ProductViewBreadcrumbs/ProductViewBreadcrumbs.container';
