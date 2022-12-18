@@ -11,6 +11,10 @@ const reduce = (reviewComment) => {
     .map((sentence) => sentence.concat('.'));
 };
 
+const getDate = (rowDate) => {
+  return new Date(rowDate).toDateString();
+};
+
 export const DisplayReviews = ({ review }) => {
   const [extended, setExtended] = useState(false);
 
@@ -22,16 +26,15 @@ export const DisplayReviews = ({ review }) => {
     <div className="display-reviews-wrapper">
       <div key={review.id}>
         <div className="reviewer-wrapper">
-          <div className="product-review-rating">
             <img src={RatingStar} alt="star" />
             <span>{review.rating}</span>
           </div>
         </div>
         <div className="review-description">
           {extended ? (
-            <p>{review.description}</p>
+            <p>{review.review_text}</p>
           ) : (
-            <p>{reduce(review.description)}</p>
+            <p>{reduce(review.review_text)}</p>
           )}
         </div>
         <button
@@ -47,12 +50,11 @@ export const DisplayReviews = ({ review }) => {
 };
 
 DisplayReviews.propTypes = {
-  review: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
-      rating: PropTypes.number.isRequired,
-    }),
-  ).isRequired,
+  review: PropTypes.shape({
+    id: PropTypes.number,
+    full_name: PropTypes.string,
+    review_text: PropTypes.string,
+    created_at: PropTypes.string,
+    rating: PropTypes.string,
+  }).isRequired,
 };

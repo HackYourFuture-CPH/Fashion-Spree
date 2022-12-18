@@ -39,7 +39,6 @@ export const ProductView = () => {
               bigImage={view.bigImage}
             />
           </view.ProductViewImageWrapper>
-          <view.ProductViewReviewsWrapper />
           <view.ProductViewDescription>
             {product.map((prod) => (
               <view.ProductDescription
@@ -48,12 +47,13 @@ export const ProductView = () => {
                 rating={5}
               />
             ))}
-            <view.DropdownGroup />
+            <view.DropdownGroup productId={Number(id)} />
             <view.ProductViewButtons />
           </view.ProductViewDescription>
+
         </view.ProductViewWrapper>
 
-        <view.RelatedItems category="jeans" />
+        <view.RelatedItems category="shoes" />
       </view.ProductContainer>
       <div className="product-view-blank">&nbsp;</div>
     </div>

@@ -37,19 +37,21 @@ const productsController = require('../controllers/products.controller');
 router.get('/', (req, res, next) => {
   if (req.query.category) {
     productsController
-      .getProductsByCategory(req.query.category)
+      .getProductsByCategory(
+        req.query.category,
+        req.query.limit,
+        req.query.offset,
+      )
       .then((result) => res.json(result))
       .catch(next);
-  }
-  if (req.query.search) {
+  } else if (req.query.search) {
     productsController
       .getProductBySearch(req.query.search, res)
       .then((result) => res.json(result))
       .catch((error) => {
         next(error);
       });
-  }
-  if (Object.keys(req.query).length === 0) {
+  } else {
     try {
       productsController
         .getProducts()

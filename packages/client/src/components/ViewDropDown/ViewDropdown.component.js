@@ -6,7 +6,11 @@ const ViewDropdown = ({ options, label }) => {
   const optionList =
     options.length > 0 &&
     options.map((item) => {
-      return <option value={item}>{item}</option>;
+      return (
+        <option key={item} value={item}>
+          {item}
+        </option>
+      );
     });
   return (
     <div className="view-dropdown">
