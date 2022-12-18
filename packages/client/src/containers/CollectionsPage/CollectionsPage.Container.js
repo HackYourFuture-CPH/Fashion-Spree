@@ -36,6 +36,7 @@ export const CollectionsPage = () => {
         });
     }
     fetchProducts(selectedCategory);
+
     setIsLoading(false);
   }, [selectedCategory]);
 
@@ -61,10 +62,14 @@ export const CollectionsPage = () => {
   const sortOptions = [
     'Recent Collections',
     'Alphabetically',
-    'Price ↓',
-    'Price ↑',
+    'Price Low to High',
+    'Price High to Low',
   ];
 
+  // Remain to work filteroptions
+  const filterOptions = ['Price', 'Size', 'Color', 'Reviews', 'Brand'];
+
+  // search product by name in searchbar
   useEffect(() => {
     function sortFunction(a, b) {
       if (sortOrder === '') {
@@ -76,27 +81,20 @@ export const CollectionsPage = () => {
       if (sortOrder === 'Alphabetically') {
         return a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1;
       }
-      if (sortOrder === 'Price ↓') {
+      if (sortOrder === 'Price Low to High') {
         return Number(a.price) > Number(b.price) ? 1 : -1;
       }
-      if (sortOrder === 'Price ↑') {
+      if (sortOrder === 'Price High to Low') {
         return Number(a.price) < Number(b.price) ? 1 : -1;
       }
       return 0;
     }
-    filteredProducts.sort(sortFunction);
-  }, [filteredProducts, sortOrder]);
-
-  // Remain to work filteroptions
-  const filterOptions = ['Price', 'Size', 'Color', 'Reviews', 'Brand'];
-
-  // search product by name in searchbar
-  useEffect(() => {
+    products.sort(sortFunction);
     const filterResults = products.filter((product) =>
       product.name.toLowerCase().includes(searchInput.toLowerCase()),
     );
     setFilteredProducts(filterResults);
-  }, [searchInput, products]);
+  }, [searchInput, products, sortOrder]);
 
   const toggleFavorite = (id, title, price, event) => {
     const newFavoriteItem = {

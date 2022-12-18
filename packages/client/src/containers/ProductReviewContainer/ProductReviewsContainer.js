@@ -1,71 +1,39 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { ProductReviews } from '../../components/ProductReviews/ProductReviews.component';
+import { apiURL } from '../../apiURL';
+import PropTypes from 'prop-types';
 
-export const ProductReviewsContainer = () => {
-  const reviews = [
-    {
-      id: 1,
-      name: 'Sophie Williams',
-      description: `I read all the reviews on here to get an idea of what
-      size I needed. I'm 140 and 5'4". Not curvy. Thought I
-      should get 29 or 30. Based on reviews, I got a size 27.They were the quality, stiff jean material you used to
-      get years ago. Since buying them, and wearing and
-      washing them though, they have softened up
-      drastically! `,
-      rating: 4.5,
-    },
+export const ProductReviewsContainer = ({ id }) => {
+  const [reviews, setReviews] = useState([]);
+  const [isEmpty, setIsEmpty] = useState(true);
 
-    {
-      id: 2,
-      name: 'Vie',
-      description: `I read all the reviews on here to get an idea of what
-      size I needed. I'm 140 and 5'4". Not curvy. Thought I
-      should get 29 or 30. Based on reviews, I got a size 27.They were the quality, stiff jean material you used to
-      get years ago. Since buying them, and wearing and
-      washing them though, they have softened up
-      drastically! `,
-      rating: 4.5,
-    },
+  useEffect(() => {
+    const fetchReviewsByProductId = async () => {
+      const response = await fetch(`${apiURL()}/reviews?productId=${id}`);
+      const reviewsData = await response.json();
 
-    {
-      id: 3,
-      name: 'Rostyslav',
-      description: `I read all the reviews on here to get an idea of what
-      size I needed. I'm 140 and 5'4". Not curvy. Thought I
-      should get 29 or 30. Based on reviews, I got a size 27.They were the quality, stiff jean material you used to
-      get years ago. Since buying them, and wearing and
-      washing them though, they have softened up
-      drastically! `,
-      rating: 3.5,
-    },
+      /* eslint-disable no-console */
+      console.log(reviewsData);
 
-    {
-      id: 4,
-      name: 'Shravani',
-      description: `I read all the reviews on here to get an idea of what
-      size I needed. I'm 140 and 5'4". Not curvy. Thought I
-      should get 29 or 30. Based on reviews, I got a size 27.They were the quality, stiff jean material you used to
-      get years ago. Since buying them, and wearing and
-      washing them though, they have softened up
-      drastically! `,
-      rating: 3.5,
-    },
+      if (typeof reviewsData === 'string') {
+        setIsEmpty(true);
+      } else {
+        setReviews(reviewsData);
+        setIsEmpty(false);
+      }
+    };
 
-    {
-      id: 5,
-      name: 'Shravya',
-      description: `I read all the reviews on here to get an idea of what
-      size I needed. I'm 140 and 5'4". Not curvy. Thought I
-      should get 29 or 30. Based on reviews, I got a size 27.They were the quality, stiff jean material you used to
-      get years ago. Since buying them, and wearing and
-      washing them though, they have softened up
-      drastically! `,
-      rating: 0.5,
-    },
-  ];
+    fetchReviewsByProductId();
+  }, [id]);
+
   return (
     <div>
-      <ProductReviews AllReviews={reviews} />
+      {isEmpty ? 'No reviews' : <ProductReviews AllReviews={reviews} />}
+      {/* This is a very temporary solution, we need to change endpoint to be more useful. Error message must have the same shape as a response with data  */}
     </div>
   );
+};
+
+ProductReviewsContainer.propTypes = {
+  id: PropTypes.string.isRequired,
 };
