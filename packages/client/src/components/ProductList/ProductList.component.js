@@ -6,7 +6,7 @@ import ProductCard from '../ProductCard/ProductCard.component';
 export default function ProductList({ isLoading, products, filteredProducts }) {
   const ListOfProducts = filteredProducts.map((product) => {
     return (
-      <div className="product">
+      <div className="product" key={Math.random()}>
         <ProductCard title={product.name} price={product.price} />
       </div>
     );
@@ -25,6 +25,8 @@ export default function ProductList({ isLoading, products, filteredProducts }) {
 }
 ProductList.propTypes = {
   isLoading: PropTypes.bool.isRequired,
-  products: PropTypes.arrayOf(PropTypes.string).isRequired,
-  filteredProducts: PropTypes.arrayOf(PropTypes.string).isRequired,
+  products: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object]))
+    .isRequired,
+  filteredProducts: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object]))
+    .isRequired,
 };

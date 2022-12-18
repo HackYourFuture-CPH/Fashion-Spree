@@ -33,6 +33,6 @@ const ProductCard = ({ title, price }) => {
 
 ProductCard.propTypes = {
   title: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
+  price: PropTypes.string.isRequired,
 };
 export default ProductCard;
