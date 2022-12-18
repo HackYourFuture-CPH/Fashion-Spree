@@ -2,7 +2,11 @@ import React from 'react';
 import './CartSelectedProduct.styles.css';
 import PropTypes from 'prop-types';
 
-export default function CartSelectedProduct({ product, handleChange }) {
+export default function CartSelectedProduct({
+  product,
+  handleChange,
+  handleRemove,
+}) {
   return (
     <div className="cart-selected-wrapper">
       <div className="cart-selected-blank">
@@ -26,7 +30,9 @@ export default function CartSelectedProduct({ product, handleChange }) {
         <span>Dkk 199,99</span>
       </div>
       <div className="cart-selected-action">
-        <button type="button">Remove</button>
+        <button type="button" onClick={() => handleRemove(product)}>
+          Remove
+        </button>
       </div>
     </div>
   );
@@ -40,4 +46,5 @@ CartSelectedProduct.propTypes = {
     quantity: PropTypes.number.isRequired,
   }).isRequired,
   handleChange: PropTypes.func.isRequired,
+  handleRemove: PropTypes.func.isRequired,
 };

@@ -12,7 +12,10 @@ export default function CartTable({ products, setProducts }) {
     });
     setProducts(productCart);
   };
-
+  const handleRemove = (product) => {
+    const filtered = products.filter((item) => item.id !== product.id);
+    setProducts(filtered);
+  };
   return (
     <div className="cart-table-wrapper">
       <div className="cart-table-headers">
@@ -24,11 +27,13 @@ export default function CartTable({ products, setProducts }) {
         <div className="cart-table-action">Action</div>
       </div>
       <div className="cart-table-products">
+        {products.length === 0 && <span>Your cart is empty</span>}
         {products.map((product) => (
           <CartSelectedProduct
             key={product.id}
             product={product}
             handleChange={handleChange}
+            handleRemove={handleRemove}
           />
         ))}
       </div>
