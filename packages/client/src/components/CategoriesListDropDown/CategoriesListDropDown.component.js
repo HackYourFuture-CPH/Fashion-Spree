@@ -18,7 +18,7 @@ const DropDownView = ({
     options.length > 0 &&
     options.map((item) => {
       return (
-        <option key={Math.random()} value={item}>
+        <option key={item.toString()} value={item}>
           {item}
         </option>
       );
@@ -39,8 +39,12 @@ const DropDownView = ({
 DropDownView.propTypes = {
   options: PropTypes.arrayOf(PropTypes.string).isRequired,
   lable: PropTypes.string.isRequired,
-  onSelect: PropTypes.func.isRequired,
-  showFilterIcon: PropTypes.bool.isRequired,
+  onSelect: PropTypes.func,
+  showFilterIcon: PropTypes.bool,
+};
+DropDownView.defaultProps = {
+  onSelect: undefined,
+  showFilterIcon: false,
 };
 
 export default DropDownView;
