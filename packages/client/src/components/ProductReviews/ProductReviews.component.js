@@ -22,7 +22,7 @@ export const ProductReviews = ({ AllReviews }) => {
 
       <Modal title="Reviews" open={openModal} toggle={toggleModal}>
         {AllReviews.map((review) => {
-          return <DisplayReviews review={review} />;
+          return <DisplayReviews key={review.id} review={review} />;
         })}
       </Modal>
     </div>
@@ -33,27 +33,10 @@ ProductReviews.propTypes = {
   AllReviews: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number,
-      name: PropTypes.string,
-      description: PropTypes.string,
-      rating: PropTypes.number,
+      full_name: PropTypes.string,
+      review_text: PropTypes.string,
+      created_at: PropTypes.string,
+      rating: PropTypes.string,
     }),
-  ),
-};
-
-ProductReviews.defaultProps = {
-  AllReviews: [
-    {
-      id: 1,
-      name: 'Sophie Williams',
-      description: 'Good',
-      rating: 4.5,
-    },
-
-    {
-      id: 2,
-      name: 'Sophie Williams',
-      description: 'Bad',
-      rating: 0.5,
-    },
-  ],
+  ).isRequired,
 };
