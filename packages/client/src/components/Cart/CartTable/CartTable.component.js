@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './CartTable.styles.css';
 import CartSelectedProduct from '../CartSelectedProduct/CartSelectedProduct.component';
 import PropTypes from 'prop-types';
 
 export default function CartTable({ products, setProducts }) {
+  const [selected, setSelected] = useState(false);
   const handleChange = (product) => {
     const productCart = [...products];
     productCart.forEach((row, index) => {
       if (productCart[index].id === product.id)
         productCart[index].selected = !productCart[index].selected;
     });
+    setSelected(!selected);
     setProducts(productCart);
   };
   const handleRemove = (product) => {

@@ -16,21 +16,18 @@ export const ShoppingCartPage = () => {
       description: 'Low waist Jeans',
       amount: 199.99,
       quantity: 1,
-      selected: false,
     },
     {
       id: 2,
       description: 'High waist Jeans',
       amount: 199.99,
       quantity: 1,
-      selected: false,
     },
     {
       id: 3,
       description: 'Slim fit Jeans',
       amount: 199.99,
       quantity: 1,
-      selected: false,
     },
   ]);
 
