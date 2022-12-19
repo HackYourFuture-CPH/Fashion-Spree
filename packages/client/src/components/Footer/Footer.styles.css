@@ -1,15 +1,14 @@
 .footer-container-main {
-  bottom: 0;
   justify-content: center;
   background-color: #e4c1b1;
   width: 100%;
-  margin: 0 auto;
   color: black;
   position: relative;
-  padding-top: 30px;
-  min-height: 30vh;
-  margin-top: auto;
+  right: 0;
+  left: 0;
+  bottom: 0;
 }
+
 .main-footer {
   width: 800px;
   margin: 0 auto;
