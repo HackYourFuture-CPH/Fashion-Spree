@@ -4,7 +4,6 @@ import { useUserContext } from '../../userContext';
 import './Signup.styles.css';
 import SignupForm from './SignupForm';
 import validateForm from '../../utils/validateForm';
-import './Login.css';
 
 function Signup() {
   const { user, loading, registerWithEmailAndPassword, signInWithGoogle } =
