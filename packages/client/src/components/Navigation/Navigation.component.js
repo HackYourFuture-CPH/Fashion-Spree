@@ -8,14 +8,14 @@ import { ImCross } from 'react-icons/im';
 
 export const Navigation = () => {
   const { user, name, logout } = useUserContext();
-  const [showLinks, setShowLinks] = useState(false);
+  const [showMobileLinks, setShowMobileLinks] = useState(false);
 
   return (
     <div className="navigation-container">
       <div className="navigation">
         <div className="nav">
           <span className="navbar-brand">Fashion Spree</span>
-          <div className="links" id={showLinks ? 'links-mobile' : ''}>
+          <div className="links" id={showMobileLinks ? 'links-mobile' : ''}>
             <NavLink to="/" className="home">
               Home
             </NavLink>
@@ -54,11 +54,11 @@ export const Navigation = () => {
             )}
           </div>
           <button
-            onClick={() => setShowLinks(!showLinks)}
-            type="submit"
+            onClick={() => setShowMobileLinks(!showMobileLinks)}
+            type="button"
             className="mobile-menu-icon"
           >
-            {showLinks ? <ImCross /> : <FaBars />}
+            {showMobileLinks ? <ImCross /> : <FaBars />}
           </button>
         </div>
       </div>
