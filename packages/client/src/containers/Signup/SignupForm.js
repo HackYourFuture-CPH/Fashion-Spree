@@ -1,39 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Login.css';
-import validateForm from '../../utils/validateForm';
+import PropTypes from 'prop-types';
 
-const SignupForm = () => {
-  const [formValues, setFormValues] = useState({
-    fullname: '',
-    email: '',
-    password: '',
-  });
-  const [formErrors, setFormErrors] = useState({});
-  const [isSubmit, setIsSubmit] = useState(false);
-
-  const handleChange = (e) => {
-    setFormValues({ ...formValues, [e.target.name]: e.target.value });
-  };
-
-  const handleValidation = () => {
-    setFormErrors(validateForm(formValues));
-  };
-
-  const cleanUpValidation = () => {
-    setFormErrors({
-      fullname: '',
-      email: '',
-      password: '',
-    });
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (Object.keys(formErrors).length === 0) {
-      setIsSubmit(true);
-    }
-  };
-
+const SignupForm = ({
+  handleChange,
+  handleValidation,
+  cleanUpValidation,
+  formValues,
+  formErrors,
+}) => {
   return (
     <form className="signup-form">
       <input
@@ -73,16 +48,39 @@ const SignupForm = () => {
       {formErrors.password && (
         <p className="form-erros">{formErrors.password}</p>
       )}
+      {/*
       <button
-        onClick={handleSubmit}
+        /* onClick={handleSubmit}
+        onClick={register}
         className="signup-submit-button"
         type="submit"
       >
         Sign up
       </button>
-      {isSubmit && <p className="success-message">Thank you for Signing up</p>}
+      if I use button here - firebase doesn't work... */}
     </form>
   );
 };
 
 export default SignupForm;
+
+SignupForm.propTypes = {
+  handleChange: PropTypes.func.isRequired,
+  handleValidation: PropTypes.func.isRequired,
+  cleanUpValidation: PropTypes.func.isRequired,
+  formValues: PropTypes.shape({
+    fullname: PropTypes.string,
+    email: PropTypes.string,
+    password: PropTypes.string,
+  }),
+  formErrors: PropTypes.shape({
+    fullname: PropTypes.string,
+    email: PropTypes.string,
+    password: PropTypes.string,
+  }),
+};
+
+SignupForm.defaultProps = {
+  formErrors: '',
+  formValues: '',
+};

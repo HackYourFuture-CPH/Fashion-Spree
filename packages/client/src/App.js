@@ -12,7 +12,7 @@ import Signup from './containers/Signup/Signup.container';
 import Reset from './containers/Reset/Reset.container';
 import { AboutUs } from './containers/AboutUs.container';
 import { ContactUs } from './containers/ContactUs.container';
-import { Login as LoginHaile } from './containers/Login.container/Login';
+import { Login as LoginHaile } from './containers/Signup/Login';
 import { CollectionsPage } from './containers/CollectionsPage/CollectionsPage.Container';
 import { ShoppingCartPage } from './containers/ShoppingCartPage/ShoppingCartPage.container';
 import { FavoritesPage } from './containers/FavoritesPage/FavoritesPage.container';

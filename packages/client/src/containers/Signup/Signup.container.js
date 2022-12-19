@@ -1,62 +1,104 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useUserContext } from '../../userContext';
 import './Signup.styles.css';
+import SignupForm from './SignupForm';
+import validateForm from '../../utils/validateForm';
+import './Login.css';
 
 function Signup() {
   const { user, loading, registerWithEmailAndPassword, signInWithGoogle } =
     useUserContext();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [name, setName] = useState('');
+  const [formValues, setFormValues] = useState({
+    fullname: '',
+    email: '',
+    password: '',
+  });
+  const [formErrors, setFormErrors] = useState({});
   const navigate = useNavigate();
-  const register = () => {
-    /* if (!name) alert('Please enter name'); add some error message & validation */
-    registerWithEmailAndPassword(name, email, password);
+
+  const handleChange = (e) => {
+    setFormValues({ ...formValues, [e.target.name]: e.target.value });
+  };
+
+  const handleValidation = () => {
+    setFormErrors(validateForm(formValues));
+  };
+
+  const cleanUpValidation = () => {
+    setFormErrors({
+      fullname: '',
+      email: '',
+      password: '',
+    });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (Object.keys(formErrors).length === 0) {
+      registerWithEmailAndPassword(
+        formValues.fullname,
+        formValues.email,
+        formValues.password,
+      );
+    }
   };
   useEffect(() => {
     if (loading) return;
     if (user) navigate('/');
   }, [user, loading, navigate]);
   return (
-    <div className="register">
-      <div className="register__container">
-        <input
-          type="text"
-          className="register__textBox"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="Full Name"
+    <main>
+      <img
+        className="signup-body-img"
+        src="../../assets/images/signup-body-img.png"
+        alt="woman dress and styles art"
+      />
+      <div className="signup-section">
+        <h1 className="signup-text">Sign Up</h1>
+        <div className="signin-with-btn">
+          <button
+            type="button"
+            className="google-signin-btn"
+            onClick={signInWithGoogle}
+          >
+            <img
+              className="signin-icons"
+              src="../../assets/icons/Google.png"
+              alt="google logo"
+            />
+            sign up with Google
+          </button>
+          <button type="button" className="facebook-signin-btn">
+            <img
+              className="signin-icons"
+              src="../../assets/icons/facebook.png"
+              alt=" facebooklogo"
+            />
+            sign up with Facebook
+          </button>
+        </div>
+        <p className="or-text">-OR-</p>
+        <SignupForm
+          handleChange={handleChange}
+          handleValidation={handleValidation}
+          cleanUpValidation={cleanUpValidation}
+          formValues={formValues}
+          formErrors={formErrors}
         />
-        <input
-          type="text"
-          className="register__textBox"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="E-mail Address"
-        />
-        <input
-          type="password"
-          className="register__textBox"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-        />
-        <button type="submit" className="register__btn" onClick={register}>
-          Signup
-        </button>
         <button
           type="submit"
-          className="register__btn register__google"
-          onClick={signInWithGoogle}
+          className="signup-submit-button"
+          onClick={handleSubmit}
         >
-          Signup with Google
+          Signup
         </button>
-        <div>
-          Already have an account? <Link to="/login">Login</Link> now.
-        </div>
+        <br />
+        <span className="dont-want-signup">
+          Dont want to Sign Up? Continue as a Guest
+        </span>
       </div>
-    </div>
+    </main>
   );
 }
 export default Signup;
