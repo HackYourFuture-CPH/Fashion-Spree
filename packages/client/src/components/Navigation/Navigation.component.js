@@ -3,8 +3,8 @@ import { NavLink, Link } from 'react-router-dom';
 import { useUserContext } from '../../userContext';
 import './Navigation.styles.css';
 import { Button } from '../Button/Button.component';
-import { FaBars } from 'react-icons/fa';
-import { ImCross } from 'react-icons/im';
+import close from '../../assets/icons/close_round.png';
+import menu from '../../assets/icons/Menu.png';
 
 export const Navigation = () => {
   const { user, name, logout } = useUserContext();
@@ -58,7 +58,11 @@ export const Navigation = () => {
             type="button"
             className="mobile-menu-icon"
           >
-            {showMobileLinks ? <ImCross /> : <FaBars />}
+            {showMobileLinks ? (
+              <img className="icon-hamburger" src={close} alt="close round" />
+            ) : (
+              <img className="icon-hamburger" src={menu} alt="menu" />
+            )}
           </button>
         </div>
       </div>
