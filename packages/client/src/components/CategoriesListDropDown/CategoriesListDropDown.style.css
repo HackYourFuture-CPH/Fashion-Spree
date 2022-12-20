@@ -11,7 +11,7 @@
   font-weight: 650;
   position: relative;
   color: #212121cc;
-  background-color: rgba(228, 193, 177, 1);
+  background-color: inherit;
   margin-top: 10px;
 }
 .all-filters {
