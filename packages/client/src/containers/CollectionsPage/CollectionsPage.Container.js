@@ -4,6 +4,9 @@ import './CollectionsPage.style.css';
 import DropDownView from '../../components/CategoriesListDropDown/CategoriesListDropDown.component';
 import SearchInput from '../../components/SearchInput/SearchInput.component';
 import { apiURL } from '../../apiURL';
+import { getLocalStorage, setLocalStorage } from '../../utils/storageHelpers';
+
+const favoriteProductsStorageKey = 'favorite_products';
 
 export const CollectionsPage = () => {
   const [products, setProducts] = useState([]);
@@ -14,6 +17,10 @@ export const CollectionsPage = () => {
   const [categories, setCategories] = useState([]);
   const [searchInput, setSearchInput] = useState('');
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [favoriteProducts, setFavoriteProducts] = useState(
+    getLocalStorage(favoriteProductsStorageKey) || [],
+  );
 
   // fetching Api by products or products by category
   useEffect(() => {
@@ -29,6 +36,7 @@ export const CollectionsPage = () => {
         });
     }
     fetchProducts(selectedCategory);
+
     setIsLoading(false);
   }, [selectedCategory]);
 
@@ -50,14 +58,18 @@ export const CollectionsPage = () => {
       element.name.slice(1).toLowerCase(),
   );
 
-  // sortFunction for sort products in diffrent orders
+  // sortFunction for sort products in different orders
   const sortOptions = [
     'Recent Collections',
     'Alphabetically',
-    'Price ↓',
-    'Price ↑',
+    'Price Low to High',
+    'Price High to Low',
   ];
 
+  // Remain to work filteroptions
+  const filterOptions = ['Price', 'Size', 'Color', 'Reviews', 'Brand'];
+
+  // search product by name in searchbar
   useEffect(() => {
     function sortFunction(a, b) {
       if (sortOrder === '') {
@@ -69,27 +81,48 @@ export const CollectionsPage = () => {
       if (sortOrder === 'Alphabetically') {
         return a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1;
       }
-      if (sortOrder === 'Price ↓') {
+      if (sortOrder === 'Price Low to High') {
         return Number(a.price) > Number(b.price) ? 1 : -1;
       }
-      if (sortOrder === 'Price ↑') {
+      if (sortOrder === 'Price High to Low') {
         return Number(a.price) < Number(b.price) ? 1 : -1;
       }
       return 0;
     }
-    filteredProducts.sort(sortFunction);
-  }, [filteredProducts, sortOrder]);
-
-  // Remain to work filteroptions
-  const filterOptions = ['Price', 'Size', 'Color', 'Reviews', 'Brand'];
-
-  // search product by name in searchbar
-  useEffect(() => {
+    products.sort(sortFunction);
     const filterResults = products.filter((product) =>
       product.name.toLowerCase().includes(searchInput.toLowerCase()),
     );
     setFilteredProducts(filterResults);
-  }, [searchInput, products]);
+  }, [searchInput, products, sortOrder]);
+
+  const toggleFavorite = (id, title, price, event) => {
+    const newFavoriteItem = {
+      id,
+      title,
+      price,
+    };
+
+    const inFavoriteList = favoriteProducts.some((e) => {
+      return e.id === id;
+    });
+
+    if (!inFavoriteList) {
+      setFavoriteProducts((product) => {
+        const newList = [...product, newFavoriteItem];
+        setLocalStorage(favoriteProductsStorageKey, newList);
+        return newList;
+      });
+    } else if (inFavoriteList) {
+      const filteredFavorite = favoriteProducts.filter(
+        (item) => item.id !== id,
+      );
+      setFavoriteProducts(filteredFavorite);
+      setLocalStorage(favoriteProductsStorageKey, filteredFavorite);
+    }
+
+    setIsFavorite(!isFavorite);
+  };
 
   return (
     <>
@@ -122,6 +155,9 @@ export const CollectionsPage = () => {
           isLoading={isLoading}
           products={products}
           filteredProducts={filteredProducts}
+          toggleFavorite={toggleFavorite}
+          isFavorite={isFavorite}
+          favoriteProducts={favoriteProducts}
         />
       </div>
     </>

@@ -23,20 +23,22 @@ function App() {
       <Router>
         <UserProvider>
           <Navigation />
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route exact path="/about-us" element={<AboutUs />} />
-            <Route exact path="/contact-us" element={<ContactUs />} />
-            <Route exact path="/loginHaile" element={<LoginHaile />} />
-            <Route exact path="/loginAndrii" element={<LoginAndrii />} />
-            <Route exact path="/signup" element={<Signup />} />
-            <Route exact path="/reset" element={<Reset />} />
-            <Route path="*" element={<PageNotFound />} />
-            <Route path="/products/:id" element={<ProductView />} />
-            <Route path="/collections" element={<CollectionsPage />} />
-            <Route path="/shopping-cart" element={<ShoppingCartPage />} />
-            <Route path="/favorites" element={<FavoritesPage />} />
-          </Routes>
+          <div className="page-outer-wrapper">
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route exact path="/about-us" element={<AboutUs />} />
+              <Route exact path="/contact-us" element={<ContactUs />} />
+              <Route exact path="/loginHaile" element={<LoginHaile />} />
+              <Route exact path="/loginAndrii" element={<LoginAndrii />} />
+              <Route exact path="/signup" element={<Signup />} />
+              <Route exact path="/reset" element={<Reset />} />
+              <Route path="*" element={<PageNotFound />} />
+              <Route path="/products/:id" element={<ProductView />} />
+              <Route path="/collections" element={<CollectionsPage />} />
+              <Route path="/shopping-cart" element={<ShoppingCartPage />} />
+              <Route path="/favorites" element={<FavoritesPage />} />
+            </Routes>
+          </div>
           <Footer />
         </UserProvider>
       </Router>
