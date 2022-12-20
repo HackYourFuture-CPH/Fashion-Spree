@@ -5,7 +5,7 @@ import './Navigation.styles.css';
 import { Button } from '../Button/Button.component';
 
 export const Navigation = () => {
-  const { user, name, logout } = useUserContext();
+  const { user, logout } = useUserContext();
 
   return (
     <div className="navigation-container">
@@ -27,8 +27,27 @@ export const Navigation = () => {
           {user ? (
             <div className="logged-in-container">
               <div className="logged-in-text">
-                <div>{name}</div>
-                <div>{user.email}</div>
+                <Link to="/favorites">
+                  <img
+                    className="icon-login"
+                    src="../../assets/icons/favorite.png"
+                    alt="favorites"
+                  />
+                </Link>
+                <Link to="/shopping-cart">
+                  <img
+                    className="icon-login"
+                    src="../../assets/icons/shopping.png"
+                    alt="shopping"
+                  />
+                </Link>
+                <Link>
+                  <img
+                    className="icon-login"
+                    src="../../assets/icons/user.png"
+                    alt="user"
+                  />
+                </Link>
               </div>
               <div className="logout-button-container">
                 <Button
