@@ -3,6 +3,9 @@ import { NavLink, Link } from 'react-router-dom';
 import { useUserContext } from '../../userContext';
 import './Navigation.styles.css';
 import { Button } from '../Button/Button.component';
+import favorites from '../../assets/icons/Favorite.png';
+import userLogin from '../../assets/icons/user.png';
+import shoppingCart from '../../assets/icons/shopping.png';
 
 export const Navigation = () => {
   const { user, logout } = useUserContext();
@@ -28,25 +31,17 @@ export const Navigation = () => {
             <div className="logged-in-container">
               <div className="logged-in-text">
                 <Link to="/favorites">
-                  <img
-                    className="icon-login"
-                    src="../../assets/icons/favorite.png"
-                    alt="favorites"
-                  />
+                  <img className="icon-login" src={favorites} alt="favorites" />
                 </Link>
                 <Link to="/shopping-cart">
                   <img
                     className="icon-login"
-                    src="../../assets/icons/shopping.png"
+                    src={shoppingCart}
                     alt="shopping"
                   />
                 </Link>
                 <Link>
-                  <img
-                    className="icon-login"
-                    src="../../assets/icons/user.png"
-                    alt="user"
-                  />
+                  <img className="icon-login" src={userLogin} alt="user" />
                 </Link>
               </div>
               <div className="logout-button-container">
