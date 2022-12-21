@@ -40,7 +40,7 @@ export const Navigation = () => {
                     alt="shopping"
                   />
                 </Link>
-                <Link>
+                <Link to="/">
                   <img className="icon-login" src={userLogin} alt="user" />
                 </Link>
               </div>
