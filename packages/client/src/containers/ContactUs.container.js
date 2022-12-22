@@ -2,23 +2,31 @@ import React, { useState } from 'react';
 import './ContactUs.styles.css';
 import TextFormInput from '../components/Input/TextFormInput.component';
 import EmailFormInput from '../components/Input/EmailFormInput.component';
+import useInputValidation from '../utils/hooks/useInputValidation';
 
 export const ContactUs = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
-  const [isSubmit, setIsSubmit] = useState(false);
-  const formErrors = '';
+  const [validForm, setValidForm] = useState(false);
+  const [invalidForm, setInvalidForm] = useState(false);
+  const [name, nameError, validateName] = useInputValidation('fullname');
+  const [email, emailError, validateEmail] = useInputValidation('email');
+  const [message, messageError, validateMessage] =
+    useInputValidation('message');
 
   const handleSubmit = (event) => {
     event.preventDefault();
     if (
-      formErrors.length === 0 &&
-      message.length > 5 &&
-      name.length > 0 &&
-      email.length > 0
+      nameError ||
+      emailError ||
+      messageError ||
+      name.length === 0 ||
+      email.length === 0 ||
+      message.length === 0
     ) {
-      setIsSubmit(true);
+      setInvalidForm(true);
+      setValidForm(false);
+    } else {
+      setInvalidForm(false);
+      setValidForm(true);
     }
   };
 
@@ -44,27 +52,26 @@ export const ContactUs = () => {
           <p className="or">-OR-</p>
           <form>
             <TextFormInput
+              type="text"
               value={name}
-              setvalue={setName}
-              name="fullname"
-              placeholder="Full name"
+              placeholder="Fullname"
+              onChange={validateName}
+              error={nameError}
             />
-            ;
             <EmailFormInput
+              placeholder="Email"
               value={email}
               type="email"
-              setvalue={setEmail}
-              name="email"
-              placeholder="Email"
+              onChange={validateEmail}
+              error={emailError}
             />
             <TextFormInput
-              value={message}
               type="text"
-              setvalue={setMessage}
-              name="message"
+              value={message}
               placeholder="Message"
+              onChange={validateMessage}
+              error={messageError}
             />
-            ;
             <button
               className="contactUs-btn"
               onClick={handleSubmit}
@@ -72,17 +79,10 @@ export const ContactUs = () => {
             >
               Send Message
             </button>
-            ;
-            {isSubmit ? (
-              <div className="success">
-                <img
-                  className="icon-success"
-                  src="../../assets/icons/success.png"
-                  alt="success sign"
-                />
-                <p className="message-success">Message sent successfully</p>
-              </div>
-            ) : null}
+            {validForm && (
+              <p className="success-message">Your message has been sent</p>
+            )}
+            {invalidForm && <p className="error-message">Form is not valid</p>}
           </form>
           <h3>Follow or connect with us</h3>
           <div className="media-icons">

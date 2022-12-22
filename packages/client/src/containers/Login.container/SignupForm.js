@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './Login.css';
 import TextFormInput from '../../components/Input/TextFormInput.component';
+import EmailFormInput from '../../components/Input/EmailFormInput.component';
+import PasswordFormInput from '../../components/Input/PasswordFormInput.component';
 import useInputValidation from '../../utils/hooks/useInputValidation';
 
 const SignupForm = () => {
@@ -38,14 +40,14 @@ const SignupForm = () => {
         onChange={validateName}
         error={nameError}
       />
-      <TextFormInput
+      <EmailFormInput
         placeholder="Email"
         value={email}
         type="email"
         onChange={validateEmail}
         error={emailError}
       />
-      <TextFormInput
+      <PasswordFormInput
         placeholder="Password"
         value={password}
         type="password"

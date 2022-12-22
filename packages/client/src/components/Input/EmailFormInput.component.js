@@ -1,28 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-/* import validateForm from '../../utils/validateForm';
- */ import './FormInput.style.css';
+import './FormInput.style.css';
 
-const EmailFormInput = ({ value, error, onChange }) => {
-  /*  const [formErrors, setFormErrors] = useState('');
-
-  const handleChange = (e) => {
-    setvalue(e.target.value);
-  };
-
-  const handleValidation = () => {
-    setFormErrors(validateForm(value, name, type));
-  };
-
-  const cleanUpValidation = () => {
-    setFormErrors('');
-  }; */
+const EmailFormInput = ({ value, placeholder, error, onChange }) => {
   return (
     <div className="input-wrapper">
-      {/* {label && <label>{label}</label>} */}
-
       <input
         className="form-input"
+        placeholder={placeholder}
         type="email"
         value={value}
         onChange={(e) => {
@@ -36,6 +21,7 @@ const EmailFormInput = ({ value, error, onChange }) => {
 
 EmailFormInput.propTypes = {
   value: PropTypes.string.isRequired,
+  placeholder: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   error: PropTypes.string.isRequired,
 };

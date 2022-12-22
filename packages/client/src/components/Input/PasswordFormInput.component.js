@@ -2,27 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './FormInput.style.css';
 
-const PasswordFormInput = ({ value, error, onChange }) => {
-  /*   const [formErrors, setFormErrors] = useState('');
-
-  const handleChange = (e) => {
-    setvalue(e.target.value);
-  };
-
-  const handleValidation = () => {
-    setFormErrors(validateForm(value, name, type));
-  };
-
-  const cleanUpValidation = () => {
-    setFormErrors(''); 
-  }; */
-
+const PasswordFormInput = ({ value, placeholder, error, onChange }) => {
   return (
     <div className="input-wrapper">
-      {/*       {label && <label>{label}</label>}
-       */}
       <input
         className="form-input"
+        placeholder={placeholder}
         type="password"
         value={value}
         onChange={(e) => {
@@ -36,6 +21,7 @@ const PasswordFormInput = ({ value, error, onChange }) => {
 
 PasswordFormInput.propTypes = {
   value: PropTypes.string.isRequired,
+  placeholder: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   error: PropTypes.string.isRequired,
 };
