@@ -1,58 +1,32 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import validateForm from '../../utils/validateForm';
 import './FormInput.style.css';
 
-const TextFormInput = ({ value, type, setvalue, name, label, placeholder }) => {
-  const [formErrors, setFormErrors] = useState('');
-
-  const handleChange = (e) => {
-    setvalue(e.target.value);
-  };
-
-  const handleValidation = () => {
-    setFormErrors(validateForm(value, name, type));
-  };
-
-  const cleanUpValidation = () => {
-    setFormErrors('');
-  };
+const TextFormInput = ({ value, type, placeholder, error, onChange }) => {
   return (
     <div className="input-wrapper">
-      {label && <label>{label}</label>}
+      {/* {label && <label>{label}</label>} */}
 
       <input
         className="form-input"
-        type="text"
-        name={name}
-        value={value}
-        setvalue={setvalue}
         placeholder={placeholder}
-        onChange={handleChange}
-        onBlur={handleValidation}
-        onFocus={cleanUpValidation}
+        type={type}
+        value={value}
+        onChange={(e) => {
+          onChange(e.target.value);
+        }}
       />
-      {formErrors && <p className="error-message">{formErrors}</p>}
+      {error && <p className="error-message">{error}</p>}
     </div>
   );
 };
 
 TextFormInput.propTypes = {
-  value: PropTypes.string,
-  setvalue: PropTypes.func,
-  name: PropTypes.string,
-  label: PropTypes.string,
-  placeholder: PropTypes.string,
-  type: PropTypes.string,
-};
-
-TextFormInput.defaultProps = {
-  value: '',
-  setvalue: '',
-  name: '',
-  label: '',
-  placeholder: '',
-  type: 'text',
+  value: PropTypes.string.isRequired,
+  placeholder: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  error: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]).isRequired,
 };
 
 export default TextFormInput;

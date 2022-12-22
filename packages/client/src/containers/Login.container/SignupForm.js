@@ -1,51 +1,58 @@
 import React, { useState } from 'react';
 import './Login.css';
 import TextFormInput from '../../components/Input/TextFormInput.component';
-import EmailFormInput from '../../components/Input/EmailFormInput.component';
-import PasswordFormInput from '../../components/Input/PasswordFormInput.component';
+import useInputValidation from '../../utils/hooks/useInputValidation';
 
 const SignupForm = () => {
-  const [isSubmit, setIsSubmit] = useState(false);
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const formErrors = '';
+  const [validForm, setValidForm] = useState(false);
+  const [invalidForm, setInvalidForm] = useState(false);
+  const [name, nameError, validateName] = useInputValidation('fullname');
+  const [email, emailError, validateEmail] = useInputValidation('email');
+  const [password, passwordError, validatePassword] =
+    useInputValidation('password');
 
   const handleSubmit = (event) => {
     event.preventDefault();
     if (
-      formErrors.length === 0 &&
-      password.length > 0 &&
-      name.length > 0 &&
-      email.length > 0
+      nameError ||
+      emailError ||
+      passwordError ||
+      name.length === 0 ||
+      email.length === 0 ||
+      password.length === 0
     ) {
-      setIsSubmit(true);
+      setInvalidForm(true);
+      setValidForm(false);
+    } else {
+      setInvalidForm(false);
+      setValidForm(true);
     }
   };
 
   return (
     <form className="signup-form">
       <TextFormInput
+        type="text"
         value={name}
-        setvalue={setName}
-        name="fullname"
-        placeholder="Full name"
+        placeholder="Fullname"
+        onChange={validateName}
+        error={nameError}
       />
-      ;
-      <EmailFormInput
+      <TextFormInput
+        placeholder="Email"
         value={email}
         type="email"
-        setvalue={setEmail}
-        name="email"
-        placeholder="Email"
+        onChange={validateEmail}
+        error={emailError}
       />
-      <PasswordFormInput
+      <TextFormInput
+        placeholder="Password"
         value={password}
         type="password"
-        setvalue={setPassword}
-        name="password"
-        placeholder="Password"
+        onChange={validatePassword}
+        error={passwordError}
       />
+
       <button
         onClick={handleSubmit}
         className="signup-submit-button"
@@ -53,7 +60,8 @@ const SignupForm = () => {
       >
         Sign up
       </button>
-      {isSubmit && <p className="success-message">Thank you for Signing up</p>}
+      {validForm && <p className="success-message">Thank you for Signing up</p>}
+      {invalidForm && <p className="error-message">Form is not valid</p>}
     </form>
   );
 };

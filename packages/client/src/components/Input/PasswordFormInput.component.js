@@ -1,17 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import validateForm from '../../utils/validateForm';
 import './FormInput.style.css';
 
-const PasswordFormInput = ({
-  value,
-  type,
-  setvalue,
-  name,
-  label,
-  placeholder,
-}) => {
-  const [formErrors, setFormErrors] = useState('');
+const PasswordFormInput = ({ value, error, onChange }) => {
+  /*   const [formErrors, setFormErrors] = useState('');
 
   const handleChange = (e) => {
     setvalue(e.target.value);
@@ -22,44 +14,30 @@ const PasswordFormInput = ({
   };
 
   const cleanUpValidation = () => {
-    setFormErrors('');
-  };
+    setFormErrors(''); 
+  }; */
+
   return (
     <div className="input-wrapper">
-      {label && <label>{label}</label>}
-
+      {/*       {label && <label>{label}</label>}
+       */}
       <input
         className="form-input"
         type="password"
-        name={name}
         value={value}
-        setvalue={setvalue}
-        placeholder={placeholder}
-        onChange={handleChange}
-        onBlur={handleValidation}
-        onFocus={cleanUpValidation}
+        onChange={(e) => {
+          onChange(e.target.value);
+        }}
       />
-      {formErrors && <p className="error-message">{formErrors}</p>}
+      {error && <p className="error-message">{error}</p>}
     </div>
   );
 };
 
 PasswordFormInput.propTypes = {
-  value: PropTypes.string,
-  setvalue: PropTypes.func,
-  name: PropTypes.string,
-  label: PropTypes.string,
-  placeholder: PropTypes.string,
-  type: PropTypes.string,
-};
-
-PasswordFormInput.defaultProps = {
-  value: '',
-  setvalue: '',
-  name: '',
-  label: '',
-  placeholder: '',
-  type: 'password',
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  error: PropTypes.string.isRequired,
 };
 
 export default PasswordFormInput;
