@@ -131,17 +131,20 @@ export const CollectionsPage = () => {
           lable="Categories"
           options={categoryOptions}
           onSelect={(categoryName) => setSelectedCategory(categoryName)}
+          showFilterIcon={false}
         />
         <DropDownView
           lable="Sort By Most Recent"
           options={sortOptions}
           onSelect={(sortByName) => setSortOrder(sortByName)}
+          showFilterIcon={false}
         />
         <DropDownView
           lable="All Filter"
           options={filterOptions}
+          onSelect={() => {}}
           // onSelect={(allFilterName) => setOnSelectedAllFilter(allFilterName)}
-          showFilterIcon
+          showFilterIcon={true}
         />
       </div>
       <div>

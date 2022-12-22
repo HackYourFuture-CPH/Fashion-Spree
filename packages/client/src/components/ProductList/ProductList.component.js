@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { ProductPropType } from '../../ProductPropType';
 import './ProductList.component.css';
 import ProductCard from '../ProductCard/ProductCard.component';
 
@@ -12,7 +13,7 @@ export default function ProductList({
 }) {
   const ListOfProducts = filteredProducts.map((product) => {
     return (
-      <div className="product">
+      <div className="product" key={product.id}>
         <ProductCard
           key={product.id}
           title={product.name}
@@ -39,8 +40,8 @@ export default function ProductList({
 }
 ProductList.propTypes = {
   isLoading: PropTypes.bool.isRequired,
-  products: PropTypes.arrayOf(PropTypes.string).isRequired,
-  filteredProducts: PropTypes.arrayOf(PropTypes.string).isRequired,
+  products: PropTypes.arrayOf(ProductPropType).isRequired,
+  filteredProducts: PropTypes.arrayOf(ProductPropType).isRequired,
   toggleFavorite: PropTypes.func.isRequired,
   favoriteProducts: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
