@@ -50,7 +50,6 @@ export const ProductView = () => {
             <view.DropdownGroup productId={Number(id)} />
             <view.ProductViewButtons />
           </view.ProductViewDescription>
-
         </view.ProductViewWrapper>
 
         <view.RelatedItems category="shoes" />

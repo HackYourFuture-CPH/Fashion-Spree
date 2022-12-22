@@ -11,9 +11,9 @@ const reduce = (reviewComment) => {
     .map((sentence) => sentence.concat('.'));
 };
 
-const getDate = (rowDate) => {
-  return new Date(rowDate).toDateString();
-};
+// const getDate = (rowDate) => {
+//   return new Date(rowDate).toDateString();
+// };
 
 export const DisplayReviews = ({ review }) => {
   const [extended, setExtended] = useState(false);
@@ -26,25 +26,24 @@ export const DisplayReviews = ({ review }) => {
     <div className="display-reviews-wrapper">
       <div key={review.id}>
         <div className="reviewer-wrapper">
-            <img src={RatingStar} alt="star" />
-            <span>{review.rating}</span>
-          </div>
+          <img src={RatingStar} alt="star" />
+          <span>{review.rating}</span>
         </div>
-        <div className="review-description">
-          {extended ? (
-            <p>{review.review_text}</p>
-          ) : (
-            <p>{reduce(review.review_text)}</p>
-          )}
-        </div>
-        <button
-          type="button"
-          className="readMore-reviews"
-          onClick={expandButtonHandler}
-        >
-          Read more
-        </button>
       </div>
+      <div className="review-description">
+        {extended ? (
+          <p>{review.review_text}</p>
+        ) : (
+          <p>{reduce(review.review_text)}</p>
+        )}
+      </div>
+      <button
+        type="button"
+        className="readMore-reviews"
+        onClick={expandButtonHandler}
+      >
+        Read more
+      </button>
     </div>
   );
 };
