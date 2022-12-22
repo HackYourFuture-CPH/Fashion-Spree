@@ -38,6 +38,11 @@
   width: 24px;
 }
 
+.favorite-button {
+  border: none;
+  background: transparent;
+}
+
 .product-title {
   padding-top: 20px;
   text-align: start;

@@ -1,23 +1,50 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ViewDropdown from '../../components/ViewDropDown/ViewDropdown.component';
+import { apiURL } from '../../apiURL';
+import PropTypes from 'prop-types';
 import './DropdownGroup.Style.css';
 
-export const DropdownGroup = () => {
-  const Colors = ['Black', 'White', 'Blue', 'Half-white'];
-  const Sizes = ['Small', 'Medium', 'Large', 'XL', 'XXL'];
-  const Quantities = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+export const DropdownGroup = ({ productId }) => {
+  const [variants, setVariants] = useState([]);
+  let colors = [];
+  let sizes = [];
+  let quantities = [];
+
+  useEffect(() => {
+    const fetchVariantsByProductId = async () => {
+      const response = await fetch(`${apiURL()}/variants?product=${productId}`);
+      const variantsProductData = await response.json();
+      setVariants(variantsProductData);
+    };
+
+    fetchVariantsByProductId();
+  }, [productId, variants]);
+
+  variants.forEach((variant) => {
+    colors.push(variant.color);
+    sizes.push(variant.size);
+    quantities.push(variant.stock);
+  });
+
+  colors = [...new Set(colors)];
+  sizes = [...new Set(sizes)];
+  quantities = [...new Set(quantities)];
 
   return (
     <div className="dropdown-group-list">
       <div className="dropdown-group">
-        <ViewDropdown options={Colors} label="Color" />
+        <ViewDropdown options={colors} label="Color" />
       </div>
       <div className="dropdown-group">
-        <ViewDropdown options={Sizes} label="Size" />
+        <ViewDropdown options={sizes} label="Size" />
       </div>
       <div className="dropdown-group">
-        <ViewDropdown options={Quantities} label="Quantity" />
+        <ViewDropdown options={quantities} label="Quantity" />
       </div>
     </div>
   );
+};
+
+DropdownGroup.propTypes = {
+  productId: PropTypes.number.isRequired,
 };

@@ -4,13 +4,24 @@
   box-sizing: border-box;
 }
 
-.list-view {
+.favorite-list-view {
   margin: 50px auto;
   width: 850px;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
+  flex-direction: column;
   background-color: #e4c1b1;
+}
+
+.rendered-product {
+  justify-content: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.my-favorites {
+  font-size: 50px;
+  text-transform: uppercase;
+  margin: 40px 0;
 }
 
 @media only screen and (max-width: 768px) {
