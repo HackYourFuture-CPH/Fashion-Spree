@@ -29,7 +29,11 @@ export const CollectionsPage = () => {
       const url = `${apiURL()}/products${
         selectedCategory ? `?category=${categoryName}` : ''
       }`;
-      fetch(url)
+      fetch(url, {
+        headers: {
+          token: 'token uid',
+        },
+      })
         .then((res) => res.json())
         .then((items) => {
           setProducts(items);
@@ -66,7 +70,7 @@ export const CollectionsPage = () => {
     'Price High to Low',
   ];
 
-  // Remain to work filteroptions
+  // Remain to work filter options
   const filterOptions = ['Price', 'Size', 'Color', 'Reviews', 'Brand'];
 
   // search product by name in searchbar
