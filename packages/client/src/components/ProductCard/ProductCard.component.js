@@ -7,7 +7,15 @@ import StarRateIcon from '../../assets/star-rate-icon.svg';
 import BackgroundImage from '../../assets/jeans&shoes.jpg';
 import PropTypes from 'prop-types';
 
-const ProductCard = ({ id, title, price, isFavorite, toggleFavorite }) => {
+const ProductCard = ({
+  id,
+  title,
+  price,
+  isFavorite,
+  toggleFavorite,
+  toggleModal,
+  openModal,
+}) => {
   return (
     <div className="product-card-wrapper">
       <div className="product-img-wrapper">
@@ -15,13 +23,17 @@ const ProductCard = ({ id, title, price, isFavorite, toggleFavorite }) => {
         <div className="cart-favorite-wrapper">
           <img src={CartIcon} alt="Cart Icon" />
           <button
-            onClick={(event) => toggleFavorite(id, title, price, event)}
+            onClick={(event) => {
+              toggleFavorite(id, title, price, event);
+              toggleModal(openModal);
+            }}
             type="button"
             className="favorite-button"
           >
             <img
               src={isFavorite ? FullFavoriteIcon : EmptyFavoriteIcon}
               alt="Favorite Icon"
+              role="presentation"
             />
           </button>
         </div>
@@ -47,5 +59,7 @@ ProductCard.propTypes = {
   id: PropTypes.number.isRequired,
   isFavorite: PropTypes.bool.isRequired,
   toggleFavorite: PropTypes.func.isRequired,
+  toggleModal: PropTypes.func.isRequired,
+  openModal: PropTypes.bool.isRequired,
 };
 export default ProductCard;
