@@ -27,7 +27,7 @@ const favoritesController = require('../controllers/favorites.controller');
  *        description: Unexpected error.
  */
 router.get('/', (req, res, next) => {
-  const userId = 1;
+  const userId = 2;
   // TO DO : once we will add authentication I will update it
   favoritesController
     .getFavoritesByUserId(userId)

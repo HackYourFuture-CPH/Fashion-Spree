@@ -35,6 +35,8 @@ const productsController = require('../controllers/products.controller');
  *        description: Unexpected error.
  */
 router.get('/', (req, res, next) => {
+  const { token } = req.headers;
+
   if (req.query.category) {
     productsController
       .getProductsByCategory(
@@ -54,7 +56,7 @@ router.get('/', (req, res, next) => {
   } else {
     try {
       productsController
-        .getProducts()
+        .getProducts(token)
         .then((result) => res.json(result))
         .catch(next);
     } catch (error) {
