@@ -9,7 +9,7 @@ exports.seed = async function (knex) {
     {
       full_name: 'Yuliia Balandiuk',
       email: 'yuliia.balandiuk8@gmail.com',
-      uid: 'TfF0SrbO1MeFTdYa4wzv',
+      uid: 'xldO7sqxtogZ41t4z9gdcMwQFGE2',
     },
     { full_name: 'Alan Turing', email: 'alan@turing.com' },
     { full_name: 'Steve Jobs', email: 'steve@jobs.com' },
