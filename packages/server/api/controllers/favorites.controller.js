@@ -2,21 +2,25 @@ const knex = require('../../config/db');
 const HttpError = require('../lib/utils/http-error');
 
 // get by user-id
-const getFavoritesByUserId = async (userId) => {
-  if (isNaN(userId)) {
-    throw new HttpError('Id should be a number', 400);
-  }
+const getFavoritesByUserId = async (token) => {
+  const userUid = token.split(' ')[1];
+  const user = (await knex('users').where({ uid: userUid }))[0];
+
   try {
-    const favorites = await knex('favorites')
-      .join('users', { 'favorites.user_id': 'users.id' })
-      .select('*')
-      .where('user_id', '=', `${userId}`);
+    const favorites = await knex('products')
+      .select('products.*', 'favorites.id as favoritesID')
+      .leftJoin('favorites', function () {
+        this.on('products.id', '=', 'favorites.product_id');
+      })
+      .where('favorites.user_id', '=', `${user.id}`);
+
     if (favorites.length === 0) {
       throw new HttpError(
-        `There are no favorites available with this user ${userId}`,
+        `There are no favorites available with this user`,
         404,
       );
     }
+
     return favorites;
   } catch (error) {
     return error.message;
