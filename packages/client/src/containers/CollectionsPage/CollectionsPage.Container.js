@@ -16,7 +16,7 @@ export const CollectionsPage = () => {
   const [categories, setCategories] = useState([]);
   const [searchInput, setSearchInput] = useState('');
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const [isFavorite, setIsFavorite] = useState(false);
+  let isFavorite;
 
   // fetching Api by products or products by category
   useEffect(() => {
