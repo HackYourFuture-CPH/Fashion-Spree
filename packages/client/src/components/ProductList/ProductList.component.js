@@ -8,8 +8,7 @@ export default function ProductList({
   isLoading,
   products,
   filteredProducts,
-  toggleFavorite,
-  favoriteProducts,
+  // toggleFavorite,
 }) {
   const ListOfProducts = filteredProducts.map((product) => {
     return (
@@ -19,9 +18,9 @@ export default function ProductList({
           title={product.name}
           price={product.price}
           id={product.id}
-          toggleFavorite={toggleFavorite}
-          isFavorite={favoriteProducts.some((x) => x.id === product.id)}
-          favoriteProducts={favoriteProducts}
+          favoritesID={product.favoritesID}
+          // toggleFavorite={toggleFavorite}
+          isFavorite={product.favoritesID !== null}
         />
       </div>
     );
@@ -42,6 +41,5 @@ ProductList.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   products: PropTypes.arrayOf(ProductPropType).isRequired,
   filteredProducts: PropTypes.arrayOf(ProductPropType).isRequired,
-  toggleFavorite: PropTypes.func.isRequired,
-  favoriteProducts: PropTypes.arrayOf(PropTypes.string).isRequired,
+  // toggleFavorite: PropTypes.func.isRequired,
 };
