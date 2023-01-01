@@ -21,9 +21,15 @@ export const FavoritesPage = () => {
   const [searchInput, setSearchInput] = useState('');
 
   const toggleFavorite = (id, title, price, event) => {
-    const filteredFavorite = favoriteProducts.filter((item) => item.id !== id);
-    setFavoriteProducts(filteredFavorite);
-    setLocalStorage(favoriteProductsStorageKey, filteredFavorite);
+    if (toggleModal) {
+      const filteredFavorite = favoriteProducts.filter(
+        (item) => item.id !== id,
+      );
+      setFavoriteProducts(filteredFavorite);
+      setLocalStorage(favoriteProductsStorageKey, filteredFavorite);
+    } else {
+      setFavoriteProducts(favoriteProducts);
+    }
   };
 
   const filteredProducts = useMemo(() => {
@@ -64,8 +70,16 @@ export const FavoritesPage = () => {
           toggle={toggleModal}
         >
           <div>
-            <ViewPageButton label="Yes" backgroundColor="#00EF00" />
-            <ViewPageButton label="No" backgroundColor="#FF0000" />
+            <ViewPageButton
+              label="Yes"
+              backgroundColor="#00EF00"
+              onClick={toggleModal}
+            />
+            <ViewPageButton
+              label="No"
+              backgroundColor="#FF0000"
+              onClick={toggleModal}
+            />
           </div>
         </Modal>
       </div>
