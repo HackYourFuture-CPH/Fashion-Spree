@@ -9,7 +9,6 @@ import { ViewPageButton } from '../../components/ViewPageButton/ViewPageButton.c
 export const FavoritesPage = () => {
   const [openModal, setOpenModal] = useState(false);
   const toggleModal = () => {
-    // console.log('yes i have clicked');
     setOpenModal(false);
     document.body.style.overflow = 'visible';
   };
@@ -21,21 +20,14 @@ export const FavoritesPage = () => {
   const [searchInput, setSearchInput] = useState('');
 
   const toggleFavorite = (id, title, price, event) => {
-    if (toggleModal) {
-      const filteredFavorite = favoriteProducts.filter(
-        (item) => item.id !== id,
-      );
-      setFavoriteProducts(filteredFavorite);
-      setLocalStorage(favoriteProductsStorageKey, filteredFavorite);
-    } else {
-      setFavoriteProducts(favoriteProducts);
-    }
+    const filteredFavorite = favoriteProducts.filter((item) => item.id !== id);
+    setFavoriteProducts(filteredFavorite);
+    setLocalStorage(favoriteProductsStorageKey, filteredFavorite);
   };
 
   const filteredProducts = useMemo(() => {
     const trimmedKeyword = searchInput.trim();
     if (trimmedKeyword.length === 0) return favoriteProducts;
-
     return favoriteProducts.filter((product) => {
       return product.title.toLowerCase().includes(trimmedKeyword.toLowerCase());
     });
@@ -48,8 +40,7 @@ export const FavoritesPage = () => {
           title={product.title}
           price={product.price}
           id={product.id}
-          openModal={openModal}
-          toggleModal={toggleModal}
+          setOpenModal={setOpenModal}
           toggleFavorite={toggleFavorite}
           isFavorite={favoriteProducts.some((x) => x.id === product.id)}
         />
@@ -70,11 +61,7 @@ export const FavoritesPage = () => {
           toggle={toggleModal}
         >
           <div>
-            <ViewPageButton
-              label="Yes"
-              backgroundColor="#00EF00"
-              onClick={toggleModal}
-            />
+            <ViewPageButton label="Yes" backgroundColor="#00EF00" />
             <ViewPageButton
               label="No"
               backgroundColor="#FF0000"
