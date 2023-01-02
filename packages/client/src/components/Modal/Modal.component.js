@@ -38,5 +38,5 @@ Modal.propTypes = {
   toggle: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
 };

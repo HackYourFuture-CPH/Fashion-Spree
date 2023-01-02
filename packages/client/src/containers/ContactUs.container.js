@@ -3,6 +3,7 @@ import './ContactUs.styles.css';
 import TextFormInput from '../components/Input/TextFormInput.component';
 import EmailFormInput from '../components/Input/EmailFormInput.component';
 import useInputValidation from '../utils/hooks/useInputValidation';
+import Modal from '../components/Modal/Modal.component';
 
 export const ContactUs = () => {
   const [validForm, setValidForm] = useState(false);
@@ -11,6 +12,7 @@ export const ContactUs = () => {
   const [email, emailError, validateEmail] = useInputValidation('email');
   const [message, messageError, validateMessage] =
     useInputValidation('message');
+  const [openConfirmationModal, setOpenConfirmationModal] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -27,6 +29,7 @@ export const ContactUs = () => {
     } else {
       setInvalidForm(false);
       setValidForm(true);
+      setOpenConfirmationModal(true);
     }
   };
 
@@ -80,7 +83,13 @@ export const ContactUs = () => {
               Send Message
             </button>
             {validForm && (
-              <p className="success-message">Your message has been sent</p>
+              <Modal
+                title="confirmation"
+                open={openConfirmationModal}
+                toggle={() => setOpenConfirmationModal(false)}
+              >
+                Your message has been sent!
+              </Modal>
             )}
             {invalidForm && <p className="error-message">Form is not valid</p>}
           </form>

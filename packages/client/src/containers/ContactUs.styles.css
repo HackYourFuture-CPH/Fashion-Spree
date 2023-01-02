@@ -136,12 +136,6 @@ form {
   font-size: 10px;
 }
 
-.message-success {
-  color: #270;
-  background-color: #dff2bf;
-  line-height: 40px;
-}
-
 @media screen and (max-width: 1024px) {
   .contact-info-container {
     width: 410px;
