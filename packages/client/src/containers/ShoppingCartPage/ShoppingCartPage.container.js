@@ -8,43 +8,56 @@ import CartButtons from '../../components/Cart/CartButtons/CartButtons.component
 import { GoBackButton } from '../../components/shared/GoBackButton/GoBackButton.component';
 import { useNavigate } from 'react-router-dom';
 import { useUserContext } from '../../userContext';
+import { apiURL } from '../../apiURL';
 
 export const ShoppingCartPage = () => {
   const { user } = useUserContext();
   const navigate = useNavigate();
-  const [products, setProducts] = useState([
-    {
-      id: 1,
-      description: 'Low waist Jeans',
-      amount: 199.99,
-      quantity: 1,
-    },
-    {
-      id: 2,
-      description: 'High waist Jeans',
-      amount: 199.99,
-      quantity: 1,
-    },
-    {
-      id: 3,
-      description: 'Slim fit Jeans',
-      amount: 199.99,
-      quantity: 1,
-    },
-  ]);
-
-  const productSum = products.filter((row) => row.selected).length;
-
+  const [isLoading, setIsLoading] = useState(false);
+  const [products, setProducts] = useState([]);
   const [subtotal, setSubtotal] = useState(0);
+
   const delivery = 0;
   const shipping = 0;
   const total = 0;
 
   useEffect(() => {
+    const fetchOpenedOrder = async () => {
+      setIsLoading(true);
+      const url = `${apiURL()}/orders`;
+
+      const response = await fetch(url, {
+        headers: {
+          token: `token ${user?.uid}`,
+        },
+      });
+
+      const fetchedOrdersData = await response.json();
+
+      if (Array.isArray(fetchedOrdersData)) {
+        const ordersData = fetchedOrdersData.map((order) => ({
+          ...order,
+          id: fetchedOrdersData.indexOf(order) + 1,
+        }));
+        setProducts(ordersData);
+      }
+    };
+
+    fetchOpenedOrder();
+    setIsLoading(false);
+  }, [user]);
+
+  const productSum = products
+    .filter((row) => row.selected)
+    .reduce((accumulator, object) => {
+      return accumulator + object.quantity;
+    }, 0);
+
+  useEffect(() => {
     const sum = products
       .filter((row) => row.selected)
       .reduce((value, row) => {
-        return value + row.amount * row.quantity;
+        return value + row.price * row.quantity;
       }, 0);
     setSubtotal(sum);
   }, [products]);
@@ -61,7 +74,11 @@ export const ShoppingCartPage = () => {
         </div>
         <CartCount productSum={productSum} />
         <CartContainer>
-          <CartTable products={products} setProducts={setProducts} />
+          <CartTable
+            products={products}
+            setProducts={setProducts}
+            isLoading={isLoading}
+          />
           <CartTotal
             subtotal={subtotal}
             delivery={delivery}

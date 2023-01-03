@@ -18,16 +18,16 @@ export default function CartSelectedProduct({
         />
       </div>
       <div className="cart-selected-desc">
-        <span>{product.description}</span>
+        <span>{product.name}</span>
       </div>
       <div className="cart-selected-amount">
-        <span>{product.amount}</span>
+        <span>{+product.price}</span>
       </div>
       <div className="cart-selected-quantity">
         <span>{product.quantity}</span>
       </div>
       <div className="cart-selected-total">
-        <span>Dkk 199,99</span>
+        <span>{product.price * product.quantity}</span>
       </div>
       <div className="cart-selected-action">
         <button type="button" onClick={() => handleRemove(product)}>
@@ -41,9 +41,10 @@ export default function CartSelectedProduct({
 CartSelectedProduct.propTypes = {
   product: PropTypes.exact({
     id: PropTypes.number.isRequired,
-    description: PropTypes.string.isRequired,
-    amount: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    price: PropTypes.string.isRequired,
     quantity: PropTypes.number.isRequired,
+    selected: PropTypes.bool,
   }).isRequired,
   handleChange: PropTypes.func.isRequired,
   handleRemove: PropTypes.func.isRequired,
