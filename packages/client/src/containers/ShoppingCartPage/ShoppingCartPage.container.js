@@ -7,8 +7,10 @@ import CartTotal from '../../components/Cart/CartTotal/CartTotal.component';
 import CartButtons from '../../components/Cart/CartButtons/CartButtons.component';
 import { GoBackButton } from '../../components/shared/GoBackButton/GoBackButton.component';
 import { useNavigate } from 'react-router-dom';
+import { useUserContext } from '../../userContext';
 
 export const ShoppingCartPage = () => {
+  const { user } = useUserContext();
   const navigate = useNavigate();
 
   const products = [
