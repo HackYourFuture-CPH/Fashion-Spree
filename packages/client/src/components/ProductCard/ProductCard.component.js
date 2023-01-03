@@ -23,8 +23,9 @@ const ProductCard = ({
           <img src={CartIcon} alt="Cart Icon" />
           <button
             onClick={(event) => {
-              toggleFavorite(id, title, price, event);
-              setOpenModal(true);
+              isFavorite
+                ? setOpenModal({ modalStatus: true, favoriteId: id })
+                : toggleFavorite(id, title, price, event);
             }}
             type="button"
             className="favorite-button"
@@ -58,6 +59,6 @@ ProductCard.propTypes = {
   id: PropTypes.number.isRequired,
   isFavorite: PropTypes.bool.isRequired,
   toggleFavorite: PropTypes.func.isRequired,
-  setOpenModal: PropTypes.bool.isRequired,
+  setOpenModal: PropTypes.func.isRequired,
 };
 export default ProductCard;

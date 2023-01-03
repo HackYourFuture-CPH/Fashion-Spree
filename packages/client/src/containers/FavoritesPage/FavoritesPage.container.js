@@ -7,9 +7,12 @@ import Modal from '../../components/Modal/Modal.component';
 import { ViewPageButton } from '../../components/ViewPageButton/ViewPageButton.component';
 
 export const FavoritesPage = () => {
-  const [openModal, setOpenModal] = useState(false);
+  const [openModal, setOpenModal] = useState({
+    modalStatus: false,
+    favoriteId: -1,
+  });
   const toggleModal = () => {
-    setOpenModal(false);
+    setOpenModal({ modalStatus: false, favoriteId: -1 });
     document.body.style.overflow = 'visible';
   };
   const favoriteProductsStorageKey = 'favorite_products';
@@ -19,7 +22,7 @@ export const FavoritesPage = () => {
   );
   const [searchInput, setSearchInput] = useState('');
 
-  const toggleFavorite = (id, title, price, event) => {
+  const toggleFavorite = (id) => {
     const filteredFavorite = favoriteProducts.filter((item) => item.id !== id);
     setFavoriteProducts(filteredFavorite);
     setLocalStorage(favoriteProductsStorageKey, filteredFavorite);
@@ -48,20 +51,25 @@ export const FavoritesPage = () => {
     );
   });
 
+  const handleModal = (favoriteId) => {
+    toggleFavorite(favoriteId);
+    toggleModal();
+  };
   return (
     <div className="favorite-list-view">
       <SearchInput searchInput={searchInput} setSearchInput={setSearchInput} />
       <div>
-        <h1 onClick={() => setOpenModal(true)} role="presentation">
-          favorite Modal
-        </h1>
         <Modal
           title="Are you sure you want to Remove your favorite?"
-          open={openModal}
+          open={openModal.modalStatus}
           toggle={toggleModal}
         >
           <div>
-            <ViewPageButton label="Yes" backgroundColor="#00EF00" />
+            <ViewPageButton
+              label="Yes"
+              backgroundColor="#00EF00"
+              onClick={() => handleModal(openModal.favoriteId)}
+            />
             <ViewPageButton
               label="No"
               backgroundColor="#FF0000"
