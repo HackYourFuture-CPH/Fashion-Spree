@@ -26,21 +26,23 @@ function Signup() {
 
   const cleanUpValidation = () => {
     setFormErrors({
-      fullname: '',
-      email: '',
-      password: '',
+      fullname: {},
+      email: {},
+      password: {},
     });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (Object.keys(formErrors).length === 0) {
-      registerWithEmailAndPassword(
-        formValues.fullname,
-        formValues.email,
-        formValues.password,
-      );
+    if (Object.keys(formErrors).length !== 0) {
+      return;
+      // Probably want to do something more here, like inform the user about why the form was not allowed to be submitted.
     }
+    registerWithEmailAndPassword(
+      formValues.fullname,
+      formValues.email,
+      formValues.password,
+    );
   };
   useEffect(() => {
     if (loading) return;
@@ -66,7 +68,7 @@ function Signup() {
               src="../../assets/icons/Google.png"
               alt="google logo"
             />
-            sign up with Google
+            sign in with Google
           </button>
           <button type="button" className="facebook-signin-btn">
             <img
@@ -74,7 +76,7 @@ function Signup() {
               src="../../assets/icons/facebook.png"
               alt=" facebooklogo"
             />
-            sign up with Facebook
+            sign in with Facebook
           </button>
         </div>
         <p className="or-text">-OR-</p>
