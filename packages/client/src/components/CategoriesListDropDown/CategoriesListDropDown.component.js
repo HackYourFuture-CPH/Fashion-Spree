@@ -6,7 +6,7 @@ const DropDownView = ({
   options,
   lable,
   onSelect,
-  showFilterIcon,
+  showFilterIcon = false,
   ...props
 }) => {
   const [value, setValue] = useState('');
@@ -16,9 +16,9 @@ const DropDownView = ({
   };
   const optionList =
     options.length > 0 &&
-    options.map((item, index) => {
+    options.map((item) => {
       return (
-        <option key={index.id} value={item}>
+        <option key={item.toString()} value={item}>
           {item}
         </option>
       );
@@ -28,12 +28,9 @@ const DropDownView = ({
     <select
       onChange={handleChange}
       value={value}
-      showFilterIcon={showFilterIcon}
       className={`view-dropdown-select ${showFilterIcon ? 'all-filters' : ''}`}
     >
-      <option selected value="">
-        {lable}
-      </option>
+      <option value="">{lable}</option>
       {optionList}
     </select>
   );
@@ -42,8 +39,12 @@ const DropDownView = ({
 DropDownView.propTypes = {
   options: PropTypes.arrayOf(PropTypes.string).isRequired,
   lable: PropTypes.string.isRequired,
-  onSelect: PropTypes.string.isRequired,
-  showFilterIcon: PropTypes.string.isRequired,
+  onSelect: PropTypes.func,
+  showFilterIcon: PropTypes.bool,
+};
+DropDownView.defaultProps = {
+  onSelect: undefined,
+  showFilterIcon: false,
 };
 
 export default DropDownView;
