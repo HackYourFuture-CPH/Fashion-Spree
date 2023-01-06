@@ -38,3 +38,11 @@
   font-size: 16px;
   font-weight: 400;
 }
+
+@media screen and (max-width: 576px) {
+  .cart-table-headers {
+    font-size: 12px;
+    padding-left: 0;
+    gap: 20px;
+  }
+}

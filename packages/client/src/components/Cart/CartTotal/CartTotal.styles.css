@@ -30,3 +30,22 @@
 .cart-total-amount div:last-child {
   font-weight: 600;
 }
+
+@media screen and (max-width: 768px) {
+  .cart-table-headers {
+    font-size: 3px;
+  }
+  [type='checkbox'] {
+    width: 18px;
+    height: 18px;
+    margin-left: 0;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .cart-table-headers {
+    font-size: 12px;
+    padding-left: 0;
+    gap: 20px;
+  }
+}
