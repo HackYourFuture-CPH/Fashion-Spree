@@ -9,6 +9,12 @@ import menu from '../../assets/icons/Menu.png';
 export const Navigation = () => {
   const { user, name, logout } = useUserContext();
   const [showMobileLinks, setShowMobileLinks] = useState(false);
+import favorites from '../../assets/icons/Favorite.png';
+import userLogin from '../../assets/icons/user.png';
+import shoppingCart from '../../assets/icons/shopping.png';
+
+export const Navigation = () => {
+  const { user, logout } = useUserContext();
 
   return (
     <div className="navigation-container">
@@ -41,6 +47,34 @@ export const Navigation = () => {
                     onClick={logout}
                   />
                 </div>
+          <NavLink to="/" className="home">
+            Home
+          </NavLink>
+          <NavLink to="/about-us" className="about-us">
+            About Us
+          </NavLink>
+          <NavLink to="/collections" className="collections">
+            Our collections
+          </NavLink>
+          <NavLink to="/contact-us" className="contact-us">
+            Contact Us
+          </NavLink>
+          {user ? (
+            <div className="logged-in-container">
+              <div className="logged-in-text">
+                <Link to="/favorites">
+                  <img className="icon-login" src={favorites} alt="favorites" />
+                </Link>
+                <Link to="/shopping-cart">
+                  <img
+                    className="icon-login"
+                    src={shoppingCart}
+                    alt="shopping"
+                  />
+                </Link>
+                <Link to="/">
+                  <img className="icon-login" src={userLogin} alt="user" />
+                </Link>
               </div>
             ) : (
               <div className="nav-buttons">
