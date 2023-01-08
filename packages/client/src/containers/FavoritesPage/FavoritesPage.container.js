@@ -13,7 +13,6 @@ export const FavoritesPage = () => {
   });
   const toggleModal = () => {
     setModalState({ modalStatus: false, favoriteId: -1 });
-    document.body.style.overflow = 'visible';
   };
   const favoriteProductsStorageKey = 'favorite_products';
 
