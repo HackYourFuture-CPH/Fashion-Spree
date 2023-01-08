@@ -13,7 +13,7 @@ const ProductCard = ({
   price,
   isFavorite,
   toggleFavorite,
-  setOpenModal,
+  setModalState,
 }) => {
   return (
     <div className="product-card-wrapper">
@@ -24,7 +24,7 @@ const ProductCard = ({
           <button
             onClick={(event) => {
               isFavorite
-                ? setOpenModal({ modalStatus: true, favoriteId: id })
+                ? setModalState({ modalStatus: true, favoriteId: id })
                 : toggleFavorite(id, title, price, event);
             }}
             type="button"
@@ -58,6 +58,6 @@ ProductCard.propTypes = {
   id: PropTypes.number.isRequired,
   isFavorite: PropTypes.bool.isRequired,
   toggleFavorite: PropTypes.func.isRequired,
-  setOpenModal: PropTypes.func.isRequired,
+  setModalState: PropTypes.func.isRequired,
 };
 export default ProductCard;

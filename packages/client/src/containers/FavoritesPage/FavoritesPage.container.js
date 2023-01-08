@@ -7,12 +7,12 @@ import Modal from '../../components/Modal/Modal.component';
 import { ViewPageButton } from '../../components/ViewPageButton/ViewPageButton.component';
 
 export const FavoritesPage = () => {
-  const [openModal, setOpenModal] = useState({
+  const [modalState, setModalState] = useState({
     modalStatus: false,
     favoriteId: -1,
   });
   const toggleModal = () => {
-    setOpenModal({ modalStatus: false, favoriteId: -1 });
+    setModalState({ modalStatus: false, favoriteId: -1 });
     document.body.style.overflow = 'visible';
   };
   const favoriteProductsStorageKey = 'favorite_products';
@@ -43,7 +43,7 @@ export const FavoritesPage = () => {
           title={product.title}
           price={product.price}
           id={product.id}
-          setOpenModal={setOpenModal}
+          setModalState={setModalState}
           toggleFavorite={toggleFavorite}
           isFavorite={favoriteProducts.some((x) => x.id === product.id)}
         />
@@ -61,14 +61,14 @@ export const FavoritesPage = () => {
       <div>
         <Modal
           title="Are you sure you want to Remove your favorite?"
-          open={openModal.modalStatus}
+          open={modalState.modalStatus}
           toggle={toggleModal}
         >
           <div>
             <ViewPageButton
               label="Yes"
               backgroundColor="#00EF00"
-              onClick={() => handleModal(openModal.favoriteId)}
+              onClick={() => handleModal(modalState.favoriteId)}
             />
             <ViewPageButton
               label="No"
