@@ -15,27 +15,30 @@ import { ContactUs } from './containers/ContactUs.container';
 import { CollectionsPage } from './containers/CollectionsPage/CollectionsPage.Container';
 import { ShoppingCartPage } from './containers/ShoppingCartPage/ShoppingCartPage.container';
 import { FavoritesPage } from './containers/FavoritesPage/FavoritesPage.container';
+import ShoppingCartProvider from './utils/ShoppingCartContext/ShoppingCartContext';
 
 function App() {
   return (
     <div className="app">
       <Router>
         <UserProvider>
-          <Navigation />
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route exact path="/about-us" element={<AboutUs />} />
-            <Route exact path="/contact-us" element={<ContactUs />} />
-            <Route exact path="/login" element={<Login />} />
-            <Route exact path="/signup" element={<Signup />} />
-            <Route exact path="/reset" element={<Reset />} />
-            <Route path="*" element={<PageNotFound />} />
-            <Route path="/products/:id" element={<ProductView />} />
-            <Route path="/collections" element={<CollectionsPage />} />
-            <Route path="/shopping-cart" element={<ShoppingCartPage />} />
-            <Route path="/favorites" element={<FavoritesPage />} />
-          </Routes>
-          <Footer />
+          <ShoppingCartProvider>
+            <Navigation />
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route exact path="/about-us" element={<AboutUs />} />
+              <Route exact path="/contact-us" element={<ContactUs />} />
+              <Route exact path="/login" element={<Login />} />
+              <Route exact path="/signup" element={<Signup />} />
+              <Route exact path="/reset" element={<Reset />} />
+              <Route path="*" element={<PageNotFound />} />
+              <Route path="/products/:id" element={<ProductView />} />
+              <Route path="/collections" element={<CollectionsPage />} />
+              <Route path="/shopping-cart" element={<ShoppingCartPage />} />
+              <Route path="/favorites" element={<FavoritesPage />} />
+            </Routes>
+            <Footer />
+          </ShoppingCartProvider>
         </UserProvider>
       </Router>
     </div>

@@ -21,7 +21,7 @@ export const DropdownGroup = ({ productId }) => {
     };
 
     fetchVariantsByProductId();
-  }, [productId, variants]);
+  }, [productId]);
 
   variants.forEach((variant) => {
     colors.push(variant.color);

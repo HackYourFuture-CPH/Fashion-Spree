@@ -8,10 +8,12 @@ import menu from '../../assets/icons/Menu.png';
 import favorites from '../../assets/icons/Favorite.png';
 import userLogin from '../../assets/icons/user.png';
 import shoppingCart from '../../assets/icons/shopping.png';
+import { useShoppingCartContext } from '../../utils/ShoppingCartContext/ShoppingCartContext';
 
 export const Navigation = () => {
   const { user } = useUserContext();
   const [showMobileLinks, setShowMobileLinks] = useState(false);
+  const { orderItems } = useShoppingCartContext();
 
   return (
     <div className="navigation-container">
@@ -41,11 +43,14 @@ export const Navigation = () => {
                     />
                   </Link>
                   <Link to="/shopping-cart">
-                    <img
-                      className="icon-login"
-                      src={shoppingCart}
-                      alt="shopping"
-                    />
+                    <div>
+                      <img
+                        className="icon-login"
+                        src={shoppingCart}
+                        alt="shopping"
+                      />
+                      <span>{orderItems.length}</span>
+                    </div>
                   </Link>
                   <Link to="/">
                     <img className="icon-login" src={userLogin} alt="user" />
