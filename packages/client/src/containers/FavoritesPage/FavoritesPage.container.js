@@ -11,7 +11,7 @@ export const FavoritesPage = () => {
     modalStatus: false,
     favoriteId: -1,
   });
-  const toggleModal = () => {
+  const closeModal = () => {
     setModalState({ modalStatus: false, favoriteId: -1 });
   };
   const favoriteProductsStorageKey = 'favorite_products';
@@ -52,7 +52,7 @@ export const FavoritesPage = () => {
 
   const handleModal = (favoriteId) => {
     toggleFavorite(favoriteId);
-    toggleModal();
+    closeModal();
   };
   return (
     <div className="favorite-list-view">
@@ -61,7 +61,7 @@ export const FavoritesPage = () => {
         <Modal
           title="Are you sure you want to Remove your favorite?"
           open={modalState.modalStatus}
-          toggle={toggleModal}
+          toggle={closeModal}
         >
           <div>
             <ViewPageButton
@@ -72,7 +72,7 @@ export const FavoritesPage = () => {
             <ViewPageButton
               label="No"
               backgroundColor="#FF0000"
-              onClick={toggleModal}
+              onClick={closeModal}
             />
           </div>
         </Modal>
