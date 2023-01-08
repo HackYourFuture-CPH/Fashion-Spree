@@ -22,6 +22,7 @@ export const FavoritesPage = () => {
         },
       });
       const favoritesData = await response.json();
+      // TODO: this is a temporary fix until the backend controller can return error response
       if (Array.isArray(favoritesData)) {
         setFavorites(favoritesData);
       }
@@ -59,7 +60,8 @@ export const FavoritesPage = () => {
       <SearchInput searchInput={searchInput} setSearchInput={setSearchInput} />
       <h2 className="my-favorites">My favorites</h2>
       {isLoading ? 'Loading...' : ''}
-      {favorites.length === 0 ? (
+      {!user && 'Please login'}
+      {favorites.length === 0 && user ? (
         <p>You have no favorite products</p>
       ) : (
         <div className="rendered-product">{ListOfFavoriteProducts}</div>
