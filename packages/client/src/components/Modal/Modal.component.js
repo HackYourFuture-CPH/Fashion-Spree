@@ -4,7 +4,6 @@ import './modal.styles.css';
 
 const Modal = ({ toggle, open, title, children }) => {
   if (!open) return null;
-
   document.body.style.overflow = 'hidden';
 
   return (

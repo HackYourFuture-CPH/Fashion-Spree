@@ -8,6 +8,7 @@ const categories = require('./categories.router');
 const reviews = require('./reviews.router');
 const favorites = require('./favorites.router');
 const variants = require('./variants.router');
+const orders = require('./orders.router');
 
 /* GET home page. */
 // router.get('/', function(req, res, next) {
@@ -43,5 +44,6 @@ router.use('/categories', categories);
 router.use('/reviews', reviews);
 router.use('/favorites', favorites);
 router.use('/variants', variants);
+router.use('/orders', orders);
 
 module.exports = router;
