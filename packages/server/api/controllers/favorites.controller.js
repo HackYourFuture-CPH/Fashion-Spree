@@ -6,6 +6,10 @@ const getFavoritesByUserId = async (token) => {
   const userUid = token.split(' ')[1];
   const user = (await knex('users').where({ uid: userUid }))[0];
 
+  if (!token) {
+    throw new HttpError('There are not user', 401);
+  }
+
   try {
     const favorites = await knex('products')
       .select('products.*', 'favorites.id as favoritesID')
