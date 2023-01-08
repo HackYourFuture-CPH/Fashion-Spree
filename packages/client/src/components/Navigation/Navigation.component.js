@@ -3,9 +3,12 @@ import { NavLink, Link } from 'react-router-dom';
 import { useUserContext } from '../../userContext';
 import './Navigation.styles.css';
 import { Button } from '../Button/Button.component';
+import favorites from '../../assets/icons/Favorite.png';
+import userLogin from '../../assets/icons/user.png';
+import shoppingCart from '../../assets/icons/shopping.png';
 
 export const Navigation = () => {
-  const { user, name, logout } = useUserContext();
+  const { user, logout } = useUserContext();
 
   return (
     <div className="navigation-container">
@@ -27,8 +30,19 @@ export const Navigation = () => {
           {user ? (
             <div className="logged-in-container">
               <div className="logged-in-text">
-                <div>{name}</div>
-                <div>{user.email}</div>
+                <Link to="/favorites">
+                  <img className="icon-login" src={favorites} alt="favorites" />
+                </Link>
+                <Link to="/shopping-cart">
+                  <img
+                    className="icon-login"
+                    src={shoppingCart}
+                    alt="shopping"
+                  />
+                </Link>
+                <Link to="/">
+                  <img className="icon-login" src={userLogin} alt="user" />
+                </Link>
               </div>
               <div className="logout-button-container">
                 <Button

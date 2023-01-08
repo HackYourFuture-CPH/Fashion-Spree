@@ -1,9 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './CartTable.styles.css';
 import CartSelectedProduct from '../CartSelectedProduct/CartSelectedProduct.component';
 import PropTypes from 'prop-types';
 
-export default function CartTable({ products }) {
+export default function CartTable({ products, setProducts }) {
+  const [selected, setSelected] = useState(false);
+  const handleChange = (product) => {
+    const productCart = [...products];
+    productCart.forEach((row, index) => {
+      if (productCart[index].id === product.id)
+        productCart[index].selected = !productCart[index].selected;
+    });
+    setSelected(!selected);
+    setProducts(productCart);
+  };
+  const handleRemove = (product) => {
+    const filtered = products.filter((item) => item.id !== product.id);
+    setProducts(filtered);
+  };
   return (
     <div className="cart-table-wrapper">
       <div className="cart-table-headers">
@@ -15,8 +29,14 @@ export default function CartTable({ products }) {
         <div className="cart-table-action">Action</div>
       </div>
       <div className="cart-table-products">
+        {products.length === 0 && <span>Your cart is empty</span>}
         {products.map((product) => (
-          <CartSelectedProduct key={product.id} product={product} />
+          <CartSelectedProduct
+            key={product.id}
+            product={product}
+            handleChange={handleChange}
+            handleRemove={handleRemove}
+          />
         ))}
       </div>
     </div>
@@ -32,4 +52,5 @@ CartTable.propTypes = {
       quantity: PropTypes.number.isRequired,
     }),
   ).isRequired,
+  setProducts: PropTypes.func.isRequired,
 };

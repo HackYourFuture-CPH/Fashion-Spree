@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './ShoppingCartPage.styles.css';
 import CartContainer from '../../components/Cart/CartContainer/CartContainer.component';
 import CartCount from '../../components/Cart/CartCount/CartCount.component';
@@ -10,8 +10,7 @@ import { useNavigate } from 'react-router-dom';
 
 export const ShoppingCartPage = () => {
   const navigate = useNavigate();
-
-  const products = [
+  const [products, setProducts] = useState([
     {
       id: 1,
       description: 'Low waist Jeans',
@@ -30,14 +29,23 @@ export const ShoppingCartPage = () => {
       amount: 199.99,
       quantity: 1,
     },
-  ];
+  ]);
 
-  const productSum = products.length;
+  const productSum = products.filter((row) => row.selected).length;
 
-  const subtotal = 599.97;
+  const [subtotal, setSubtotal] = useState(0);
   const delivery = 0;
   const shipping = 0;
-  const total = 599.97;
+  const total = 0;
+
+  useEffect(() => {
+    const sum = products
+      .filter((row) => row.selected)
+      .reduce((value, row) => {
+        return value + row.amount * row.quantity;
+      }, 0);
+    setSubtotal(sum);
+  }, [products]);
 
   const navigateBack = () => {
     navigate(-1);
@@ -51,7 +59,7 @@ export const ShoppingCartPage = () => {
         </div>
         <CartCount productSum={productSum} />
         <CartContainer>
-          <CartTable products={products} />
+          <CartTable products={products} setProducts={setProducts} />
           <CartTotal
             subtotal={subtotal}
             delivery={delivery}
