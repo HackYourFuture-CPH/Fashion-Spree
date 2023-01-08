@@ -6,13 +6,16 @@ import './DropdownGroup.Style.css';
 
 export const DropdownGroup = ({ productId }) => {
   const [variants, setVariants] = useState([]);
+
   let colors = [];
   let sizes = [];
   let quantities = [];
 
   useEffect(() => {
     const fetchVariantsByProductId = async () => {
-      const response = await fetch(`${apiURL()}/variants?product=${productId}`);
+      const response = await fetch(
+        `${apiURL()}/variants?product_id=${productId}`,
+      );
       const variantsProductData = await response.json();
       setVariants(variantsProductData);
     };

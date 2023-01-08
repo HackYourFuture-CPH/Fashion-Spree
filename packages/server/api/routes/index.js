@@ -9,6 +9,8 @@ const reviews = require('./reviews.router');
 const favorites = require('./favorites.router');
 const variants = require('./variants.router');
 const users = require('./users.router');
+const orders = require('./orders.router');
+
 
 /* GET home page. */
 // router.get('/', function(req, res, next) {
@@ -45,5 +47,6 @@ router.use('/reviews', reviews);
 router.use('/favorites', favorites);
 router.use('/variants', variants);
 router.use('/users', users);
+router.use('/orders', orders);
 
 module.exports = router;
