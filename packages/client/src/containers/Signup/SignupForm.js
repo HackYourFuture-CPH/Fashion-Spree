@@ -1,86 +1,78 @@
-import React from 'react';
-import './Signup.styles.css';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-const SignupForm = ({
-  handleChange,
-  handleValidation,
-  cleanUpValidation,
-  formValues,
-  formErrors,
-}) => {
+import './Signup.styles.css';
+import { useUserContext } from '../../userContext';
+import TextFormInput from '../../components/Input/TextFormInput.component';
+import EmailFormInput from '../../components/Input/EmailFormInput.component';
+import PasswordFormInput from '../../components/Input/PasswordFormInput.component';
+import useInputValidation from '../../utils/hooks/useInputValidation';
+
+const SignupForm = ({ registerWithEmailAndPassword }) => {
+  useUserContext();
+  const [validForm, setValidForm] = useState(false);
+  const [invalidForm, setInvalidForm] = useState(false);
+  const [name, nameError, validateName] = useInputValidation('fullname');
+  const [email, emailError, validateEmail] = useInputValidation('email');
+  const [password, passwordError, validatePassword] =
+    useInputValidation('password');
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (
+      nameError ||
+      emailError ||
+      passwordError ||
+      name.length === 0 ||
+      email.length === 0 ||
+      password.length === 0
+    ) {
+      setInvalidForm(true);
+      setValidForm(false);
+    } else {
+      setInvalidForm(false);
+      setValidForm(true);
+      registerWithEmailAndPassword(name, email, password);
+    }
+  };
+
   return (
     <form className="signup-form">
-      <input
-        className="sign-up-form__fullname"
-        placeholder="Full Name"
-        name="fullname"
-        values={formValues.fullname}
-        onChange={handleChange}
-        onBlur={handleValidation}
-        onFocus={cleanUpValidation}
+      <TextFormInput
         type="text"
+        value={name}
+        placeholder="Fullname"
+        onChange={validateName}
+        error={nameError}
       />
-      {formErrors.fullname && (
-        <p className="form-erros">{formErrors.fullname}</p>
-      )}
-      <input
-        className="sign-up-form__email"
-        placeholder="Email Address"
-        name="email"
+      <EmailFormInput
+        placeholder="Email"
+        value={email}
         type="email"
-        values={formValues.email}
-        onChange={handleChange}
-        onBlur={handleValidation}
-        onFocus={cleanUpValidation}
+        onChange={validateEmail}
+        error={emailError}
       />
-      {formErrors.email && <p className="form-erros">{formErrors.email}</p>}
-      <input
-        className="sign-up-form__password"
+      <PasswordFormInput
         placeholder="Password"
-        name="password"
+        value={password}
         type="password"
-        values={formValues.password}
-        onChange={handleChange}
-        onBlur={handleValidation}
-        onFocus={cleanUpValidation}
+        onChange={validatePassword}
+        error={passwordError}
       />
-      {formErrors.password && (
-        <p className="form-erros">{formErrors.password}</p>
-      )}
-      {/*
+
       <button
-        /* onClick={handleSubmit}
-        onClick={register}
+        onClick={handleSubmit}
         className="signup-submit-button"
         type="submit"
       >
         Sign up
       </button>
-      if I use button here - firebase doesn't work... */}
+      {validForm && <p className="success-message">Thank you for Signing up</p>}
+      {invalidForm && <p className="error-message">Form is not valid</p>}
     </form>
   );
 };
-
-export default SignupForm;
-
 SignupForm.propTypes = {
-  handleChange: PropTypes.func.isRequired,
-  handleValidation: PropTypes.func.isRequired,
-  cleanUpValidation: PropTypes.func.isRequired,
-  formValues: PropTypes.shape({
-    fullname: PropTypes.string,
-    email: PropTypes.string,
-    password: PropTypes.string,
-  }),
-  formErrors: PropTypes.shape({
-    fullname: PropTypes.string,
-    email: PropTypes.string,
-    password: PropTypes.string,
-  }),
+  registerWithEmailAndPassword: PropTypes.func.isRequired,
 };
-
-SignupForm.defaultProps = {
-  formErrors: '',
-  formValues: '',
-};
+export default SignupForm;
