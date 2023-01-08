@@ -77,15 +77,15 @@ button {
   display: none;
 }
 
-
 .icon-login {
-  width: 20px;
+  width: 18px;
 }
 .logged-in-text {
   display: flex;
-  gap: 10px;
+  gap: 15px;
   padding-top: 5px;
 }
+
 @media screen and (max-width: 768px) {
   .nav * {
     font-size: 12px;
@@ -137,5 +137,10 @@ button {
   }
   .navigation-container {
     padding-bottom: 15px;
+  }
+  .logged-in-container {
+    position: absolute;
+    right: 50px;
+    top: 5px;
   }
 }
