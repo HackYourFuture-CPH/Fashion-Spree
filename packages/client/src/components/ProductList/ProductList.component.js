@@ -4,12 +4,7 @@ import { ProductPropType } from '../../ProductPropType';
 import './ProductList.component.css';
 import ProductCard from '../ProductCard/ProductCard.component';
 
-export default function ProductList({
-  isLoading,
-  products,
-  filteredProducts,
-  // toggleFavorite,
-}) {
+export default function ProductList({ isLoading, products, filteredProducts }) {
   const ListOfProducts = filteredProducts.map((product) => {
     return (
       <div className="product" key={product.id}>
@@ -19,7 +14,6 @@ export default function ProductList({
           price={product.price}
           id={product.id}
           favoritesID={product.favoritesID}
-          // toggleFavorite={toggleFavorite}
           isFavorite={product.favoritesID !== null}
         />
       </div>
@@ -41,5 +35,4 @@ ProductList.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   products: PropTypes.arrayOf(ProductPropType).isRequired,
   filteredProducts: PropTypes.arrayOf(ProductPropType).isRequired,
-  // toggleFavorite: PropTypes.func.isRequired,
 };
