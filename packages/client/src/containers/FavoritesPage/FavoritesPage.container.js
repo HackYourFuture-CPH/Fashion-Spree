@@ -15,14 +15,12 @@ export const FavoritesPage = () => {
     const fetchFavorites = async () => {
       setIsLoading(true);
       const url = `${apiURL()}/favorites`;
-
       const response = await fetch(url, {
         headers: {
           token: `token ${user?.uid}`,
         },
       });
       const favoritesData = await response.json();
-      // TODO: this is a temporary fix until the backend controller can return error response
       if (Array.isArray(favoritesData)) {
         setFavorites(favoritesData);
       }
@@ -35,7 +33,6 @@ export const FavoritesPage = () => {
   const filteredProducts = useMemo(() => {
     const trimmedKeyword = searchInput.trim();
     if (trimmedKeyword.length === 0) return favorites;
-
     return favorites.filter((product) => {
       return product.name.toLowerCase().includes(trimmedKeyword.toLowerCase());
     });
@@ -48,7 +45,6 @@ export const FavoritesPage = () => {
           title={product.name}
           price={product.price}
           id={product.id}
-          // toggleFavorite={toggleFavorite}
           isFavorite={filteredProducts.some((x) => x.id === product.id)}
         />
       </div>

@@ -6,16 +6,28 @@ import FullFavoriteIcon from '../../assets/full-favorite-icon.svg';
 import StarRateIcon from '../../assets/star-rate-icon.svg';
 import BackgroundImage from '../../assets/jeans&shoes.jpg';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
-const ProductCard = ({ id, title, price, isFavorite, toggleFavorite }) => {
+const ProductCard = ({
+  id,
+  title,
+  price,
+  isFavorite,
+  toggleFavorite,
+  setModalState,
+}) => {
   return (
-    <div className="product-card-wrapper">
+    <Link className="product-card-wrapper" to={`/products/${id}`}>
       <div className="product-img-wrapper">
         <img src={BackgroundImage} alt="Cart Icon" className="product-img" />
         <div className="cart-favorite-wrapper">
           <img src={CartIcon} alt="Cart Icon" />
           <button
-            onClick={(event) => toggleFavorite(id, title, price, event)}
+            onClick={(event) => {
+              isFavorite
+                ? setModalState({ modalStatus: true, favoriteId: id })
+                : toggleFavorite(id, title, price, event);
+            }}
             type="button"
             className="favorite-button"
           >
@@ -37,7 +49,7 @@ const ProductCard = ({ id, title, price, isFavorite, toggleFavorite }) => {
           <p>4.5</p>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
@@ -47,5 +59,6 @@ ProductCard.propTypes = {
   id: PropTypes.number.isRequired,
   isFavorite: PropTypes.bool.isRequired,
   toggleFavorite: PropTypes.func.isRequired,
+  setModalState: PropTypes.func.isRequired,
 };
 export default ProductCard;

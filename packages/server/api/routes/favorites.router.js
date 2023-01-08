@@ -28,7 +28,7 @@ const favoritesController = require('../controllers/favorites.controller');
  */
 router.get('/', (req, res, next) => {
   const { token } = req.headers;
-
+  // TO DO : once we will add authentication I will update it
   favoritesController
     .getFavoritesByUserId(token)
     .then((result) => res.json(result))

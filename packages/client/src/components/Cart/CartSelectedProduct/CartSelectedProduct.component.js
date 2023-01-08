@@ -1,12 +1,22 @@
 import React from 'react';
 import './CartSelectedProduct.styles.css';
 import PropTypes from 'prop-types';
+import removeIcon from '../../../assets/remove-btn.png';
 
-export default function CartSelectedProduct({ product }) {
+export default function CartSelectedProduct({
+  product,
+  handleChange,
+  handleRemove,
+}) {
   return (
     <div className="cart-selected-wrapper">
       <div className="cart-selected-blank">
-        <input type="checkbox" name="" id="" />
+        <input
+          type="checkbox"
+          name=""
+          id=""
+          onChange={() => handleChange(product)}
+        />
       </div>
       <div className="cart-selected-desc">
         <span>{product.description}</span>
@@ -21,7 +31,13 @@ export default function CartSelectedProduct({ product }) {
         <span>Dkk 199,99</span>
       </div>
       <div className="cart-selected-action">
-        <button type="button">Remove</button>
+        <button
+          type="button"
+          onClick={() => handleRemove(product)}
+          className="removeBtn"
+        >
+          <img src={removeIcon} alt="removeIcon" />
+        </button>
       </div>
     </div>
   );
@@ -34,4 +50,6 @@ CartSelectedProduct.propTypes = {
     amount: PropTypes.number.isRequired,
     quantity: PropTypes.number.isRequired,
   }).isRequired,
+  handleChange: PropTypes.func.isRequired,
+  handleRemove: PropTypes.func.isRequired,
 };
