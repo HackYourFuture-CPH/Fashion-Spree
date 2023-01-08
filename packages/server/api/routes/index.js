@@ -11,7 +11,6 @@ const variants = require('./variants.router');
 const users = require('./users.router');
 const orders = require('./orders.router');
 
-
 /* GET home page. */
 // router.get('/', function(req, res, next) {
 //   res.render('index', { title: 'Express' });
