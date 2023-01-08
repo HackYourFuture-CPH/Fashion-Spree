@@ -33,7 +33,6 @@ const ProductCard = ({
             <img
               src={isFavorite ? FullFavoriteIcon : EmptyFavoriteIcon}
               alt="Favorite Icon"
-              role="presentation"
             />
           </button>
         </div>
