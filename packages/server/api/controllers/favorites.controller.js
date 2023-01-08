@@ -7,7 +7,7 @@ const getFavoritesByUserId = async (token) => {
   const user = (await knex('users').where({ uid: userUid }))[0];
 
   if (!token) {
-    throw new HttpError('There are not user', 401);
+    throw new HttpError('There are not users', 401);
   }
 
   try {
