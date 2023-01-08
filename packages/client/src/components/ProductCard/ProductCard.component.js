@@ -6,6 +6,7 @@ import FullFavoriteIcon from '../../assets/full-favorite-icon.svg';
 import StarRateIcon from '../../assets/star-rate-icon.svg';
 import BackgroundImage from '../../assets/jeans&shoes.jpg';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const ProductCard = ({
   id,
@@ -37,7 +38,9 @@ const ProductCard = ({
           </button>
         </div>
       </div>
-      <h2 className="product-title"> {title}</h2>
+      <Link className="product-title-link" to={`/products/${id}`}>
+        <h2 className="product-title"> {title}</h2>
+      </Link>
       <div className="price-rate-wrapper">
         <div className="product-price-wrapper">
           <p>Dkk</p>

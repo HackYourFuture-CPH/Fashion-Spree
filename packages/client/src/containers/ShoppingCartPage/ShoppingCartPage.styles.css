@@ -15,3 +15,23 @@
   height: 200px;
   background-color: #ececec;
 }
+
+@media screen and (max-width: 768px) {
+  .shopping-cart-container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 10px;
+    font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .shopping-cart-page {
+    max-width: 100%;
+  }
+
+  .shopping-cart-blank {
+    height: 50px;
+    background-color: #ececec;
+  }
+}
