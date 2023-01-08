@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
-import './Login.css';
+import PropTypes from 'prop-types';
+
+import './Signup.styles.css';
+import { useUserContext } from '../../userContext';
 import TextFormInput from '../../components/Input/TextFormInput.component';
 import EmailFormInput from '../../components/Input/EmailFormInput.component';
 import PasswordFormInput from '../../components/Input/PasswordFormInput.component';
 import useInputValidation from '../../utils/hooks/useInputValidation';
 
-const SignupForm = () => {
+const SignupForm = ({ registerWithEmailAndPassword }) => {
+  useUserContext();
   const [validForm, setValidForm] = useState(false);
   const [invalidForm, setInvalidForm] = useState(false);
   const [name, nameError, validateName] = useInputValidation('fullname');
@@ -28,6 +32,7 @@ const SignupForm = () => {
     } else {
       setInvalidForm(false);
       setValidForm(true);
+      registerWithEmailAndPassword(name, email, password);
     }
   };
 
@@ -67,5 +72,7 @@ const SignupForm = () => {
     </form>
   );
 };
-
+SignupForm.propTypes = {
+  registerWithEmailAndPassword: PropTypes.func.isRequired,
+};
 export default SignupForm;
