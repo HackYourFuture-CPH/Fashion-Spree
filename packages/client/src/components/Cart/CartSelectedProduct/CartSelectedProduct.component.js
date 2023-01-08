@@ -1,6 +1,7 @@
 import React from 'react';
 import './CartSelectedProduct.styles.css';
 import PropTypes from 'prop-types';
+import removeIcon from '../../../assets/remove-btn.png';
 
 export default function CartSelectedProduct({
   product,
@@ -30,8 +31,12 @@ export default function CartSelectedProduct({
         <span>Dkk 199,99</span>
       </div>
       <div className="cart-selected-action">
-        <button type="button" onClick={() => handleRemove(product)}>
-          Remove
+        <button
+          type="button"
+          onClick={() => handleRemove(product)}
+          className="removeBtn"
+        >
+          <img src={removeIcon} alt="removeIcon" />
         </button>
       </div>
     </div>
