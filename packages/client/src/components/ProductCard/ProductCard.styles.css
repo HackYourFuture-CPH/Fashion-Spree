@@ -9,6 +9,13 @@
   background-color: rgba(206, 160, 134, 1);
   border-radius: 50px;
   padding: 10px 0 25px 0;
+  color: inherit;
+  text-decoration: none;
+}
+
+.product-card-wrapper:visited {
+  color: inherit;
+  text-decoration: none;
 }
 
 .product-img-wrapper {
