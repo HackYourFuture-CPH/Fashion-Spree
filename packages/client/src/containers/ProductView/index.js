@@ -15,3 +15,4 @@ export { ProductViewDescription } from '../../components/Product/ProductView/Pro
 export { ProductViewButtons } from './ProductViewButtons/ProductViewButtons.container';
 export { RelatedItems } from '../RelatedItems/RelatedItems.Container';
 export { ProductReviewsContainer } from '../ProductReviewContainer/ProductReviewsContainer';
+export { ProductViewBreadcrumbs } from '../ProductViewBreadcrumbs/ProductViewBreadcrumbs.container';
