@@ -47,7 +47,7 @@ export const ShoppingCartPage = () => {
     setIsLoading(false);
   }, [user]);
 
-  const productSum = products
+  const itemCount = products
     .filter((row) => row.selected)
     .reduce((accumulator, object) => {
       return accumulator + object.quantity;
@@ -72,7 +72,7 @@ export const ShoppingCartPage = () => {
         <div className="shopping-cart-page-back">
           <GoBackButton text="Back to search results" onClick={navigateBack} />
         </div>
-        <CartCount productSum={productSum} />
+        <CartCount itemCount={itemCount} />
         <CartContainer>
           <CartTable
             products={products}
