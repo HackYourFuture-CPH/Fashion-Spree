@@ -4,12 +4,21 @@ import ProductCard from '../../components/ProductCard/ProductCard.component';
 import './FavoritesPage.style.css';
 import { apiURL } from '../../apiURL';
 import { useUserContext } from '../../userContext';
+import Modal from '../../components/Modal/Modal.component';
+import { ViewPageButton } from '../../components/ViewPageButton/ViewPageButton.component';
 
 export const FavoritesPage = () => {
   const { user } = useUserContext();
   const [isLoading, setIsLoading] = useState(false);
   const [favorites, setFavorites] = useState([]);
   const [searchInput, setSearchInput] = useState('');
+  const [modalState, setModalState] = useState({
+    modalStatus: false,
+  });
+
+  const closeModal = () => {
+    setModalState({ modalStatus: false });
+  };
 
   useEffect(() => {
     const fetchFavorites = async () => {
@@ -51,9 +60,19 @@ export const FavoritesPage = () => {
     );
   });
 
+  const handleModal = () => {
+    closeModal();
+  };
+
   return (
     <div className="favorite-list-view">
       <SearchInput searchInput={searchInput} setSearchInput={setSearchInput} />
+      <button
+        type="button"
+        onClick={() => setModalState({ modalStatus: true })}
+      >
+        hi{' '}
+      </button>
       <h2 className="my-favorites">My favorites</h2>
       {isLoading ? 'Loading...' : ''}
       {!user && 'Please login'}
@@ -62,6 +81,24 @@ export const FavoritesPage = () => {
       ) : (
         <div className="rendered-product">{ListOfFavoriteProducts}</div>
       )}
+      <Modal
+        title="Are you sure you want to Remove your favorite?"
+        open={modalState.modalStatus}
+        toggle={closeModal}
+      >
+        <div>
+          <ViewPageButton
+            label="Yes"
+            backgroundColor="#00EF00"
+            onClick={() => handleModal(modalState.favoriteId)}
+          />
+          <ViewPageButton
+            label="No"
+            backgroundColor="#FF0000"
+            onClick={closeModal}
+          />
+        </div>
+      </Modal>
     </div>
   );
 };
