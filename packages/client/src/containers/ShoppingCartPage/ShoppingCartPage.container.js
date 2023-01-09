@@ -13,7 +13,6 @@ import { apiURL } from '../../apiURL';
 export const ShoppingCartPage = () => {
   const { user } = useUserContext();
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(false);
   const [products, setProducts] = useState([]);
   const [subtotal, setSubtotal] = useState(0);
 
@@ -23,7 +22,6 @@ export const ShoppingCartPage = () => {
 
   useEffect(() => {
     const fetchOpenedOrder = async () => {
-      setIsLoading(true);
       const url = `${apiURL()}/orders`;
 
       const response = await fetch(url, {
@@ -44,7 +42,6 @@ export const ShoppingCartPage = () => {
     };
 
     fetchOpenedOrder();
-    setIsLoading(false);
   }, [user]);
 
   const itemCount = products
@@ -74,11 +71,7 @@ export const ShoppingCartPage = () => {
         </div>
         <CartCount itemCount={itemCount} />
         <CartContainer>
-          <CartTable
-            products={products}
-            setProducts={setProducts}
-            isLoading={isLoading}
-          />
+          <CartTable products={products} setProducts={setProducts} />
           <CartTotal
             subtotal={subtotal}
             delivery={delivery}

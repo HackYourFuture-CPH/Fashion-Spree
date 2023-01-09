@@ -4,7 +4,7 @@ import CartSelectedProduct from '../CartSelectedProduct/CartSelectedProduct.comp
 import PropTypes from 'prop-types';
 import { useUserContext } from '../../../userContext';
 
-export default function CartTable({ products, setProducts, isLoading }) {
+export default function CartTable({ products, setProducts }) {
   const { user } = useUserContext();
   const [selected, setSelected] = useState(false);
 
@@ -34,7 +34,6 @@ export default function CartTable({ products, setProducts, isLoading }) {
       </div>
       <div className="cart-table-products">
         {!user && <span>Please log in to see your shopping cart</span>}
-        {isLoading && <span>LOADING...</span>}
         {user && products.length === 0 && <span>Your cart is empty</span>}
         {user &&
           products.map((product) => (
@@ -61,5 +60,4 @@ CartTable.propTypes = {
     }),
   ).isRequired,
   setProducts: PropTypes.func.isRequired,
-  isLoading: PropTypes.bool.isRequired,
 };
