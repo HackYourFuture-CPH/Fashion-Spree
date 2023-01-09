@@ -1,0 +1,11 @@
+.breadcrumbs-wrapper {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.collections-link,
+.category-link {
+  text-decoration: none;
+  color: black;
+  margin-top: 6px;
+}

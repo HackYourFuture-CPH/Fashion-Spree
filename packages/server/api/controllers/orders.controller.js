@@ -5,9 +5,11 @@ const HttpError = require('../lib/utils/http-error');
 const getOrdersByUserId = async (token) => {
   const userUid = token.split(' ')[1];
   const user = (await knex('users').where({ uid: userUid }))[0];
-
+  if (!user) {
+    throw new HttpError('User not found', 401);
+  }
   try {
-    const favorites = await knex('orders')
+    const orders = await knex('orders')
       .select('products.name', 'products.price', 'order_items.quantity')
       .join('order_items', function () {
         this.on('orders.id', '=', 'order_items.order_id');
@@ -21,14 +23,11 @@ const getOrdersByUserId = async (token) => {
       .where('orders.status', 'created')
       .andWhere('orders.user_id', `${user.id}`);
 
-    if (favorites.length === 0) {
-      throw new HttpError(
-        `There are no favorites available with this user`,
-        404,
-      );
+    if (orders.length === 0) {
+      throw new HttpError(`There are no orders available with this user`, 404);
     }
 
-    return favorites;
+    return orders;
   } catch (error) {
     return error.message;
   }

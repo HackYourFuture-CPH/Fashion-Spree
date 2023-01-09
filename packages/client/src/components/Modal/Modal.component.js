@@ -4,7 +4,6 @@ import './modal.styles.css';
 
 const Modal = ({ toggle, open, title, children }) => {
   if (!open) return null;
-
   document.body.style.overflow = 'hidden';
 
   return (
@@ -38,5 +37,5 @@ Modal.propTypes = {
   toggle: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
 };

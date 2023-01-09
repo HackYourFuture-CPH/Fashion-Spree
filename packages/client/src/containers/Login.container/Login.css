@@ -19,7 +19,7 @@ main {
 }
 
 .signup-section * {
-  margin-top: 2rem;
+  margin-top: 1rem;
   background-color: #f2ebe7;
 }
 
@@ -30,11 +30,13 @@ main {
   color: #212121;
   text-align: start;
   margin-left: 14%;
+  padding-top: 15%;
 }
 
 .signin-icons {
   width: 2.25rem;
   height: 2rem;
+  margin-bottom: 1rem;
 }
 
 .signin-with-btn {
@@ -53,10 +55,6 @@ main {
   margin-bottom: 1.2rem;
   border-radius: 0.5rem;
   border: none;
-}
-
-.signin-icons {
-  margin-bottom: 2rem;
 }
 
 .facebook-signin-btn,
@@ -78,16 +76,6 @@ main {
   margin-left: 14%;
   width: 65%;
 }
-
-.signup-form * {
-  border-style: hidden;
-  border-bottom: 1px solid rgba(33, 33, 33, 0.4);
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  background: #f2ebe7;
-  color: #212121;
-}
-
 .signup-form input {
   height: 30px;
   padding-left: 7px;
@@ -116,6 +104,7 @@ main {
   font-weight: bold;
   color: green;
   border: none;
+  margin-bottom: 1rem;
 }
 
 .signup-submit-button {
@@ -128,7 +117,7 @@ main {
   font-style: 'SemiBold';
   font-size: 1rem;
   font-weight: 600;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   color: #212121;
 }
 
@@ -137,6 +126,7 @@ main {
   font-weight: 400;
   font-size: 1rem;
   margin-right: 10%;
+  margin-bottom: 1rem;
 }
 
 @media screen and (max-width: 750px) {

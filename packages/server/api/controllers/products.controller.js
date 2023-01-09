@@ -2,8 +2,18 @@ const knex = require('../../config/db');
 const HttpError = require('../lib/utils/http-error');
 
 // Get All products
-const getProducts = async () => {
-  return knex.select().table('products');
+const getProducts = async (token) => {
+  const userUid = token.split(' ')[1];
+  const user = (await knex('users').where({ uid: userUid }))[0];
+
+  const products = await knex('products')
+    .select('products.*', 'favorites.id as favoritesID')
+    .leftJoin('favorites', function () {
+      this.on('products.id', '=', 'favorites.product_id');
+      this.andOnVal('favorites.user_id', '=', `${user ? user.id : ''}`);
+    });
+
+  return products;
 };
 
 // Get products by id
