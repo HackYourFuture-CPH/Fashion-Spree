@@ -13,8 +13,8 @@ const ProductCard = ({
   title,
   price,
   isFavorite,
-  toggleFavorite,
   setModalState,
+  toggleFavorite,
 }) => {
   return (
     <div className="product-card-wrapper">
@@ -23,13 +23,13 @@ const ProductCard = ({
         <div className="cart-favorite-wrapper">
           <img src={CartIcon} alt="Cart Icon" />
           <button
+            type="button"
+            className="favorite-button"
             onClick={(event) => {
               isFavorite
                 ? setModalState({ modalStatus: true, favoriteId: id })
                 : toggleFavorite(id, title, price, event);
             }}
-            type="button"
-            className="favorite-button"
           >
             <img
               src={isFavorite ? FullFavoriteIcon : EmptyFavoriteIcon}
@@ -60,7 +60,7 @@ ProductCard.propTypes = {
   price: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
   isFavorite: PropTypes.bool.isRequired,
-  toggleFavorite: PropTypes.func.isRequired,
   setModalState: PropTypes.func.isRequired,
+  toggleFavorite: PropTypes.func.isRequired,
 };
 export default ProductCard;

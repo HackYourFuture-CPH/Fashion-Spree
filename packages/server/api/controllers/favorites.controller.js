@@ -40,7 +40,7 @@ const createFavorites = async (token, body) => {
       throw new HttpError('User not found', 401);
     }
     await knex('favorites').insert({
-      user_id: body.user_id,
+      user_id: user.id,
       product_id: body.product_id,
     });
     return {
@@ -50,19 +50,22 @@ const createFavorites = async (token, body) => {
     return error.message;
   }
 };
+
 // delete
-const deleteFavorites = async (token, favoritesId) => {
+const deleteFavorites = async (token, favId) => {
   const userUid = token.split(' ')[1];
   const user = (await knex('users').where({ uid: userUid }))[0];
   if (!user) {
     throw new HttpError('User not found', 401);
   }
   try {
-    const deletedFav = knex('favorites').where({ id: favoritesId }).del();
+    const deletedFav = await knex('favorites').where({ id: favId }).del();
     if (deletedFav === 0) {
       throw new HttpError('The favorites ID you provided does not exist.', 400);
     } else {
-      return deletedFav;
+      return {
+        successful: true,
+      };
     }
   } catch (error) {
     return error.message;

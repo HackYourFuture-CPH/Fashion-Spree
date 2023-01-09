@@ -4,6 +4,7 @@ import ProductCard from '../../components/ProductCard/ProductCard.component';
 import './FavoritesPage.style.css';
 import { apiURL } from '../../apiURL';
 import { useUserContext } from '../../userContext';
+
 import Modal from '../../components/Modal/Modal.component';
 import { ViewPageButton } from '../../components/ViewPageButton/ViewPageButton.component';
 
@@ -18,6 +19,12 @@ export const FavoritesPage = () => {
 
   const closeModal = () => {
     setModalState({ modalStatus: false });
+  };
+
+  const [favoriteProducts, setFavoriteProducts] = useState();
+  const toggleFavorite = (id) => {
+    const filteredFavorite = favoriteProducts.filter((item) => item.id !== id);
+    setFavoriteProducts(filteredFavorite);
   };
 
   useEffect(() => {
@@ -55,24 +62,37 @@ export const FavoritesPage = () => {
           price={product.price}
           id={product.id}
           isFavorite={filteredProducts.some((x) => x.id === product.id)}
+          setModalState={setModalState}
+          toggleFavorite={toggleFavorite}
         />
       </div>
     );
   });
 
-  const handleModal = () => {
+  const handleModal = (favoriteId) => {
+    const DeleteFavorites = async () => {
+      const url =
+        (`${apiURL()}/favorites/${favoriteId} `, { method: 'DELETE' });
+      const response = await fetch(url, {
+        headers: {
+          token: `token ${user?.uid}`,
+        },
+      });
+      await response.json();
+    };
+    DeleteFavorites(favoriteId);
     closeModal();
   };
 
   return (
     <div className="favorite-list-view">
       <SearchInput searchInput={searchInput} setSearchInput={setSearchInput} />
-      <button
+      {/* <button
         type="button"
         onClick={() => setModalState({ modalStatus: true })}
       >
         hi{' '}
-      </button>
+      </button> */}
       <h2 className="my-favorites">My favorites</h2>
       {isLoading ? 'Loading...' : ''}
       {!user && 'Please login'}
