@@ -16,7 +16,7 @@ const ProductCard = ({
   isFavorite,
   setModalState,
   toggleFavorite,
-  makeFav,
+  addFavorite,
   setOpenModal,
 }) => {
   return (
@@ -31,7 +31,7 @@ const ProductCard = ({
             onClick={(event) => {
               isFavorite
                 ? setModalState({ modalStatus: true, favoritesId: favoriteId })
-                : makeFav(id);
+                : addFavorite(id);
               setOpenModal(true);
             }}
           >
@@ -67,7 +67,7 @@ ProductCard.propTypes = {
   isFavorite: PropTypes.bool.isRequired,
   setModalState: PropTypes.func.isRequired,
   toggleFavorite: PropTypes.func.isRequired,
-  makeFav: PropTypes.func.isRequired,
+  addFavorite: PropTypes.func.isRequired,
   setOpenModal: PropTypes.bool.isRequired,
 };
 export default ProductCard;

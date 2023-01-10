@@ -13,18 +13,22 @@ export default function ProductList({ isLoading, products, filteredProducts }) {
     setOpenModal(false);
   };
   const { user } = useUserContext();
-  const makeFav = (key) => {
-    // console.log('clicked', key);
-    const PostFavorites = async () => {
-      await fetch(`${apiURL()}/favorites `, {
-        method: 'POST',
-        headers: {
-          token: `token ${user?.uid}`,
-        },
-        body: JSON.stringify({ product_id: key }),
-      });
-    };
-    PostFavorites();
+
+  const addFavorite = (key) => {
+    fetch(`${apiURL()}/favorites`, {
+      method: 'POST',
+      headers: {
+        token: `token ${user?.uid}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        product_id: key,
+      }),
+    }).then((res) => {
+      if (res.ok) {
+        return res.json().then((data) => {});
+      }
+    });
   };
   const ListOfProducts = filteredProducts.map((product) => {
     return (
@@ -36,7 +40,7 @@ export default function ProductList({ isLoading, products, filteredProducts }) {
           id={product.id}
           favoritesID={product.favoritesID}
           isFavorite={product.favoritesID !== null}
-          makeFav={makeFav}
+          addFavorite={addFavorite}
           setOpenModal={setOpenModal}
         />
       </div>
@@ -45,9 +49,6 @@ export default function ProductList({ isLoading, products, filteredProducts }) {
 
   return (
     <div className="product-list-container">
-      {/* <button onClick={() => setOpenModal(true)} type="button">
-        hhhhhhhh
-      </button> */}
       {isLoading && <p>Loading...</p>}
       {products.length === 0 || filteredProducts.length === 0 ? (
         <p>There is no product available</p>
@@ -56,7 +57,7 @@ export default function ProductList({ isLoading, products, filteredProducts }) {
       )}
       <Modal
         title="Please Login to save your Favorites.."
-        open={openModal}
+        open={!user ? openModal : null}
         toggle={toggleModal}
       >
         .
