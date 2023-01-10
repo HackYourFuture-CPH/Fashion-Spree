@@ -17,6 +17,7 @@ const ProductCard = ({
   setModalState,
   toggleFavorite,
   makeFav,
+  setOpenModal,
 }) => {
   return (
     <div className="product-card-wrapper">
@@ -31,6 +32,7 @@ const ProductCard = ({
               isFavorite
                 ? setModalState({ modalStatus: true, favoritesId: favoriteId })
                 : makeFav(id);
+              setOpenModal(true);
             }}
           >
             <img
@@ -66,5 +68,6 @@ ProductCard.propTypes = {
   setModalState: PropTypes.func.isRequired,
   toggleFavorite: PropTypes.func.isRequired,
   makeFav: PropTypes.func.isRequired,
+  setOpenModal: PropTypes.bool.isRequired,
 };
 export default ProductCard;

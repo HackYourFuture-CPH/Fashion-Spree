@@ -6,7 +6,6 @@ import './ProductList.component.css';
 import { useUserContext } from '../../userContext';
 import ProductCard from '../ProductCard/ProductCard.component';
 import Modal from '../Modal/Modal.component';
-// import { ViewPageButton } from '../components/ViewPageButton/ViewPageButton.component';
 
 export default function ProductList({ isLoading, products, filteredProducts }) {
   const [openModal, setOpenModal] = useState();
@@ -38,6 +37,7 @@ export default function ProductList({ isLoading, products, filteredProducts }) {
           favoritesID={product.favoritesID}
           isFavorite={product.favoritesID !== null}
           makeFav={makeFav}
+          setOpenModal={setOpenModal}
         />
       </div>
     );
