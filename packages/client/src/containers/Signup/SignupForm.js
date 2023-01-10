@@ -1,86 +1,67 @@
 import React from 'react';
-import './Signup.styles.css';
 import PropTypes from 'prop-types';
+import TextFormInput from '../../components/Input/TextFormInput.component';
+import EmailFormInput from '../../components/Input/EmailFormInput.component';
+import PasswordFormInput from '../../components/Input/PasswordFormInput.component';
+import './Signup.styles.css';
 
 const SignupForm = ({
-  handleChange,
-  handleValidation,
-  cleanUpValidation,
-  formValues,
-  formErrors,
+  name,
+  email,
+  password,
+  nameError,
+  emailError,
+  passwordError,
+  validateName,
+  validateEmail,
+  validatePassword,
 }) => {
   return (
     <form className="signup-form">
-      <input
-        className="sign-up-form__fullname"
-        placeholder="Full Name"
-        name="fullname"
-        values={formValues.fullname}
-        onChange={handleChange}
-        onBlur={handleValidation}
-        onFocus={cleanUpValidation}
+      <TextFormInput
         type="text"
+        value={name}
+        placeholder="Fullname"
+        onChange={validateName}
+        error={nameError}
       />
-      {formErrors.fullname && (
-        <p className="form-erros">{formErrors.fullname}</p>
-      )}
-      <input
-        className="sign-up-form__email"
-        placeholder="Email Address"
-        name="email"
+      <EmailFormInput
+        placeholder="Email"
+        value={email}
         type="email"
-        values={formValues.email}
-        onChange={handleChange}
-        onBlur={handleValidation}
-        onFocus={cleanUpValidation}
+        onChange={validateEmail}
+        error={emailError}
       />
-      {formErrors.email && <p className="form-erros">{formErrors.email}</p>}
-      <input
-        className="sign-up-form__password"
+      <PasswordFormInput
         placeholder="Password"
-        name="password"
+        value={password}
         type="password"
-        values={formValues.password}
-        onChange={handleChange}
-        onBlur={handleValidation}
-        onFocus={cleanUpValidation}
+        onChange={validatePassword}
+        error={passwordError}
       />
-      {formErrors.password && (
-        <p className="form-erros">{formErrors.password}</p>
-      )}
-      {/*
-      <button
-        /* onClick={handleSubmit}
-        onClick={register}
-        className="signup-submit-button"
-        type="submit"
-      >
-        Sign up
-      </button>
-      if I use button here - firebase doesn't work... */}
     </form>
   );
 };
-
-export default SignupForm;
-
 SignupForm.propTypes = {
-  handleChange: PropTypes.func.isRequired,
-  handleValidation: PropTypes.func.isRequired,
-  cleanUpValidation: PropTypes.func.isRequired,
-  formValues: PropTypes.shape({
-    fullname: PropTypes.string,
-    email: PropTypes.string,
-    password: PropTypes.string,
-  }),
-  formErrors: PropTypes.shape({
-    fullname: PropTypes.string,
-    email: PropTypes.string,
-    password: PropTypes.string,
-  }),
+  name: PropTypes.string,
+  email: PropTypes.string,
+  password: PropTypes.string,
+  nameError: PropTypes.bool,
+  emailError: PropTypes.bool,
+  passwordError: PropTypes.bool,
+  validateName: PropTypes.func,
+  validateEmail: PropTypes.func,
+  validatePassword: PropTypes.func,
 };
-
 SignupForm.defaultProps = {
-  formErrors: '',
-  formValues: '',
+  name: null,
+  email: null,
+  password: null,
+  nameError: false,
+  emailError: false,
+  passwordError: false,
+  validateName: undefined,
+  validateEmail: undefined,
+  validatePassword: undefined,
 };
+export default SignupForm;

@@ -22,13 +22,13 @@ export const UserContext = createContext();
 
 export function UserProvider({ children }) {
   const [user, loading] = useAuthState(auth);
-  const [name, setName] = useState('');
+  const [userFullname, setUserFullname] = useState('');
   const fetchUserName = useCallback(async () => {
     try {
       const q = query(collection(db, 'users'), where('uid', '==', user?.uid));
       const doc = await getDocs(q);
       const data = doc.docs[0].data();
-      setName(data.name);
+      setUserFullname(data.name);
     } catch (err) {
       /* error */
     }
@@ -44,14 +44,14 @@ export function UserProvider({ children }) {
     () => ({
       user,
       db,
-      name,
+      userFullname,
       loading,
       logInWithEmailAndPassword,
       signInWithGoogle,
       registerWithEmailAndPassword,
       logout,
     }),
-    [user, name, loading],
+    [user, userFullname, loading],
   );
 
   return (

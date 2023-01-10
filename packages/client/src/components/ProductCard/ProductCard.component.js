@@ -17,7 +17,7 @@ const ProductCard = ({
   setModalState,
 }) => {
   return (
-    <Link className="product-card-wrapper" to={`/products/${id}`}>
+    <div className="product-card-wrapper">
       <div className="product-img-wrapper">
         <img src={BackgroundImage} alt="Cart Icon" className="product-img" />
         <div className="cart-favorite-wrapper">
@@ -38,7 +38,9 @@ const ProductCard = ({
           </button>
         </div>
       </div>
-      <h2 className="product-title"> {title}</h2>
+      <Link className="product-title-link" to={`/products/${id}`}>
+        <h2 className="product-title"> {title}</h2>
+      </Link>
       <div className="price-rate-wrapper">
         <div className="product-price-wrapper">
           <p>Dkk</p>
@@ -49,7 +51,7 @@ const ProductCard = ({
           <p>4.5</p>
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 
