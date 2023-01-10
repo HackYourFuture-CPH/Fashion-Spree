@@ -15,8 +15,6 @@ export const Signup = () => {
     signInWithGoogle,
   } = useUserContext();
   const navigate = useNavigate();
-  const [validForm, setValidForm] = useState(false);
-  const [invalidForm, setInvalidForm] = useState(false);
   const [name, nameError, validateName] = useInputValidation('fullname');
   const [email, emailError, validateEmail] = useInputValidation('email');
   const [password, passwordError, validatePassword] =
@@ -44,8 +42,6 @@ export const Signup = () => {
       email.length === 0 ||
       password.length === 0
     ) {
-      setInvalidForm(true);
-      setValidForm(false);
       return;
     }
     registerWithEmailAndPassword(name, email, password);
