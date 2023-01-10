@@ -10,7 +10,13 @@ const getOrdersByUserId = async (token) => {
   }
   try {
     const orders = await knex('orders')
-      .select('products.name', 'products.price', 'order_items.quantity')
+      .select(
+        'order_items.order_id',
+        'order_items.variant_id',
+        'products.name',
+        'products.price',
+        knex.raw('SUM(order_items.quantity) as quantity'),
+      )
       .join('order_items', function () {
         this.on('orders.id', '=', 'order_items.order_id');
       })
@@ -21,13 +27,43 @@ const getOrdersByUserId = async (token) => {
         this.on('variants.product_id', '=', 'products.id');
       })
       .where('orders.status', 'created')
-      .andWhere('orders.user_id', `${user.id}`);
-
-    if (orders.length === 0) {
-      throw new HttpError(`There are no orders available with this user`, 404);
-    }
+      .andWhere('orders.user_id', `${user.id}`)
+      .groupBy('order_items.order_id', 'order_items.variant_id');
 
     return orders;
+  } catch (error) {
+    return error.message;
+  }
+};
+
+// delete order item from order
+const deleteOrder = async (authorization, query) => {
+  const userUid = authorization.split(' ')[1];
+  const user = (await knex('users').where({ uid: userUid }))[0];
+  if (!user) {
+    throw new HttpError('User not found', 401);
+  }
+
+  const { orderId, variantId } = query;
+
+  if (!orderId || !variantId) {
+    throw new HttpError('please enter ID to delete your order item.', 400);
+  }
+  try {
+    const deletedOrderItem = knex('order_items')
+      .where({
+        'order_items.order_id': orderId,
+        'order_items.variant_id': variantId,
+      })
+      .del();
+    if (deletedOrderItem === 0) {
+      throw new HttpError(
+        'The order item ID you provided does not exist.',
+        404,
+      );
+    } else {
+      return deletedOrderItem;
+    }
   } catch (error) {
     return error.message;
   }
@@ -112,4 +148,5 @@ const addOrderItemsByUserId = async (authorization, body) => {
 module.exports = {
   getOrdersByUserId,
   addOrderItemsByUserId,
+  deleteOrder,
 };

@@ -70,11 +70,50 @@ router.get('/', (req, res, next) => {
  *        description: Unexpected error.
  */
 
+/**
+ * @swagger
+ * /orders?orderId={id}&variantId={id}:
+ *  delete:
+ *    tags:
+ *    - orders
+ *    summary: Delete an order item
+ *    description:
+ *      Will delete an order item with a given ID.
+ *    produces: application/json
+ *    parameters:
+ *      - in: header
+ *        name: authorization
+ *        schema:
+ *          type: string
+ *          required: true
+ *        description: The user id to delete order item.
+ *      - in: query
+ *        name: orderId
+ *        description: ID of the order.
+ *      - in: query
+ *        name: variantId
+ *        description: ID of variant.
+ *    responses:
+ *      200:
+ *        description: order item deleted
+ *      5XX:
+ *        description: Unexpected error.
+ */
+
 router.post('/', (req, res, next) => {
   const { authorization } = req.headers;
 
   ordersController
     .addOrderItemsByUserId(authorization, req.body)
+    .then((result) => res.json(result))
+    .catch(next);
+});
+
+router.delete('/', (req, res, next) => {
+  const { authorization } = req.headers;
+
+  ordersController
+    .deleteOrder(authorization, req.query)
     .then((result) => res.json(result))
     .catch(next);
 });

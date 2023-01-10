@@ -6,8 +6,16 @@ export default function CartButtons() {
   return (
     <div className="cart-buttons-wrapper">
       <div className="cart-buttons">
-        <ViewPageButton label="Proceed to checkout" backgroundColor="#F5F5F5" />
-        <ViewPageButton label="Back to Search" backgroundColor="#D9D9D9" />
+        <ViewPageButton
+          label="Proceed to checkout"
+          backgroundColor="#F5F5F5"
+          onClick={() => {}}
+        />
+        <ViewPageButton
+          label="Back to Search"
+          backgroundColor="#D9D9D9"
+          onClick={() => {}}
+        />
       </div>
     </div>
   );
