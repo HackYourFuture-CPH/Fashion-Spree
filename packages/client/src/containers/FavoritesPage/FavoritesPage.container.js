@@ -58,6 +58,7 @@ export const FavoritesPage = () => {
     return (
       <div key={product.id} className="product">
         <ProductCard
+          favoriteId={product.favoritesID}
           title={product.name}
           price={product.price}
           id={product.id}
@@ -69,30 +70,22 @@ export const FavoritesPage = () => {
     );
   });
 
-  const handleModal = (favoriteId) => {
+  const handleModal = (favoritesId, id) => {
     const DeleteFavorites = async () => {
-      const url =
-        (`${apiURL()}/favorites/${favoriteId} `, { method: 'DELETE' });
-      const response = await fetch(url, {
+      fetch(`${apiURL()}/favorites/${favoritesId} `, {
+        method: 'DELETE',
         headers: {
           token: `token ${user?.uid}`,
         },
       });
-      await response.json();
     };
-    DeleteFavorites(favoriteId);
+    DeleteFavorites(favoritesId);
     closeModal();
   };
 
   return (
     <div className="favorite-list-view">
       <SearchInput searchInput={searchInput} setSearchInput={setSearchInput} />
-      {/* <button
-        type="button"
-        onClick={() => setModalState({ modalStatus: true })}
-      >
-        hi{' '}
-      </button> */}
       <h2 className="my-favorites">My favorites</h2>
       {isLoading ? 'Loading...' : ''}
       {!user && 'Please login'}
@@ -110,7 +103,7 @@ export const FavoritesPage = () => {
           <ViewPageButton
             label="Yes"
             backgroundColor="#00EF00"
-            onClick={() => handleModal(modalState.favoriteId)}
+            onClick={() => handleModal(modalState.favoritesId)}
           />
           <ViewPageButton
             label="No"

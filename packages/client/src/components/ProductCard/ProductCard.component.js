@@ -9,12 +9,14 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 const ProductCard = ({
+  favoriteId,
   id,
   title,
   price,
   isFavorite,
   setModalState,
   toggleFavorite,
+  makeFav,
 }) => {
   return (
     <div className="product-card-wrapper">
@@ -27,8 +29,8 @@ const ProductCard = ({
             className="favorite-button"
             onClick={(event) => {
               isFavorite
-                ? setModalState({ modalStatus: true, favoriteId: id })
-                : toggleFavorite(id, title, price, event);
+                ? setModalState({ modalStatus: true, favoritesId: favoriteId })
+                : makeFav(id);
             }}
           >
             <img
@@ -59,8 +61,10 @@ ProductCard.propTypes = {
   title: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
+  favoriteId: PropTypes.number.isRequired,
   isFavorite: PropTypes.bool.isRequired,
   setModalState: PropTypes.func.isRequired,
   toggleFavorite: PropTypes.func.isRequired,
+  makeFav: PropTypes.func.isRequired,
 };
 export default ProductCard;
