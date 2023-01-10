@@ -2,30 +2,7 @@ const express = require('express');
 
 const router = express.Router({ mergeParams: true });
 
-const usersController = require('../controllers/users.controllers');
-
-/**
- * @swagger
- * /users:
- *  get:
- *    tags:
- *    - users
- *    summary: Get all users
- *    description:
- *      Will return all users.
- *    produces: application/json
- *    responses:
- *      200:
- *        description: Successful request
- *      5XX:
- *        description: Unexpected error.
- */
-router.get('/', (req, res, next) => {
-  usersController
-    .getUsers()
-    .then((result) => res.json(result))
-    .catch(next);
-});
+const usersController = require('../controllers/users.controller');
 
 /**
  * @swagger
@@ -46,20 +23,17 @@ router.get('/', (req, res, next) => {
  *          required:
  *            - full_name
  *            - email
- *            - created_at
  *            - uid
  *          properties:
  *            full_name:
  *              type: string
  *            email:
  *              type: string
- *            created_at:
- *              type: date/time
  *            uid:
- *              type: date/time
+ *              type: string
  *    responses:
- *      201:
- *        description: User created
+ *      200:
+ *        description: Successful request
  *      5XX:
  *        description: Unexpected error.
  */
