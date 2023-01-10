@@ -22,9 +22,6 @@ export const Navigation = () => {
             <NavLink to="/" className="home">
               Home
             </NavLink>
-            <NavLink to="/about-us" className="about-us">
-              About Us
-            </NavLink>
             <NavLink to="/collections" className="collections">
               Our collections
             </NavLink>
