@@ -47,12 +47,7 @@ function Signup() {
         uid: userCreated?.uid,
       }),
     };
-    await fetch(`${apiURL()}/users`, requestOptions)
-      .then((response) => response.json())
-      .then((data) => {
-        /* console.log(data);
-        console.log('user', userCreated, userCreated?.uid); */
-      });
+    await fetch(`${apiURL()}/users`, requestOptions);
   }, []);
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -69,7 +64,6 @@ function Signup() {
   useEffect(() => {
     if (loading) return;
     if (user) {
-      /* console.log('user1', user, user.email); */
       addUserToDb(user, name);
       navigate('/');
     }
@@ -100,7 +94,7 @@ function Signup() {
             <img
               className="signin-icons"
               src="../../assets/icons/facebook.png"
-              alt=" facebooklogo"
+              alt="facebooklogo"
             />
             sign in with Facebook
           </button>
