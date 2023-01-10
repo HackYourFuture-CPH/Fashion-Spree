@@ -1,7 +1,7 @@
 .cart-selected-wrapper {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  text-align: left;
+  text-align: center;
 }
 
 .cart-selected-blank {
@@ -35,4 +35,87 @@
 
 .cart-selected-action button:hover {
   cursor: pointer;
+}
+
+.cart-selected-wrapper:nth-child(even) {
+  background-color: white;
+  padding: 10px;
+}
+.cart-selected-wrapper:nth-child(odd) {
+  background-color: rgba(245, 245, 245, 1);
+  padding: 10px;
+}
+
+.removeBtn {
+  width: 60px;
+  height: 10px;
+}
+.removeBtn img {
+  width: 20px;
+}
+
+.check-mark {
+  align-items: center;
+}
+
+.check-mark img {
+  width: 20px;
+}
+
+[type='checkbox'] {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  -webkit-appearance: none;
+  background: none;
+  border: 0;
+  outline: 0;
+  flex-grow: 0;
+  background-color: white;
+  transition: background 300ms;
+  cursor: pointer;
+  margin-left: 15px;
+}
+
+[type='checkbox']::before {
+  content: '';
+  color: transparent;
+  display: block;
+  width: inherit;
+  height: inherit;
+  border-radius: inherit;
+  border: 0;
+  background-color: transparent;
+  background-size: contain;
+  box-shadow: inset 0 0 0 2px rgba(67, 67, 67, 1);
+  border-radius: 3px;
+}
+
+/* Checked */
+[type='checkbox']:checked {
+  background-color: white;
+}
+
+[type='checkbox']:checked::before {
+  box-shadow: none;
+  background-image: url(../../../assets/vector-check-mark.png);
+}
+
+@media screen and (max-width: 768px) {
+  .removeBtn img {
+    width: 17px;
+  }
+  [type='checkbox'] {
+    width: 18px;
+    height: 18px;
+    margin-left: 0;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .cart-table-headers {
+    font-size: 12px;
+    padding-left: 0;
+    gap: 20px;
+  }
 }

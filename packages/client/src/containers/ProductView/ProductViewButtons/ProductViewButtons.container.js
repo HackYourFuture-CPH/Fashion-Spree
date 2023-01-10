@@ -20,6 +20,11 @@ export const ProductViewButtons = ({ buyNowFn }) => {
         backgroundColor="#D9D9D9"
         onClick={() => {}}
       />
+      <ViewPageButton
+        label="Add to Favorites"
+        backgroundColor="#D9D9D9"
+        onClick={() => {}}
+      />
     </div>
   );
 };

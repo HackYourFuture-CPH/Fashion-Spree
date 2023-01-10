@@ -1,27 +1,42 @@
 import React from 'react';
 import './CartSelectedProduct.styles.css';
 import PropTypes from 'prop-types';
+import removeIcon from '../../../assets/remove-btn.png';
+import { useShoppingCartContext } from '../../../utils/ShoppingCartContext/ShoppingCartContext';
 
-export default function CartSelectedProduct({ product }) {
+export default function CartSelectedProduct({ product, handleChange }) {
+  const { removeOrderItem } = useShoppingCartContext();
+
   return (
     <div className="cart-selected-wrapper">
       <div className="cart-selected-blank">
-        <input type="checkbox" name="" id="" />
+        <input
+          type="checkbox"
+          name=""
+          id=""
+          onChange={() => handleChange(product)}
+        />
       </div>
       <div className="cart-selected-desc">
-        <span>{product.description}</span>
+        <span>{product.name}</span>
       </div>
       <div className="cart-selected-amount">
-        <span>{product.amount}</span>
+        <span>{product.price} DKK</span>
       </div>
       <div className="cart-selected-quantity">
         <span>{product.quantity}</span>
       </div>
       <div className="cart-selected-total">
-        <span>Dkk 199,99</span>
+        <span>{(product.price * product.quantity).toFixed(2)} DKK</span>
       </div>
       <div className="cart-selected-action">
-        <button type="button">Remove</button>
+        <button
+          type="button"
+          onClick={() => removeOrderItem(product)}
+          className="removeBtn"
+        >
+          <img src={removeIcon} alt="removeIcon" />
+        </button>
       </div>
     </div>
   );
@@ -29,9 +44,11 @@ export default function CartSelectedProduct({ product }) {
 
 CartSelectedProduct.propTypes = {
   product: PropTypes.exact({
-    id: PropTypes.number.isRequired,
-    description: PropTypes.string.isRequired,
-    amount: PropTypes.number.isRequired,
-    quantity: PropTypes.number.isRequired,
+    order_id: PropTypes.number.isRequired,
+    variant_id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    price: PropTypes.string.isRequired,
+    quantity: PropTypes.string.isRequired,
   }).isRequired,
+  handleChange: PropTypes.func.isRequired,
 };

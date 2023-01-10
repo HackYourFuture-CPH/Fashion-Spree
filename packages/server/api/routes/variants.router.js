@@ -29,13 +29,12 @@ const variantsController = require('../controllers/variants.controller');
  *      5XX:
  *        description: Unexpected error.
  */
+
 router.get('/', (req, res, next) => {
-  if ('product' in req.query) {
-    variantsController
-      .getVariantsByProductId(req.query.product)
-      .then((result) => res.json(result))
-      .catch(next);
-  }
+  variantsController
+    .getVariantsProductByAtribute(req.query)
+    .then((result) => res.json(result))
+    .catch(next);
 });
 
 module.exports = router;

@@ -4,11 +4,10 @@ import './CollectionsPage.style.css';
 import DropDownView from '../../components/CategoriesListDropDown/CategoriesListDropDown.component';
 import SearchInput from '../../components/SearchInput/SearchInput.component';
 import { apiURL } from '../../apiURL';
-import { getLocalStorage, setLocalStorage } from '../../utils/storageHelpers';
-
-const favoriteProductsStorageKey = 'favorite_products';
+import { useUserContext } from '../../userContext';
 
 export const CollectionsPage = () => {
+  const { user } = useUserContext();
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -17,10 +16,7 @@ export const CollectionsPage = () => {
   const [categories, setCategories] = useState([]);
   const [searchInput, setSearchInput] = useState('');
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const [isFavorite, setIsFavorite] = useState(false);
-  const [favoriteProducts, setFavoriteProducts] = useState(
-    getLocalStorage(favoriteProductsStorageKey) || [],
-  );
+  let isFavorite;
 
   // fetching Api by products or products by category
   useEffect(() => {
@@ -29,7 +25,11 @@ export const CollectionsPage = () => {
       const url = `${apiURL()}/products${
         selectedCategory ? `?category=${categoryName}` : ''
       }`;
-      fetch(url)
+      fetch(url, {
+        headers: {
+          token: `token ${user?.uid}`,
+        },
+      })
         .then((res) => res.json())
         .then((items) => {
           setProducts(items);
@@ -38,7 +38,7 @@ export const CollectionsPage = () => {
     fetchProducts(selectedCategory);
 
     setIsLoading(false);
-  }, [selectedCategory]);
+  }, [selectedCategory, user]);
 
   // fetching Api to categories options in dropdown List.
   useEffect(() => {
@@ -66,7 +66,7 @@ export const CollectionsPage = () => {
     'Price High to Low',
   ];
 
-  // Remain to work filteroptions
+  // Remain to work filter options
   const filterOptions = ['Price', 'Size', 'Color', 'Reviews', 'Brand'];
 
   // search product by name in searchbar
@@ -95,34 +95,6 @@ export const CollectionsPage = () => {
     );
     setFilteredProducts(filterResults);
   }, [searchInput, products, sortOrder]);
-
-  const toggleFavorite = (id, title, price, event) => {
-    const newFavoriteItem = {
-      id,
-      title,
-      price,
-    };
-
-    const inFavoriteList = favoriteProducts.some((e) => {
-      return e.id === id;
-    });
-
-    if (!inFavoriteList) {
-      setFavoriteProducts((product) => {
-        const newList = [...product, newFavoriteItem];
-        setLocalStorage(favoriteProductsStorageKey, newList);
-        return newList;
-      });
-    } else if (inFavoriteList) {
-      const filteredFavorite = favoriteProducts.filter(
-        (item) => item.id !== id,
-      );
-      setFavoriteProducts(filteredFavorite);
-      setLocalStorage(favoriteProductsStorageKey, filteredFavorite);
-    }
-
-    setIsFavorite(!isFavorite);
-  };
 
   return (
     <>
@@ -158,9 +130,7 @@ export const CollectionsPage = () => {
           isLoading={isLoading}
           products={products}
           filteredProducts={filteredProducts}
-          toggleFavorite={toggleFavorite}
           isFavorite={isFavorite}
-          favoriteProducts={favoriteProducts}
         />
       </div>
     </>

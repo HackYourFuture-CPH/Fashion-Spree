@@ -1,42 +1,37 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './ContactUs.styles.css';
-import validateForm from '../utils/validateForm';
+import TextFormInput from '../components/Input/TextFormInput.component';
+import EmailFormInput from '../components/Input/EmailFormInput.component';
+import useInputValidation from '../utils/hooks/useInputValidation';
+import Modal from '../components/Modal/Modal.component';
 
 export const ContactUs = () => {
-  const [formValues, setFormValues] = useState({
-    fullname: '',
-    email: '',
-    message: '',
-  });
-  const [formErrors, setFormErrors] = useState({});
-  const [isSubmit, setIsSubmit] = useState(false);
+  const [validForm, setValidForm] = useState(false);
+  const [invalidForm, setInvalidForm] = useState(false);
+  const [name, nameError, validateName] = useInputValidation('fullname');
+  const [email, emailError, validateEmail] = useInputValidation('email');
+  const [message, messageError, validateMessage] =
+    useInputValidation('message');
+  const [openConfirmationModal, setOpenConfirmationModal] = useState(false);
 
-  const handleChange = (e) => {
-    setFormValues({
-      ...formValues,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleFormSubmit = (e) => {
-    setFormErrors(validateForm(formValues));
-    setIsSubmit(true);
-
-    e.preventDefault();
-
-    /* eslint-disable no-console */
-    console.log(
-      `fullname: ${formValues.fullname}, \nemail: ${formValues.email},\nmessage:${formValues.message}`,
-    );
-  };
-
-  useEffect(() => {
-    if (Object.keys(formErrors).length === 0 && isSubmit) {
-      console.log(formValues);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (
+      nameError ||
+      emailError ||
+      messageError ||
+      name.length === 0 ||
+      email.length === 0 ||
+      message.length === 0
+    ) {
+      setInvalidForm(true);
+      setValidForm(false);
+    } else {
+      setInvalidForm(false);
+      setValidForm(true);
+      setOpenConfirmationModal(true);
     }
-
-    // eslint-disable-next-line
-  }, [formErrors, isSubmit]);
+  };
 
   return (
     <main className="contactUs-wrapper">
@@ -59,58 +54,44 @@ export const ContactUs = () => {
           </div>
           <p className="or">-OR-</p>
           <form>
-            <input
-              className="contactUs-input"
+            <TextFormInput
               type="text"
-              placeholder="Full Name"
-              name="fullname"
-              value={formValues.fullname}
-              onChange={handleChange}
+              value={name}
+              placeholder="Fullname"
+              onChange={validateName}
+              error={nameError}
             />
-            {formErrors.fullname && (
-              <p className="error-msg">{formErrors.fullname}</p>
-            )}
-
-            <input
-              className="contactUs-input"
+            <EmailFormInput
+              placeholder="Email"
+              value={email}
               type="email"
-              placeholder="Email Address"
-              name="email"
-              value={formValues.email}
-              onChange={handleChange}
+              onChange={validateEmail}
+              error={emailError}
             />
-            {formErrors.email && (
-              <p className="error-msg">{formErrors.email}</p>
-            )}
-            <input
-              className="contactUs-input"
+            <TextFormInput
               type="text"
+              value={message}
               placeholder="Message"
-              name="message"
-              value={formValues.message}
-              onChange={handleChange}
+              onChange={validateMessage}
+              error={messageError}
             />
-            {formErrors.message && (
-              <p className="error-msg">{formErrors.message}</p>
-            )}
-
             <button
               className="contactUs-btn"
-              onClick={handleFormSubmit}
+              onClick={handleSubmit}
               type="submit"
             >
               Send Message
             </button>
-            {Object.keys(formErrors).length === 0 && isSubmit ? (
-              <div className="success">
-                <img
-                  className="icon-success"
-                  src="../../assets/icons/success.png"
-                  alt="success sign"
-                />
-                <p className="message-success">Message sent successfully</p>
-              </div>
-            ) : null}
+            {validForm && (
+              <Modal
+                title="confirmation"
+                open={openConfirmationModal}
+                toggle={() => setOpenConfirmationModal(false)}
+              >
+                Your message has been sent!
+              </Modal>
+            )}
+            {invalidForm && <p className="error-message">Form is not valid</p>}
           </form>
           <h3>Follow or connect with us</h3>
           <div className="media-icons">

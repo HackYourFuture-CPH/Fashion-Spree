@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './ShoppingCartPage.styles.css';
 import CartContainer from '../../components/Cart/CartContainer/CartContainer.component';
 import CartCount from '../../components/Cart/CartCount/CartCount.component';
@@ -7,40 +7,51 @@ import CartTotal from '../../components/Cart/CartTotal/CartTotal.component';
 import CartButtons from '../../components/Cart/CartButtons/CartButtons.component';
 import { GoBackButton } from '../../components/shared/GoBackButton/GoBackButton.component';
 import { useNavigate } from 'react-router-dom';
+import { useShoppingCartContext } from '../../utils/ShoppingCartContext/ShoppingCartContext';
+
+const countAllProducts = (products) => {
+  return products.reduce((acc, product) => acc + +product.quantity, 0);
+};
+
+const countSubTotal = (products) => {
+  return products.reduce(
+    (acc, product) => acc + product.quantity * product.price,
+    0,
+  );
+};
 
 export const ShoppingCartPage = () => {
+  const { orderItems } = useShoppingCartContext();
+
   const navigate = useNavigate();
-
-  const products = [
-    {
-      id: 1,
-      description: 'Low waist Jeans',
-      amount: 199.99,
-      quantity: 1,
-    },
-    {
-      id: 2,
-      description: 'High waist Jeans',
-      amount: 199.99,
-      quantity: 1,
-    },
-    {
-      id: 3,
-      description: 'Slim fit Jeans',
-      amount: 199.99,
-      quantity: 1,
-    },
-  ];
-
-  const productSum = products.length;
-
-  const subtotal = 599.97;
+  const [productsAmount, setProductsAmount] = useState(0);
+  const [selectedProducts, setSelectedProducts] = useState([]);
   const delivery = 0;
   const shipping = 0;
-  const total = 599.97;
+
+  const subtotal = countSubTotal(selectedProducts);
+
+  const total = subtotal + delivery + shipping;
+
+  useEffect(() => {
+    const amount = countAllProducts(orderItems);
+    setProductsAmount(amount);
+  }, [orderItems]);
 
   const navigateBack = () => {
     navigate(-1);
+  };
+
+  const handleChange = (product) => {
+    if (selectedProducts.includes(product)) {
+      setSelectedProducts((prevProducts) => {
+        return prevProducts.filter((selProduct) => selProduct !== product);
+      });
+    } else {
+      setSelectedProducts((prevProducts) => {
+        return [...prevProducts, product];
+      });
+    }
   };
 
   return (
@@ -49,9 +60,9 @@ export const ShoppingCartPage = () => {
         <div className="shopping-cart-page-back">
           <GoBackButton text="Back to search results" onClick={navigateBack} />
         </div>
-        <CartCount productSum={productSum} />
+        <CartCount productSum={productsAmount} />
         <CartContainer>
-          <CartTable products={products} />
+          <CartTable products={orderItems} handleChange={handleChange} />
           <CartTotal
             subtotal={subtotal}
             delivery={delivery}
