@@ -1,23 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './CartTable.styles.css';
 import CartSelectedProduct from '../CartSelectedProduct/CartSelectedProduct.component';
 import PropTypes from 'prop-types';
 
-export default function CartTable({ products, setProducts }) {
-  const [selected, setSelected] = useState(false);
-  const handleChange = (product) => {
-    const productCart = [...products];
-    productCart.forEach((row, index) => {
-      if (productCart[index].id === product.id)
-        productCart[index].selected = !productCart[index].selected;
-    });
-    setSelected(!selected);
-    setProducts(productCart);
-  };
-  const handleRemove = (product) => {
-    const filtered = products.filter((item) => item.id !== product.id);
-    setProducts(filtered);
-  };
+export default function CartTable({ products, handleChange }) {
   return (
     <div className="cart-table-wrapper">
       <div className="cart-table-headers">
@@ -32,10 +18,9 @@ export default function CartTable({ products, setProducts }) {
         {products.length === 0 && <span>Your cart is empty</span>}
         {products.map((product) => (
           <CartSelectedProduct
-            key={product.id}
+            key={(product.order_id, product.variant_id)}
             product={product}
             handleChange={handleChange}
-            handleRemove={handleRemove}
           />
         ))}
       </div>
@@ -46,11 +31,12 @@ export default function CartTable({ products, setProducts }) {
 CartTable.propTypes = {
   products: PropTypes.arrayOf(
     PropTypes.exact({
-      id: PropTypes.number.isRequired,
-      description: PropTypes.string.isRequired,
-      amount: PropTypes.number.isRequired,
-      quantity: PropTypes.number.isRequired,
+      order_id: PropTypes.number.isRequired,
+      variant_id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      price: PropTypes.string.isRequired,
+      quantity: PropTypes.string.isRequired,
     }),
   ).isRequired,
-  setProducts: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
 };

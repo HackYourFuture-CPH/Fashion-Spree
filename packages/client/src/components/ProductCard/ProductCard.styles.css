@@ -11,6 +11,12 @@
   padding: 10px 0 25px 0;
 }
 
+.product-title-link,
+.product-title-link:visited {
+  color: inherit;
+  text-decoration: none;
+}
+
 .product-img-wrapper {
   position: relative;
 }
