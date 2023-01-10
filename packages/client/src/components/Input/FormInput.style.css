@@ -1,12 +1,6 @@
 * {
   margin: 0 auto;
 }
-.input-wrapper {
-  display: flex;
-  flex-direction: column;
-  background: #f2ebe7;
-  width: 100%;
-}
 
 .form-input {
   border-style: hidden;

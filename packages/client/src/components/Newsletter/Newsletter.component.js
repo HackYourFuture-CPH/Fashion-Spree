@@ -1,8 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Newsletter.styles.css';
 import { Button } from '../Button/Button.component';
+import EmailFormInput from '../Input/EmailFormInput.component';
+import useInputValidation from '../../utils/hooks/useInputValidation';
+import Modal from '../Modal/Modal.component';
 
 export default function Newsletter() {
+  const [validForm, setValidForm] = useState(false);
+  const [email, emailError, validateEmail] = useInputValidation('email');
+  const [openConfirmationModal, setOpenConfirmationModal] = useState(false);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (emailError || email.length === 0) {
+      setValidForm(false);
+    } else {
+      setValidForm(true);
+      setOpenConfirmationModal(true);
+    }
+  };
+
   return (
     <div className="main-newsletter">
       <div className="newsletter-container">
@@ -15,8 +32,27 @@ export default function Newsletter() {
           </p>
         </div>
         <div className="user-email">
-          <input type="email" placeholder="Enter email address" />
-          <Button label="Subscribe" backgroundColor="#F5F5F5" />
+          <EmailFormInput
+            placeholder="Enter email address"
+            value={email}
+            type="email"
+            onChange={validateEmail}
+            error={emailError}
+          />
+          <Button
+            label="Subscribe"
+            backgroundColor="#F5F5F5"
+            onClick={handleSubmit}
+          />
+          {validForm && (
+            <Modal
+              title="confirmation"
+              open={openConfirmationModal}
+              toggle={() => setOpenConfirmationModal(false)}
+            >
+              Thank you for your subscription!
+            </Modal>
+          )}
         </div>
       </div>
     </div>
