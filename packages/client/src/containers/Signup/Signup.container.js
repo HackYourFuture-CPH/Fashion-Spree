@@ -3,77 +3,60 @@ import { useNavigate } from 'react-router-dom';
 import { useUserContext } from '../../userContext';
 import './Signup.styles.css';
 import SignupForm from './SignupForm';
-import validateForm from '../../utils/validateForm';
 import { apiURL } from '../../apiURL';
+import useInputValidation from '../../utils/hooks/useInputValidation';
 
-function Signup() {
+export const Signup = () => {
   const {
     user,
-    name,
+    userFullname,
     loading,
     registerWithEmailAndPassword,
     signInWithGoogle,
   } = useUserContext();
-  const [formValues, setFormValues] = useState({
-    fullname: '',
-    email: '',
-    password: '',
-  });
-  const [formErrors, setFormErrors] = useState({});
   const navigate = useNavigate();
+  const [validForm, setValidForm] = useState(false);
+  const [invalidForm, setInvalidForm] = useState(false);
+  const [name, nameError, validateName] = useInputValidation('fullname');
+  const [email, emailError, validateEmail] = useInputValidation('email');
+  const [password, passwordError, validatePassword] =
+    useInputValidation('password');
 
-  const handleChange = (e) => {
-    setFormValues({ ...formValues, [e.target.name]: e.target.value });
-  };
-
-  const handleValidation = () => {
-    setFormErrors(validateForm(formValues));
-  };
-
-  const cleanUpValidation = () => {
-    setFormErrors({
-      fullname: '',
-      email: '',
-      password: '',
-    });
-  };
-  const addUserToDb = useCallback(async (userCreated, fullname) => {
+  const addUserToDb = useCallback(async (userCreated, fullName) => {
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        full_name: fullname,
+        full_name: fullName,
         email: userCreated.email,
         uid: userCreated?.uid,
       }),
     };
-    await fetch(`${apiURL()}/users`, requestOptions)
-      .then((response) => response.json())
-      .then((data) => {
-        /* console.log(data);
-        console.log('user', userCreated, userCreated?.uid); */
-      });
+    await fetch(`${apiURL()}/users`, requestOptions);
   }, []);
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (Object.keys(formErrors).length !== 0) {
+    if (
+      nameError ||
+      emailError ||
+      passwordError ||
+      name.length === 0 ||
+      email.length === 0 ||
+      password.length === 0
+    ) {
+      setInvalidForm(true);
+      setValidForm(false);
       return;
-      // Probably want to do something more here, like inform the user about why the form was not allowed to be submitted.
     }
-    registerWithEmailAndPassword(
-      formValues.fullname,
-      formValues.email,
-      formValues.password,
-    );
+    registerWithEmailAndPassword(name, email, password);
   };
   useEffect(() => {
     if (loading) return;
     if (user) {
-      /* console.log('user1', user, user.email); */
-      addUserToDb(user, name);
+      addUserToDb(user, userFullname);
       navigate('/');
     }
-  }, [user, name, loading, navigate, addUserToDb]);
+  }, [user, userFullname, loading, navigate, addUserToDb]);
   return (
     <main>
       <img
@@ -100,18 +83,22 @@ function Signup() {
             <img
               className="signin-icons"
               src="../../assets/icons/facebook.png"
-              alt=" facebooklogo"
+              alt="facebooklogo"
             />
             sign in with Facebook
           </button>
         </div>
         <p className="or-text">-OR-</p>
         <SignupForm
-          handleChange={handleChange}
-          handleValidation={handleValidation}
-          cleanUpValidation={cleanUpValidation}
-          formValues={formValues}
-          formErrors={formErrors}
+          fullname={name}
+          email={email}
+          password={password}
+          nameError={nameError}
+          emailError={emailError}
+          passwordError={passwordError}
+          validateName={validateName}
+          validateEmail={validateEmail}
+          validatePassword={validatePassword}
         />
         <button
           type="submit"
@@ -127,5 +114,4 @@ function Signup() {
       </div>
     </main>
   );
-}
-export default Signup;
+};

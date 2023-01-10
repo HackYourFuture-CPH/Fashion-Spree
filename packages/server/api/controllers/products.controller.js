@@ -5,14 +5,12 @@ const HttpError = require('../lib/utils/http-error');
 const getProducts = async (token) => {
   const userUid = token.split(' ')[1];
   const user = (await knex('users').where({ uid: userUid }))[0];
-
   const products = await knex('products')
     .select('products.*', 'favorites.id as favoritesID')
     .leftJoin('favorites', function () {
       this.on('products.id', '=', 'favorites.product_id');
       this.andOnVal('favorites.user_id', '=', `${user ? user.id : ''}`);
     });
-
   return products;
 };
 
@@ -21,7 +19,6 @@ const getProductById = async (id) => {
   if (!id) {
     throw new HttpError('Id should be a number', 400);
   }
-
   try {
     const products = await knex('products')
       .select('products.id as id', 'name', 'description', 'price')
@@ -48,10 +45,9 @@ const getProductsByCategory = async (category, limit, offset) => {
         'products.name',
         'products.description',
         'products.price',
+        'categories.name as cname',
       )
       .leftJoin('categories', 'products.category_id', 'categories.id')
-      .where('categories.name', 'like', `${category}`)
-      .limit(limit)
       .offset(offset);
     if (products.length === 0) {
       throw new HttpError(
@@ -59,7 +55,16 @@ const getProductsByCategory = async (category, limit, offset) => {
         404,
       );
     }
-    return products;
+    let categoryProducts = products.filter((product) => {
+      return product.cname === category;
+    });
+
+    if (categoryProducts.length < limit) {
+      categoryProducts = products
+        .sort(() => Math.random() - Math.random())
+        .slice(0, limit);
+    }
+    return categoryProducts;
   } catch (error) {
     return error.message;
   }
