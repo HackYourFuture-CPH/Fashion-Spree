@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import validateForm from '../validateForm';
+import { validateForm } from '../validateForm';
 
 const useInputValidation = (type) => {
   const [value, setValue] = useState('');
