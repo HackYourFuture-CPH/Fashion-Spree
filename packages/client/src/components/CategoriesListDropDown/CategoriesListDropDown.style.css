@@ -13,6 +13,7 @@
   color: #212121cc;
   background-color: inherit;
   margin-top: 10px;
+  text-transform: capitalize;
 }
 .all-filters {
   background: url('../../assets/all-filter-icon.svg') no-repeat;
