@@ -1,4 +1,4 @@
-const validateForm = (value, type) => {
+export const validateForm = (value, type) => {
   let error;
 
   //  regex in the email and password validation
@@ -28,15 +28,5 @@ const validateForm = (value, type) => {
     error = 'Message must be more than five characters!';
   }
 
-  /* eslint-disable no-console */
-  if (
-    value &&
-    (type === 'message' || 'name' || 'email' || 'password') &&
-    !error
-  ) {
-    console.log(`${type}: ${value}`);
-  }
-
   return error;
 };
-export default validateForm;
