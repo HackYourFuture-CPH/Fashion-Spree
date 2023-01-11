@@ -35,13 +35,8 @@ export const DropdownGroup = ({ productId, showSelectedValue }) => {
   sizes = [...new Set(sizes)];
   quantities = [...new Set(quantities)];
 
-  /* const [selectColor, setSelectColor] = useState('');
-  const [selectSize, setSelectSize] = useState('');
-  const [selectQuantity, setSelectQuantity] = useState(''); */
-
-  // showSelectedValue(selectColor, selectQuantity, selectSize)
-  const quantitiesDrop = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  const manageSelectedValue = (variantType, variantValue) => {
+  const variantQuantity = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const selectedVariantType = (variantType, variantValue) => {
     showSelectedValue(variantType, variantValue);
   };
 
@@ -51,29 +46,29 @@ export const DropdownGroup = ({ productId, showSelectedValue }) => {
         <ViewDropdown
           options={colors}
           label="Color"
-          onSelect={(color) => manageSelectedValue('color', color)}
+          onSelect={(color) => selectedVariantType('color', color)}
         />
       </div>
       <div className="dropdown-group">
         <ViewDropdown
           options={sizes}
           label="Size"
-          onSelect={(size) => manageSelectedValue('size', size)}
+          onSelect={(size) => selectedVariantType('size', size)}
         />
       </div>
-      <div className="dropdown-group">
+      {/*  <div className="dropdown-group">
         <ViewDropdown
           options={quantities}
-          label="Quantity 11"
+          label="Quantity"
           onSelect={() => {}}
         />
-      </div>
+      </div> */}
 
       <div className="dropdown-group">
         <ViewDropdown
-          options={quantitiesDrop}
+          options={variantQuantity}
           label="Quantity"
-          onSelect={(quantity) => manageSelectedValue('quantity', quantity)}
+          onSelect={(quantity) => selectedVariantType('quantity', quantity)}
         />
       </div>
     </div>

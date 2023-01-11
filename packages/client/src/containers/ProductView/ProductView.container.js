@@ -3,11 +3,13 @@ import { useNavigate, useParams } from 'react-router-dom';
 import './ProductView.styles.css';
 import * as view from './index'; // Using "barrel exports" to organize React components
 import { apiURL } from './index';
+import { useUserContext } from '../../userContext';
 
 export const ProductView = () => {
   const [product, setProduct] = useState([]);
   const { id } = useParams();
   const navigate = useNavigate();
+  const { user } = useUserContext();
 
   useEffect(() => {
     const fetchSingleProduct = async (productId) => {
@@ -50,18 +52,18 @@ export const ProductView = () => {
     }
   };
   const buyNowHandler = () => {
-    const orderValueFinal = Object.assign(orderValue, ...product);
+    const postOrder = Object.assign(orderValue, ...product);
     fetch(`${apiURL()}/orders`, {
       method: 'POST',
       headers: {
-        Authorization: 'Bearer jfBYpNkMlubzKsHeMNmwUVWQdWb2',
+        Authorization: `Bearer ${user.uid}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        product_id: orderValueFinal.id,
-        color: orderValueFinal.color,
-        size: orderValueFinal.size,
-        quantity: orderValueFinal.quantity,
+        product_id: postOrder.id,
+        color: postOrder.color,
+        size: postOrder.size,
+        quantity: postOrder.quantity,
       }),
     }).then((res) => {
       if (res.ok) {
