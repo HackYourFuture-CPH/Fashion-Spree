@@ -14,11 +14,15 @@ export const ProductView = () => {
       const response = await fetch(`${view.apiURL()}/products/${productId}`);
       const productData = await response.json();
 
-      setProduct(productData);
+      if (typeof productData === 'string') {
+        navigate('/not-found');
+      } else {
+        setProduct(productData);
+      }
     };
 
     fetchSingleProduct(id);
-  }, [id]);
+  }, [id, navigate]);
 
   const navigateBack = () => {
     navigate(-1);

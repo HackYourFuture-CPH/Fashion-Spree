@@ -36,6 +36,7 @@ function App() {
               <Route path="/collections" element={<CollectionsPage />} />
               <Route path="/shopping-cart" element={<ShoppingCartPage />} />
               <Route path="/favorites" element={<FavoritesPage />} />
+              <Route path="/not-found" element={<PageNotFound />} />
             </Routes>
             <Footer />
           </ShoppingCartProvider>
