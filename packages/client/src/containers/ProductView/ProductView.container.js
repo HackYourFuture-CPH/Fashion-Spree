@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import './ProductView.styles.css';
 import * as view from './index'; // Using "barrel exports" to organize React components
+import { apiURL } from './index';
 
 export const ProductView = () => {
   const [product, setProduct] = useState([]);
@@ -46,9 +47,29 @@ export const ProductView = () => {
   };
   const buyNowHandler = () => {
     const orderValueFinal = Object.assign(orderValue, ...product);
-    // eslint-disable-next-line no-console
-    console.log('test', orderValueFinal);
-    navigate('/shopping-cart');
+    fetch(`${apiURL()}/orders`, {
+      method: 'POST',
+      headers: {
+        Authorization: 'Bearer jfBYpNkMlubzKsHeMNmwUVWQdWb2',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        product_id: orderValueFinal.id,
+        color: orderValueFinal.color,
+        size: orderValueFinal.size,
+        quantity: orderValueFinal.quantity,
+      }),
+    }).then((res) => {
+      if (res.ok) {
+        return res.json().then((data) => {
+          if (data.successful) {
+            navigate('/shopping-cart');
+          }
+        });
+      }
+    });
+
+    //
   };
   return (
     <div className="product-view-page">

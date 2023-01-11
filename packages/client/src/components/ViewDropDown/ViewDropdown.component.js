@@ -23,6 +23,7 @@ const ViewDropdown = ({ options, label, onSelect }) => {
       <label htmlFor={label}>{label}</label>
       <div>
         <select id={label} onChange={handleChange} value={value}>
+          <option>Choose</option>
           {optionList}
         </select>
       </div>
