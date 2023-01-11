@@ -15,6 +15,7 @@ import { ContactUs } from './containers/ContactUs.container';
 import { CollectionsPage } from './containers/CollectionsPage/CollectionsPage.Container';
 import { ShoppingCartPage } from './containers/ShoppingCartPage/ShoppingCartPage.container';
 import { FavoritesPage } from './containers/FavoritesPage/FavoritesPage.container';
+import ShoppingCartProvider from './utils/ShoppingCartContext/ShoppingCartContext';
 
 function App() {
   return (
