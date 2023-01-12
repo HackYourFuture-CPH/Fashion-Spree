@@ -13,9 +13,9 @@ const getOrdersByUserId = async (token) => {
       .select(
         'order_items.order_id',
         'order_items.variant_id',
+        'order_items.quantity',
         'products.name',
         'products.price',
-        knex.raw('SUM(order_items.quantity) as quantity'),
       )
       .join('order_items', function () {
         this.on('orders.id', '=', 'order_items.order_id');
@@ -27,8 +27,7 @@ const getOrdersByUserId = async (token) => {
         this.on('variants.product_id', '=', 'products.id');
       })
       .where('orders.status', 'created')
-      .andWhere('orders.user_id', `${user.id}`)
-      .groupBy('order_items.order_id', 'order_items.variant_id');
+      .andWhere('orders.user_id', `${user.id}`);
 
     return orders;
   } catch (error) {
@@ -110,25 +109,33 @@ const addOrderItemsByUserId = async (authorization, body) => {
       throw new HttpError('Variant is not available', 404);
     }
 
-    const [productsInQueue] = await knex
-      .select(
-        'order_items.variant_id',
-        knex.raw('SUM(order_items.quantity) as quantity'),
-      )
-      .from('order_items')
-      .where({
-        order_id: order.id,
-        variant_id: variant.id,
-      })
-      .groupBy('order_items.variant_id');
+    const [orderItem] = await knex('order_items').where({
+      order_id: order.id,
+      variant_id: variant.id,
+    });
 
-    const availableProducts = variant.stock - productsInQueue.quantity;
+    let availableProducts = variant.stock;
+
+    if (orderItem) {
+      availableProducts = variant.stock - orderItem.quantity;
+    }
 
     if (quantity > availableProducts) {
       throw new HttpError(
         'Order products quantity is bigger than stock quantity',
         400,
       );
+    }
+
+    if (orderItem) {
+      await knex('order_items')
+        .where({
+          order_id: order.id,
+          variant_id: variant.id,
+        })
+        .update({
+          quantity: quantity + orderItem.quantity,
+        });
     } else {
       await knex('order_items').insert({
         order_id: order.id,
