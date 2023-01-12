@@ -50,7 +50,7 @@ export const DropdownGroup = ({ productId }) => {
     filteredSizes = [...new Set(filteredSizes)];
     filteredQuantities = [...new Set(filteredQuantities)];
     const maxQuantity = Math.max(...filteredQuantities);
-    if (maxQuantity >= 5) {
+    if (maxQuantity > 10) {
       filteredQuantities = [...Array(10).keys()].map((i) => i + 1);
     } else {
       filteredQuantities = [...Array(maxQuantity).keys()].map((i) => i + 1);
