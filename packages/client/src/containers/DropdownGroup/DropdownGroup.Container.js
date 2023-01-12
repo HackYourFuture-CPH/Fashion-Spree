@@ -20,7 +20,9 @@ export const DropdownGroup = ({ productId }) => {
         `${apiURL()}/variants?product_id=${productId}`,
       );
       const variantsProductData = await response.json();
-      setVariants(variantsProductData);
+      if (typeof variantsProductData !== 'string') {
+        setVariants(variantsProductData);
+      }
     };
 
     fetchVariantsByProductId();
