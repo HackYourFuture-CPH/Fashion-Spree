@@ -36,9 +36,7 @@ export const ProductView = () => {
   });
   const showSelectedValue = (variantType, variantValue) => {
     if (variantType === 'color') {
-      setOrderValue((preValue) => {
-        return { ...preValue, color: variantValue };
-      });
+      setOrderValue((prev) => ({ ...prev, [variantType]: variantValue }));
     }
     if (variantType === 'size') {
       setOrderValue((preValue) => {
@@ -74,8 +72,6 @@ export const ProductView = () => {
         });
       }
     });
-
-    //
   };
   return (
     <div className="product-view-page">

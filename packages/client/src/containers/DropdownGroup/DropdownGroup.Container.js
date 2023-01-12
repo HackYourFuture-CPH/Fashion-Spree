@@ -56,14 +56,6 @@ export const DropdownGroup = ({ productId, showSelectedValue }) => {
           onSelect={(size) => selectedVariantType('size', size)}
         />
       </div>
-      {/*  <div className="dropdown-group">
-        <ViewDropdown
-          options={quantities}
-          label="Quantity"
-          onSelect={() => {}}
-        />
-      </div> */}
-
       <div className="dropdown-group">
         <ViewDropdown
           options={variantQuantity}
