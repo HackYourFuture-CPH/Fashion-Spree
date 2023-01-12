@@ -13,7 +13,7 @@ import { useShoppingCartContext } from '../../utils/ShoppingCartContext/Shopping
 export const Navigation = () => {
   const { user, logout } = useUserContext();
   const [showMobileLinks, setShowMobileLinks] = useState(false);
-  const { orderItems } = useShoppingCartContext();
+  const { productsAmount } = useShoppingCartContext();
 
   return (
     <div className="navigation-container">
@@ -49,7 +49,7 @@ export const Navigation = () => {
                         src={shoppingCart}
                         alt="shopping"
                       />
-                      <span>{orderItems.length}</span>
+                      <span>{productsAmount}</span>
                     </div>
                   </Link>
                   <Link to="/">
