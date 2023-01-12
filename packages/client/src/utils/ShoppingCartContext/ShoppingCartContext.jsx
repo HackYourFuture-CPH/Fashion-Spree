@@ -16,9 +16,14 @@ export const useShoppingCartContext = () => {
   return useContext(ShoppingCartContext);
 };
 
+const countAllProducts = (products) => {
+  return products.reduce((acc, product) => acc + product.quantity, 0);
+};
+
 const ShoppingCartProvider = ({ children }) => {
   const { user } = useUserContext();
   const [orderItems, setOrderItems] = useState([]);
+  const [productsAmount, setProductsAmount] = useState(0);
   const [action, setAction] = useState(true);
 
   useEffect(() => {
@@ -38,6 +43,7 @@ const ShoppingCartProvider = ({ children }) => {
         if (typeof orderItemsData === 'string') return;
 
         setOrderItems(orderItemsData);
+        setProductsAmount(countAllProducts(orderItemsData));
         setAction(false);
       }
     };
@@ -72,9 +78,10 @@ const ShoppingCartProvider = ({ children }) => {
   const orderItemsProviderValue = useMemo(
     () => ({
       orderItems,
+      productsAmount,
       removeOrderItem,
     }),
-    [orderItems, removeOrderItem],
+    [orderItems, removeOrderItem, productsAmount],
   );
 
   return (
