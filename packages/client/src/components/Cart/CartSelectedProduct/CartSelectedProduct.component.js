@@ -48,7 +48,7 @@ CartSelectedProduct.propTypes = {
     variant_id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
-    quantity: PropTypes.string.isRequired,
+    quantity: PropTypes.number.isRequired,
   }).isRequired,
   handleChange: PropTypes.func.isRequired,
 };
