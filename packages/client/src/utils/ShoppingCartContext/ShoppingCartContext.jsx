@@ -80,8 +80,9 @@ const ShoppingCartProvider = ({ children }) => {
       orderItems,
       productsAmount,
       removeOrderItem,
+      setAction,
     }),
-    [orderItems, removeOrderItem, productsAmount],
+    [orderItems, removeOrderItem, productsAmount, setAction],
   );
 
   return (

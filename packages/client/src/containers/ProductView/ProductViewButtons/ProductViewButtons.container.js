@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { ViewPageButton } from '../../../components/ViewPageButton/ViewPageButton.component';
 import './ProductViewButtons.styles.css';
 
-export const ProductViewButtons = ({ buyNowFn }) => {
+export const ProductViewButtons = ({ buyNowFn, addToCartFn }) => {
   const buyNowHandler = () => {
     buyNowFn();
   };
@@ -18,7 +18,7 @@ export const ProductViewButtons = ({ buyNowFn }) => {
       <ViewPageButton
         label="Add to Cart"
         backgroundColor="#D9D9D9"
-        onClick={() => {}}
+        onClick={addToCartFn}
       />
       <ViewPageButton
         label="Add to Favorites"
@@ -30,4 +30,5 @@ export const ProductViewButtons = ({ buyNowFn }) => {
 };
 ProductViewButtons.propTypes = {
   buyNowFn: PropTypes.func.isRequired,
+  addToCartFn: PropTypes.func.isRequired,
 };

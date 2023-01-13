@@ -4,12 +4,14 @@ import './ProductView.styles.css';
 import * as view from './index'; // Using "barrel exports" to organize React components
 import { apiURL } from './index';
 import { useUserContext } from '../../userContext';
+import { useShoppingCartContext } from '../../utils/ShoppingCartContext/ShoppingCartContext';
 
 export const ProductView = () => {
   const [product, setProduct] = useState([]);
   const { id } = useParams();
   const navigate = useNavigate();
   const { user } = useUserContext();
+  const { setAction } = useShoppingCartContext();
 
   useEffect(() => {
     const fetchSingleProduct = async (productId) => {
@@ -67,7 +69,32 @@ export const ProductView = () => {
       if (res.ok) {
         return res.json().then((data) => {
           if (data.successful) {
+            setAction(true);
             navigate('/shopping-cart');
+          }
+        });
+      }
+    });
+  };
+  const addTOCartHandler = () => {
+    const postOrder = Object.assign(orderValue, ...product);
+    fetch(`${apiURL()}/orders`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${user.uid}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        product_id: postOrder.id,
+        color: postOrder.color,
+        size: postOrder.size,
+        quantity: parseInt(postOrder.quantity, 10),
+      }),
+    }).then((res) => {
+      if (res.ok) {
+        return res.json().then((data) => {
+          if (data.successful) {
+            setAction(true);
           }
         });
       }
@@ -102,7 +129,10 @@ export const ProductView = () => {
               showSelectedValue={showSelectedValue}
               productId={Number(id)}
             />
-            <view.ProductViewButtons buyNowFn={buyNowHandler} />
+            <view.ProductViewButtons
+              buyNowFn={buyNowHandler}
+              addToCartFn={addTOCartHandler}
+            />
           </view.ProductViewDescription>
           <view.ProductViewReviewsWrapper>
             <view.ProductReviewsContainer id={id} />
