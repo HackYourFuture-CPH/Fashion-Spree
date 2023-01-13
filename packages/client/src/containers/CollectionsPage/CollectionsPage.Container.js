@@ -52,11 +52,7 @@ export const CollectionsPage = () => {
     fetchCategories();
   }, []);
 
-  const categoryOptions = categories.map(
-    (element) =>
-      element.name.charAt(0).toUpperCase() +
-      element.name.slice(1).toLowerCase(),
-  );
+  const categoryOptions = categories.map((element) => element.name);
 
   // sortFunction for sort products in different orders
   const sortOptions = [
