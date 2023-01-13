@@ -6,6 +6,9 @@ import './DropdownGroup.Style.css';
 
 export const DropdownGroup = ({ productId, showSelectedValue }) => {
   const [variants, setVariants] = useState([]);
+  const [showVariants, setShowVariants] = useState(false);
+  const [filteredSize, setFilteredSize] = useState([]);
+  const [filteredQuantity, setFilteredQuantity] = useState([]);
 
   let colors = [];
   let sizes = [];
@@ -35,9 +38,32 @@ export const DropdownGroup = ({ productId, showSelectedValue }) => {
   sizes = [...new Set(sizes)];
   quantities = [...new Set(quantities)];
 
-  const variantQuantity = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const selectedVariantType = (variantType, variantValue) => {
     showSelectedValue(variantType, variantValue);
+  };
+  const fetchVariantsByColor = async (color) => {
+    let filteredSizes = [];
+    let filteredQuantities = [];
+    selectedVariantType('color', color);
+    const response = await fetch(
+      `${apiURL()}/variants?color=${color}&product_id=${productId}`,
+    );
+    const filteredVariantsData = await response.json();
+    filteredVariantsData.forEach((variant) => {
+      filteredSizes.push(variant.size);
+      filteredQuantities.push(variant.stock);
+    });
+    filteredSizes = [...new Set(filteredSizes)];
+    filteredQuantities = [...new Set(filteredQuantities)];
+    const maxQuantity = Math.max(...filteredQuantities);
+    if (maxQuantity > 10) {
+      filteredQuantities = [...Array(10).keys()].map((i) => i + 1);
+    } else {
+      filteredQuantities = [...Array(maxQuantity).keys()].map((i) => i + 1);
+    }
+    setFilteredSize(filteredSizes);
+    setFilteredQuantity(filteredQuantities);
+    setShowVariants(true);
   };
 
   return (
@@ -46,21 +72,23 @@ export const DropdownGroup = ({ productId, showSelectedValue }) => {
         <ViewDropdown
           options={colors}
           label="Color"
-          onSelect={(color) => selectedVariantType('color', color)}
+          onSelect={(color) => fetchVariantsByColor(color)}
         />
       </div>
       <div className="dropdown-group">
         <ViewDropdown
-          options={sizes}
+          options={filteredSize}
           label="Size"
+          disabled={!showVariants ? 'disabled' : ''}
           onSelect={(size) => selectedVariantType('size', size)}
         />
       </div>
       <div className="dropdown-group">
         <ViewDropdown
-          options={variantQuantity}
-          label="Quantity"
+          options={filteredQuantity}
           onSelect={(quantity) => selectedVariantType('quantity', quantity)}
+          label="Quantity"
+          disabled={!showVariants ? 'disabled' : ''}
         />
       </div>
     </div>

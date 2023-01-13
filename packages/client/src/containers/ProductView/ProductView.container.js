@@ -61,7 +61,7 @@ export const ProductView = () => {
         product_id: postOrder.id,
         color: postOrder.color,
         size: postOrder.size,
-        quantity: postOrder.quantity,
+        quantity: parseInt(postOrder.quantity, 10),
       }),
     }).then((res) => {
       if (res.ok) {

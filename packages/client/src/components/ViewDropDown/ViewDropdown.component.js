@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import './ViewDropdown.styles.css';
 
-const ViewDropdown = ({ options, label, onSelect }) => {
-  const [value, setValue] = useState('');
+const ViewDropdown = ({ options, label, onSelect, disabled }) => {
   const optionList =
     options.length > 0 &&
     options.map((item) => {
@@ -15,15 +14,16 @@ const ViewDropdown = ({ options, label, onSelect }) => {
     });
 
   const handleChange = (event) => {
-    setValue(event.target.value);
     onSelect(event.target.value);
   };
   return (
     <div className="view-dropdown">
       <label htmlFor={label}>{label}</label>
       <div>
-        <select id={label} onChange={handleChange} value={value}>
-          <option>Choose</option>
+        <select id={label} onChange={handleChange} disabled={disabled}>
+          <option selected hidden>
+            Choose {label}
+          </option>
           {optionList}
         </select>
       </div>
@@ -36,7 +36,12 @@ ViewDropdown.propTypes = {
     PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   ).isRequired,
   label: PropTypes.string.isRequired,
-  onSelect: PropTypes.func.isRequired,
+  onSelect: PropTypes.func,
+  disabled: PropTypes.string,
 };
 
+ViewDropdown.defaultProps = {
+  onSelect: undefined,
+  disabled: undefined,
+};
 export default ViewDropdown;
