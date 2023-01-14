@@ -4,7 +4,7 @@ import { apiURL } from '../../apiURL';
 import PropTypes from 'prop-types';
 import './DropdownGroup.Style.css';
 
-export const DropdownGroup = ({ productId }) => {
+export const DropdownGroup = ({ productId, showSelectedValue }) => {
   const [variants, setVariants] = useState([]);
   const [showVariants, setShowVariants] = useState(false);
   const [filteredSize, setFilteredSize] = useState([]);
@@ -38,9 +38,13 @@ export const DropdownGroup = ({ productId }) => {
   sizes = [...new Set(sizes)];
   quantities = [...new Set(quantities)];
 
+  const selectedVariantType = (variantType, variantValue) => {
+    showSelectedValue(variantType, variantValue);
+  };
   const fetchVariantsByColor = async (color) => {
     let filteredSizes = [];
     let filteredQuantities = [];
+    selectedVariantType('color', color);
     const response = await fetch(
       `${apiURL()}/variants?color=${color}&product_id=${productId}`,
     );
@@ -72,22 +76,20 @@ export const DropdownGroup = ({ productId }) => {
         />
       </div>
       <div className="dropdown-group">
-        {!showVariants ? (
-          <ViewDropdown options={sizes} label="Size" disabled="disabled" />
-        ) : (
-          <ViewDropdown options={filteredSize} label="Size" />
-        )}
+        <ViewDropdown
+          options={filteredSize}
+          label="Size"
+          disabled={!showVariants ? 'disabled' : ''}
+          onSelect={(size) => selectedVariantType('size', size)}
+        />
       </div>
       <div className="dropdown-group">
-        {!showVariants ? (
-          <ViewDropdown
-            options={quantities}
-            label="Quantity"
-            disabled="disabled"
-          />
-        ) : (
-          <ViewDropdown options={filteredQuantity} label="Quantity" />
-        )}
+        <ViewDropdown
+          options={filteredQuantity}
+          onSelect={(quantity) => selectedVariantType('quantity', quantity)}
+          label="Quantity"
+          disabled={!showVariants ? 'disabled' : ''}
+        />
       </div>
     </div>
   );
@@ -95,4 +97,5 @@ export const DropdownGroup = ({ productId }) => {
 
 DropdownGroup.propTypes = {
   productId: PropTypes.number.isRequired,
+  showSelectedValue: PropTypes.func.isRequired,
 };
