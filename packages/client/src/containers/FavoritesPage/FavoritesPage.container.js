@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import SearchInput from '../../components/SearchInput/SearchInput.component';
 import ProductCard from '../../components/ProductCard/ProductCard.component';
 import './FavoritesPage.style.css';
@@ -27,24 +27,26 @@ export const FavoritesPage = () => {
     setFavoriteProducts(filteredFavorite);
   };
 
-  useEffect(() => {
-    const fetchFavorites = async () => {
-      setIsLoading(true);
-      const url = `${apiURL()}/favorites`;
-      const response = await fetch(url, {
-        headers: {
-          token: `token ${user?.uid}`,
-        },
-      });
-      const favoritesData = await response.json();
-      if (Array.isArray(favoritesData)) {
-        setFavorites(favoritesData);
-      }
-    };
-
-    fetchFavorites();
+  const fetchFavorites = useCallback(async () => {
+    setIsLoading(true);
+    const url = `${apiURL()}/favorites`;
+    const response = await fetch(url, {
+      headers: {
+        token: `token ${user?.uid}`,
+      },
+    });
+    const favoritesData = await response.json();
+    if (Array.isArray(favoritesData)) {
+      setFavorites(favoritesData);
+    } else {
+      setFavorites([]);
+    }
     setIsLoading(false);
   }, [user]);
+
+  useEffect(() => {
+    fetchFavorites();
+  }, [fetchFavorites]);
 
   const filteredProducts = useMemo(() => {
     const trimmedKeyword = searchInput.trim();
@@ -72,12 +74,16 @@ export const FavoritesPage = () => {
 
   const handleModal = (favoritesId, id) => {
     const DeleteFavorites = async () => {
-      fetch(`${apiURL()}/favorites/${favoritesId} `, {
+      const response = await fetch(`${apiURL()}/favorites/${favoritesId} `, {
         method: 'DELETE',
         headers: {
           token: `token ${user?.uid}`,
         },
       });
+
+      if (response.ok) {
+        fetchFavorites();
+      }
     };
     DeleteFavorites(favoritesId);
     closeModal();
