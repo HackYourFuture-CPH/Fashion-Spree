@@ -1,10 +1,15 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import './modal.styles.css';
 
 const Modal = ({ toggle, open, title, children }) => {
   if (!open) return null;
   document.body.style.overflow = 'hidden';
+
+  const handleModalToggle = () => {
+    document.body.style.overflow = 'visible';
+    toggle();
+  };
 
   return (
     <div onClick={toggle} role="presentation" className="overlay">
@@ -19,7 +24,7 @@ const Modal = ({ toggle, open, title, children }) => {
           <h2>{title}</h2>
           <button
             type="button"
-            onClick={() => toggle()}
+            onClick={() => handleModalToggle()}
             className="modal-close-btn"
           >
             X
