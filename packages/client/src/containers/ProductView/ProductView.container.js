@@ -6,7 +6,6 @@ import { apiURL } from './index';
 import { useUserContext } from '../../userContext';
 import { useShoppingCartContext } from '../../utils/ShoppingCartContext/ShoppingCartContext';
 import Modal from '../../components/Modal/Modal.component';
-import { ViewPageButton } from '../../components/ViewPageButton/ViewPageButton.component';
 
 export const ProductView = () => {
   const [product, setProduct] = useState([]);
@@ -155,21 +154,15 @@ export const ProductView = () => {
 
         <view.RelatedItems category="shoes" />
       </view.ProductContainer>
-      <Modal
-        title="Error : This Options are Required"
-        open={modalState.modalStatus}
-        toggle={closeModal}
-      >
-        <p>{`Please select ${modalState.requireOption.join(
-          ' , ',
-        )} variant.`}</p>
-        <div>
-          <ViewPageButton
-            label="Ok"
-            backgroundColor="#FF0000"
-            onClick={closeModal}
-          />
-        </div>
+      <Modal title="" open={modalState.modalStatus} toggle={closeModal}>
+        <h2>
+          Please select{'   '}
+          <span className="modal-title">
+            {modalState.requireOption.join(' , ')}{' '}
+          </span>
+          {'   '}
+          variant.
+        </h2>
       </Modal>
       <div className="product-view-blank">&nbsp;</div>
     </div>

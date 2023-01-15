@@ -8,3 +8,7 @@
   height: 100px;
   background-color: #ececec;
 }
+.modal-title {
+  color: red;
+  font-weight: bold;
+}
