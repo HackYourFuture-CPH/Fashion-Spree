@@ -5,6 +5,8 @@ import * as view from './index'; // Using "barrel exports" to organize React com
 import { apiURL } from './index';
 import { useUserContext } from '../../userContext';
 import { useShoppingCartContext } from '../../utils/ShoppingCartContext/ShoppingCartContext';
+import Modal from '../../components/Modal/Modal.component';
+import { ViewPageButton } from '../../components/ViewPageButton/ViewPageButton.component';
 
 export const ProductView = () => {
   const [product, setProduct] = useState([]);
@@ -12,6 +14,14 @@ export const ProductView = () => {
   const navigate = useNavigate();
   const { user } = useUserContext();
   const { setAction } = useShoppingCartContext();
+  const [modalState, setModalState] = useState({
+    modalStatus: false,
+    requireOption: [],
+  });
+
+  const closeModal = () => {
+    setModalState({ modalStatus: false, requireOption: [] });
+  };
 
   useEffect(() => {
     const fetchSingleProduct = async (productId) => {
@@ -34,7 +44,7 @@ export const ProductView = () => {
   const [orderValue, setOrderValue] = useState({
     size: '',
     color: '',
-    quantity: '',
+    quantity: 0,
   });
   const showSelectedValue = (variantType, variantValue) => {
     if (variantType === 'color') {
@@ -47,58 +57,58 @@ export const ProductView = () => {
     }
     if (variantType === 'quantity') {
       setOrderValue((preValue) => {
-        return { ...preValue, quantity: variantValue };
+        return { ...preValue, quantity: parseInt(variantValue, 10) };
       });
     }
   };
-  const buyNowHandler = () => {
+  const buyNowHandler = (btnType = '') => {
     const postOrder = Object.assign(orderValue, ...product);
-    fetch(`${apiURL()}/orders`, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${user.uid}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        product_id: postOrder.id,
-        color: postOrder.color,
-        size: postOrder.size,
-        quantity: parseInt(postOrder.quantity, 10),
-      }),
-    }).then((res) => {
-      if (res.ok) {
-        return res.json().then((data) => {
-          if (data.successful) {
-            setAction(true);
-            navigate('/shopping-cart');
-          }
-        });
+    if (
+      postOrder.size !== '' &&
+      postOrder.quantity !== 0 &&
+      postOrder.color !== ''
+    ) {
+      fetch(`${apiURL()}/orders`, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${user.uid}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          product_id: postOrder.id,
+          color: postOrder.color,
+          size: postOrder.size,
+          quantity: postOrder.quantity,
+        }),
+      }).then((res) => {
+        if (res.ok) {
+          return res.json().then((data) => {
+            if (data.successful) {
+              setAction(true);
+              if (btnType === 'buyNow') {
+                navigate('/shopping-cart');
+              }
+            }
+          });
+        }
+      });
+    } else {
+      const fields = [];
+      if (postOrder.size === '') {
+        fields.push('Size');
       }
-    });
-  };
-  const addTOCartHandler = () => {
-    const postOrder = Object.assign(orderValue, ...product);
-    fetch(`${apiURL()}/orders`, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${user.uid}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        product_id: postOrder.id,
-        color: postOrder.color,
-        size: postOrder.size,
-        quantity: parseInt(postOrder.quantity, 10),
-      }),
-    }).then((res) => {
-      if (res.ok) {
-        return res.json().then((data) => {
-          if (data.successful) {
-            setAction(true);
-          }
-        });
+      if (postOrder.quantity === 0) {
+        fields.push('Quantity');
       }
-    });
+      if (postOrder.color === '') {
+        fields.push('Color');
+      }
+
+      setModalState({
+        modalStatus: true,
+        requireOption: fields,
+      });
+    }
   };
   return (
     <div className="product-view-page">
@@ -130,8 +140,12 @@ export const ProductView = () => {
               productId={Number(id)}
             />
             <view.ProductViewButtons
-              buyNowFn={buyNowHandler}
-              addToCartFn={addTOCartHandler}
+              buyNowFn={() => {
+                buyNowHandler('buyNow');
+              }}
+              addToCartFn={() => {
+                buyNowHandler('addToCart');
+              }}
             />
           </view.ProductViewDescription>
           <view.ProductViewReviewsWrapper>
@@ -141,6 +155,22 @@ export const ProductView = () => {
 
         <view.RelatedItems category="shoes" />
       </view.ProductContainer>
+      <Modal
+        title="Error : This Options are Required"
+        open={modalState.modalStatus}
+        toggle={closeModal}
+      >
+        <p>{`Please select ${modalState.requireOption.join(
+          ' , ',
+        )} variant.`}</p>
+        <div>
+          <ViewPageButton
+            label="Ok"
+            backgroundColor="#FF0000"
+            onClick={closeModal}
+          />
+        </div>
+      </Modal>
       <div className="product-view-blank">&nbsp;</div>
     </div>
   );
