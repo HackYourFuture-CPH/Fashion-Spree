@@ -9,13 +9,13 @@ import useInputValidation from '../../utils/hooks/useInputValidation';
 export const Signup = () => {
   const {
     user,
-    userFullname,
+    name,
     loading,
     registerWithEmailAndPassword,
     signInWithGoogle,
   } = useUserContext();
   const navigate = useNavigate();
-  const [name, nameError, validateName] = useInputValidation('fullname');
+  const [name1, nameError, validateName] = useInputValidation('fullname');
   const [email, emailError, validateEmail] = useInputValidation('email');
   const [password, passwordError, validatePassword] =
     useInputValidation('password');
@@ -38,21 +38,21 @@ export const Signup = () => {
       nameError ||
       emailError ||
       passwordError ||
-      name.length === 0 ||
+      name1.length === 0 ||
       email.length === 0 ||
       password.length === 0
     ) {
       return;
     }
-    registerWithEmailAndPassword(name, email, password);
+    registerWithEmailAndPassword(name1, email, password);
   };
   useEffect(() => {
     if (loading) return;
-    if (user) {
-      addUserToDb(user, userFullname);
+    if (user && name) {
+      addUserToDb(user, name);
       navigate('/');
     }
-  }, [user, userFullname, loading, navigate, addUserToDb]);
+  }, [user, name, loading, navigate, addUserToDb]);
   return (
     <main>
       <img
@@ -75,18 +75,10 @@ export const Signup = () => {
             />
             sign in with Google
           </button>
-          <button type="button" className="facebook-signin-btn">
-            <img
-              className="signin-icons"
-              src="../../assets/icons/facebook.png"
-              alt="facebooklogo"
-            />
-            sign in with Facebook
-          </button>
         </div>
         <p className="or-text">-OR-</p>
         <SignupForm
-          fullname={name}
+          name1={name1}
           email={email}
           password={password}
           nameError={nameError}
@@ -103,10 +95,6 @@ export const Signup = () => {
         >
           Signup
         </button>
-        <br />
-        <span className="dont-want-signup">
-          Dont want to Sign Up? Continue as a Guest
-        </span>
       </div>
     </main>
   );

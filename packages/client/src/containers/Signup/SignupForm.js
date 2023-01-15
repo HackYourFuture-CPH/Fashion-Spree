@@ -6,7 +6,7 @@ import PasswordFormInput from '../../components/Input/PasswordFormInput.componen
 import './Signup.styles.css';
 
 const SignupForm = ({
-  name,
+  name1,
   email,
   password,
   nameError,
@@ -20,7 +20,7 @@ const SignupForm = ({
     <form className="signup-form">
       <TextFormInput
         type="text"
-        value={name}
+        value={name1}
         placeholder="Fullname"
         onChange={validateName}
         error={nameError}
@@ -43,7 +43,7 @@ const SignupForm = ({
   );
 };
 SignupForm.propTypes = {
-  name: PropTypes.string,
+  name1: PropTypes.string,
   email: PropTypes.string,
   password: PropTypes.string,
   nameError: PropTypes.bool,
@@ -54,7 +54,7 @@ SignupForm.propTypes = {
   validatePassword: PropTypes.func,
 };
 SignupForm.defaultProps = {
-  name: null,
+  name1: null,
   email: null,
   password: null,
   nameError: false,
