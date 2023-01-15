@@ -54,12 +54,15 @@ const createFavorites = async (token, body) => {
 // delete
 const deleteFavorites = async (token, favoritesId) => {
   const userUid = token.split(' ')[1];
+
   const user = (await knex('users').where({ uid: userUid }))[0];
   if (!user) {
     throw new HttpError('User not found', 401);
   }
   try {
-    const deletedFav = knex('favorites').where({ id: favoritesId }).del();
+    const deletedFav = knex('favorites')
+      .where({ id: favoritesId, user_id: user.id })
+      .del();
     if (deletedFav === 0) {
       throw new HttpError('The favorites ID you provided does not exist.', 400);
     } else {
