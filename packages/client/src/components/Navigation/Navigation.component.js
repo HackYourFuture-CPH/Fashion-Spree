@@ -16,9 +16,9 @@ export const Navigation = () => {
   const { productsAmount } = useShoppingCartContext();
 
   return (
-    <div className="navigation-container">
+    <header className="navigation-container">
       <div className="navigation">
-        <div className="nav">
+        <nav className="nav">
           <span className="navbar-brand">Fashion Spree</span>
           <div className="links" id={showMobileLinks ? 'links-mobile' : ''}>
             <NavLink to="/" className="home">
@@ -87,8 +87,8 @@ export const Navigation = () => {
               <img className="icon-hamburger" src={menu} alt="menu" />
             )}
           </button>
-        </div>
+        </nav>
       </div>
-    </div>
+    </header>
   );
 };
