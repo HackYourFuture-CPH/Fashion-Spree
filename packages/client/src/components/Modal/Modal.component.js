@@ -1,15 +1,17 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect } from 'react';
 import './modal.styles.css';
 
 const Modal = ({ toggle, open, title, children }) => {
-  if (!open) return null;
-  document.body.style.overflow = 'hidden';
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  }, [open]);
 
-  const handleModalToggle = () => {
-    document.body.style.overflow = 'visible';
-    toggle();
-  };
+  if (!open) return null;
 
   return (
     <div onClick={toggle} role="presentation" className="overlay">
@@ -24,7 +26,7 @@ const Modal = ({ toggle, open, title, children }) => {
           <h2>{title}</h2>
           <button
             type="button"
-            onClick={() => handleModalToggle()}
+            onClick={() => toggle()}
             className="modal-close-btn"
           >
             X
