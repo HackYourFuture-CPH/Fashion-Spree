@@ -40,7 +40,7 @@ const createFavorites = async (token, body) => {
       throw new HttpError('User not found', 401);
     }
     await knex('favorites').insert({
-      user_id: body.user_id,
+      user_id: user.id,
       product_id: body.product_id,
     });
     return {
