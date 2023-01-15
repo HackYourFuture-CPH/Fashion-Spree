@@ -10,6 +10,9 @@
   margin: 25px 0px;
   position: relative;
 }
+.relatedItems-heading {
+  text-align: left;
+}
 
 .related-items-display h2,
 .related-items-display p {

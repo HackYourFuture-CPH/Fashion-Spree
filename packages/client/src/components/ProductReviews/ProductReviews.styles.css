@@ -1,6 +1,7 @@
 .product-reviews-wrapper {
   display: flex;
   flex-direction: column;
+  text-align: left;
 }
 
 .product-reviews-wrapper h1 {
