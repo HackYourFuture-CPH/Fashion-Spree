@@ -20,11 +20,23 @@ const countAllProducts = (products) => {
   return products.reduce((acc, product) => acc + product.quantity, 0);
 };
 
+const countSubTotal = (products) => {
+  return products.reduce(
+    (acc, product) => acc + product.quantity * product.price,
+    0,
+  );
+};
+
 const ShoppingCartProvider = ({ children }) => {
   const { user } = useUserContext();
   const [orderItems, setOrderItems] = useState([]);
   const [productsAmount, setProductsAmount] = useState(0);
+  const [selectedProducts, setSelectedProducts] = useState([]);
   const [action, setAction] = useState(true);
+  const delivery = 0;
+  const shipping = 0;
+  const subtotal = countSubTotal(selectedProducts);
+  const total = subtotal + delivery + shipping;
 
   useEffect(() => {
     const fetchOrderItems = async (userUid) => {
@@ -32,7 +44,7 @@ const ShoppingCartProvider = ({ children }) => {
         const requestBody = {
           method: 'GET',
           headers: {
-            token: `token ${user.uid}`,
+            token: `token ${userUid}`,
             'Content-Type': 'application/json',
           },
         };
@@ -68,11 +80,45 @@ const ShoppingCartProvider = ({ children }) => {
       );
       const productData = await response.json();
 
-      if (typeof productData === 'number') {
-        setAction(true);
+      const isSelected = selectedProducts.some(
+        (item) => product.variant_id === item.variant_id,
+      );
+
+      if (typeof productData !== 'number') {
+        return;
+      }
+
+      if (isSelected) {
+        const leftOrderItems = orderItems.filter((item) => item !== product);
+        const leftSelectedProducts = leftOrderItems.filter((item) =>
+          selectedProducts.some((prod) => item.variant_id === prod.variant_id),
+        );
+        setSelectedProducts(leftSelectedProducts);
+      }
+
+      setAction(true);
+    },
+    [user, orderItems, selectedProducts],
+  );
+
+  const handleChange = useCallback(
+    (product) => {
+      const isSelected = selectedProducts.some(
+        (item) => product.variant_id === item.variant_id,
+      );
+      if (isSelected) {
+        setSelectedProducts((prevProducts) => {
+          return prevProducts.filter(
+            (selProduct) => selProduct.variant_id !== product.variant_id,
+          );
+        });
+      } else {
+        setSelectedProducts((prevProducts) => {
+          return [...prevProducts, product];
+        });
       }
     },
-    [user],
+    [selectedProducts],
   );
 
   const orderItemsProviderValue = useMemo(
@@ -80,8 +126,24 @@ const ShoppingCartProvider = ({ children }) => {
       orderItems,
       productsAmount,
       removeOrderItem,
+      setAction,
+      delivery,
+      shipping,
+      total,
+      subtotal,
+      handleChange,
     }),
-    [orderItems, removeOrderItem, productsAmount],
+    [
+      orderItems,
+      removeOrderItem,
+      productsAmount,
+      setAction,
+      delivery,
+      shipping,
+      total,
+      subtotal,
+      handleChange,
+    ],
   );
 
   return (

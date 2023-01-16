@@ -3,7 +3,7 @@ import './CartTable.styles.css';
 import CartSelectedProduct from '../CartSelectedProduct/CartSelectedProduct.component';
 import PropTypes from 'prop-types';
 
-export default function CartTable({ products, handleChange }) {
+export default function CartTable({ products }) {
   return (
     <div className="cart-table-wrapper">
       <div className="cart-table-headers">
@@ -20,7 +20,6 @@ export default function CartTable({ products, handleChange }) {
           <CartSelectedProduct
             key={(product.order_id, product.variant_id)}
             product={product}
-            handleChange={handleChange}
           />
         ))}
       </div>
@@ -38,5 +37,4 @@ CartTable.propTypes = {
       quantity: PropTypes.number.isRequired,
     }),
   ).isRequired,
-  handleChange: PropTypes.func.isRequired,
 };

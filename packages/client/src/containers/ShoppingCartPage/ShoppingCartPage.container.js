@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './ShoppingCartPage.styles.css';
 import CartContainer from '../../components/Cart/CartContainer/CartContainer.component';
 import CartCount from '../../components/Cart/CartCount/CartCount.component';
@@ -9,39 +9,13 @@ import { GoBackButton } from '../../components/shared/GoBackButton/GoBackButton.
 import { useNavigate } from 'react-router-dom';
 import { useShoppingCartContext } from '../../utils/ShoppingCartContext/ShoppingCartContext';
 
-const countSubTotal = (products) => {
-  return products.reduce(
-    (acc, product) => acc + product.quantity * product.price,
-    0,
-  );
-};
-
 export const ShoppingCartPage = () => {
-  const { orderItems, productsAmount } = useShoppingCartContext();
-
+  const { orderItems, productsAmount, delivery, shipping, total, subtotal } =
+    useShoppingCartContext();
   const navigate = useNavigate();
-  const [selectedProducts, setSelectedProducts] = useState([]);
-  const delivery = 0;
-  const shipping = 0;
-
-  const subtotal = countSubTotal(selectedProducts);
-
-  const total = subtotal + delivery + shipping;
 
   const navigateBack = () => {
     navigate(-1);
-  };
-
-  const handleChange = (product) => {
-    if (selectedProducts.includes(product)) {
-      setSelectedProducts((prevProducts) => {
-        return prevProducts.filter((selProduct) => selProduct !== product);
-      });
-    } else {
-      setSelectedProducts((prevProducts) => {
-        return [...prevProducts, product];
-      });
-    }
   };
 
   return (
@@ -52,7 +26,7 @@ export const ShoppingCartPage = () => {
         </div>
         <CartCount productSum={productsAmount} />
         <CartContainer>
-          <CartTable products={orderItems} handleChange={handleChange} />
+          <CartTable products={orderItems} />
           <CartTotal
             subtotal={subtotal}
             delivery={delivery}

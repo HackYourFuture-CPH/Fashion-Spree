@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import removeIcon from '../../../assets/remove-btn.png';
 import { useShoppingCartContext } from '../../../utils/ShoppingCartContext/ShoppingCartContext';
 
-export default function CartSelectedProduct({ product, handleChange }) {
-  const { removeOrderItem } = useShoppingCartContext();
+export default function CartSelectedProduct({ product }) {
+  const { removeOrderItem, handleChange } = useShoppingCartContext();
 
   return (
     <div className="cart-selected-wrapper">
@@ -50,5 +50,4 @@ CartSelectedProduct.propTypes = {
     price: PropTypes.string.isRequired,
     quantity: PropTypes.number.isRequired,
   }).isRequired,
-  handleChange: PropTypes.func.isRequired,
 };
