@@ -1,10 +1,19 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React, { useEffect } from 'react';
 import './modal.styles.css';
 
 const Modal = ({ toggle, open, title, children }) => {
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    // eslint-disable-next-line no-return-assign
+    return () => (document.body.style.overflow = '');
+  }, [open]);
+
   if (!open) return null;
-  document.body.style.overflow = 'hidden';
 
   return (
     <div onClick={toggle} role="presentation" className="overlay">
