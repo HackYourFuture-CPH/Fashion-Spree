@@ -32,7 +32,6 @@ const ProductCard = ({
               isFavorite
                 ? setModalState({ modalStatus: true, favoritesId: favoriteId })
                 : addFavorite(id);
-              setOpenModal(true);
             }}
           >
             <img

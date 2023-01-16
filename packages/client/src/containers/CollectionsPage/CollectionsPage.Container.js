@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import ProductList from '../../components/ProductList/ProductList.component';
 import './CollectionsPage.style.css';
 import DropDownView from '../../components/CategoriesListDropDown/CategoriesListDropDown.component';
@@ -16,29 +16,28 @@ export const CollectionsPage = () => {
   const [categories, setCategories] = useState([]);
   const [searchInput, setSearchInput] = useState('');
   const [filteredProducts, setFilteredProducts] = useState([]);
-  let isFavorite;
+
+  const fetchProducts = useCallback(() => {
+    setIsLoading(true);
+    const url = `${apiURL()}/products${
+      selectedCategory ? `?category=${selectedCategory}` : ''
+    }`;
+    fetch(url, {
+      headers: {
+        token: `token ${user?.uid}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((items) => {
+        setProducts(items);
+        setIsLoading(false);
+      });
+  }, [selectedCategory, user]);
 
   // fetching Api by products or products by category
   useEffect(() => {
-    function fetchProducts(categoryName) {
-      setIsLoading(true);
-      const url = `${apiURL()}/products${
-        selectedCategory ? `?category=${categoryName}` : ''
-      }`;
-      fetch(url, {
-        headers: {
-          token: `token ${user?.uid}`,
-        },
-      })
-        .then((res) => res.json())
-        .then((items) => {
-          setProducts(items);
-        });
-    }
-    fetchProducts(selectedCategory);
-
-    setIsLoading(false);
-  }, [selectedCategory, user]);
+    fetchProducts();
+  }, [fetchProducts]);
 
   // fetching Api to categories options in dropdown List.
   useEffect(() => {
@@ -92,6 +91,23 @@ export const CollectionsPage = () => {
     setFilteredProducts(filterResults);
   }, [searchInput, products, sortOrder]);
 
+  const addFavorite = (key) => {
+    fetch(`${apiURL()}/favorites`, {
+      method: 'POST',
+      headers: {
+        token: `token ${user?.uid}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        product_id: key,
+      }),
+    }).then((res) => {
+      if (res.ok) {
+        fetchProducts();
+      }
+    });
+  };
+
   return (
     <>
       <div className="list-view">
@@ -126,7 +142,7 @@ export const CollectionsPage = () => {
           isLoading={isLoading}
           products={products}
           filteredProducts={filteredProducts}
-          isFavorite={isFavorite}
+          addFavorite={addFavorite}
         />
       </div>
     </>

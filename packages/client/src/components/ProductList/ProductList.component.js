@@ -1,35 +1,23 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { apiURL } from '../../apiURL';
 import { ProductPropType } from '../../ProductPropType';
 import './ProductList.component.css';
 import { useUserContext } from '../../userContext';
 import ProductCard from '../ProductCard/ProductCard.component';
 import Modal from '../Modal/Modal.component';
 
-export default function ProductList({ isLoading, products, filteredProducts }) {
+export default function ProductList({
+  isLoading,
+  products,
+  filteredProducts,
+  addFavorite,
+}) {
   const [openModal, setOpenModal] = useState();
   const toggleModal = () => {
     setOpenModal(false);
   };
   const { user } = useUserContext();
 
-  const addFavorite = (key) => {
-    fetch(`${apiURL()}/favorites`, {
-      method: 'POST',
-      headers: {
-        token: `token ${user?.uid}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        product_id: key,
-      }),
-    }).then((res) => {
-      if (res.ok) {
-        return res.json().then((data) => {});
-      }
-    });
-  };
   const ListOfProducts = filteredProducts.map((product) => {
     return (
       <div className="product" key={product.id}>
@@ -69,4 +57,8 @@ ProductList.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   products: PropTypes.arrayOf(ProductPropType).isRequired,
   filteredProducts: PropTypes.arrayOf(ProductPropType).isRequired,
+  addFavorite: PropTypes.func,
+};
+ProductList.defaultProps = {
+  addFavorite: null,
 };
