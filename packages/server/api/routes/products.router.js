@@ -36,10 +36,10 @@ const productsController = require('../controllers/products.controller');
  */
 router.get('/', (req, res, next) => {
   const { token } = req.headers;
-
   if (req.query.category) {
     productsController
       .getProductsByCategory(
+        token,
         req.query.category,
         req.query.limit,
         req.query.offset,
