@@ -15,7 +15,6 @@ const ProductCard = ({
   price,
   isFavorite,
   setModalState,
-  toggleFavorite,
   addFavorite,
   setOpenModal,
 }) => {
@@ -32,6 +31,7 @@ const ProductCard = ({
               isFavorite
                 ? setModalState({ modalStatus: true, favoritesId: favoriteId })
                 : addFavorite(id);
+              setOpenModal(true);
             }}
           >
             <img
@@ -65,7 +65,6 @@ ProductCard.propTypes = {
   favoriteId: PropTypes.number.isRequired,
   isFavorite: PropTypes.bool.isRequired,
   setModalState: PropTypes.func.isRequired,
-  toggleFavorite: PropTypes.func.isRequired,
   addFavorite: PropTypes.func.isRequired,
   setOpenModal: PropTypes.bool.isRequired,
 };
