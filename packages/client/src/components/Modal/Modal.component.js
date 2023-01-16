@@ -9,6 +9,8 @@ const Modal = ({ toggle, open, title, children }) => {
     } else {
       document.body.style.overflow = '';
     }
+    // eslint-disable-next-line no-return-assign
+    return () => (document.body.style.overflow = '');
   }, [open]);
 
   if (!open) return null;
