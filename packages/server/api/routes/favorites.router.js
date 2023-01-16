@@ -68,8 +68,9 @@ router.get('/', (req, res, next) => {
  *        description: Unexpected error.
  */
 router.post('/', (req, res, next) => {
+  const { token } = req.headers;
   favoritesController
-    .createFavorites(req.body)
+    .createFavorites(token, req.body)
     .then((result) => res.json(result))
     .catch(next);
 });
@@ -95,8 +96,9 @@ router.post('/', (req, res, next) => {
  */
 
 router.delete('/:id', (req, res, next) => {
+  const { token } = req.headers;
   favoritesController
-    .deleteFavorites(req.params.id, req)
+    .deleteFavorites(token, req.params.id)
     .then((result) => res.json(result))
     .catch(next);
 });
