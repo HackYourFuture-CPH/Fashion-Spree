@@ -37,6 +37,9 @@ export default function ProductList({
 
   return (
     <div className="product-list-container">
+      {/* <button onClick={() => setOpenModal(true)} type="button">
+        hhhhhhhh
+      </button> */}
       {isLoading && <p>Loading...</p>}
       {products.length === 0 || filteredProducts.length === 0 ? (
         <p>There is no product available</p>
