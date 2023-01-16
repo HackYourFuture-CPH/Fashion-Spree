@@ -62,10 +62,16 @@ ProductCard.propTypes = {
   title: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
-  favoriteId: PropTypes.number.isRequired,
+  favoriteId: PropTypes.number,
   isFavorite: PropTypes.bool.isRequired,
-  setModalState: PropTypes.func.isRequired,
+  setModalState: PropTypes.func,
   addFavorite: PropTypes.func.isRequired,
-  setOpenModal: PropTypes.bool.isRequired,
+  setOpenModal: PropTypes.func,
 };
+ProductCard.defaultProps = {
+  setOpenModal: null,
+  setModalState: null,
+  favoriteId: null,
+};
+
 export default ProductCard;
