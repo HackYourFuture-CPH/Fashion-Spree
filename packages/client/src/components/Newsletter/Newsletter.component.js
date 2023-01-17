@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import './Newsletter.styles.css';
+import useInputValidation from '../../utils/hooks/useInputValidation';
 import { Button } from '../Button/Button.component';
 import EmailFormInput from '../Input/EmailFormInput.component';
-import useInputValidation from '../../utils/hooks/useInputValidation';
 import Modal from '../Modal/Modal.component';
+import './Newsletter.styles.css';
 
 export default function Newsletter() {
   const [validForm, setValidForm] = useState(false);
@@ -46,12 +46,10 @@ export default function Newsletter() {
           />
           {validForm && (
             <Modal
-              title="confirmation"
+              title="Thank you for your subscription!"
               open={openConfirmationModal}
               toggle={() => setOpenConfirmationModal(false)}
-            >
-              Thank you for your subscription!
-            </Modal>
+            />
           )}
         </div>
       </div>

@@ -34,7 +34,7 @@ const Modal = ({ toggle, open, title, children }) => {
             X
           </button>
         </div>
-        <div className="modal-content">{children}</div>
+        {children && <div className="modal-content">{children}</div>}
       </div>
     </div>
   );
