@@ -70,6 +70,7 @@ export const RelatedItems = ({ category }) => {
             rating={5}
             title={prod.name}
             price={prod.price}
+            imageUrl={prod.imageUrl}
           />
         ))}
         <div className="after-Carousel">

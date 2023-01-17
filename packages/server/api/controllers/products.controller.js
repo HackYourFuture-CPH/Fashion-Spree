@@ -44,6 +44,7 @@ const getProductsByCategory = async (category, limit, offset) => {
         'products.id as id',
         'products.name',
         'products.description',
+        'products.imageUrl',
         'products.price',
         'categories.name as cname',
       )

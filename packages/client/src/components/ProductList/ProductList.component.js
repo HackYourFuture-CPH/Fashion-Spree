@@ -13,6 +13,7 @@ export default function ProductList({ isLoading, products, filteredProducts }) {
           title={product.name}
           price={product.price}
           id={product.id}
+          imageUrl={product.imageUrl}
           favoritesID={product.favoritesID}
           isFavorite={product.favoritesID !== null}
         />

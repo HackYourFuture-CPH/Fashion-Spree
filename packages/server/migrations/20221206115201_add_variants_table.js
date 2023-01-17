@@ -9,15 +9,15 @@ exports.up = function (knex) {
     table.integer('product_id').unsigned();
     table.foreign('product_id').references('id').inTable('products');
     table.enum('color', [
-      'red',
-      'yellow',
-      'blue',
-      'black',
-      'white',
-      'brown',
-      'gray',
-      'merun',
-      'orange',
+      'Red',
+      'Yellow',
+      'Blue',
+      'Black',
+      'White',
+      'Brown',
+      'Gray',
+      'Maroon',
+      'Orange',
     ]);
     table.enum('size', ['XS', 'Small', 'Medium', 'Large', 'XL', 'XXL', '3XL']);
     table.string('pictureUrl');
