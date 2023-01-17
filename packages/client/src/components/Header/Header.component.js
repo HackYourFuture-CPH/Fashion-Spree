@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-import './Header.styles.css';
-import { Button } from '../Button/Button.component';
 import imageHeader from '../../assets/image-header.png';
+import { Button } from '../Button/Button.component';
+import './Header.styles.css';
 
 export const Header = () => {
   return (
@@ -16,7 +17,9 @@ export const Header = () => {
             ease.
           </p>
         </div>
-        <Button label="Start Shopping" backgroundColor="#F5F5F5" />
+        <Link to="/collections">
+          <Button label="Start Shopping" backgroundColor="#F5F5F5" />
+        </Link>
       </div>
       <div className="header-image">
         <img src={imageHeader} alt="Header" />

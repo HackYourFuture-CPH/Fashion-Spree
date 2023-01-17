@@ -1,12 +1,13 @@
 import React from 'react';
-import './Body.styles.css';
-import { Button } from '../Button/Button.component';
-import imgWomenAccessories from '../../assets/images/body-images/women-accessories.png';
-import imgMenAccessories from '../../assets/images/body-images/men-accessories.png';
-import imgHandbag from '../../assets/images/body-images/handbag.png';
-import imgGlass from '../../assets/images/body-images/glass.png';
-import imgEarring from '../../assets/images/body-images/earring.png';
+import { Link } from 'react-router-dom';
 import imgCloset from '../../assets/images/body-images/closet.png';
+import imgEarring from '../../assets/images/body-images/earring.png';
+import imgGlass from '../../assets/images/body-images/glass.png';
+import imgHandbag from '../../assets/images/body-images/handbag.png';
+import imgMenAccessories from '../../assets/images/body-images/men-accessories.png';
+import imgWomenAccessories from '../../assets/images/body-images/women-accessories.png';
+import { Button } from '../Button/Button.component';
+import './Body.styles.css';
 
 export const Body = () => {
   return (
@@ -58,11 +59,13 @@ export const Body = () => {
           </div>
         </div>
       </div>
-      <Button
-        className="shopnow-button"
-        label="Shop Now"
-        backgroundColor="#F5F5F5"
-      />
+      <Link to="/collections">
+        <Button
+          className="shopnow-button"
+          label="Shop Now"
+          backgroundColor="#F5F5F5"
+        />
+      </Link>
     </main>
   );
 };
