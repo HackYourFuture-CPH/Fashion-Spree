@@ -122,7 +122,7 @@ button {
     margin-top: 30px;
     padding-top: 10px;
     padding-bottom: 5px;
-    border-top: 1px solid rgb(212, 194, 194);
+    border-top: none;
   }
   .nav-buttons {
     display: flex;
@@ -136,7 +136,7 @@ button {
     line-height: 30px;
   }
   .navigation-container {
-    padding-bottom: 15px;
+    padding-bottom: 30px;
   }
   .logged-in-container {
     position: absolute;
