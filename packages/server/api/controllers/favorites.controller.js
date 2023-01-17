@@ -60,7 +60,7 @@ const deleteFavorites = async (token, favoritesId) => {
     throw new HttpError('User not found', 401);
   }
   try {
-    const deletedFav = knex('favorites')
+    const deletedFav = await knex('favorites')
       .where({ id: favoritesId, user_id: user.id })
       .del();
     if (deletedFav === 0) {
