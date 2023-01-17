@@ -1,34 +1,52 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import SearchInput from '../../components/SearchInput/SearchInput.component';
 import ProductCard from '../../components/ProductCard/ProductCard.component';
 import './FavoritesPage.style.css';
 import { apiURL } from '../../apiURL';
 import { useUserContext } from '../../userContext';
 
+import Modal from '../../components/Modal/Modal.component';
+import { ViewPageButton } from '../../components/ViewPageButton/ViewPageButton.component';
+
 export const FavoritesPage = () => {
   const { user } = useUserContext();
   const [isLoading, setIsLoading] = useState(false);
   const [favorites, setFavorites] = useState([]);
   const [searchInput, setSearchInput] = useState('');
+  const [modalState, setModalState] = useState({
+    modalStatus: false,
+  });
 
-  useEffect(() => {
-    const fetchFavorites = async () => {
-      setIsLoading(true);
-      const url = `${apiURL()}/favorites`;
-      const response = await fetch(url, {
-        headers: {
-          token: `token ${user?.uid}`,
-        },
-      });
-      const favoritesData = await response.json();
-      if (Array.isArray(favoritesData)) {
-        setFavorites(favoritesData);
-      }
-    };
+  const closeModal = () => {
+    setModalState({ modalStatus: false });
+  };
 
-    fetchFavorites();
+  const [favoriteProducts, setFavoriteProducts] = useState();
+  const toggleFavorite = (id) => {
+    const filteredFavorite = favoriteProducts.filter((item) => item.id !== id);
+    setFavoriteProducts(filteredFavorite);
+  };
+
+  const fetchFavorites = useCallback(async () => {
+    setIsLoading(true);
+    const url = `${apiURL()}/favorites`;
+    const response = await fetch(url, {
+      headers: {
+        token: `token ${user?.uid}`,
+      },
+    });
+    const favoritesData = await response.json();
+    if (Array.isArray(favoritesData)) {
+      setFavorites(favoritesData);
+    } else {
+      setFavorites([]);
+    }
     setIsLoading(false);
   }, [user]);
+
+  useEffect(() => {
+    fetchFavorites();
+  }, [fetchFavorites]);
 
   const filteredProducts = useMemo(() => {
     const trimmedKeyword = searchInput.trim();
@@ -42,14 +60,34 @@ export const FavoritesPage = () => {
     return (
       <div key={product.id} className="product">
         <ProductCard
+          favoriteId={product.favoritesID}
           title={product.name}
           price={product.price}
           id={product.id}
           isFavorite={filteredProducts.some((x) => x.id === product.id)}
+          setModalState={setModalState}
+          toggleFavorite={toggleFavorite}
         />
       </div>
     );
   });
+
+  const handleModal = (favoritesId, id) => {
+    const DeleteFavorites = async () => {
+      const response = await fetch(`${apiURL()}/favorites/${favoritesId} `, {
+        method: 'DELETE',
+        headers: {
+          token: `token ${user?.uid}`,
+        },
+      });
+
+      if (response.ok) {
+        fetchFavorites();
+      }
+    };
+    DeleteFavorites(favoritesId);
+    closeModal();
+  };
 
   return (
     <div className="favorite-list-view">
@@ -62,6 +100,24 @@ export const FavoritesPage = () => {
       ) : (
         <div className="rendered-product">{ListOfFavoriteProducts}</div>
       )}
+      <Modal
+        title="Are you sure you want to Remove your favorite?"
+        open={modalState.modalStatus}
+        toggle={closeModal}
+      >
+        <div>
+          <ViewPageButton
+            label="Yes"
+            backgroundColor="#00EF00"
+            onClick={() => handleModal(modalState.favoritesId)}
+          />
+          <ViewPageButton
+            label="No"
+            backgroundColor="#FF0000"
+            onClick={closeModal}
+          />
+        </div>
+      </Modal>
     </div>
   );
 };
