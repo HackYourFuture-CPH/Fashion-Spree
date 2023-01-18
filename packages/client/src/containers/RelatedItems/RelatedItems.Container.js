@@ -68,6 +68,7 @@ export const RelatedItems = ({ category }) => {
             key={prod.id}
             product={prod}
             rating={5}
+            imageUrl={prod.imageUrl}
             title={prod.name}
             price={prod.price}
           />

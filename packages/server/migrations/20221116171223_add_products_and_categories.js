@@ -17,6 +17,7 @@ exports.up = function (knex) {
       table.string('description');
       table.decimal('price').notNullable();
       table.datetime('created_at', { precision: 6 }).defaultTo(knex.fn.now(6));
+      table.string('imageUrl');
     });
 };
 
