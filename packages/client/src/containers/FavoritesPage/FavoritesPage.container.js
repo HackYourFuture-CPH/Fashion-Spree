@@ -1,9 +1,9 @@
-import React, { useState, useMemo, useEffect, useCallback } from 'react';
-import SearchInput from '../../components/SearchInput/SearchInput.component';
-import ProductCard from '../../components/ProductCard/ProductCard.component';
-import './FavoritesPage.style.css';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { apiURL } from '../../apiURL';
+import ProductCard from '../../components/ProductCard/ProductCard.component';
+import SearchInput from '../../components/SearchInput/SearchInput.component';
 import { useUserContext } from '../../userContext';
+import './FavoritesPage.style.css';
 
 import Modal from '../../components/Modal/Modal.component';
 import { ViewPageButton } from '../../components/ViewPageButton/ViewPageButton.component';
@@ -67,6 +67,7 @@ export const FavoritesPage = () => {
           isFavorite={filteredProducts.some((x) => x.id === product.id)}
           setModalState={setModalState}
           toggleFavorite={toggleFavorite}
+          imageUrl={product.imageUrl}
         />
       </div>
     );
