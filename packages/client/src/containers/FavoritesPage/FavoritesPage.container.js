@@ -64,6 +64,7 @@ export const FavoritesPage = () => {
           title={product.name}
           price={product.price}
           id={product.id}
+          imageUrl={product.imageUrl}
           isFavorite={filteredProducts.some((x) => x.id === product.id)}
           setModalState={setModalState}
           toggleFavorite={toggleFavorite}
