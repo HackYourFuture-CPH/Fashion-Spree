@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import './ContactUs.styles.css';
-import TextFormInput from '../components/Input/TextFormInput.component';
 import EmailFormInput from '../components/Input/EmailFormInput.component';
-import useInputValidation from '../utils/hooks/useInputValidation';
+import TextFormInput from '../components/Input/TextFormInput.component';
 import Modal from '../components/Modal/Modal.component';
+import useInputValidation from '../utils/hooks/useInputValidation';
+import './ContactUs.styles.css';
 
 export const ContactUs = () => {
   const [validForm, setValidForm] = useState(false);
@@ -84,12 +84,10 @@ export const ContactUs = () => {
             </button>
             {validForm && (
               <Modal
-                title="confirmation"
+                title="Your message has been sent!"
                 open={openConfirmationModal}
                 toggle={() => setOpenConfirmationModal(false)}
-              >
-                Your message has been sent!
-              </Modal>
+              />
             )}
             {invalidForm && <p className="error-message">Form is not valid</p>}
           </form>

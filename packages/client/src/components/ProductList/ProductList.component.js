@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 import { ProductPropType } from '../../ProductPropType';
-import './ProductList.component.css';
 import { useUserContext } from '../../userContext';
-import ProductCard from '../ProductCard/ProductCard.component';
 import Modal from '../Modal/Modal.component';
+import ProductCard from '../ProductCard/ProductCard.component';
+import './ProductList.component.css';
 
 export default function ProductList({
   isLoading,
@@ -48,12 +48,10 @@ export default function ProductList({
         <div className="rendered-product">{ListOfProducts}</div>
       )}
       <Modal
-        title="Please Login to save your Favorites.."
+        title="Please log in to add an item to your favourites!"
         open={!user ? openModal : null}
         toggle={toggleModal}
-      >
-        .
-      </Modal>
+      />
     </div>
   );
 }

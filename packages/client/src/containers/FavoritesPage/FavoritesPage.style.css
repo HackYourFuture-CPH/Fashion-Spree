@@ -24,7 +24,16 @@
   margin: 40px 0;
 }
 
-@media screen and (max-width: 768px) {
+.fav-modal-buttons button {
+  width: 30%;
+  padding: 5px;
+  margin: 5px;
+}
+
+@media only screen and (max-width: 768px) {
+  .list-view {
+    width: 480px;
+  }
   .my-favorites {
     font-size: 2rem;
   }

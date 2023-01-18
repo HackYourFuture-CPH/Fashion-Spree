@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import './ProductView.styles.css';
-import * as view from './index'; // Using "barrel exports" to organize React components
-import { apiURL } from './index';
+import Modal from '../../components/Modal/Modal.component';
 import { useUserContext } from '../../userContext';
 import { useShoppingCartContext } from '../../utils/ShoppingCartContext/ShoppingCartContext';
-import Modal from '../../components/Modal/Modal.component';
+import * as view from './index'; // Using "barrel exports" to organize React components
+import { apiURL } from './index';
+import './ProductView.styles.css';
 
 export const ProductView = () => {
   const [product, setProduct] = useState([]);
@@ -86,6 +86,10 @@ export const ProductView = () => {
               setAction(true);
               if (btnType === 'buyNow') {
                 navigate('/shopping-cart');
+              }
+              if (btnType === 'addToCart') {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
               }
             }
           });
