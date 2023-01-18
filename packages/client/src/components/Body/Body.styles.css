@@ -91,3 +91,9 @@
   line-height: 2.25rem;
   margin-left: 40%;
 }
+
+@media screen and (max-width: 750px) {
+  .shopnow-button {
+    margin: 30px auto 0 auto;
+  }
+}

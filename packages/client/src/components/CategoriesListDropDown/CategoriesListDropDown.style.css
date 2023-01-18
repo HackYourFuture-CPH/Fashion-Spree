@@ -22,9 +22,14 @@
   background-color: rgba(228, 193, 177, 1);
 }
 
-@media only screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
   .view-dropdown-select {
-    width: 90%;
+    width: 70%;
     padding: 16px 10px;
+  }
+
+  .list-view {
+    margin: 0 auto 0 auto;
+    width: 100%;
   }
 }
