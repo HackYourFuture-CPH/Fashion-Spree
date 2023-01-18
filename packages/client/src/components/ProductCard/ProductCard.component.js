@@ -1,11 +1,11 @@
+import PropTypes from 'prop-types';
 import React from 'react';
-import './ProductCard.styles.css';
+import { Link } from 'react-router-dom';
 import CartIcon from '../../assets/cart-icon.svg';
 import EmptyFavoriteIcon from '../../assets/empty-favorite-icon.svg';
 import FullFavoriteIcon from '../../assets/full-favorite-icon.svg';
 import StarRateIcon from '../../assets/star-rate-icon.svg';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import './ProductCard.styles.css';
 
 const ProductCard = ({
   favoriteId,
@@ -46,8 +46,8 @@ const ProductCard = ({
       </Link>
       <div className="price-rate-wrapper">
         <div className="product-price-wrapper">
-          <p>Dkk</p>
           <p>{price}</p>
+          <p>kr.</p>
         </div>
         <div className="product-rate-wrapper">
           <img src={StarRateIcon} alt="Cart Icon" />
