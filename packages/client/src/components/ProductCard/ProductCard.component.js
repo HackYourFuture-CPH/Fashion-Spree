@@ -4,7 +4,6 @@ import CartIcon from '../../assets/cart-icon.svg';
 import EmptyFavoriteIcon from '../../assets/empty-favorite-icon.svg';
 import FullFavoriteIcon from '../../assets/full-favorite-icon.svg';
 import StarRateIcon from '../../assets/star-rate-icon.svg';
-import BackgroundImage from '../../assets/jeans&shoes.jpg';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
@@ -13,6 +12,7 @@ const ProductCard = ({
   id,
   title,
   price,
+  imageUrl,
   isFavorite,
   setModalState,
   addFavorite,
@@ -21,7 +21,7 @@ const ProductCard = ({
   return (
     <div className="product-card-wrapper">
       <div className="product-img-wrapper">
-        <img src={BackgroundImage} alt="Cart Icon" className="product-img" />
+        <img src={imageUrl} alt="product-Icon" className="product-img" />
         <div className="cart-favorite-wrapper">
           <img src={CartIcon} alt="Cart Icon" />
           <button
@@ -67,6 +67,7 @@ ProductCard.propTypes = {
   setModalState: PropTypes.func,
   addFavorite: PropTypes.func.isRequired,
   setOpenModal: PropTypes.func,
+  imageUrl: PropTypes.string.isRequired,
 };
 ProductCard.defaultProps = {
   setOpenModal: null,
