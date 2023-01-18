@@ -106,15 +106,15 @@ export const FavoritesPage = () => {
         open={modalState.modalStatus}
         toggle={closeModal}
       >
-        <div>
+        <div className="fav-modal-buttons">
           <ViewPageButton
             label="Yes"
-            backgroundColor="#00EF00"
+            backgroundColor="#E4C1B1"
             onClick={() => handleModal(modalState.favoritesId)}
           />
           <ViewPageButton
             label="No"
-            backgroundColor="#FF0000"
+            backgroundColor="#b5b3b3"
             onClick={closeModal}
           />
         </div>

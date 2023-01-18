@@ -24,6 +24,12 @@
   margin: 40px 0;
 }
 
+.fav-modal-buttons button {
+  width: 30%;
+  padding: 5px;
+  margin: 5px;
+}
+
 @media only screen and (max-width: 768px) {
   .list-view {
     width: 480px;
