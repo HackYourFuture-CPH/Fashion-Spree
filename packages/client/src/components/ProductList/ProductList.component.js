@@ -26,6 +26,7 @@ export default function ProductList({
           title={product.name}
           price={product.price}
           id={product.id}
+          imageUrl={product.imageUrl}
           favoritesID={product.favoritesID}
           isFavorite={product.favoritesID !== null}
           addFavorite={addFavorite}

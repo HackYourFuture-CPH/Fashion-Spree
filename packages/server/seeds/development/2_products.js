@@ -9,98 +9,146 @@ exports.seed = async function (knex) {
     {
       category_id: 3,
       name: 'Flowy Blouse',
-      description: 'description',
+      description:
+        'Printed flowy blouse. Slot collar. Long puff sleeves with pleated cuffs. Contrast embroidery detail. Buttoned front.',
       price: 50.5,
+      imageUrl:
+        'https://images.unsplash.com/photo-1618225747659-433d5a5c6af7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1160&q=80',
     },
     {
       category_id: 1,
       name: 'Straight-cut Jeans',
-      description: 'description',
+      description:
+        'Fitted denim waistcoat with a straight-cut. Featuring false welt pockets and metal button fastening at the front.',
       price: 90.0,
+      imageUrl:
+        'https://images.unsplash.com/photo-1484186304838-0bf1a8cff81c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80',
     },
     {
       category_id: 2,
       name: 'Casual Trousers',
-      description: 'description',
+      description:
+        'Casual trousers with an adjustable inner waistband and elastic appliqué at the back. Front snap-button fastening. Contrast front pockets, patch pockets with flaps on the legs and back. Label appliqué.',
       price: 120.0,
+      imageUrl:
+        'https://images.unsplash.com/photo-1665180668151-38127eeb8cde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=896&q=80',
     },
     {
       category_id: 4,
       name: 'Tailored-fit Jacket',
-      description: 'description',
+      description:
+        'Tailored-fit jacket blazer made of a viscose blend. Lapel collar and long sleeves. Front flap pockets and a chest welt pocket. Matching lining. Button fastening at the front.',
       price: 90.7,
+      imageUrl:
+        'https://images.unsplash.com/photo-1640113540680-249084397058?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=882&q=80',
     },
     {
       category_id: 3,
       name: 'Peplum Top',
-      description: 'description',
+      description:
+        'Peplum top sleeveless round neck top with pearl bead appliqués on the front. Featuring a flared hem, invisible side zip fastening and button fastening at the back.',
       price: 70.5,
+      imageUrl:
+        'https://images.unsplash.com/photo-1534126416832-a88fdf2911c2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80',
     },
     {
       category_id: 1,
       name: 'Ripped Black Jeans',
-      description: 'description',
+      description:
+        'Ripped Black Jeans. Five-pocket design. Ripped details on the legs. Front zip fly and top button fastening.',
       price: 120.0,
+      imageUrl:
+        'https://images.unsplash.com/photo-1577210897949-1f56f943bf82?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80',
     },
     {
       category_id: 2,
       name: 'Cargo Trousers',
-      description: 'description',
+      description:
+        'High waist cargo trousers with belt loops. Front pockets, patch pockets with flaps on the leg and welt pockets at the back. Straight leg. Front zip fly and top button fastening.',
       price: 80.0,
+      imageUrl:
+        'https://images.unsplash.com/photo-1662219708541-3a74d96330eb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80',
     },
     {
       category_id: 4,
       name: 'Bomber Jacket',
-      description: 'description',
+      description:
+        'Bomber jacket with long cuffed sleeves. Featuring front pockets, a zip pocket on the chest, an elastic hem and front zip fastening hidden by a placket.',
       price: 150.0,
+      imageUrl:
+        'https://images.unsplash.com/photo-1490119551293-c52fcfd96381?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80',
     },
     {
       category_id: 3,
       name: 'Puff-sleeve Blouse',
-      description: 'description',
+      description:
+        'Puff-sleeve blouse with a round neckline, long sleeves and tie detail at the back',
       price: 30.9,
+      imageUrl:
+        'https://images.unsplash.com/photo-1582255334378-4e9bc9505664?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80',
     },
     {
       category_id: 3,
       name: 'Button-up Blouse',
-      description: 'description',
+      description:
+        'Button-up blouse with long sleeves with flared cuffs, knotted hem with ties and a button-up front.',
       price: 25.5,
+      imageUrl:
+        'https://images.unsplash.com/photo-1658932447761-8a59cd02d201?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80',
     },
     {
       category_id: 1,
       name: 'Washed Effect Jeans',
-      description: 'description',
+      description:
+        'Washed Effect Jeans sleeveless waistcoat. Front fastening with contrast buttons.',
       price: 85.0,
+      imageUrl:
+        'https://images.unsplash.com/photo-1590000011709-0a60809e0069?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80',
     },
     {
       category_id: 2,
       name: 'Jersey Trousers',
-      description: 'description',
+      description:
+        'Jersey trousers with an elastic waistband. Side pockets and patch pockets with flaps on the leg',
       price: 60.5,
+      imageUrl:
+        'https://images.unsplash.com/photo-1519167130418-c3640bd21b7e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80',
     },
     {
       category_id: 4,
       name: 'Padded Neon Jacket',
-      description: 'description',
+      description:
+        'Padded neon jacket with feathers and down filling. High neck with hood and long sleeves with inner cuffs. Pockets with hidden zips on the front. Belt with metallic buckle. Snap-button fastening on the front',
       price: 110.3,
+      imageUrl:
+        'https://images.unsplash.com/photo-1591729458470-00f6ff7b3073?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80',
     },
     {
       category_id: 1,
       name: 'Mom Jeans',
-      description: 'description',
+      description:
+        'Mom Jeans high-waist shorts with a five-pocket design. Turn-up hems. Front metal button fastening.',
       price: 75.0,
+      imageUrl:
+        'https://images.unsplash.com/photo-1563244927-7e9fea8c73ad?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80',
     },
     {
       category_id: 2,
       name: 'Formal Navy Trousers',
-      description: 'description',
+      description:
+        'Formal navy trousers made of a wool blend. Belt loops. Front pockets, patch pockets with flaps on the leg and rear patch pockets. Front zip fly and button fastening.',
       price: 130.0,
+      imageUrl:
+        'https://images.unsplash.com/photo-1524041255072-7da0525d6b34?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80',
     },
     {
       category_id: 4,
       name: 'Teddy Bear Jacket',
-      description: 'description',
+      description:
+        'Jacket featuring a bear pattern, long sleeves with elastic trim, front pockets, adjustable waist with elastic drawstring and stopper, matching interior lining and front metal zip fastening',
       price: 150.0,
+      imageUrl:
+        'https://images.unsplash.com/photo-1667104445036-a3bd1c8333f5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80',
     },
   ]);
 };
