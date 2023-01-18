@@ -6,7 +6,6 @@
 
 .list-view {
   margin: 50px auto;
-  width: 850px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
