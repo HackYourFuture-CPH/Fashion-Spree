@@ -57,17 +57,6 @@ const getProductsByCategory = async (token, category, limit, offset) => {
           this.on('products.id', '=', 'favorites.product_id');
           this.andOnVal('favorites.user_id', '=', `${user ? user.id : ''}`);
         });
-    } else {
-      products = await knex('products')
-        .select(
-          'products.id as id',
-          'products.name',
-          'products.description',
-          'products.price',
-          'categories.name as cname',
-        )
-        .leftJoin('categories', 'products.category_id', 'categories.id')
-        .offset(offset);
     }
 
     if (products.length === 0) {
