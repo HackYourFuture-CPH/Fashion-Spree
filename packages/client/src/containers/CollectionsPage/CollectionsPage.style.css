@@ -12,15 +12,3 @@
   justify-content: space-evenly;
   background-color: #e4c1b1;
 }
-
-@media only screen and (max-width: 768px) {
-  .list-view {
-    width: 480px;
-  }
-}
-
-@media only screen and (max-width: 480px) {
-  .list-view {
-    width: 480px;
-  }
-}

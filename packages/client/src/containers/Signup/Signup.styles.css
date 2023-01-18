@@ -132,14 +132,14 @@ main {
   }
 
   .signup-body-img {
-    width: 30%;
-    margin-left: 1rem;
+    display: none;
   }
 
   .signup-section {
-    width: 70%;
+    width: 90%;
     background-color: #f2ebe7;
     border-radius: 1.5rem;
+    margin: 10px auto 0 auto;
   }
 
   .dont-want-signup {

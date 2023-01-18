@@ -24,14 +24,16 @@
   margin: 40px 0;
 }
 
-@media only screen and (max-width: 768px) {
-  .list-view {
-    width: 480px;
+@media screen and (max-width: 768px) {
+  .my-favorites {
+    font-size: 2rem;
   }
-}
 
-@media only screen and (max-width: 480px) {
-  .list-view {
-    width: 480px;
+  .favorite-list-view {
+    margin: 50px auto;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    background-color: #e4c1b1;
   }
 }
