@@ -31,9 +31,6 @@
 }
 
 @media only screen and (max-width: 768px) {
-  .list-view {
-    width: 480px;
-  }
   .my-favorites {
     font-size: 2rem;
   }

@@ -24,12 +24,6 @@
 
 @media screen and (max-width: 768px) {
   .view-dropdown-select {
-    width: 70%;
     padding: 16px 10px;
-  }
-
-  .list-view {
-    margin: 0 auto 0 auto;
-    width: 100%;
   }
 }
