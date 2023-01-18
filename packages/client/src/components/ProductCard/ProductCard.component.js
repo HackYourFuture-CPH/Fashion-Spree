@@ -21,7 +21,7 @@ const ProductCard = ({
   return (
     <div className="product-card-wrapper">
       <div className="product-img-wrapper">
-        <img src={imageUrl} alt="image Icon" className="product-img" />
+        <img src={imageUrl} alt="product-Icon" className="product-img" />
         <div className="cart-favorite-wrapper">
           <img src={CartIcon} alt="Cart Icon" />
           <button
