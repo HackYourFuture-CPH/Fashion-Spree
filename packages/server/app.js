@@ -4,6 +4,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
 const router = require('./api/routes/index');
+const HttpError = require('./api/lib/utils/http-error');
 
 const app = express();
 
@@ -19,6 +20,14 @@ app.use(`/api/`, router);
 // Handle every other route with index.html, which will serve the (compiled) React app.
 app.get('*', (request, response) => {
   response.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+});
+
+app.use((err, req, res, next) => {
+  if (err instanceof HttpError) {
+    res.status(err.httpStatus).json({ error: err.message });
+  } else {
+    next(err);
+  }
 });
 
 module.exports = app;
