@@ -1,4 +1,4 @@
-# Fashion Spree
+# 👕 Fashion Spree
 
 # This is the class22 Final Project - a clothing webshop. 
 
