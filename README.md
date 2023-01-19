@@ -1,5 +1,8 @@
 # 👕 Fashion Spree
 
+![image](https://user-images.githubusercontent.com/64137994/213452966-18917512-1b9a-431f-a439-fd466b541539.png)
+
+
 # This is the class22 Final Project - a clothing webshop. 
 
 <br/>
