@@ -4,7 +4,7 @@
 
 <br/>
 
-### Design made by class13 Alumna [Bhuvaneshwari Periyasundaram](https://github.com/Bhuvaneshwari29):<br/>
+### Design made by class17 Alumna [Bhuvaneshwari Periyasundaram](https://github.com/Bhuvaneshwari29):<br/>
 [Figma link](https://www.figma.com/file/DZAlXS9NVIM14ZqlrTMoj6/Fashion-Webshop-HYF(Copy)?node-id=73%3A1044&t=qjKQUGiEc3KZNAts-1)
 
 <br/>
