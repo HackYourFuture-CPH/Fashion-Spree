@@ -5,3 +5,7 @@
 .page-outer-wrapper {
   min-height: 70vh;
 }
+
+html {
+  scroll-behavior: smooth;
+}

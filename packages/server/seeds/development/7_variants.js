@@ -1,0 +1,186 @@
+/**
+ * @param { import("knex").Knex } knex
+ * @returns { Promise<void> }
+ */
+
+exports.seed = async function (knex) {
+  // Deletes ALL existing entries
+  await knex('variants').del();
+  await knex('variants').insert([
+    {
+      color: 'Red',
+      pictureUrl: 'packages/client/src/assets/images-product/baggy-jeans.jpg',
+      product_id: 2,
+      size: 'Medium',
+      stock: 15,
+    },
+    {
+      color: 'Gray',
+      pictureUrl: 'packages/client/src/assets/jeans&shoes.jpg',
+      product_id: 4,
+      size: 'Large',
+      stock: 13,
+    },
+    {
+      color: 'Yellow',
+      pictureUrl: 'packages/client/src/assets/jeans&shoes.jpg',
+      product_id: 1,
+      size: 'XL',
+      stock: 12,
+    },
+    {
+      color: 'Black',
+      pictureUrl: 'packages/client/src/assets/jeans&shoes.jpg',
+      product_id: 3,
+      size: 'XL',
+      stock: 11,
+    },
+    {
+      color: 'Blue',
+      pictureUrl: 'packages/client/src/assets/jeans&shoes.jpg',
+      product_id: 14,
+      size: 'Medium',
+      stock: 19,
+    },
+    {
+      color: 'White',
+      pictureUrl: 'packages/client/src/assets/jeans&shoes.jpg',
+      product_id: 15,
+      size: 'XS',
+      stock: 22,
+    },
+    {
+      color: 'Yellow',
+      pictureUrl: 'packages/client/src/assets/jeans&shoes.jpg',
+      product_id: 5,
+      size: 'Medium',
+      stock: 8,
+    },
+    {
+      color: 'Blue',
+      pictureUrl: 'packages/client/src/assets/jeans&shoes.jpg',
+      product_id: 8,
+      size: 'Large',
+      stock: 30,
+    },
+    {
+      color: 'Maroon',
+      pictureUrl: 'packages/client/src/assets/jeans&shoes.jpg',
+      product_id: 7,
+      size: 'XL',
+      stock: 18,
+    },
+    {
+      color: 'White',
+      pictureUrl: 'packages/client/src/assets/jeans&shoes.jpg',
+      product_id: 10,
+      size: 'Small',
+      stock: 25,
+    },
+    {
+      color: 'Black',
+      pictureUrl: 'packages/client/src/assets/jeans&shoes.jpg',
+      product_id: 13,
+      size: 'XXL',
+      stock: 15,
+    },
+    {
+      color: 'Orange',
+      pictureUrl: 'packages/client/src/assets/jeans&shoes.jpg',
+      product_id: 6,
+      size: '3XL',
+      stock: 10,
+    },
+    {
+      color: 'Gray',
+      pictureUrl: 'packages/client/src/assets/jeans&shoes.jpg',
+      product_id: 8,
+      size: 'Large',
+      stock: 13,
+    },
+    {
+      color: 'Blue',
+      pictureUrl: 'packages/client/src/assets/jeans&shoes.jpg',
+      product_id: 16,
+      size: 'XXL',
+      stock: 12,
+    },
+    {
+      color: 'Red',
+      pictureUrl: 'packages/client/src/assets/jeans&shoes.jpg',
+      product_id: 1,
+      size: 'Medium',
+      stock: 25,
+    },
+    {
+      color: 'Blue',
+      pictureUrl: 'packages/client/src/assets/jeans&shoes.jpg',
+      product_id: 10,
+      size: 'Large',
+      stock: 15,
+    },
+    {
+      color: 'Brown',
+      pictureUrl: 'packages/client/src/assets/jeans&shoes.jpg',
+      product_id: 11,
+      size: 'XS',
+      stock: 22,
+    },
+    {
+      color: 'Black',
+      pictureUrl: 'packages/client/src/assets/jeans&shoes.jpg',
+      product_id: 12,
+      size: 'Small',
+      stock: 18,
+    },
+    {
+      color: 'White',
+      pictureUrl: 'packages/client/src/assets/jeans&shoes.jpg',
+      product_id: 9,
+      size: 'XS',
+      stock: 20,
+    },
+    {
+      color: 'Yellow',
+      pictureUrl: 'packages/client/src/assets/jeans&shoes.jpg',
+      product_id: 2,
+      size: 'XS',
+      stock: 12,
+    },
+    {
+      color: 'Yellow',
+      pictureUrl: 'packages/client/src/assets/jeans&shoes.jpg',
+      product_id: 2,
+      size: 'Small',
+      stock: 15,
+    },
+    {
+      color: 'Yellow',
+      pictureUrl: 'packages/client/src/assets/jeans&shoes.jpg',
+      product_id: 2,
+      size: 'Large',
+      stock: 10,
+    },
+    {
+      color: 'Yellow',
+      pictureUrl: 'packages/client/src/assets/jeans&shoes.jpg',
+      product_id: 2,
+      size: 'XL',
+      stock: 19,
+    },
+    {
+      color: 'Red',
+      pictureUrl: 'packages/client/src/assets/jeans&shoes.jpg',
+      product_id: 2,
+      size: 'XS',
+      stock: 17,
+    },
+    {
+      color: 'Red',
+      pictureUrl: 'packages/client/src/assets/jeans&shoes.jpg',
+      product_id: 2,
+      size: 'XL',
+      stock: 15,
+    },
+  ]);
+};

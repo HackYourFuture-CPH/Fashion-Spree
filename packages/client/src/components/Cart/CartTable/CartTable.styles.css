@@ -1,7 +1,7 @@
 .cart-table-headers {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  text-align: left;
+  text-align: center;
   font-size: 16px;
   font-weight: 600;
   background-color: #cea086;

@@ -5,14 +5,12 @@ const HttpError = require('../lib/utils/http-error');
 const getProducts = async (token) => {
   const userUid = token.split(' ')[1];
   const user = (await knex('users').where({ uid: userUid }))[0];
-
   const products = await knex('products')
     .select('products.*', 'favorites.id as favoritesID')
     .leftJoin('favorites', function () {
       this.on('products.id', '=', 'favorites.product_id');
       this.andOnVal('favorites.user_id', '=', `${user ? user.id : ''}`);
     });
-
   return products;
 };
 
@@ -21,7 +19,6 @@ const getProductById = async (id) => {
   if (!id) {
     throw new HttpError('Id should be a number', 400);
   }
-
   try {
     const products = await knex('products')
       .select('products.id as id', 'name', 'description', 'price')
@@ -36,30 +33,47 @@ const getProductById = async (id) => {
 };
 
 // Get products by Category
-const getProductsByCategory = async (category, limit, offset) => {
+const getProductsByCategory = async (token, category, limit, offset) => {
+  let products = [];
   if (!isNaN(category)) {
     throw new HttpError('Category should be a String', 400);
   }
-
   try {
-    const products = await knex('products')
+    const userUid = token.split(' ')[1];
+    const user = (await knex('users').where({ uid: userUid }))[0];
+    products = await knex('products')
       .select(
         'products.id as id',
         'products.name',
         'products.description',
+        'products.imageUrl',
         'products.price',
+        'categories.name as cname',
+        'favorites.id as favoritesID',
       )
       .leftJoin('categories', 'products.category_id', 'categories.id')
-      .where('categories.name', 'like', `${category}`)
-      .limit(limit)
-      .offset(offset);
+      .offset(offset)
+      .leftJoin('favorites', function () {
+        this.on('products.id', '=', 'favorites.product_id');
+        this.andOnVal('favorites.user_id', '=', `${user ? user.id : ''}`);
+      });
+
     if (products.length === 0) {
       throw new HttpError(
         `There are no products available with this category ${category}`,
         404,
       );
     }
-    return products;
+    let categoryProducts = products.filter((product) => {
+      return product.cname === category;
+    });
+
+    if (categoryProducts.length < limit) {
+      categoryProducts = products
+        .sort(() => Math.random() - Math.random())
+        .slice(0, limit);
+    }
+    return categoryProducts;
   } catch (error) {
     return error.message;
   }

@@ -30,3 +30,10 @@
 .cart-total-amount div:last-child {
   font-weight: 600;
 }
+
+@media only screen and (max-width: 576px) {
+  .cart-total-amount {
+    text-align: center;
+    padding-left: 30px;
+  }
+}

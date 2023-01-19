@@ -8,22 +8,21 @@ import menu from '../../assets/icons/Menu.png';
 import favorites from '../../assets/icons/Favorite.png';
 import userLogin from '../../assets/icons/user.png';
 import shoppingCart from '../../assets/icons/shopping.png';
+import { useShoppingCartContext } from '../../utils/ShoppingCartContext/ShoppingCartContext';
 
 export const Navigation = () => {
-  const { user } = useUserContext();
+  const { user, logout } = useUserContext();
   const [showMobileLinks, setShowMobileLinks] = useState(false);
+  const { productsAmount } = useShoppingCartContext();
 
   return (
-    <div className="navigation-container">
+    <header className="navigation-container">
       <div className="navigation">
-        <div className="nav">
+        <nav className="nav">
           <span className="navbar-brand">Fashion Spree</span>
           <div className="links" id={showMobileLinks ? 'links-mobile' : ''}>
             <NavLink to="/" className="home">
               Home
-            </NavLink>
-            <NavLink to="/about-us" className="about-us">
-              About Us
             </NavLink>
             <NavLink to="/collections" className="collections">
               Our collections
@@ -44,15 +43,25 @@ export const Navigation = () => {
                     />
                   </Link>
                   <Link to="/shopping-cart">
-                    <img
-                      className="icon-login"
-                      src={shoppingCart}
-                      alt="shopping"
-                    />
+                    <div>
+                      <img
+                        className="icon-login"
+                        src={shoppingCart}
+                        alt="shopping"
+                      />
+                      <span>{productsAmount}</span>
+                    </div>
                   </Link>
                   <Link to="/">
                     <img className="icon-login" src={userLogin} alt="user" />
                   </Link>
+                </div>
+                <div className="logout-button-container">
+                  <Button
+                    label="Logout"
+                    backgroundColor="#F5F5F5"
+                    onClick={logout}
+                  />
                 </div>
               </div>
             ) : (
@@ -78,8 +87,8 @@ export const Navigation = () => {
               <img className="icon-hamburger" src={menu} alt="menu" />
             )}
           </button>
-        </div>
+        </nav>
       </div>
-    </div>
+    </header>
   );
 };

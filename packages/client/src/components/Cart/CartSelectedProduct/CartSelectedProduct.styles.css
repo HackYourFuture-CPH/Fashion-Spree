@@ -1,7 +1,7 @@
 .cart-selected-wrapper {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  text-align: left;
+  text-align: center;
 }
 
 .cart-selected-blank {

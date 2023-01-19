@@ -13,6 +13,7 @@
   color: #212121cc;
   background-color: inherit;
   margin-top: 10px;
+  text-transform: capitalize;
 }
 .all-filters {
   background: url('../../assets/all-filter-icon.svg') no-repeat;
@@ -21,9 +22,8 @@
   background-color: rgba(228, 193, 177, 1);
 }
 
-@media only screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
   .view-dropdown-select {
-    width: 90%;
     padding: 16px 10px;
   }
 }

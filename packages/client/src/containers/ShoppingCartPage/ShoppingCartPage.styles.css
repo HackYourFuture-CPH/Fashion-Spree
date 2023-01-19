@@ -8,7 +8,17 @@
 }
 
 .shopping-cart-page-back {
-  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  margin: 20px auto 20px 0;
+  text-decoration: none;
+}
+.shopping-cart-page-back a,
+.shopping-cart-page-back a:visited {
+  text-decoration: none;
+  color: #636363;
+  font: inherit;
+  font-size: inherit;
 }
 
 .shopping-cart-blank {

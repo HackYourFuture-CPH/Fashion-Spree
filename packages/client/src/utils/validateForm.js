@@ -1,5 +1,5 @@
-const validateForm = (values) => {
-  const errors = {};
+export const validateForm = (value, type) => {
+  let error;
 
   //  regex in the email and password validation
   /* eslint-disable no-console */
@@ -7,26 +7,26 @@ const validateForm = (values) => {
   const regexEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
   const regexPassword =
     /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
-  if (!values.fullname) {
-    errors.fullname = 'Full name is required!';
+  if (value.length < 2 && type === 'fullname') {
+    error = 'Full name is required!';
   }
-  if (!values.email) {
-    errors.email = 'Email is required!';
-  } else if (!regexEmail.test(values.email)) {
-    errors.email = 'Invalid email format!';
-  }
-  if (!values.password) {
-    errors.password = 'Password is required!';
-  } else if (!regexPassword.test(values.password)) {
-    errors.password = `Password must Contain 8 Characters,One Uppercase, One Lowercase, One Number and One special case Character!`;
-  }
-  /* eslint-disable no-console */
-  if (values.fullname && values.email && values.password) {
-    console.log(
-      `fullname: ${values.fullname}, email: ${values.email}, password:${values.password}`,
-    );
+  if (!value && type === 'email') {
+    error = 'Email is required!';
+  } else if (value && type === 'email' && !regexEmail.test(value)) {
+    error = 'Invalid email format!';
   }
 
-  return errors;
+  if (!value && type === 'password') {
+    error = 'Password is required!';
+  } else if (value && type === 'password' && !regexPassword.test(value)) {
+    error = `Password must Contain 8 Characters,One Uppercase, One Lowercase, One Number and One special case Character!`;
+  }
+
+  if (!value && type === 'message') {
+    error = 'Message is required!';
+  } else if (value && type === 'message' && value.length < 5) {
+    error = 'Message must be more than five characters!';
+  }
+
+  return error;
 };
-export default validateForm;

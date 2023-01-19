@@ -2,10 +2,14 @@
 
 .product-view-page {
   font-family: 'Montserrat', sans-serif;
-  text-align: left;
 }
 
 .product-view-blank {
   height: 100px;
   background-color: #ececec;
+}
+.modal-title {
+  color: #cea086;
+  font-weight: bold;
+  font-size: 0.9rem;
 }
